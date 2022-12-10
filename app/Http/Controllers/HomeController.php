@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Products;
+use App\Models\Category;
 
 class HomeController extends Controller
 {
@@ -18,7 +19,8 @@ class HomeController extends Controller
         return view('admin.dashboard');
     }
     public function main(){
-        return view('layout.index');
+        $category=Category::all();
+        return view('layout.index',compact('category'));
     }
     public function shop(){
         $products=Products::all();

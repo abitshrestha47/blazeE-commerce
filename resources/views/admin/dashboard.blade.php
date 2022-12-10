@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="admin/css/dashboard.css" />
   <!-- Font Awesome Cdn Link -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
+  @vite(['resources/js/app.js'])
 </head>
 <body>
   <header class="header">
@@ -36,7 +37,7 @@
         <a href="#">Profile</a>
         <a href="#">History</a>
         <a href="#">Application</a>
-        <a href="#">My Account</a>
+        <a href="{{route('category')}}">Categories</a>
         <a href="{{route('test')}}">Documnets</a>
         <a href="{{route('products')}}">Add Products</a>
 
@@ -180,7 +181,7 @@
     </div> -->
     @yield('contents')
 
-    <div class="sidebar">
+    <!-- <div class="sidebar">
       <h4>Account Balance</h4>
       
       <div class="balance">
@@ -223,7 +224,7 @@
         </div>
       </div>
 
-    </div>
+    </div> -->
   </div>
 </body>
 </html>

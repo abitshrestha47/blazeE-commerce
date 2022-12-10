@@ -1,3 +1,6 @@
+@extends('layout.header')
+
+@section('contents')
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -31,13 +34,13 @@
     </div> -->
 
     <!-- Header Section Begin -->
-    <header class="header-section">
+    <!-- <header class="header-section">
         <div class="header-top">
             <div class="container">
                 
                 <div class="ht-right">
-                    <a href="#" class="login-panel"><i class="fa-sharp fa-solid fa-right-to-bracket"></i>Login</a>
-                    <a href="#" class="login-panel"><i class="fa fa-user"></i>Register</a>
+                    <a href="{{route('login')}}" class="login-panel"><i class="fa-sharp fa-solid fa-right-to-bracket"></i>Login</a>
+                    <a href="{{route('signup')}}" class="login-panel"><i class="fa fa-user"></i>Register</a>
                     <div class="top-social">
                         <a href="#"><i class="ti-facebook"></i></a>
                         <a href="#"><i class="ti-twitter-alt"></i></a>
@@ -55,7 +58,6 @@
                             <a href="./index.html">
                                 <img src="img/products/ask logo.jpg" alt="">
                             </a>
-                            <!-- <span>ASK BLAZE</span> -->
                         </div>
                     </div>
                     <div class="col-lg-7 col-md-7">
@@ -134,12 +136,12 @@
                         <i class="ti-menu"></i>
                         <span>All departments</span>
                         <ul class="depart-hover">
-                            <li class="active"><a href="#">Mobile Phones</a></li>
-                            <li><a href="#">T-shirts</a></li>
-                            <li><a href="#">Books</a></li>
-                            <li><a href="#">Earphone</a></li>
-                            <li><a href="#">Shoes</a></li>
-                            <li><a href="#">Accessories</a></li>
+                        <li class="active"><a href="#">Electronics</a></li>
+                            <li><a href="#">Mobiles</a></li>
+                            <li><a href="#">Clothes</a></li>
+                            <li><a href="#">Watches</a></li>
+                            <li><a href="#">Brand Fashion</a></li>
+                            <li><a href="#">Accessories/Shoes</a></li>
                             <li><a href="#">Luxury Brands</a></li>
                             <li><a href="#">Brand Outdoor Apparel</a></li>
                         </ul>
@@ -173,7 +175,7 @@
                 <div id="mobile-menu-wrap"></div>
             </div>
         </div>
-    </header>
+    </header> -->
     <!-- Header End -->
     
 
@@ -890,3 +892,4 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 </body>
 
 </html>
+@endsection

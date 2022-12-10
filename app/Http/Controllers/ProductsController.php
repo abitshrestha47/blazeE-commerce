@@ -9,9 +9,12 @@ class ProductsController extends Controller
 {
     //
     public function products(Request $req){
+        $image=$req->file('image');
+        $response=$image->store('dbimages','public');
         $product=Products::create([
             'name' => $req->name,
             'price' => $req->price,
+            'photo' => $response,
         ]);
     }
 }

@@ -1,7 +1,7 @@
 @extends('admin.dashboard')
 
 @section('contents')
-<div class="container">
+<div class="container" style='height:60vh;'>
     <div class="card">
         <div class="card-body">
             <form action="{{route('products')}}" method='post' enctype='multipart/form-data'>
@@ -24,7 +24,6 @@
                     <label class="form-check-label" for="exampleCheck1">Check me out</label>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
-
             </form>
         </div>
     </div>
