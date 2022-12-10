@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,15 +18,19 @@ use App\Http\Controllers\ProductsController;
 |
 */
 
-Route::get('/',[HomeController::class,'signup'])->name('signup');
+// Route::get('/',[HomeController::class,'signup'])->name('signup');
 
-Route::post('/',[UserController::class,'signup'])->name('signup');
+Route::get('/',[HomeController::class,'main'])->name('main');
+
+Route::get('/signup',[HomeController::class,'signup'])->name('signup');
+
+Route::post('/signup',[UserController::class,'signup'])->name('signup');
 
 Route::get('/login',[HomeController::class,'login'])->name('login');
 
 Route::post('/login',[UserController::class,'logging'])->name('logging');
 
-Route::get('/main',[HomeController::class,'main'])->name('main')->middleware('auth');
+// Route::get('/main',[HomeController::class,'main'])->name('main')->middleware('auth');
 
 Route::get('/dashboard',[HomeController::class,'dashboard'])->name('dashboard')->middleware('auth','admin');
 
@@ -38,6 +43,13 @@ Route::get('/products',[AdminController::class,'products'])->name('products');
 Route::post('/products',[ProductsController::class,'products'])->name('products');
 
 Route::get('/test',[AdminController::class,'test'])->name('test');
+
+Route::get('/category',[AdminController::class,'category'])->name('category');
+
+Route::post('/category',[CategoryController::class,'category'])->name('category');
+
+
+
 
 
 

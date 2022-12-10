@@ -14,4 +14,7 @@ class AdminController extends Controller
     public function test(){
         return view('Admin.test');
     }
+    public function category(){
+        return view('Admin.category');
+    }
 }
