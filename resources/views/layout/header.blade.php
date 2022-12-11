@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="home/css/style.css" type="text/css">
 </head>
 <body>
+
     <header class="header-section">
         <div class="header-top">
             <div class="container">
@@ -129,17 +130,12 @@
                         <i class="ti-menu"></i>
                         <span>All departments</span>
                         <ul class="depart-hover">
+                            @if(isset($category))
                             @foreach($category as $category)
                             <li><a href="#">{{$category->categories}}</a></li>
                             @endforeach
-                            <!-- <li class="active"><a href="#">{{$category->categories}}</a></li>
-                            <li><a href="#">Mobiles</a></li>
-                            <li><a href="#">Clothes</a></li>
-                            <li><a href="#">Watches</a></li>
-                            <li><a href="#">Brand Fashion</a></li>
-                            <li><a href="#">Accessories/Shoes</a></li>
-                            <li><a href="#">Luxury Brands</a></li>
-                            <li><a href="#">Brand Outdoor Apparel</a></li> -->
+                            @endif
+
                         </ul>
                     </div>
                 </div>

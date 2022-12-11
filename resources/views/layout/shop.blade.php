@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="home/css/jquery-ui.min.css" type="text/css">
     <link rel="stylesheet" href="home/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="home/css/style.css" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
 <body>
@@ -215,9 +216,15 @@
                     <div class="filter-widget">
                         <h4 class="fw-title">Categories</h4>
                         <ul class="filter-catagories">
-                            <li><a href="#">Men</a></li>
+                            <!-- <li><a href="#">Me</a></li>
                             <li><a href="#">Women</a></li>
-                            <li><a href="#">Kids</a></li>
+                            <li><a href="#">Kids</a></li> -->
+                            <select name="category" id="category">
+                                <option value="">Select Category</option>
+                            @foreach($category as $shop)
+                                <option value="{{$shop->id}}">{{$shop->categories}}</option>}}>
+                            @endforeach
+                            </select>
                         </ul>
                     </div>
                     <div class="filter-widget">
@@ -353,7 +360,7 @@
                         </div>
                     </div>
                     <div class="product-list">
-                        <div class="row">
+                        <div class="row" id="tbody">
 
                             @foreach($products as $products)
                             <div class="col-lg-4 col-sm-6">
@@ -519,6 +526,52 @@
     <script src="home/js/jquery.slicknav.js"></script>
     <script src="home/js/owl.carousel.min.js"></script>
     <script src="home/js/main.js"></script>
+
+    <script>
+        $(document).ready(function(){
+            $("#category").on('change', function(){
+                var category=$(this).val();
+                $.ajax({
+                    url:"{{route('shop')}}",
+                    type:'GET',
+                    data:{'category':category},
+                    success:function(data){
+                        var products=data.goods;
+                        var html='';
+                        // if(products.length>0){
+                        //     for(let i=0;i<products.length;i++){
+                        //         html+='<tr>\
+                        //             <td>'+products[i]['id']+'</td>\
+                        //             <td>'+products[i]['name']+'</td>\
+                        //         </tr>'
+                        //     }
+                        // }
+                        // else{
+                        //     html+='<tr>\
+                        //         <td>No products found</td>\
+                        //     </tr>'
+                        // }
+                        if(products.length>0){
+                            for(let i=0;i<products.length;i++){
+                                html+='<tr>\
+                                    <td>'+products[i]['id']+'</td>\
+                                    <td>'+products[i]['name']+'</td>\
+                                    <td><img width="100px" height="100px" src="/storage/'+products[i]['photo']+'"></td>\
+                                </tr>'
+                            }
+                        }
+                        else{
+                            html+='<tr>\
+                                <td>No products found</td>\
+                            </tr>'
+                        }
+                        $('#tbody').html(html);
+                        console.log(data);
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>

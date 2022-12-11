@@ -15,15 +15,24 @@ class HomeController extends Controller
     public function login(){
         return view('layout.login');
     }
-    public function dashboard(){
-        return view('admin.dashboard');
-    }
+ 
     public function main(){
         $category=Category::all();
         return view('layout.index',compact('category'));
     }
-    public function shop(){
+    public function shop(Request $request){
+        $query=Products::query();
+        $category=Category::all();
         $products=Products::all();
-        return view('layout.shop',compact('products'));
+        if($request->ajax()){
+            if(empty($request->category)){
+                $goods=$query->get();
+            }
+            else{
+                $goods=$query->where(['categoryid'=>$request->category])->get();
+            }
+            return response()->json(['goods'=>$goods]);
+        }
+        return view('layout.shop',compact('products','category'));
     }
 }
