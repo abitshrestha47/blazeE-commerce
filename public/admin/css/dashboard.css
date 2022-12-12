@@ -5,7 +5,7 @@
   padding: 0;
   border: none;
   outline: none;
-  text-decoration: none;
+  text-decoration: none !important;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
 }
@@ -18,7 +18,7 @@ body{
   justify-content: space-between;
   height: 60px;
   padding: 20px;
-  background: #fff;
+  background: #dc1e3a;
 }
 .logo{
   display: flex;
@@ -80,9 +80,13 @@ nav{
   background: #fff;
 }
 .side_navbar{
+  position:absolute;
+  left:0;margin-top:-0.6rem;
+  padding:2rem;
   padding: 1px;
   display: flex;
   flex-direction: column;
+  background:black;;
 }
 .side_navbar span{
   color: gray;
@@ -113,7 +117,7 @@ nav{
 
 /* Main Body Section */
 .main-body{
-  width: 70%;
+  width: 95%;
   padding: 1rem;
 }
 .promo_card{

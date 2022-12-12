@@ -1,6 +1,199 @@
 @extends('layout.header')
 
 @section('contents')
+
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Fashi Template">
+    <meta name="keywords" content="Fashi, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Fashi | Template</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="home/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="home/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="home/css/themify-icons.css" type="text/css">
+    <link rel="stylesheet" href="home/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="home/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="home/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="home/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="home/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="home/css/style.css" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+<body>
+    <!-- Page Preloder -->
+    <!-- <div id="preloder">
+        <div class="loader"></div>
+    </div> -->
+
+    <!-- Header Section Begin -->
+    <!-- <header class="header-section">
+        <div class="header-top">
+            <div class="container">
+                <div class="ht-left">
+                    <div class="mail-service">
+                        <i class=" fa fa-envelope"></i>
+                        hello.colorlib@gmail.com
+                    </div>
+                    <div class="phone-service">
+                        <i class=" fa fa-phone"></i>
+                        +65 11.188.888
+                    </div>
+                </div>
+                <div class="ht-right">
+                    <a href="#" class="login-panel"><i class="fa fa-user"></i>Login</a>
+                    <div class="lan-selector">
+                        <select class="language_drop" name="countries" id="countries" style="width:300px;">
+                            <option value='yt' data-image="img/flag-1.jpg" data-imagecss="flag yt" data-title="English">
+                                English</option>
+                            <option value='yu' data-image="img/flag-2.jpg" data-imagecss="flag yu"
+                                data-title="Bangladesh">German </option>
+                        </select>
+                    </div>
+                    <div class="top-social">
+                        <a href="#"><i class="ti-facebook"></i></a>
+                        <a href="#"><i class="ti-twitter-alt"></i></a>
+                        <a href="#"><i class="ti-linkedin"></i></a>
+                        <a href="#"><i class="ti-pinterest"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="inner-header">
+                <div class="row">
+                    <div class="col-lg-2 col-md-2">
+                        <div class="logo">
+                            <a href="./index.html">
+                                <img src="img/logo.png" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-7 col-md-7">
+                        <div class="advanced-search">
+                            <button type="button" class="category-btn">All Categories</button>
+                            <form action="#" class="input-group">
+                                <input type="text" placeholder="What do you need?">
+                                <button type="button"><i class="ti-search"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 text-right col-md-3">
+                        <ul class="nav-right">
+                            <li class="heart-icon"><a href="#">
+                                    <i class="icon_heart_alt"></i>
+                                    <span>1</span>
+                                </a>
+                            </li>
+                            <li class="cart-icon"><a href="#">
+                                    <i class="icon_bag_alt"></i>
+                                    <span>3</span>
+                                </a>
+                                <div class="cart-hover">
+                                    <div class="select-items">
+                                        <table>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="si-pic"><img src="img/select-product-1.jpg" alt=""></td>
+                                                    <td class="si-text">
+                                                        <div class="product-selected">
+                                                            <p>$60.00 x 1</p>
+                                                            <h6>Kabino Bedside Table</h6>
+                                                        </div>
+                                                    </td>
+                                                    <td class="si-close">
+                                                        <i class="ti-close"></i>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="si-pic"><img src="img/select-product-2.jpg" alt=""></td>
+                                                    <td class="si-text">
+                                                        <div class="product-selected">
+                                                            <p>$60.00 x 1</p>
+                                                            <h6>Kabino Bedside Table</h6>
+                                                        </div>
+                                                    </td>
+                                                    <td class="si-close">
+                                                        <i class="ti-close"></i>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="select-total">
+                                        <span>total:</span>
+                                        <h5>$120.00</h5>
+                                    </div>
+                                    <div class="select-button">
+                                        <a href="#" class="primary-btn view-card">VIEW CARD</a>
+                                        <a href="#" class="primary-btn checkout-btn">CHECK OUT</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="cart-price">$150.00</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="nav-item">
+            <div class="container">
+                <div class="nav-depart">
+                    <div class="depart-btn">
+                        <i class="ti-menu"></i>
+                        <span>All departments</span>
+                        <ul class="depart-hover">
+                            <li class="active"><a href="#">Electronics</a></li>
+                            <li><a href="#">Mobiles</a></li>
+                            <li><a href="#">Clothes</a></li>
+                            <li><a href="#">Watches</a></li>
+                            <li><a href="#">Brand Fashion</a></li>
+                            <li><a href="#">Accessories/Shoes</a></li>
+                            <li><a href="#">Luxury Brands</a></li>
+                            <li><a href="#">Brand Outdoor Apparel</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <nav class="nav-menu mobile-menu">
+                    <ul>
+                        <li><a href="{{route('main')}}">Home</a></li>
+                        <li><a href="{{route('shop')}}">Shop</a></li>
+                        <li><a href="#">Collection</a>
+                            <ul class="dropdown">
+                                <li><a href="#">Men's</a></li>
+                                <li><a href="#">Women's</a></li>
+                                <li><a href="#">Kid's</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="./blog.html">Blog</a></li>
+                        <li><a href="./contact.html">Contact</a></li>
+                        <li><a href="#">Pages</a>
+                            <ul class="dropdown">
+                                <li><a href="./blog-details.html">Blog Details</a></li>
+                                <li><a href="./shopping-cart.html">Shopping Cart</a></li>
+                                <li><a href="./check-out.html">Checkout</a></li>
+                                <li><a href="./faq.html">Faq</a></li>
+                                <li><a href="./register.html">Register</a></li>
+                                <li><a href="./login.html">Login</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+                <div id="mobile-menu-wrap"></div>
+            </div>
+        </div>
+    </header> -->
+    <!-- Header End -->
+
     <!-- Breadcrumb Section Begin -->
     <div class="breacrumb-section">
         <div class="container">
@@ -24,15 +217,21 @@
                     <div class="filter-widget">
                         <h4 class="fw-title">Categories</h4>
                         <ul class="filter-catagories">
-                            <li><a href="#">Men</a></li>
+                            <!-- <li><a href="#">Me</a></li>
                             <li><a href="#">Women</a></li>
-                            <li><a href="#">Kids</a></li>
+                            <li><a href="#">Kids</a></li> -->
+                            <select name="category" id="category">
+                                <option value="">Select Category</option>
+                                @foreach($category as $shop)
+                                <option value="{{$shop->id}}">{{$shop->categories}}</option>}}>
+                                @endforeach
+                            </select>
                         </ul>
                     </div>
                     <div class="filter-widget">
                         <h4 class="fw-title">Brand</h4>
                         <div class="fw-brand-check">
-                            <div class="bc-item">
+                            <!-- <div class="bc-item">
                                 <label for="bc-calvin">
                                     Calvin Klein
                                     <input type="checkbox" id="bc-calvin">
@@ -52,14 +251,16 @@
                                     <input type="checkbox" id="bc-polo">
                                     <span class="checkmark"></span>
                                 </label>
-                            </div>
+                            </div> -->
+                            @foreach($products as $brand)
                             <div class="bc-item">
-                                <label for="bc-tommy">
-                                    Tommy Hilfiger
-                                    <input type="checkbox" id="bc-tommy">
+                                <label for="{{$brand->brand}}">
+                                    {{$brand->brand}}
+                                    <input type="checkbox" id="{{$brand->brand}}">
                                     <span class="checkmark"></span>
                                 </label>
                             </div>
+                            @endforeach
                         </div>
                     </div>
                     <div class="filter-widget">
@@ -379,10 +580,39 @@
                                                 <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
                                                 <a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
                                                 <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+                    </div>
+                    <div class="product-list">
+                        <div id="productData">
+                            <div class="row" id="tbody">
+                                @foreach($products as $products)
+                                <div class="col-lg-4 col-sm-6">
+                                    <div class="product-item">
+                                        <div class="pi-pic">
+                                            <img height='250vh' width='250vh'
+                                                src="{{asset('/storage/' .$products->photo)}}" alt="">
+                                            <div class="icon">
+                                                <i class="icon_heart_alt"></i>
+                                            </div>
+                                            <ul>
+                                                <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a>
+                                                </li>
+                                                <li class="quick-view"><a href="#">+ Quick View</a></li>
+                                                <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="pi-text">
+                                            <div class="catagory-name">Shoes</div>
+                                            <a href="#">
+                                                <h5>{{$products->name}}</h5>
+                                            </a>
+                                            <div class="product-price">
+                                                {{$products->price}}
+                                                <span>$35.00</span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -390,6 +620,18 @@
             </div>
         </div>
         <!-- quick view model end -->
+
+                <!-- <div class="loading-more">
+                        <i class="icon_loading"></i>
+                        <a href="#">
+                            Loading More
+                        </a>
+                    </div> -->
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- Product Shop Section End -->
 
     <!-- Partner Logo Section Begin -->
     <div class="partner-logo">
@@ -523,5 +765,59 @@
     <script src="home/js/jquery.slicknav.js"></script>
     <script src="home/js/owl.carousel.min.js"></script>
     <script src="home/js/main.js"></script>
+
+
+    <script>
+    $(document).ready(function() {
+        $("#category").on('change', function() {
+            var category = $(this).val();
+            $.ajax({
+                type: 'GET',
+                dataType: 'html',
+                url: '{{url('/data')}}',
+                data: {
+                    'category': category
+                },
+                success: function(data) {
+                    $("#productData").html(data);
+                    // var products=data.goods;
+                    // var html='';
+                    // if(products.length>0){
+                    //     for(let i=0;i<products.length;i++){
+                    //         html+='<tr>\
+                    //             <td>'+products[i]['id']+'</td>\
+                    //             <td>'+products[i]['name']+'</td>\
+                    //         </tr>'
+                    //     }
+                    // }
+                    // else{
+                    //     html+='<tr>\
+                    //         <td>No products found</td>\
+                    //     </tr>'
+                    // }
+                    // if(products.length>0){
+                    //     for(let i=0;i<products.length;i++){
+                    //         // html+='<tr>\
+                    //         //     <td>'+products[i]['id']+'</td>\
+                    //         //     <td>'+products[i]['name']+'</td>\
+                    //         //     <td><img width="100px" height="100px" src="/storage/'+products[i]['photo']+'"></td>\
+                    //         // </tr>'
+                    //     }
+                    // }
+                    // else{
+                    //     // html+='<tr>\
+                    //     //     <td>No products found</td>\
+                    //     // </tr>'
+                    // }
+                    // $('#tbody').html(html);
+                    console.log(data);
+                }
+            });
+        });
+    });
+    </script>
+</body>
+
+</html>
 
 @endsection

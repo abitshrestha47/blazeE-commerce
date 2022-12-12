@@ -1,7 +1,7 @@
 @extends('admin.dashboard')
 
 @section('contents')
-<div class="container" style='height:60vh;'>
+<div class="container" style='height:100vh;'>
     <div class="card">
         <div class="card-body">
             <form action="{{route('products')}}" method='post' enctype='multipart/form-data'>
@@ -18,6 +18,18 @@
                 <div class="mb-3">
                     <label for="exampleInputPassword1" class="form-label">Photo</label>
                     <input type="file" class="form-control" id="exampleInputPassword1" name='image'>
+                </div>
+                <div class="mb-3">
+                    <label for="brand" class="form-label">Brand</label>
+                    <input type="text" class="form-control" id="brand" name='brand'>
+                </div>
+                <div class="mb-3">
+                    <label for="color" class="form-label">Color</label>
+                    <input type="text" class="form-control" id="color" name='color'>
+                </div>
+                <div class="mb-3">
+                    <label for="categoryid" class="form-label">CategoryId</label>
+                    <input type="text" class="form-control" id="categoryid" name='categoryid'>
                 </div>
                 <div class="mb-3 form-check">
                     <input type="checkbox" class="form-check-input" id="exampleCheck1">
