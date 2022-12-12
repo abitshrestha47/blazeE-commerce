@@ -15,11 +15,12 @@ class HomeController extends Controller
     public function login(){
         return view('layout.login');
     }
- 
+
     public function main(){
         $category=Category::all();
         return view('layout.index',compact('category'));
     }
+
     public function shop(Request $request){
         $query=Products::query();
         $category=Category::all();
@@ -51,4 +52,14 @@ class HomeController extends Controller
             return response()->json(['goods'=>$goods]);
         }
     }
+    public function buynow(){
+        return view('layout.buynow');
+    }
+    public function cart(){
+        return view('layout.cart');
+    }
+    public function checkout(){
+        return view('layout.checkout');
+    }
+
 }

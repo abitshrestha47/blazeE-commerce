@@ -1,6 +1,7 @@
 @extends('layout.header')
 
 @section('contents')
+
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -282,184 +283,152 @@
                         </ul>
                     </div>
                     <div class="product-slider owl-carousel">
-                        <div class="product-item">
-                            <div class="flip-card">
-                                <div class="flip-card-inner">
-                                    <div class="flip-card-front">
-                                        <img src="img/products/earphone1.jpg" alt="earphone">
-                                    </div>
-                                    <div class="flip-card-back">
-                                        <!-- <img src="img/products/earphone1.png" alt="earphone"> -->
-                                        <div class="pi-pic">
-                                            <img src="img/products/earphone1.jpg" alt="earphone">
-                                            <div class="sale">Sale</div>
-                                            <div class="icon">
-                                                <lord-icon src="https://cdn.lordicon.com/pnhskdva.json" trigger="hover"
-                                                    style="width:30px;height:30px;">
-                                                </lord-icon>
-                                            </div>
-                                            <ul>
-                                                <li class="w-icon active"><a href="#">
-                                                        <lord-icon src="https://cdn.lordicon.com/hyhnpiza.json"
-                                                            trigger="hover" style="width:20px;height:20px">
-                                                        </lord-icon>
-                                                    </a></li>
-                                                <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                                <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                            </ul>
+                                <div class="single_gallery_item wow fadeInUpBig" data-wow-delay="0.2s">
+                                    <!-- Product Image -->
+                                    <div class="product-img">
+                                        <img src="img/products/sale.jpg" alt="">
+                                        <div class="product-quicview">
+                                            <a href="#" data-toggle="modal" data-target="#quickview"><i class="ti-plus"></i></a>
+
                                         </div>
-                                        <!-- <h3>RS. 1499</h3> -->
+                                    </div>
+                                    <!-- Product Description -->
+                                    <div class="product-description">
+                                        <h4 class="product-price">$39.90</h4>
+                                        <p>Jeans midi cocktail dress</p>
+                                        <!-- Add to Cart -->
+                                        <a href="#" class="add-to-cart-btn">ADD TO CART</a>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="pi-text">
-                                <div class="catagory-name">Coat</div>
-                                <a href="#">
-                                    <h5>Pure Pineapple</h5>
-                                </a>
-                                <div class="product-price">
-                                    $14.00
-                                    <span>$35.00</span>
+                                <!-- Single gallery Item -->
+                                <div class="single_gallery_item wow fadeInUpBig" data-wow-delay="0.3s">
+                                    <!-- Product Image -->
+                                    <div class="product-img">
+                                        <img src="img/product-img/product-2.jpg" alt="">
+                                        <div class="product-quicview">
+                                            <a href="#" data-toggle="modal" data-target="#quickview"><i class="ti-plus"></i></a>
+                                        </div>
+                                    </div>
+                                    <!-- Product Description -->
+                                    <div class="product-description">
+                                        <h4 class="product-price">$39.90</h4>
+                                        <p>Jeans midi cocktail dress</p>
+                                        <!-- Add to Cart -->
+                                        <a href="#" class="add-to-cart-btn">ADD TO CART</a>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="bnow">
-                                <a href="#" class="buy">Buy Now</a>
-                            </div>
-                        </div>
-                        <div class="product-item">
-                            <div class="pi-pic">
-                                <img src="img/products/women-1.jpg" alt="">
-                                <div class="sale">Sale</div>
-                                <div class="icon">
-                                    <lord-icon src="https://cdn.lordicon.com/pnhskdva.json" trigger="hover"
-                                        style="width:30px;height:30px">
-                                    </lord-icon>
+
+                                <!-- Single gallery Item -->
+                                <div class="single_gallery_item wow fadeInUpBig" data-wow-delay="0.4s">
+                                    <!-- Product Image -->
+                                    <div class="product-img">
+                                        <img src="img/product-img/product-3.jpg" alt="">
+                                        <div class="product-quicview">
+                                            <a href="#" data-toggle="modal" data-target="#quickview"><i class="ti-plus"></i></a>
+                                        </div>
+                                    </div>
+                                    <!-- Product Description -->
+                                    <div class="product-description">
+                                        <h4 class="product-price">$39.90</h4>
+                                        <p>Jeans midi cocktail dress</p>
+                                        <!-- Add to Cart -->
+                                        <a href="#" class="add-to-cart-btn">ADD TO CART</a>
+                                    </div>
                                 </div>
-                                <ul>
-                                    <!-- <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li> -->
-                                    <li class="w-icon active"><a href="#">
-                                            <lord-icon src="https://cdn.lordicon.com/hyhnpiza.json" trigger="hover"
-                                                style="width:20px;height:20px">
-                                            </lord-icon>
-                                        </a></li>
-                                    <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                    <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="pi-text">
-                                <div class="catagory-name">Coat</div>
-                                <a href="#">
-                                    <h5>Pure Pineapple</h5>
-                                </a>
-                                <div class="product-price">
-                                    $14.00
-                                    <span>$35.00</span>
+
+                                <!-- Single gallery Item -->
+                                <div class="single_gallery_item wow fadeInUpBig" data-wow-delay="0.5s">
+                                    <!-- Product Image -->
+                                    <div class="product-img">
+                                        <img src="img/product-img/product-4.jpg" alt="">
+                                        <div class="product-quicview">
+                                            <a href="#" data-toggle="modal" data-target="#quickview"><i class="ti-plus"></i></a>
+                                        </div>
+                                    </div>
+                                    <!-- Product Description -->
+                                    <div class="product-description">
+                                        <h4 class="product-price">$39.90</h4>
+                                        <p>Jeans midi cocktail dress</p>
+                                        <!-- Add to Cart -->
+                                        <a href="#" class="add-to-cart-btn">ADD TO CART</a>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="bnow">
-                                <a href="#" class="buy">Buy Now</a>
-                            </div>
-                        </div>
-                        <div class="product-item">
-                            <div class="pi-pic">
-                                <img src="img/products/women-2.jpg" alt="">
-                                <div class="icon">
-                                    <lord-icon src="https://cdn.lordicon.com/pnhskdva.json" trigger="hover"
-                                        style="width:30px;height:30px">
-                                    </lord-icon>
-                                </div>
-                                <ul>
-                                    <li class="w-icon active"><a href="#">
-                                            <lord-icon src="https://cdn.lordicon.com/hyhnpiza.json" trigger="hover"
-                                                style="width:20px;height:20px">
-                                            </lord-icon>
-                                        </a></li>
-                                    <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                    <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="pi-text">
-                                <div class="catagory-name">Shoes</div>
-                                <a href="#">
-                                    <h5>Guangzhou sweater</h5>
-                                </a>
-                                <div class="product-price">
-                                    $13.00
-                                </div>
-                            </div>
-                            <div class="bnow">
-                                <a href="#" class="buy">Buy Now</a>
-                            </div>
-                        </div>
-                        <div class="product-item">
-                            <div class="pi-pic">
-                                <img src="img/products/women-3.jpg" alt="">
-                                <div class="icon">
-                                    <lord-icon src="https://cdn.lordicon.com/pnhskdva.json" trigger="hover"
-                                        style="width:30px;height:30px">
-                                    </lord-icon>
-                                </div>
-                                <ul>
-                                    <li class="w-icon active"><a href="#">
-                                            <lord-icon src="https://cdn.lordicon.com/hyhnpiza.json" trigger="hover"
-                                                style="width:20px;height:20px">
-                                            </lord-icon>
-                                        </a></li>
-                                    <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                    <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="pi-text">
-                                <div class="catagory-name">Towel</div>
-                                <a href="#">
-                                    <h5>Pure Pineapple</h5>
-                                </a>
-                                <div class="product-price">
-                                    $34.00
-                                </div>
-                            </div>
-                            <div class="bnow">
-                                <a href="#" class="buy">Buy Now</a>
-                            </div>
-                        </div>
-                        <div class="product-item">
-                            <div class="pi-pic">
-                                <img src="img/products/women-4.jpg" alt="">
-                                <div class="icon">
-                                    <!-- <i class="icon_heart_alt"></i> -->
-                                    <lord-icon src="https://cdn.lordicon.com/pnhskdva.json" trigger="hover"
-                                        style="width:30px;height:30px">
-                                    </lord-icon>
-                                </div>
-                                <ul>
-                                    <li class="w-icon active"><a href="#">
-                                            <lord-icon src="https://cdn.lordicon.com/hyhnpiza.json" trigger="hover"
-                                                style="width:20px;height:20px">
-                                            </lord-icon>
-                                        </a></li>
-                                    <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                    <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="pi-text">
-                                <div class="catagory-name">Towel</div>
-                                <a href="#">
-                                    <h5>Converse Shoes</h5>
-                                </a>
-                                <div class="product-price">
-                                    $34.00
-                                </div>
-                            </div>
-                            <div class="bnow">
-                                <a href="#" class="buy">Buy Now</a>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
     <!-- Women Banner Section End -->
+    <!-- quick view model start -->
+    <div class="modal fade" id="quickview" tabindex="-1" role="dialog" aria-labelledby="quickview" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <button type="button" class="close btn" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+
+                    <div class="modal-body">
+                        <div class="quickview_body">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-12 col-lg-5">
+                                        <div class="quickview_pro_img">
+                                            <img src="img/products/sale.jpg" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-lg-7">
+                                        <div class="quickview_pro_des">
+                                            <h4 class="title">Boutique Silk Dress</h4>
+                                            <div class="top_seller_product_rating mb-15">
+                                                <i class="fa fa-star" aria-hidden="true"></i>
+                                                <i class="fa fa-star" aria-hidden="true"></i>
+                                                <i class="fa fa-star" aria-hidden="true"></i>
+                                                <i class="fa fa-star" aria-hidden="true"></i>
+                                                <i class="fa fa-star" aria-hidden="true"></i>
+                                            </div>
+                                            <h5 class="price">$120.99 <span>$130</span></h5>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia expedita quibusdam aspernatur, sapiente consectetur accusantium perspiciatis praesentium eligendi, in fugiat?</p>
+                                            <a href="#">View Full Product Details</a>
+                                        </div>
+                                        <!-- Add to Cart Form -->
+                                        <form class="cart" method="get" action="{{route('buynow')}}">
+                                            <div class="quantity">
+                                                <span class="qty-minus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i class="fa fa-minus" aria-hidden="true"></i></span>
+
+                                                <input type="number" class="qty-text" id="qty" step="1" min="1" max="12" name="quantity" value="1">
+
+                                                <span class="qty-plus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-plus" aria-hidden="true"></i></span>
+                                            </div>
+                                            <button type="submit" name="buynow" value="5" class="cart-submit"><a href="{{Route('buynow')}}" style="color: black;font-weight: 700;">Buy Now</a></button>
+                                            <!-- Wishlist -->
+                                            <div class="modal_pro_wishlist">
+                                                <a href="wishlist.html" target="_blank"><i class="ti-heart"></i></a>
+                                            </div>
+                                            <!-- Compare -->
+                                            <div class="modal_pro_compare">
+                                                <a href="compare.html" target="_blank"><i class="ti-stats-up"></i></a>
+                                            </div>
+                                        </form>
+
+                                        <div class="share_wf mt-30">
+                                            <p>Share With Friend</p>
+                                            <div class="_icon">
+                                                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                                                <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                                                <a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
+                                                <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- quick view model end -->
 
     <!-- Deal Of The Week Section Begin-->
     <section class="deal-of-week set-bg spad" data-setbg="img/time-bg.jpg">
@@ -515,101 +484,79 @@
                         </ul>
                     </div>
                     <div class="product-slider owl-carousel">
-                        <div class="product-item">
-                            <div class="pi-pic">
-                                <img src="img/products/man-1.jpg" alt="">
-                                <div class="sale">Sale</div>
-                                <div class="icon">
-                                    <i class="icon_heart_alt"></i>
+                    <div class="single_gallery_item wow fadeInUpBig" data-wow-delay="0.2s">
+                                    <!-- Product Image -->
+                                    <div class="product-img">
+                                        <img src="img/products/sale.jpg" alt="">
+                                        <div class="product-quicview">
+                                            <a href="#" data-toggle="modal" data-target="#quickview"><i class="ti-plus"></i></a>
+                                        </div>
+                                    </div>
+                                    <!-- Product Description -->
+                                    <div class="product-description">
+                                        <h4 class="product-price">$39.90</h4>
+                                        <p>Jeans midi cocktail dress</p>
+                                        <!-- Add to Cart -->
+                                        <a href="#" class="add-to-cart-btn">ADD TO CART</a>
+                                    </div>
                                 </div>
-                                <ul>
-                                    <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                    <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                    <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="pi-text">
-                                <div class="catagory-name">Coat</div>
-                                <a href="#">
-                                    <h5>Pure Pineapple</h5>
-                                </a>
-                                <div class="product-price">
-                                    $14.00
-                                    <span>$35.00</span>
+                                <!-- Single gallery Item -->
+                                <div class="single_gallery_item wow fadeInUpBig" data-wow-delay="0.3s">
+                                    <!-- Product Image -->
+                                    <div class="product-img">
+                                        <img src="img/product-img/product-2.jpg" alt="">
+                                        <div class="product-quicview">
+                                            <a href="#" data-toggle="modal" data-target="#quickview"><i class="ti-plus"></i></a>
+                                        </div>
+                                    </div>
+                                    <!-- Product Description -->
+                                    <div class="product-description">
+                                        <h4 class="product-price">$39.90</h4>
+                                        <p>Jeans midi cocktail dress</p>
+                                        <!-- Add to Cart -->
+                                        <a href="#" class="add-to-cart-btn">ADD TO CART</a>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="product-item">
-                            <div class="pi-pic">
-                                <img src="img/products/man-2.jpg" alt="">
-                                <div class="icon">
-                                    <i class="icon_heart_alt"></i>
+
+                                <!-- Single gallery Item -->
+                                <div class="single_gallery_item wow fadeInUpBig" data-wow-delay="0.4s">
+                                    <!-- Product Image -->
+                                    <div class="product-img">
+                                        <img src="img/product-img/product-3.jpg" alt="">
+                                        <div class="product-quicview">
+                                            <a href="#" data-toggle="modal" data-target="#quickview"><i class="ti-plus"></i></a>
+                                        </div>
+                                    </div>
+                                    <!-- Product Description -->
+                                    <div class="product-description">
+                                        <h4 class="product-price">$39.90</h4>
+                                        <p>Jeans midi cocktail dress</p>
+                                        <!-- Add to Cart -->
+                                        <a href="#" class="add-to-cart-btn">ADD TO CART</a>
+                                    </div>
                                 </div>
-                                <ul>
-                                    <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                    <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                    <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="pi-text">
-                                <div class="catagory-name">Shoes</div>
-                                <a href="#">
-                                    <h5>Guangzhou sweater</h5>
-                                </a>
-                                <div class="product-price">
-                                    $13.00
+
+                                <!-- Single gallery Item -->
+                                <div class="single_gallery_item wow fadeInUpBig" data-wow-delay="0.5s">
+                                    <!-- Product Image -->
+                                    <div class="product-img">
+                                        <img src="img/product-img/product-4.jpg" alt="">
+                                        <div class="product-quicview">
+                                            <a href="#" data-toggle="modal" data-target="#quickview"><i class="ti-plus"></i></a>
+                                        </div>
+                                    </div>
+                                    <!-- Product Description -->
+                                    <div class="product-description">
+                                        <h4 class="product-price">$39.90</h4>
+                                        <p>Jeans midi cocktail dress</p>
+                                        <!-- Add to Cart -->
+                                        <a href="#" class="add-to-cart-btn">ADD TO CART</a>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="product-item">
-                            <div class="pi-pic">
-                                <img src="img/products/man-3.jpg" alt="">
-                                <div class="icon">
-                                    <i class="icon_heart_alt"></i>
-                                </div>
-                                <ul>
-                                    <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                    <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                    <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="pi-text">
-                                <div class="catagory-name">Towel</div>
-                                <a href="#">
-                                    <h5>Pure Pineapple</h5>
-                                </a>
-                                <div class="product-price">
-                                    $34.00
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-item">
-                            <div class="pi-pic">
-                                <img src="img/products/man-4.jpg" alt="">
-                                <div class="icon">
-                                    <i class="icon_heart_alt"></i>
-                                </div>
-                                <ul>
-                                    <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                    <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                    <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="pi-text">
-                                <div class="catagory-name">Towel</div>
-                                <a href="#">
-                                    <h5>Converse Shoes</h5>
-                                </a>
-                                <div class="product-price">
-                                    $34.00
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <div class="col-lg-3 offset-lg-1">
                     <div class="product-large set-bg m-large" data-setbg="img/products/man-large.jpg">
-                        <h2>Men’s</h2>
                         <a href="#">Discover More</a>
                     </div>
                 </div>
@@ -617,50 +564,8 @@
         </div>
     </section>
     <!-- Man Banner Section End -->
-
-    <!-- Instagram Section Begin -->
-    <div class="instagram-photo">
-        <div class="insta-item set-bg" data-setbg="img/insta-1.jpg">
-            <div class="inside-text">
-                <i class="ti-instagram"></i>
-                <h5><a href="#">colorlib_Collection</a></h5>
-            </div>
-        </div>
-        <div class="insta-item set-bg" data-setbg="img/insta-2.jpg">
-            <div class="inside-text">
-                <i class="ti-instagram"></i>
-                <h5><a href="#">colorlib_Collection</a></h5>
-            </div>
-        </div>
-        <div class="insta-item set-bg" data-setbg="img/insta-3.jpg">
-            <div class="inside-text">
-                <i class="ti-instagram"></i>
-                <h5><a href="#">colorlib_Collection</a></h5>
-            </div>
-        </div>
-        <div class="insta-item set-bg" data-setbg="img/insta-4.jpg">
-            <div class="inside-text">
-                <i class="ti-instagram"></i>
-                <h5><a href="#">colorlib_Collection</a></h5>
-            </div>
-        </div>
-        <div class="insta-item set-bg" data-setbg="img/insta-5.jpg">
-            <div class="inside-text">
-                <i class="ti-instagram"></i>
-                <h5><a href="#">colorlib_Collection</a></h5>
-            </div>
-        </div>
-        <div class="insta-item set-bg" data-setbg="img/insta-6.jpg">
-            <div class="inside-text">
-                <i class="ti-instagram"></i>
-                <h5><a href="#">colorlib_Collection</a></h5>
-            </div>
-        </div>
-    </div>
-    <!-- Instagram Section End -->
-
-    <!-- Latest Blog Section Begin -->
-    <section class="latest-blog spad">
+<!-- Latest Blog Section Begin -->
+<section class="latest-blog spad">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -773,8 +678,48 @@
             </div>
         </div>
     </section>
-    <!-- Latest Blog Section End -->
-
+    <!-- latest blog end -->
+    
+    <!-- Instagram Section Begin -->
+    <div class="instagram-photo">
+        <div class="insta-item set-bg" data-setbg="img/insta-1.jpg">
+            <div class="inside-text">
+                <i class="ti-instagram"></i>
+                <h5><a href="#">colorlib_Collection</a></h5>
+            </div>
+        </div>
+        <div class="insta-item set-bg" data-setbg="img/insta-2.jpg">
+            <div class="inside-text">
+                <i class="ti-instagram"></i>
+                <h5><a href="#">colorlib_Collection</a></h5>
+            </div>
+        </div>
+        <div class="insta-item set-bg" data-setbg="img/insta-3.jpg">
+            <div class="inside-text">
+                <i class="ti-instagram"></i>
+                <h5><a href="#">colorlib_Collection</a></h5>
+            </div>
+        </div>
+        <div class="insta-item set-bg" data-setbg="img/insta-4.jpg">
+            <div class="inside-text">
+                <i class="ti-instagram"></i>
+                <h5><a href="#">colorlib_Collection</a></h5>
+            </div>
+        </div>
+        <div class="insta-item set-bg" data-setbg="img/insta-5.jpg">
+            <div class="inside-text">
+                <i class="ti-instagram"></i>
+                <h5><a href="#">colorlib_Collection</a></h5>
+            </div>
+        </div>
+        <div class="insta-item set-bg" data-setbg="img/insta-6.jpg">
+            <div class="inside-text">
+                <i class="ti-instagram"></i>
+                <h5><a href="#">colorlib_Collection</a></h5>
+            </div>
+        </div>
+    </div>
+    <!-- Instagram Section End -->
     <!-- Partner Logo Section Begin -->
     <div class="partner-logo">
         <div class="container">
@@ -886,7 +831,17 @@
         </div>
     </footer>
     <!-- Footer Section End -->
-
+    
+    <!-- Js Plugins -->
+    <script src="home/js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="home/js/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="home/js/bootstrap.min.js"></script>
+    <!-- Plugins js -->
+    <script src="home/js/plugins.js"></script>
+    <!-- Active js -->
+    <script src="home/js/active.js"></script>
     <!-- Js Plugins -->
     <script src="https://cdn.lordicon.com/fudrjiwc.js"></script>
     <script src="home/js/jquery-3.3.1.min.js"></script>
@@ -899,7 +854,5 @@
     <script src="home/js/jquery.slicknav.js"></script>
     <script src="home/js/owl.carousel.min.js"></script>
     <script src="home/js/main.js"></script>
-</body>
-
-</html>
+    <!-- Latest Blog Section End -->
 @endsection

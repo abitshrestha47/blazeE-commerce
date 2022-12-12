@@ -5,16 +5,29 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    @vite(['resources/js/app.js'])
+    
+    <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Favicon  -->
+    <link rel="icon" href="img/core-img/favicon.ico">
+
+    <!-- Core Style CSS -->
+    <link rel="stylesheet" href="home/css/core-style.css">
+
+    <!-- Responsive CSS -->
+    <link href="home/css/responsive.css" rel="stylesheet">
+    <!-- Css Styles -->
     <link rel="stylesheet" href="home/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="home/css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="home/css/themify-icons.css" type="text/css">
+    <link rel="stylesheet" href="home/css/themify-icon.css" type="text/css">
     <link rel="stylesheet" href="home/css/elegant-icons.css" type="text/css">
     <link rel="stylesheet" href="home/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="home/css/nice-select.css" type="text/css">
     <link rel="stylesheet" href="home/css/jquery-ui.min.css" type="text/css">
     <link rel="stylesheet" href="home/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="home/css/style.css" type="text/css">
+    @vite(['resources/js/app.js'])
 </head>
 <body>
 
@@ -50,6 +63,7 @@
                         <div class="logo">
                             <a href="./index.html">
                                 <img src="img/products/ask logo.jpg" alt="">
+                                <span>A S K BLAZE</span>
                             </a>
                             <!-- <span>ASK BLAZE</span> -->
                         </div>
@@ -72,7 +86,7 @@
                                 </a>
                             </li>
                             <li class="cart-icon">
-                                <a href="#">
+                                <a href="{{route('cart')}}">
                                     <i class="icon_bag_alt"></i>
                                     <span>3</span>
                                 </a>
@@ -112,8 +126,8 @@
                                         <h5>$120.00</h5>
                                     </div>
                                     <div class="select-button">
-                                        <a href="#" class="primary-btn view-card">VIEW CARD</a>
-                                        <a href="#" class="primary-btn checkout-btn">CHECK OUT</a>
+                                        <a href="{{route('cart')}}" class="primary-btn view-card">VIEW CART</a>
+                                        <a href="{{route('checkout')}}" class="primary-btn checkout-btn">CHECK OUT</a>
                                     </div>
                                 </div>
                             </li>
@@ -168,10 +182,19 @@
             </div>
         </div>
     </header>
-    @yield('contents')
-
-
-
+    <!-- header end -->
+    
+    <!-- Js Plugins -->
+    <script src="home/js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="home/js/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="home/js/bootstrap.min.js"></script>
+    <!-- Plugins js -->
+    <script src="home/js/plugins.js"></script>
+    <!-- Active js -->
+    <script src="home/js/active.js"></script>
+    <!-- Js Plugins -->
     <script src="https://cdn.lordicon.com/fudrjiwc.js"></script>
     <script src="home/js/jquery-3.3.1.min.js"></script>
     <script src="home/js/bootstrap.min.js"></script>
@@ -183,5 +206,6 @@
     <script src="home/js/jquery.slicknav.js"></script>
     <script src="home/js/owl.carousel.min.js"></script>
     <script src="home/js/main.js"></script>
+    @yield('contents')
 </body>
 </html>
