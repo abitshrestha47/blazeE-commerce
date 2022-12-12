@@ -32,9 +32,11 @@ Route::post('/login',[UserController::class,'logging'])->name('logging');
 
 // Route::get('/main',[HomeController::class,'main'])->name('main')->middleware('auth');
 
-Route::get('/dashboard',[HomeController::class,'dashboard'])->name('dashboard')->middleware('auth','admin');
+Route::get('/dashboard',[AdminController::class,'dashboard'])->name('dashboard')->middleware('auth','admin');
 
 Route::get('/shop',[HomeController::class,'shop'])->name('shop');
+
+Route::get('/data',[HomeController::class,'data'])->name('data');
 
 Route::get('/logout',[UserController::class,'logout'])->name('logout');
 
@@ -42,11 +44,20 @@ Route::get('/products',[AdminController::class,'products'])->name('products');
 
 Route::post('/products',[ProductsController::class,'products'])->name('products');
 
-Route::get('/test',[AdminController::class,'test'])->name('test');
-
 Route::get('/category',[AdminController::class,'category'])->name('category');
 
 Route::post('/category',[CategoryController::class,'category'])->name('category');
+
+Route::get('/delete/{id}',[AdminController::class,'delete'])->name('delete');
+
+Route::get('/editcategory/{id}',[AdminController::class,'editcategory'])->name('editcategory');
+
+Route::get('/categoryedit',[AdminController::class,'categoryedit'])->name('categoryedit');
+
+Route::post('/categoryedit',[AdminController::class,'editingcategory'])->name('categoryedit');
+
+
+
 
 
 

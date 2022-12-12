@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="home/css/jquery-ui.min.css" type="text/css">
     <link rel="stylesheet" href="home/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="home/css/style.css" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
 <body>
@@ -215,15 +216,21 @@
                     <div class="filter-widget">
                         <h4 class="fw-title">Categories</h4>
                         <ul class="filter-catagories">
-                            <li><a href="#">Men</a></li>
+                            <!-- <li><a href="#">Me</a></li>
                             <li><a href="#">Women</a></li>
-                            <li><a href="#">Kids</a></li>
+                            <li><a href="#">Kids</a></li> -->
+                            <select name="category" id="category">
+                                <option value="">Select Category</option>
+                                @foreach($category as $shop)
+                                <option value="{{$shop->id}}">{{$shop->categories}}</option>}}>
+                                @endforeach
+                            </select>
                         </ul>
                     </div>
                     <div class="filter-widget">
                         <h4 class="fw-title">Brand</h4>
                         <div class="fw-brand-check">
-                            <div class="bc-item">
+                            <!-- <div class="bc-item">
                                 <label for="bc-calvin">
                                     Calvin Klein
                                     <input type="checkbox" id="bc-calvin">
@@ -243,14 +250,16 @@
                                     <input type="checkbox" id="bc-polo">
                                     <span class="checkmark"></span>
                                 </label>
-                            </div>
+                            </div> -->
+                            @foreach($products as $brand)
                             <div class="bc-item">
-                                <label for="bc-tommy">
-                                    Tommy Hilfiger
-                                    <input type="checkbox" id="bc-tommy">
+                                <label for="{{$brand->brand}}">
+                                    {{$brand->brand}}
+                                    <input type="checkbox" id="{{$brand->brand}}">
                                     <span class="checkmark"></span>
                                 </label>
                             </div>
+                            @endforeach
                         </div>
                     </div>
                     <div class="filter-widget">
@@ -353,46 +362,51 @@
                         </div>
                     </div>
                     <div class="product-list">
-                        <div class="row">
-
-                            @foreach($products as $products)
-                            <div class="col-lg-4 col-sm-6">
-                                <div class="product-item">
-                                    <div class="pi-pic">
-                                        <img height='250vh' width='250vh' src="{{asset('/storage/' .$products->photo)}}" alt="">
-                                        <div class="icon">
-                                            <i class="icon_heart_alt"></i>
+                        <div id="productData">
+                            <div class="row" id="tbody">
+                                @foreach($products as $products)
+                                <div class="col-lg-4 col-sm-6">
+                                    <div class="product-item">
+                                        <div class="pi-pic">
+                                            <img height='250vh' width='250vh'
+                                                src="{{asset('/storage/' .$products->photo)}}" alt="">
+                                            <div class="icon">
+                                                <i class="icon_heart_alt"></i>
+                                            </div>
+                                            <ul>
+                                                <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a>
+                                                </li>
+                                                <li class="quick-view"><a href="#">+ Quick View</a></li>
+                                                <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
+                                            </ul>
                                         </div>
-                                        <ul>
-                                            <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                            <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                            <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="pi-text">
-                                        <div class="catagory-name">Shoes</div>
-                                        <a href="#">
-                                            <h5>{{$products->name}}</h5>
-                                        </a>
-                                        <div class="product-price">
-                                            {{$products->price}}
-                                            <span>$35.00</span>
+                                        <div class="pi-text">
+                                            <div class="catagory-name">Shoes</div>
+                                            <a href="#">
+                                                <h5>{{$products->name}}</h5>
+                                            </a>
+                                            <div class="product-price">
+                                                {{$products->price}}
+                                                <span>$35.00</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                                @endforeach
                             </div>
-                            @endforeach
                         </div>
+                    </div>
+                </div>
 
-                        <!-- <div class="loading-more">
+                <!-- <div class="loading-more">
                         <i class="icon_loading"></i>
                         <a href="#">
                             Loading More
                         </a>
                     </div> -->
-                    </div>
-                </div>
             </div>
+        </div>
+        </div>
     </section>
     <!-- Product Shop Section End -->
 
@@ -519,6 +533,56 @@
     <script src="home/js/jquery.slicknav.js"></script>
     <script src="home/js/owl.carousel.min.js"></script>
     <script src="home/js/main.js"></script>
+
+    <script>
+    $(document).ready(function() {
+        $("#category").on('change', function() {
+            var category = $(this).val();
+            $.ajax({
+                type: 'GET',
+                dataType: 'html',
+                url: '{{url('/data')}}',
+                data: {
+                    'category': category
+                },
+                success: function(data) {
+                    $("#productData").html(data);
+                    // var products=data.goods;
+                    // var html='';
+                    // if(products.length>0){
+                    //     for(let i=0;i<products.length;i++){
+                    //         html+='<tr>\
+                    //             <td>'+products[i]['id']+'</td>\
+                    //             <td>'+products[i]['name']+'</td>\
+                    //         </tr>'
+                    //     }
+                    // }
+                    // else{
+                    //     html+='<tr>\
+                    //         <td>No products found</td>\
+                    //     </tr>'
+                    // }
+                    // if(products.length>0){
+                    //     for(let i=0;i<products.length;i++){
+                    //         // html+='<tr>\
+                    //         //     <td>'+products[i]['id']+'</td>\
+                    //         //     <td>'+products[i]['name']+'</td>\
+                    //         //     <td><img width="100px" height="100px" src="/storage/'+products[i]['photo']+'"></td>\
+                    //         // </tr>'
+                    //     }
+                    // }
+                    // else{
+                    //     // html+='<tr>\
+                    //     //     <td>No products found</td>\
+                    //     // </tr>'
+                    // }
+                    // $('#tbody').html(html);
+                    console.log(data);
+                }
+            });
+        });
+    });
+    </script>
 </body>
 
 </html>
