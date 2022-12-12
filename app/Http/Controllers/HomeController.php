@@ -35,4 +35,20 @@ class HomeController extends Controller
         }
         return view('layout.shop',compact('products','category'));
     }
+    public function data(Request $request){
+        $query=Products::query();
+        $category=Category::all();
+        $products=Products::all();
+        if($request->ajax()){
+            if(empty($request->category)){
+                $goods=$query->get();
+                return view('layout.categoryfilter',compact('goods','category'));
+            }
+            else{
+                $goods=$query->where(['categoryid'=>$request->category])->get();
+                return view('layout.categoryfilter',compact('goods','category'));
+            }
+            return response()->json(['goods'=>$goods]);
+        }
+    }
 }

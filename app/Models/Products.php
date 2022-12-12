@@ -10,7 +10,7 @@ class Products extends Model
     use HasFactory;
 
     protected $fillable=[
-        'name','price','photo','categoryid'
+        'name','price','photo','categoryid','brand','color',
     ];
     public function category(){
         return $this->hasMany(Category::class);

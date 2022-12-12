@@ -36,6 +36,8 @@ Route::get('/dashboard',[AdminController::class,'dashboard'])->name('dashboard')
 
 Route::get('/shop',[HomeController::class,'shop'])->name('shop');
 
+Route::get('/data',[HomeController::class,'data'])->name('data');
+
 Route::get('/logout',[UserController::class,'logout'])->name('logout');
 
 Route::get('/products',[AdminController::class,'products'])->name('products');
