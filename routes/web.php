@@ -36,6 +36,12 @@ Route::get('/dashboard',[HomeController::class,'dashboard'])->name('dashboard')-
 
 Route::get('/shop',[HomeController::class,'shop'])->name('shop');
 
+Route::get('/buynow',[HomeController::class,'buynow'])->name('buynow');
+
+Route::get('/cart',[HomeController::class,'cart'])->name('cart');
+
+Route::get('/checkout',[HomeController::class,'checkout'])->name('checkout');
+
 Route::get('/logout',[UserController::class,'logout'])->name('logout');
 
 Route::get('/products',[AdminController::class,'products'])->name('products');
