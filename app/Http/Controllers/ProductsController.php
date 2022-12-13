@@ -18,6 +18,9 @@ class ProductsController extends Controller
             'categoryid' => $req->categoryid,
             'brand' =>$req->brand,
             'color'=>$req->color,
+            'choices'=>$req->choices,
+            'quantity'=>$req->quantity,
+            'size'=>$req->size,
         ]);
     }
 }

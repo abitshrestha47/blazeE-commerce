@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Category;
+use App\Models\Products;
 
 class AdminController extends Controller
 {
     //
     public function products(){
-        return view('admin.products');
+        $products=Products::all();
+        return view('admin.products',compact('products'));
     }
     public function category(){
         $category=Category::all();
@@ -24,6 +26,12 @@ class AdminController extends Controller
         $category->delete();
         return back();
     }
+    public function productdelete($id){
+        $product=Products::find($id);
+        $product->delete();
+        return back();
+    }
+
     public function editcategory($id){
         $category=Category::find($id);
         return view('admin.categoryedit',compact('category'));

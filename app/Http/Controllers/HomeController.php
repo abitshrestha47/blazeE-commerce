@@ -17,8 +17,9 @@ class HomeController extends Controller
     }
 
     public function main(){
+        $products=Products::all();
         $category=Category::all();
-        return view('layout.index',compact('category'));
+        return view('layout.index',compact('category','products'));
     }
 
     public function shop(Request $request){

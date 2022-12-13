@@ -1,30 +1,22 @@
-<div class="row" id="tbody">
+<div class="row" id='tbody'>
     @foreach($goods as $goods)
-    <div class="col-lg-4 col-sm-6">
-        <div class="product-item">
-            <div class="pi-pic">
-                <img height='250vh' width='250vh' src="{{asset('/storage/' .$goods->photo)}}" alt="">
-                <div class="icon">
-                    <i class="icon_heart_alt"></i>
-                </div>
-                <ul>
-                    <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a>
-                    </li>
-                    <li class="quick-view"><a href="#">+ Quick View</a></li>
-                    <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                </ul>
+    <!-- Single gallery Item -->
+    <div class="col-12 col-sm-6 col-lg-4 single_gallery_item wow fadeInUpBig" data-wow-delay="0.2s">
+        <!-- Product Image -->
+        <div class="product-img">
+            <img src="{{asset('/storage/' .$goods->photo)}}" alt="">
+            <div class="product-quicview">
+                <a href="#" data-toggle="modal" data-target="#quickview"><i class="ti-plus"></i></a>
             </div>
-            <div class="pi-text">
-                <div class="catagory-name">Shoes</div>
-                <a href="#">
-                    <h5>{{$goods->name}}</h5>
-                </a>
-                <div class="product-price">
-                    {{$goods->price}}
-                    <span>$35.00</span>
-                </div>
-            </div>
+        </div>
+        <!-- Product Description -->
+        <div class="product-description">
+            <h4 class="product-price">{{$goods->price}}</h4>
+            <p>{{$goods->name}}</p>
+            <!-- Add to Cart -->
+            <a href="#" class="add-to-cart-btn">ADD TO CART</a>
         </div>
     </div>
     @endforeach
 </div>
+
