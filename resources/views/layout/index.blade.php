@@ -509,80 +509,31 @@
                             <li>Shoes</li>
                             <li>Accessories</li> -->
                             @foreach($category as $c)
-                            <li>{{$c->categories}}</li>
+                            <li class='normal' value="{{$c->id}}">{{$c->categories}}</li>
                             @endforeach
                         </ul>
                     </div>
+                    <div id='test'>
                     <div class="product-slider owl-carousel">
-                        <div class="single_gallery_item wow fadeInUpBig" data-wow-delay="0.2s">
-                            <!-- Product Image -->
-                            <div class="product-img">
-                                <img src="img/products/sale.jpg" alt="">
-                                <div class="product-quicview">
-                                    <a href="#" data-toggle="modal" data-target="#quickview"><i class="ti-plus"></i></a>
-                                </div>
-                            </div>
-                            <!-- Product Description -->
-                            <div class="product-description">
-                                <h4 class="product-price">$39.90</h4>
-                                <p>Jeans midi cocktail dress</p>
-                                <!-- Add to Cart -->
-                                <a href="#" class="add-to-cart-btn">ADD TO CART</a>
-                            </div>
-                        </div>
-                        <!-- Single gallery Item -->
-                        <div class="single_gallery_item wow fadeInUpBig" data-wow-delay="0.3s">
-                            <!-- Product Image -->
-                            <div class="product-img">
-                                <img src="img/product-img/product-2.jpg" alt="">
-                                <div class="product-quicview">
-                                    <a href="#" data-toggle="modal" data-target="#quickview"><i class="ti-plus"></i></a>
-                                </div>
-                            </div>
-                            <!-- Product Description -->
-                            <div class="product-description">
-                                <h4 class="product-price">$39.90</h4>
-                                <p>Jeans midi cocktail dress</p>
-                                <!-- Add to Cart -->
-                                <a href="#" class="add-to-cart-btn">ADD TO CART</a>
-                            </div>
-                        </div>
-
-                        <!-- Single gallery Item -->
+                        @foreach($products as $normalproducts)
                         <div class="single_gallery_item wow fadeInUpBig" data-wow-delay="0.4s">
                             <!-- Product Image -->
                             <div class="product-img">
-                                <img src="img/product-img/product-3.jpg" alt="">
+                                <img src="{{asset('/storage/'.$normalproducts->photo)}}" alt="">
                                 <div class="product-quicview">
                                     <a href="#" data-toggle="modal" data-target="#quickview"><i class="ti-plus"></i></a>
                                 </div>
                             </div>
                             <!-- Product Description -->
                             <div class="product-description">
-                                <h4 class="product-price">$39.90</h4>
-                                <p>Jeans midi cocktail dress</p>
+                                <h4 class="product-price">{{$normalproducts->price}}</h4>
+                                <p>{{$normalproducts->name}}</p>
                                 <!-- Add to Cart -->
                                 <a href="#" class="add-to-cart-btn">ADD TO CART</a>
                             </div>
                         </div>
-
-                        <!-- Single gallery Item -->
-                        <div class="single_gallery_item wow fadeInUpBig" data-wow-delay="0.5s">
-                            <!-- Product Image -->
-                            <div class="product-img">
-                                <img src="img/product-img/product-4.jpg" alt="">
-                                <div class="product-quicview">
-                                    <a href="#" data-toggle="modal" data-target="#quickview"><i class="ti-plus"></i></a>
-                                </div>
-                            </div>
-                            <!-- Product Description -->
-                            <div class="product-description">
-                                <h4 class="product-price">$39.90</h4>
-                                <p>Jeans midi cocktail dress</p>
-                                <!-- Add to Cart -->
-                                <a href="#" class="add-to-cart-btn">ADD TO CART</a>
-                            </div>
-                        </div>
+                        @endforeach
+                    </div>
                     </div>
                 </div>
                 <div class="col-lg-3 offset-lg-1">
@@ -861,7 +812,25 @@
         </div>
     </footer>
     <!-- Footer Section End -->
-
+    <script>
+        
+$(document).ready(function(){
+    $(".normal").click(function(){
+        var test=$(this).val();
+        $.ajax({
+            type:'GET',
+            datatype:'html',
+            url:'{{url("/abc")}}',
+            data:{
+                'test': test
+            },
+            success:function(response){
+                $('#test').html(response);
+            }
+        });
+    });
+});
+    </script>
     <!-- Js Plugins -->
     <script src="home/js/jquery/jquery-2.2.4.min.js"></script>
     <!-- Popper js -->

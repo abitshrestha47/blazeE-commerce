@@ -48,6 +48,8 @@ Route::get('/logout',[UserController::class,'logout'])->name('logout');
 
 Route::get('/products',[AdminController::class,'products'])->name('products');
 
+Route::get('/abc',[HomeController::class,'abc'])->name('abc');
+
 Route::post('/products',[ProductsController::class,'products'])->name('products');
 
 Route::get('/category',[AdminController::class,'category'])->name('category');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Products;
 use App\Models\Category;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -36,6 +37,18 @@ class HomeController extends Controller
             return response()->json(['goods'=>$goods]);
         }
         return view('layout.shop',compact('products','category'));
+    }
+    public function abc(Request $req){
+        $products=Products::all();
+        if($req->ajax()){
+            if(empty($req->test)){
+                $goods=DB::table('products')->get();
+            }
+            else{
+                $goods=DB::table('products')->where(['categoryid'=>$req->test])->get();
+            }
+            return view('layout.normalproductsfilter',compact('goods'));
+        }
     }
     public function data(Request $request){
         $query=Products::query();
