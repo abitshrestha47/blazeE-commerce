@@ -20,7 +20,8 @@ class HomeController extends Controller
     public function main(){
         $products=Products::all();
         $category=Category::all();
-        return view('layout.index',compact('category','products'));
+        $latestproducts=Products::orderBy('created_at','DESC')->get()->take(4);
+        return view('layout.index',compact('category','products','latestproducts'));
     }
 
     public function shop(Request $request){

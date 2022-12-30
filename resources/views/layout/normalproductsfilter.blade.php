@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="home/css/slicknav.min.css" type="text/css">
 <link rel="stylesheet" href="home/css/style.css" type="text/css">
 
-<div class="product-slider owl-carousel"> @foreach($goods as $n)
+<div class="product-slider owl-carousel"> @forelse($goods as $n)
     <div class="single_gallery_item wow fadeInUpBig" data-wow-delay="0.4s">
         <!-- Product Image -->
         <div class="product-img">
@@ -30,7 +30,10 @@
             <a href="#" class="add-to-cart-btn">ADD TO CART</a>
         </div>
     </div>
-    @endforeach
+    @empty
+        <p>Oops!Look like no such items here.</p>
+        <a href="#" class='add-to-cart-btn'>Check In shop</a>
+    @endforelse
 </div>
 
 <!-- Js Plugins -->

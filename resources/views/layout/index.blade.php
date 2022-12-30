@@ -267,19 +267,20 @@
                 </div>
                 <div class="col-lg-8 offset-lg-1">
                     <div class="filter-control">
-                        <ul>
+                        <!-- <ul> -->
                             <!-- <li class="active">Clothin</li>
                             <li>Electronics</li>
                             <li>Shoes</li>
                             <li>Accessories</li>
                             <li>Books</li> -->
-                            @php($arr_length=count($products))
+                            <!-- @php($arr_length=count($products))
                             @for($i=0;$i<$arr_length;$i++) 
-                            @if($products[$i]->choices==='yes')
+                            @if($products[$i]->choices==='1')
                                 <li>{{$products[$i]->category->categories}}</li>
                             @endif
                             @endfor
-                        </ul>
+                        </ul> -->
+                        <h3>Special Offers</h3>
                     </div>
                     <div class="product-slider owl-carousel">
                         <!--<div class="single_gallery_item wow fadeInUpBig" data-wow-delay="0.2s">
@@ -355,7 +356,7 @@
 
                         <!-- Single gallery Item -->
                         @foreach($products as $singlegallery)
-                        @if($singlegallery->choices==='yes')
+                        @if($singlegallery->choices==='1')
                         <div class="single_gallery_item wow fadeInUpBig" data-wow-delay="0.5s">
                             <!-- Product Image -->
                             <div class="product-img">
@@ -413,7 +414,6 @@
                                             praesentium eligendi, in fugiat?</p>
                                         <a href="#">View Full Product Details</a>
                                     </div>
-                                    <!-- Add to Cart Form -->
                                     <form class="cart" method="get" action="{{route('buynow')}}">
                                         <div class="quantity">
                                             <span class="qty-minus"
@@ -503,19 +503,20 @@
             <div class="row">
                 <div class="col-lg-8">
                     <div class="filter-control">
-                        <ul>
+                        <!-- <ul> -->
                             <!-- <li class="active">Clothings</li>
                             <li>HandBag</li>
                             <li>Shoes</li>
                             <li>Accessories</li> -->
-                            @foreach($category as $c)
+                            <!-- @foreach($category as $c)
                             <li class='normal' value="{{$c->id}}">{{$c->categories}}</li>
                             @endforeach
-                        </ul>
+                        </ul> -->
+                        <h3>Latest Products</h3>
                     </div>
                     <div id='test'>
                     <div class="product-slider owl-carousel">
-                        @foreach($products as $normalproducts)
+                        @foreach($latestproducts as $normalproducts)
                         <div class="single_gallery_item wow fadeInUpBig" data-wow-delay="0.4s">
                             <!-- Product Image -->
                             <div class="product-img">
