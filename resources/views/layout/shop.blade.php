@@ -332,7 +332,9 @@
                                     data-wow-delay="0.2s">
                                     <!-- Product Image -->
                                     <div class="product-img">
-                                        <img src="{{asset('/storage/' .$products->photo)}}" alt="">
+                                        <img src="{{$products->photo}}" alt="">
+
+                                        <!-- <img src="{{asset('/storage/' .$products->photo)}}" alt=""> -->
                                         <div class="product-quicview">
                                             <a href="#" data-toggle="modal" data-target="#quickview"><i
                                                     class="ti-plus"></i></a>

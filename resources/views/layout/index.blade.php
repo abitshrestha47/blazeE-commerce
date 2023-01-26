@@ -360,7 +360,7 @@
                         <div class="single_gallery_item wow fadeInUpBig" data-wow-delay="0.5s">
                             <!-- Product Image -->
                             <div class="product-img">
-                                <img src="{{asset('/storage/'.$singlegallery->photo)}}" alt="">
+                                <img src="{{$singlegallery->photo}}" alt="">
                                 <div class="product-quicview">
                                     <a href="#" data-toggle="modal" data-target="#quickview"><i class="ti-plus"></i></a>
                                 </div>
@@ -520,7 +520,7 @@
                         <div class="single_gallery_item wow fadeInUpBig" data-wow-delay="0.4s">
                             <!-- Product Image -->
                             <div class="product-img">
-                                <img src="{{asset('/storage/'.$normalproducts->photo)}}" alt="">
+                                <img src="{{$normalproducts->photo}}" alt="">
                                 <div class="product-quicview">
                                     <a href="#" data-toggle="modal" data-target="#quickview"><i class="ti-plus"></i></a>
                                 </div>
