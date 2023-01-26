@@ -586,61 +586,10 @@
                 },
                 success: function(data) {
                     $("#productData").html(data);
-                    // var products=data.goods;
-                    // var html='';
-                    // if(products.length>0){
-                    //     for(let i=0;i<products.length;i++){
-                    //         html+='<tr>\
-                    //             <td>'+products[i]['id']+'</td>\
-                    //             <td>'+products[i]['name']+'</td>\
-                    //         </tr>'
-                    //     }
-                    // }
-                    // else{
-                    //     html+='<tr>\
-                    //         <td>No products found</td>\
-                    //     </tr>'
-                    // }
-                    // if(products.length>0){
-                    //     for(let i=0;i<products.length;i++){
-                    //         // html+='<tr>\
-                    //         //     <td>'+products[i]['id']+'</td>\
-                    //         //     <td>'+products[i]['name']+'</td>\
-                    //         //     <td><img width="100px" height="100px" src="/storage/'+products[i]['photo']+'"></td>\
-                    //         // </tr>'
-                    //     }
-                    // }
-                    // else{
-                    //     // html+='<tr>\
-                    //     //     <td>No products found</td>\
-                    //     // </tr>'
-                    // }
-                    // $('#tbody').html(html);
                     console.log(data);
                 }
             });
         });
-        // $('.brandId').click(function() {
-        //     var foo = [];
-        //     $('.brandId').each(function() {
-        //         if ($(this).is(':checked')) {
-        //             foo.push($(this).val());
-        //         }
-        //     });
-        //     finalfoo = foo.toString();
-        //     $.ajax({
-        //                 type:"GET",
-        //                 datatype:'html',
-        //                 url:"{{url('/data')}}",
-        //                 data:{
-        //                     'category':finalfoo
-        //                 },
-        //                 success:function(data) {
-        //                     $("#productData").html(data);
-        //                 }
-        //             })
-        //     console.log(finalfoo);
-        // });
     });
     </script>
 </body>

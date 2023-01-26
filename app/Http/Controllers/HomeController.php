@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Products;
 use App\Models\Category;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -19,7 +20,8 @@ class HomeController extends Controller
     public function main(){
         $products=Products::all();
         $category=Category::all();
-        return view('layout.index',compact('category','products'));
+        $latestproducts=Products::orderBy('created_at','DESC')->get()->take(4);
+        return view('layout.index',compact('category','products','latestproducts'));
     }
 
     public function shop(Request $request){
@@ -36,6 +38,18 @@ class HomeController extends Controller
             return response()->json(['goods'=>$goods]);
         }
         return view('layout.shop',compact('products','category'));
+    }
+    public function abc(Request $req){
+        $products=Products::all();
+        if($req->ajax()){
+            if(empty($req->test)){
+                $goods=DB::table('products')->get();
+            }
+            else{
+                $goods=DB::table('products')->where(['categoryid'=>$req->test])->get();
+            }
+            return view('layout.normalproductsfilter',compact('goods'));
+        }
     }
     public function data(Request $request){
         $query=Products::query();
