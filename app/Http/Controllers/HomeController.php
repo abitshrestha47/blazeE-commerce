@@ -77,6 +77,18 @@ class HomeController extends Controller
             // return response()->json(['goods'=>$goods]);
         }
     }
+    public function boxFilter(Request $req){
+        if($req->ajax()){
+            if(empty($req->category)){
+                $goods=Products::whereIn('brand',$req->brands)->get();
+                return view('layout.categoryfilter',compact('goods'));
+            }
+            else if(!empty($req->category)){
+                $goods=Products::where('categoryid',$req->category)->whereIn('brand',$req->brands)->get();
+                return view('layout.categoryfilter',compact('goods'));
+            }
+        }    
+    }
     public function buynow(){
         return view('layout.buynow');
     }

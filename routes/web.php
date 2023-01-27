@@ -50,6 +50,8 @@ Route::get('/products',[AdminController::class,'products'])->name('products');
 
 Route::get('/priceFilter',[HomeController::class,'priceFilter'])->name('priceFilter');
 
+Route::get('/boxFilter',[HomeController::class,'boxFilter'])->name('boxFilter');
+
 Route::post('/products',[ProductsController::class,'products'])->name('products');
 
 Route::get('/category',[AdminController::class,'category'])->name('category');
