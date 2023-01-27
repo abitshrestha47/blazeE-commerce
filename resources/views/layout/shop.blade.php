@@ -219,7 +219,7 @@
                         <ul class="filter-catagories">
                             <select name="category" id="category">
                                 <option value="">Select Category</option>
-                                @foreach($category as $shop)
+                                @foreach($uniqueCategory as $shop)
                                 <option value="{{$shop->id}}">{{$shop->categories}}</option>
                                 @endforeach
                             </select>
@@ -344,6 +344,8 @@
                                     <div class="product-description">
                                         <h4 class="product-price">{{$products->price}}</h4>
                                         <p>{{$products->name}}</p>
+                                        <p>{{$products->brand}}</p>
+                                        <p>{{$products->category->categories}}</p>
                                         <!-- Add to Cart -->
                                         <a href="#" class="add-to-cart-btn">ADD TO CART</a>
                                     </div>
@@ -588,7 +590,6 @@
                 },
                 success: function(data) {
                     $("#productData").html(data);
-                    console.log(data);
                 }
             });
         });

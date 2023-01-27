@@ -28,16 +28,8 @@ class HomeController extends Controller
         $query=Products::query();
         $category=Category::all();
         $products=Products::all();
-        if($request->ajax()){
-            if(empty($request->category)){
-                $goods=$query->get();
-            }
-            else{
-                $goods=$query->where(['categoryid'=>$request->category])->get();
-            }
-            return response()->json(['goods'=>$goods]);
-        }
-        return view('layout.shop',compact('products','category'));
+        $uniqueCategory = Category::all()->unique('categories');
+        return view('layout.shop',compact('products','category','uniqueCategory'));
     }
     public function abc(Request $req){
         $products=Products::all();
@@ -52,19 +44,18 @@ class HomeController extends Controller
         }
     }
     public function data(Request $request){
-        $query=Products::query();
         $category=Category::all();
         $products=Products::all();
         if($request->ajax()){
             if(empty($request->category)){
-                $goods=$query->get();
+                $goods=Products::all();
                 return view('layout.categoryfilter',compact('goods','category'));
             }
             else{
-                $goods=$query->where(['categoryid'=>$request->category])->get();
+                $goods=Products::where(['categoryid'=>$request->category])->get();
                 return view('layout.categoryfilter',compact('goods','category'));
             }
-            return response()->json(['goods'=>$goods]);
+            // return response()->json(['goods'=>$goods]);
         }
     }
     public function buynow(){
