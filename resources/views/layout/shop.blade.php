@@ -217,7 +217,7 @@
                     <div class="filter-widget">
                         <h4 class="fw-title">Categories</h4>
                         <ul class="filter-catagories">
-                            <select name="category" id="category">
+                            <select name="category" id="category" class='category'>
                                 <option value="">Select Category</option>
                                 @foreach($uniqueCategory as $shop)
                                 <option value="{{$shop->id}}">{{$shop->categories}}</option>
@@ -246,8 +246,8 @@
                         <div class="filter-range-wrap">
                             <div class="range-slider">
                                 <div class="price-input">
-                                    <input type="text" id="minamount">
-                                    <input type="text" id="maxamount">
+                                    <input type="text" id="minamount" class='minamount'>
+                                    <input type="text" id="maxamount" class='maxamount'>
                                 </div>
                             </div>
                             <div class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"
@@ -257,7 +257,7 @@
                                 <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
                             </div>
                         </div>
-                        <a href="#" class="filter-btn">Filter</a>
+                        <a href="#" class="filter-btn" id='filter'>Filter</a>
                     </div>
                     <div class="filter-widget">
                         <h4 class="fw-title">Color</h4>
@@ -342,7 +342,7 @@
                                     </div>
                                     <!-- Product Description -->
                                     <div class="product-description">
-                                        <h4 class="product-price">{{$products->price}}</h4>
+                                        <h4 class="product-price">{{'$'.$products->price}}</h4>
                                         <p>{{$products->name}}</p>
                                         <p>{{$products->brand}}</p>
                                         <p>{{$products->category->categories}}</p>
@@ -392,7 +392,7 @@
                                             <i class="fa fa-star" aria-hidden="true"></i>
                                             <i class="fa fa-star" aria-hidden="true"></i>
                                         </div>
-                                        <h5 class="price"><span>{{$products->price}}</span></h5>
+                                        <h5 class="price"><span>{{'$'.$products->price}}</span></h5>
                                         <p>this is good product</p>
                                         <a href="#">View Full Product Details</a>
                                     </div>
@@ -589,6 +589,25 @@
                     'category': category
                 },
                 success: function(data) {
+                    $("#productData").html(data);
+                }
+            });
+        });
+        $('#filter').click(function(){
+            var minamount=$('.minamount').val();
+            var maxamount=$('.maxamount').val();
+            var category=$('.category').val();
+            alert(minamount+maxamount+category);
+            $.ajax({
+                type:'GET',
+                dataType:'html',
+                url:'/priceFilter',
+                data:{
+                    'minamount':minamount,
+                    'maxamount':maxamount,
+                    'category':category
+                },
+                success:function(data){
                     $("#productData").html(data);
                 }
             });

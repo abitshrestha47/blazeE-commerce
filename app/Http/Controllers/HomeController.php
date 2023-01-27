@@ -31,16 +31,35 @@ class HomeController extends Controller
         $uniqueCategory = Category::all()->unique('categories');
         return view('layout.shop',compact('products','category','uniqueCategory'));
     }
-    public function abc(Request $req){
-        $products=Products::all();
+    public function PriceFilter(Request $req){
         if($req->ajax()){
-            if(empty($req->test)){
-                $goods=DB::table('products')->get();
+            $minamount = filter_var($req->minamount, FILTER_SANITIZE_NUMBER_INT);
+            $maxamount = filter_var($req->maxamount, FILTER_SANITIZE_NUMBER_INT);
+            if(empty($req->category)){
+                $unfilteredgoods=Products::all();
+                // foreach ($unfilteredgoods as $goods) {
+                //     $goods->price = str_replace("$", "", $goods->price);
+                // }
+                $unfilteredgoods = Products::all()->map(function($item) {
+                    $item->price = intval($item->price);
+                    return $item;
+                });
+                $goods = $unfilteredgoods->filter(function($item) use ($minamount, $maxamount) {
+                    return $item->price >= $minamount && $item->price <= $maxamount;
+                });
+                return view('layout.categoryfilter', compact('goods'));
             }
             else{
-                $goods=DB::table('products')->where(['categoryid'=>$req->test])->get();
+                $unfiltercategorygoods = Products::where('categoryid', $req->category)->get();
+                $unfilteredgoods = $unfiltercategorygoods->map(function($item) {
+                    $item->price = intval($item->price);
+                    return $item;
+                }); 
+                $goods = $unfilteredgoods->filter(function($item) use ($minamount, $maxamount) {
+                    return $item->price >= $minamount && $item->price <= $maxamount;
+                });
+                return view('layout.categoryfilter', compact('goods'));
             }
-            return view('layout.normalproductsfilter',compact('goods'));
         }
     }
     public function data(Request $request){
