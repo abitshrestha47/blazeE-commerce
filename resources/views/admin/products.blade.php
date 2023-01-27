@@ -11,7 +11,7 @@
                     <label for="exampleInputEmail1" class="form-label">Name</label>
                     <input type="text" id="exampleInputEmail1" aria-describedby="emailHelp" name='name'>
                     <label for="exampleInputPassword1" class="form-label">Price</label>
-                    <input type="text" id="exampleInputPassword1" name='price'>
+                    <input type="text" name='price' id='price'>
                 </div>
                 <!-- <div class="mb-3">
                     <label for="exampleInputPassword1" class="form-label">Price</label>

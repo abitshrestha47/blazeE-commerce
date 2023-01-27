@@ -367,7 +367,7 @@
                             </div>
                             <!-- Product Description -->
                             <div class="product-description">
-                                <h4 class="product-price">{{$singlegallery->price}}</h4>
+                                <h4 class="product-price">{{'$'.$singlegallery->price}}</h4>
                                 <p>{{$singlegallery->name}}</p>
                                 <!-- Add to Cart -->
                                 <a href="#" class="add-to-cart-btn">ADD TO CART</a>
@@ -527,7 +527,7 @@
                             </div>
                             <!-- Product Description -->
                             <div class="product-description">
-                                <h4 class="product-price">{{$normalproducts->price}}</h4>
+                                <h4 class="product-price">{{'$'.$normalproducts->price}}</h4>
                                 <p>{{$normalproducts->name}}</p>
                                 <!-- Add to Cart -->
                                 <a href="#" class="add-to-cart-btn">ADD TO CART</a>

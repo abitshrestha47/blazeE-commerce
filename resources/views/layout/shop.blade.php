@@ -217,7 +217,7 @@
                     <div class="filter-widget">
                         <h4 class="fw-title">Categories</h4>
                         <ul class="filter-catagories">
-                            <select name="category" id="category">
+                            <select name="category" id="category" class='category'>
                                 <option value="">Select Category</option>
                                 @foreach($uniqueCategory as $shop)
                                 <option value="{{$shop->id}}">{{$shop->categories}}</option>
@@ -231,8 +231,8 @@
                             @foreach($products as $brand)
                             <div class="bc-item">
                                 <div class="form-check">
-                                    <input class="form-check-input brandId" type="checkbox" value="{{$brand->id}}"
-                                        id="brandId">
+                                    <input class="brand form-check-input" type="checkbox" value="{{$brand->brand}}"
+                                        id="brand">
                                     <label class="form-check-label" for="flexCheckDefault">
                                         {{$brand->brand}}
                                     </label>
@@ -246,8 +246,8 @@
                         <div class="filter-range-wrap">
                             <div class="range-slider">
                                 <div class="price-input">
-                                    <input type="text" id="minamount">
-                                    <input type="text" id="maxamount">
+                                    <input type="text" id="minamount" class='minamount'>
+                                    <input type="text" id="maxamount" class='maxamount'>
                                 </div>
                             </div>
                             <div class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"
@@ -257,57 +257,7 @@
                                 <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
                             </div>
                         </div>
-                        <a href="#" class="filter-btn">Filter</a>
-                    </div>
-                    <div class="filter-widget">
-                        <h4 class="fw-title">Color</h4>
-                        <div class="fw-color-choose">
-                            <div class="cs-item">
-                                <input type="radio" id="cs-black">
-                                <label class="cs-black" for="cs-black">Black</label>
-                            </div>
-                            <div class="cs-item">
-                                <input type="radio" id="cs-violet">
-                                <label class="cs-violet" for="cs-violet">Violet</label>
-                            </div>
-                            <div class="cs-item">
-                                <input type="radio" id="cs-blue">
-                                <label class="cs-blue" for="cs-blue">Blue</label>
-                            </div>
-                            <div class="cs-item">
-                                <input type="radio" id="cs-yellow">
-                                <label class="cs-yellow" for="cs-yellow">Yellow</label>
-                            </div>
-                            <div class="cs-item">
-                                <input type="radio" id="cs-red">
-                                <label class="cs-red" for="cs-red">Red</label>
-                            </div>
-                            <div class="cs-item">
-                                <input type="radio" id="cs-green">
-                                <label class="cs-green" for="cs-green">Green</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="filter-widget">
-                        <h4 class="fw-title">Size</h4>
-                        <div class="fw-size-choose">
-                            <div class="sc-item">
-                                <input type="radio" id="s-size">
-                                <label for="s-size">s</label>
-                            </div>
-                            <div class="sc-item">
-                                <input type="radio" id="m-size">
-                                <label for="m-size">m</label>
-                            </div>
-                            <div class="sc-item">
-                                <input type="radio" id="l-size">
-                                <label for="l-size">l</label>
-                            </div>
-                            <div class="sc-item">
-                                <input type="radio" id="xs-size">
-                                <label for="xs-size">xs</label>
-                            </div>
-                        </div>
+                        <a href="#" class="filter-btn" id='filter'>Filter</a>
                     </div>
                     <div class="filter-widget">
                         <h4 class="fw-title">Tags</h4>
@@ -342,7 +292,7 @@
                                     </div>
                                     <!-- Product Description -->
                                     <div class="product-description">
-                                        <h4 class="product-price">{{$products->price}}</h4>
+                                        <h4 class="product-price">{{'$'.$products->price}}</h4>
                                         <p>{{$products->name}}</p>
                                         <p>{{$products->brand}}</p>
                                         <p>{{$products->category->categories}}</p>
@@ -392,7 +342,7 @@
                                             <i class="fa fa-star" aria-hidden="true"></i>
                                             <i class="fa fa-star" aria-hidden="true"></i>
                                         </div>
-                                        <h5 class="price"><span>{{$products->price}}</span></h5>
+                                        <h5 class="price"><span>{{'$'.$products->price}}</span></h5>
                                         <p>this is good product</p>
                                         <a href="#">View Full Product Details</a>
                                     </div>
@@ -592,6 +542,45 @@
                     $("#productData").html(data);
                 }
             });
+        });
+        $('#filter').click(function(){
+            var minamount=$('.minamount').val();
+            var maxamount=$('.maxamount').val();
+            var category=$('.category').val();
+            alert(minamount+maxamount+category);
+            $.ajax({
+                type:'GET',
+                dataType:'html',
+                url:'/priceFilter',
+                data:{
+                    'minamount':minamount,
+                    'maxamount':maxamount,
+                    'category':category
+                },
+                success:function(data){
+                    $("#productData").html(data);
+                }
+            });
+        });
+        $('.brand').change(function(){
+            var category=$('.category').val();
+            var brands=[];
+            $('.brand:checked').each(function(){
+                brands.push(this.value);
+            });
+            alert(brands + category);
+            $.ajax({
+                type:'GET',
+                dataType:'html',
+                url:'/boxFilter',
+                data:{
+                    'brands':brands,
+                    'category':category
+                },
+                success:function(data){
+                    $("#productData").html(data);
+                }
+        });
         });
     });
     </script>

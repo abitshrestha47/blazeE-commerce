@@ -11,7 +11,7 @@
         </div>
         <!-- Product Description -->
         <div class="product-description">
-            <h4 class="product-price">{{$goods->price}}</h4>
+            <h4 class="product-price">{{'$'.$goods->price}}</h4>
             <p>{{$goods->name}}</p>
             <p>{{$goods->brand}}</p>
             <p>{{$goods->category->categories}}</p>
