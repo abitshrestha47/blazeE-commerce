@@ -24,12 +24,12 @@ class AdminController extends Controller
     public function delete($id){
         $category=Category::find($id);
         $category->delete();
-        return back();
+        return back()->with('delmsg','Category Deleted Successfully!');
     }
     public function productdelete($id){
         $product=Products::find($id);
         $product->delete();
-        return back();
+        return back()->with('delmg','Products Deleted Successfully!');
     }
 
     public function editcategory($id){
