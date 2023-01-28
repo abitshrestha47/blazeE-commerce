@@ -64,6 +64,8 @@ Route::get('/productdelete/{id}',[AdminController::class,'productdelete'])->name
 
 Route::get('/editcategory/{id}',[AdminController::class,'editcategory'])->name('editcategory');
 
+Route::get('/get-product/{id}',[HomeController::class,'getProduct'])->name('get-product');
+
 Route::get('/categoryedit',[AdminController::class,'categoryedit'])->name('categoryedit');
 
 Route::post('/categoryedit',[AdminController::class,'editingcategory'])->name('categoryedit');

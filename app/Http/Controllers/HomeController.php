@@ -89,6 +89,12 @@ class HomeController extends Controller
             }
         }    
     }
+    public function getProduct($id)
+    {
+        $product = Products::find($id);
+        return response()->json($product);
+    }
+
     public function buynow(){
         return view('layout.buynow');
     }
