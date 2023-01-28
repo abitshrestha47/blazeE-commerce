@@ -13,7 +13,7 @@
         <div class="product-description">
             <h4 class="product-price">{{'$'.$goods->price}}</h4>
             <p>{{$goods->name}}</p>
-            <p>{{$goods->brand}}</p>
+            <p>{{$goods->brand->brandName}}</p>
             <p>{{$goods->category->categories}}</p>
             <!-- Add to Cart -->
             <a href="#" class="add-to-cart-btn">ADD TO CART</a>

@@ -4,11 +4,10 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Category;
 use Faker\Factory as Faker;
 use Illuminate\Support\Facades\DB;
 
-class CategorySeeder extends Seeder
+class BrandSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -19,10 +18,9 @@ class CategorySeeder extends Seeder
     {
         //
         $faker=Faker::create();
-        $categories = ['Electronics', 'Clothing', 'Mobiles', 'Shoes','Bags','Hats','Books','Music'];
-        for ($i=0; $i <= 6; $i++) {
-            DB::table('categories')->insert([
-                'categories' => $faker->unique()->randomElement($categories),
+        for($i=0;$i<6;$i++){
+            DB::table('brands')->insert([
+                'brandName' => $faker->company
             ]);
         }
     }

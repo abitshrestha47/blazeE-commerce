@@ -34,10 +34,8 @@
             <div class="side_navbar">
                 <!-- <span>Main Menu</span> -->
                 <a href="#" class="active">Dashboard</a>
-                <a href="#">Profile</a>
-                <a href="#">History</a>
-                <a href="#">Application</a>
                 <a href="{{route('category')}}">Categories</a>
+                <a href="{{route('brander')}}">Brand</a>
                 <a href="{{route('products')}}">Add Products</a>
 
                 <div class="links">

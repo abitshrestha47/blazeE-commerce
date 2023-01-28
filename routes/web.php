@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\BrandController;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,6 +58,10 @@ Route::post('/products',[ProductsController::class,'products'])->name('products'
 Route::get('/category',[AdminController::class,'category'])->name('category');
 
 Route::post('/category',[CategoryController::class,'category'])->name('category');
+
+Route::post('/brander',[BrandController::class,'brander'])->name('brander');
+
+Route::get('/brander',[BrandController::class,'getBrander'])->name('brander');
 
 Route::get('/delete/{id}',[AdminController::class,'delete'])->name('delete');
 
