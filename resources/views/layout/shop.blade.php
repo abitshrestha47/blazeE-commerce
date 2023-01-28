@@ -228,13 +228,13 @@
                     <div class="filter-widget">
                         <h4 class="fw-title">Brand</h4>
                         <div class="fw-brand-check">
-                            @foreach($products as $brand)
+                            @foreach($brands as $brandfilter)
                             <div class="bc-item">
                                 <div class="form-check">
-                                    <input class="brand form-check-input" type="checkbox" value="{{$brand->brand}}"
+                                    <input class="brand form-check-input" type="checkbox" value="{{$brandfilter->id}}"
                                         id="brand">
                                     <label class="form-check-label" for="flexCheckDefault">
-                                        {{$brand->brand}}
+                                        {{$brandfilter->brandName}}
                                     </label>
                                 </div>
                             </div>
@@ -294,7 +294,7 @@
                                     <div class="product-description">
                                         <h4 class="product-price">{{'$'.$products->price}}</h4>
                                         <p>{{$products->name}}</p>
-                                        <p>{{$products->brand}}</p>
+                                        <p>{{$products->brand->brandName}}</p>
                                         <p>{{$products->category->categories}}</p>
                                         <!-- Add to Cart -->
                                         <a href="#" class="add-to-cart-btn">ADD TO CART</a>

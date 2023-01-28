@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Products;
 use App\Models\Category;
+use App\Models\Brand;
 use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
@@ -28,8 +29,9 @@ class HomeController extends Controller
         $query=Products::query();
         $category=Category::all();
         $products=Products::all();
+        $brands=Brand::all();
         $uniqueCategory = Category::all()->unique('categories');
-        return view('layout.shop',compact('products','category','uniqueCategory'));
+        return view('layout.shop',compact('products','category','uniqueCategory','brands'));
     }
     public function PriceFilter(Request $req){
         if($req->ajax()){
@@ -136,7 +138,7 @@ class HomeController extends Controller
                     return view('layout.categoryfilter',compact('goods'));
                 }
                 else{
-                    $goods=Products::whereIn('brand',$req->brands)->get();
+                    $goods=Products::whereIn('brandId',$req->brands)->get();
                     return view('layout.categoryfilter',compact('goods'));
                 }
             }
@@ -146,7 +148,7 @@ class HomeController extends Controller
                     return view('layout.categoryfilter',compact('goods'));
                 }
                 else{
-                    $goods=Products::where('categoryid',$req->category)->whereIn('brand',$req->brands)->get();
+                    $goods=Products::where('categoryid',$req->category)->whereIn('brandId',$req->brands)->get();
                     return view('layout.categoryfilter',compact('goods')); 
                 }
             }

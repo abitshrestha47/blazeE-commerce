@@ -24,12 +24,13 @@ class ProductsSeeder extends Seeder
             'name' => $faker->name,
             'price'=> $faker->randomNumber(2),
             'photo' => $faker->imageUrl(640, 480, 'fashion'),
-            'brand'=> $faker->company,
+            // 'brand'=> $faker->company,
             'color'=> $faker->colorName,
             'size'=>$faker->randomElement(['S','M','L','XL','XXL']),
             'quantity'=>$faker->randomNumber(2),
             'choices'=>$faker->randomElement(['1','2']),
-            'categoryid'=>$faker->randomElement(['1','2','3','4','5','6','7','8','9'])
+            'categoryid'=>$faker->randomElement(['1','2','3','4','5','6','7']),
+            'brandId'=>$faker->randomElement(['1','2','3','4','5','6'])
         ]);
     }
     }

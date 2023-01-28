@@ -74,7 +74,7 @@
             <td>{{$products->price}}</td>
             <td>{{$products->categoryid}}</td>
             <td>{{$products->color}}</td>
-            <td>{{$products->brand}}</td>
+            <td>{{$products->brand->brandName}}</td>
             <td><img height='100vh' width='100vh' src="{{asset('/storage/'.$products->photo)}}" alt=""></td>
             <td><a href="{{route('productdelete',$products->id)}}">Delete</a></td>
         </tr>

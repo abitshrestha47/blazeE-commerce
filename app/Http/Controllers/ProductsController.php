@@ -16,7 +16,7 @@ class ProductsController extends Controller
             'price' => $req->price,
             'photo' => $response,
             'categoryid' => $req->categoryid,
-            'brand' =>$req->brand,
+            'brandId' => $req->brand,
             'color'=>$req->color,
             'choices'=>$req->choices,
             'quantity'=>$req->quantity,
