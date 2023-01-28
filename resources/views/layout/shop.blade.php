@@ -540,10 +540,12 @@
                 }
             });
         });
+        var globalBrands = [];
         $('#filter').click(function(){
             var minamount=$('.minamount').val();
             var maxamount=$('.maxamount').val();
             var category=$('.category').val();
+            
             alert(minamount+maxamount+category);
             $.ajax({
                 type:'GET',
@@ -552,10 +554,12 @@
                 data:{
                     'minamount':minamount,
                     'maxamount':maxamount,
-                    'category':category
+                    'category':category,
+                    'globalBrands': globalBrands
                 },
                 success:function(data){
                     $("#productData").html(data);
+                    console.log(data);
                 }
             });
         });
@@ -565,6 +569,7 @@
             $('.brand:checked').each(function(){
                 brands.push(this.value);
             });
+            globalBrands = brands;
             alert(brands + category);
             $.ajax({
                 type:'GET',
