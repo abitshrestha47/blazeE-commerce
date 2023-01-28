@@ -286,7 +286,7 @@
 
                                         <!-- <img src="{{asset('/storage/' .$products->photo)}}" alt=""> -->
                                         <div class="product-quicview">
-                                            <a href="#" data-toggle="modal" data-target="#quickview"><i
+                                            <a href="#" data-toggle="modal" data-target="#quickview" class='productdatamodal' data-id='{{$products->id}}'><i
                                                     class="ti-plus"></i></a>
                                         </div>
                                     </div>
@@ -322,19 +322,18 @@
                 <button type="button" class="close btn" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                @foreach($products as $item)
                 <div class="modal-body">
                     <div class="quickview_body">
                         <div class="container">
                             <div class="row">
                                 <div class="col-12 col-lg-5">
                                     <div class="quickview_pro_img">
-                                        <img src="{{asset('/storage/' .$products->photo)}}" alt="">
+                                        <img class='product-img' src="" alt="">
                                     </div>
                                 </div>
                                 <div class="col-12 col-lg-7">
                                     <div class="quickview_pro_des">
-                                        <h4 class="title">{{$products->name}}</h4>
+                                        <span class='product-name'></span>
                                         <div class="top_seller_product_rating mb-15">
                                             <i class="fa fa-star" aria-hidden="true"></i>
                                             <i class="fa fa-star" aria-hidden="true"></i>
@@ -342,13 +341,14 @@
                                             <i class="fa fa-star" aria-hidden="true"></i>
                                             <i class="fa fa-star" aria-hidden="true"></i>
                                         </div>
-                                        <h5 class="price"><span>{{'$'.$products->price}}</span></h5>
+                                        <span class="product-price"></span>
+                                        <!-- <h5 class="price"><span class='product-price'></span></h5> -->
                                         <p>this is good product</p>
                                         <a href="#">View Full Product Details</a>
                                     </div>
                                     <!-- Add to Cart Form -->
-                                    <form class="cart" method="get" action="{{route('buynow')}}">
-                                        <div class="quantity">
+                                    <!-- <form class="cart" method="get" action="{{route('buynow')}}"> -->
+                                        <!-- <div class="quantity">
                                             <span class="qty-minus"
                                                 onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i
                                                     class="fa fa-minus" aria-hidden="true"></i></span>
@@ -359,19 +359,17 @@
                                             <span class="qty-plus"
                                                 onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i
                                                     class="fa fa-plus" aria-hidden="true"></i></span>
-                                        </div>
-                                        <button type="submit" name="buynow" value="5" class="cart-submit"><a
-                                                href="{{Route('buynow')}}" style="color: black;font-weight: 700;">Buy
-                                                Now</a></button>
+                                        </div> -->
+                                    
                                         <!-- Wishlist -->
-                                        <div class="modal_pro_wishlist">
+                                        <!-- <div class="modal_pro_wishlist">
                                             <a href="wishlist.html" target="_blank"><i class="ti-heart"></i></a>
-                                        </div>
+                                        </div> -->
                                         <!-- Compare -->
-                                        <div class="modal_pro_compare">
+                                        <!-- <div class="modal_pro_compare">
                                             <a href="compare.html" target="_blank"><i class="ti-stats-up"></i></a>
-                                        </div>
-                                    </form>
+                                        </div> -->
+                                    <!-- </form> -->
 
                                     <div class="share_wf mt-30">
                                         <p>Share With Friend</p>
@@ -387,7 +385,6 @@
                         </div>
                     </div>
                 </div>
-                @endforeach
             </div>
         </div>
     </div>
@@ -581,6 +578,18 @@
                     $("#productData").html(data);
                 }
         });
+        });
+        $('.productdatamodal').click(function(){
+            var productid=$(this).data('id');
+            $.ajax({
+                url:'/get-product/'+productid,
+                type:'GET',
+                success:function(data){
+                    $('#quickview').find('.product-name').text(data.name);
+                    $('#quickview').find('.product-price').text(data.price);
+                    $('#quickview').find('.product-img').attr('src',data.photo);
+                }
+            });
         });
     });
     </script>
