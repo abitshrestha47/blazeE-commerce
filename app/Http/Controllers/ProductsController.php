@@ -22,5 +22,6 @@ class ProductsController extends Controller
             'quantity'=>$req->quantity,
             'size'=>$req->size,
         ]);
+        return back()->with('msg','Products added Successfully!');
     }
 }
