@@ -21,7 +21,12 @@
                     <label for="exampleInputPassword1" class="form-label">Photo</label>
                     <input type="file" id="exampleInputPassword1" name='image'>
                     <label for="brand" class="form-label">Brand</label>
-                    <input type="text" id="brand" name='brand'>
+                    <select name="brand" id="brand">
+                        <option selected>Select Brand</option>
+                        @foreach($products as $brandid)
+                        <option value="{{$brandid->brand->id}}">{{$brandid->brand->brandName}}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <!-- <div class="mb-3">
                     <label for="brand" class="form-label">Brand</label>
@@ -33,12 +38,17 @@
                 </div>
                 <div class="mb-3">
                     <label for="categoryid" class="form-label">CategoryId</label>
-                    <input type="text" id="categoryid" name='categoryid'>
+                    <select name="categoryid" id="categoryid">
+                        <option selected>Select Category</option>
+                        @foreach($products as $categoryid)
+                            <option value="{{$categoryid->id}}">{{$categoryid->category->categories}}</option>
+                        @endforeach
+                    </select>
                 </div>
 
                 <div class="mb-3">
                     <label for="categoryid" class="form-label">quantity</label>
-                    <input type="text" id="categoryid" name='quantity'>
+                    <input type="number" id="categoryid" name='quantity' min='1'>
                 </div>
                 <div class="mb-3">
                     <label for="categoryid" class="form-label">size</label>

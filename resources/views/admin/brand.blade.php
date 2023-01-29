@@ -26,7 +26,7 @@
     @if(isset($brands))
     @foreach($brands as $brands)
     <tr>
-        <td>{{$brands->brandId}}</td>
+        <td>{{$brands->id}}</td>
         <td>{{$brands->brandName}}</td>
     </tr>
     @endforeach
