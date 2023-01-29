@@ -52,7 +52,7 @@ class HomeController extends Controller
                 return view('layout.categoryfilter', compact('goods'));
             }
             else if(empty($req->category) && !empty($req->globalBrands)){
-                $goods=Products::whereIn('brand',$req->globalBrands)->get();
+                $goods=Products::whereIn('brandId',$req->globalBrands)->get();
                 $goods=$goods->map(function($item){
                     $item->price=intval($item->price);
                     return $item;
@@ -74,7 +74,7 @@ class HomeController extends Controller
                 return view('layout.categoryfilter', compact('goods'));
             }
             else if(!empty($req->category) && !empty($req->globalBrands)){
-                $goods=Products::where('categoryid',$req->category)->whereIn('brand',$req->globalBrands)->get();
+                $goods=Products::where('categoryid',$req->category)->whereIn('brandId',$req->globalBrands)->get();
                 $goods = $goods->map(function($item) {
                     $item->price = intval($item->price);
                         return $item;
