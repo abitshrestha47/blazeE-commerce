@@ -18,4 +18,7 @@ class Products extends Model
     public function brand(){
         return $this->belongsTo(Brand::class,'brandId');
     }
+    public function cart(){
+        return $this->belongsTo(Brand::class,'productid');
+    }
 }

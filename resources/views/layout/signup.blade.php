@@ -52,6 +52,7 @@
         <input type="email" class="form-control" name="email"/>
         <label class="form-label">Email</label>
     </div>
+    
     <div class="form-group">
         <input id="password" name="password" type="password" class="form-control"/>
         <label class="form-label">Password</label>

@@ -6,7 +6,10 @@ use Illuminate\Http\Request;
 use App\Models\Products;
 use App\Models\Category;
 use App\Models\Brand;
+use App\Models\Cart;
+use App\Models\Bigposter;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -21,8 +24,17 @@ class HomeController extends Controller
     public function main(){
         $products=Products::all();
         $category=Category::all();
+        $cart=Cart::all();
+        $userid=Auth::id();
+        $count=0;
+         foreach($cart as $countcart){
+            if($countcart->userid==$userid){
+                $count++;
+            }
+        }
+        $bigposter=Bigposter::all();
         $latestproducts=Products::orderBy('created_at','DESC')->get()->take(4);
-        return view('layout.index',compact('category','products','latestproducts'));
+        return view('layout.index',compact('category','products','latestproducts','cart','count','bigposter'));
     }
 
     public function shop(Request $request){
@@ -164,7 +176,8 @@ class HomeController extends Controller
         return view('layout.buynow');
     }
     public function cart(){
-        return view('layout.cart');
+        $cart=Cart::all();
+        return view('layout.cart',compact('cart'));
     }
     public function checkout(){
         return view('layout.checkout');

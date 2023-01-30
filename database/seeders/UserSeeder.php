@@ -8,6 +8,8 @@ use Illuminate\Database\Seeder;
 use App\Models\User;
 use Faker\Factory as Faker;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+
 
 class UserSeeder extends Seeder
 {
@@ -24,7 +26,7 @@ class UserSeeder extends Seeder
             DB::table('users')->insert([
                 'username' => $faker->userName,
                 'email' => $faker->email,
-                'password' => 'abc123'
+                'password' =>Hash::make('abc123')
             ]);
         }
     }

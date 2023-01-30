@@ -5,9 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    
+
     <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Favicon  -->
     <link rel="icon" href="img/core-img/favicon.ico">
 
@@ -88,13 +90,39 @@
                             <li class="cart-icon">
                                 <a href="{{route('cart')}}">
                                     <i class="icon_bag_alt"></i>
-                                    <span>3</span>
+                                    <span>@if(isset($count)){{$count}}@endif</span>
                                 </a>
                                 <div class="cart-hover">
                                     <div class="select-items">
                                         <table>
                                             <tbody>
+                                                @if(isset($cart))
+                                                @foreach($cart as $cart)
+                                                @if(Auth::id()==$cart->userid)
                                                 <tr>
+                                                    <td class="si-pic"><img src="{{$cart->productimg}}" alt=""
+                                                            width='80vw' height='80vw'></td>
+                                                    <td class="si-text">
+                                                        <div class="product-selected">
+                                                            <p>{{'$'.$cart->productprice}}</p>
+                                                            <h6>{{$cart->productname}}</h6>
+                                                        </div>
+                                                    </td>
+                                                    <!-- <td class="si-close">
+                                                        <div class="custom-class">
+                                                        <form method="post"
+                                                            action="{{route('deletecart', ['id' => $cart->id])}}">
+                                                            @csrf
+                                                            <button type="submit" class="btn btn-danger"><i
+                                                                class="ti-close"></i></button>
+                                                        </form>
+                                                        </div>
+                                                    </td> -->
+                                                </tr>
+                                                @endif
+                                                @endforeach
+                                                @endif
+                                                <!-- <tr>
                                                     <td class="si-pic"><img src="img/select-product-1.jpg" alt=""></td>
                                                     <td class="si-text">
                                                         <div class="product-selected">
@@ -105,8 +133,8 @@
                                                     <td class="si-close">
                                                         <i class="ti-close"></i>
                                                     </td>
-                                                </tr>
-                                                <tr>
+                                                </tr> -->
+                                                <!-- <tr>
                                                     <td class="si-pic"><img src="img/select-product-2.jpg" alt=""></td>
                                                     <td class="si-text">
                                                         <div class="product-selected">
@@ -117,7 +145,7 @@
                                                     <td class="si-close">
                                                         <i class="ti-close"></i>
                                                     </td>
-                                                </tr>
+                                                </tr> -->
                                             </tbody>
                                         </table>
                                     </div>
@@ -183,8 +211,9 @@
         </div>
     </header>
     <!-- header end -->
-    
+
     <!-- Js Plugins -->
+    <script></script>
     <script src="home/js/jquery/jquery-2.2.4.min.js"></script>
     <!-- Popper js -->
     <script src="home/js/popper.min.js"></script>

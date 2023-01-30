@@ -7,6 +7,9 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\BigposterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,11 +38,15 @@ Route::post('/login',[UserController::class,'logging'])->name('logging');
 
 Route::get('/dashboard',[AdminController::class,'dashboard'])->name('dashboard')->middleware('auth','admin');
 
+Route::get('/dashboard',[DashboardController::class,'adminUser'])->name('dashboard')->middleware('auth','admin');
+
 Route::get('/shop',[HomeController::class,'shop'])->name('shop');
 
 Route::get('/buynow',[HomeController::class,'buynow'])->name('buynow');
 
 Route::get('/cart',[HomeController::class,'cart'])->name('cart');
+
+Route::get('/incDecprice',[CartController::class,'incDecprice'])->name('incDecprice');
 
 Route::get('/checkout',[HomeController::class,'checkout'])->name('checkout');
 
@@ -47,7 +54,7 @@ Route::get('/data',[HomeController::class,'data'])->name('data');
 
 Route::get('/logout',[UserController::class,'logout'])->name('logout');
 
-Route::get('/products',[AdminController::class,'products'])->name('products');
+Route::get('/products',[AdminController::class,'products'])->name('products')->middleware('auth','admin');
 
 Route::get('/priceFilter',[HomeController::class,'priceFilter'])->name('priceFilter');
 
@@ -55,17 +62,22 @@ Route::get('/boxFilter',[HomeController::class,'boxFilter'])->name('boxFilter');
 
 Route::post('/products',[ProductsController::class,'products'])->name('products');
 
-Route::get('/category',[AdminController::class,'category'])->name('category');
+Route::get('/category',[AdminController::class,'category'])->name('category')->middleware('auth','admin');
 
 Route::post('/category',[CategoryController::class,'category'])->name('category');
 
 Route::post('/brander',[BrandController::class,'brander'])->name('brander');
+ 
+Route::post('/add-cart',[CartController::class,'addCart'])->name('add-cart');
+
+
+Route::post('/delete-cart/{id}',[CartController::class,'deleteCart'])->name('deletecart');
 
 Route::get('/brander',[BrandController::class,'getBrander'])->name('brander');
 
-Route::get('/delete/{id}',[AdminController::class,'delete'])->name('delete');
+Route::get('/delete/{id}',[AdminController::class,'delete'])->name('delete')->middleware('auth','admin');
 
-Route::get('/productdelete/{id}',[AdminController::class,'productdelete'])->name('productdelete');
+Route::get('/productdelete/{id}',[AdminController::class,'productdelete'])->name('productdelete')->middleware('auth','admin');
 
 Route::get('/editcategory/{id}',[AdminController::class,'editcategory'])->name('editcategory');
 
@@ -74,6 +86,11 @@ Route::get('/get-product/{id}',[HomeController::class,'getProduct'])->name('get-
 Route::get('/categoryedit',[AdminController::class,'categoryedit'])->name('categoryedit');
 
 Route::post('/categoryedit',[AdminController::class,'editingcategory'])->name('categoryedit');
+
+Route::get('/bigposter',[BigposterController::class,'bigposter'])->name('bigposter');
+
+Route::post('/bigposter',[BigposterController::class,'send'])->name('bigposter');
+
 
 
 

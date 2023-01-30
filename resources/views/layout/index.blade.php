@@ -2,6 +2,8 @@
 
 @section('contents')
 
+
+
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -185,23 +187,24 @@
     <!-- Hero Section Begin -->
     <section class="hero-section">
         <div class="hero-items owl-carousel">
-            <div class="single-hero-items set-bg" data-setbg="img/hero-1.jpg">
+            @foreach($bigposter as $bigposter)
+            <div class="single-hero-items set-bg" data-setbg="{{asset('/storage/'.$bigposter->bigposterimg)}}">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-5">
-                            <span>Bag,kids</span>
-                            <h1>Black friday</h1>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                incididunt ut labore et dolore</p>
+                            <span>{{$bigposter->for}}</span>
+                            <h1>{{$bigposter->offer}}</h1>
+                            <p>{{$bigposter->description}}</p>
                             <a href="#" class="primary-btn">Shop Now</a>
+                            <div class="off-card">
+                                <h2>Sale <span>{{$bigposter->offerprice}}</span></h2>
+                            </div>
                             <!-- <button type="submit" class="primary-btn">Shop Now</button> -->
                         </div>
                     </div>
-                    <div class="off-card">
-                        <h2>Sale <span>50%</span></h2>
-                    </div>
                 </div>
             </div>
+            @endforeach
             <div class="single-hero-items set-bg" data-setbg="img/hero-2.jpg">
                 <div class="container">
                     <div class="row">
@@ -370,11 +373,18 @@
                             </div>
                             <!-- Product Description -->
                             <div class="product-description">
-                                <h4 class="product-price">{{'$'.$singlegallery->price}}</h4>
-                                <p>{{$singlegallery->name}}</p>
                                 <!-- Add to Cart -->
-                                <a href="#" class="add-to-cart-btn">ADD TO CART</a>
+                                <form action="{{route('add-cart')}}" method='POST'>
+                                    @csrf
+                                    <input type="hidden" value="{{Auth::id()}}" name='id'>
+                                    <button type='submit' class="add-to-cart-btn cart_add"
+                                        data-id="{{$singlegallery->id}}" value='{{$singlegallery->id}}' name='productId'
+                                        data-user-id="{{Auth::id()}}">ADD TO CART</button>
+                                </form>
                             </div>
+
+                            <h4 class="product-price">{{'$'.$singlegallery->price}}</h4>
+                            <p>{{$singlegallery->name}}</p>
                         </div>
                         @endif
                         @endforeach
@@ -506,9 +516,9 @@
                                     <div class="product-quicview">
                                         <!-- <a href="#" data-toggle="modal" data-target="#quickview"><i
                                                 class="ti-plus"></i></a> -->
-                                                <a href="#" data-toggle="modal" data-target="#quickview"
-                                        data-id="{{$normalproducts->id}}" id="productModalLink"
-                                        class='productModalLink'><i class="ti-plus"></i></a>
+                                        <a href="#" data-toggle="modal" data-target="#quickview"
+                                            data-id="{{$normalproducts->id}}" id="productModalLink"
+                                            class='productModalLink'><i class="ti-plus"></i></a>
                                     </div>
                                 </div>
                                 <!-- Product Description -->
@@ -798,6 +808,7 @@
             </div>
         </div>
     </footer>
+
     <!-- Footer Section End -->
     <script>
     $(document).ready(function() {
