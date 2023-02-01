@@ -8,12 +8,14 @@ use App\Models\Category;
 use App\Models\Brand;
 use App\Models\Cart;
 use App\Models\Bigposter;
+use App\Models\Department;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
     //
+
     public function signup(){
         return view('layout.signup');
     }
@@ -32,9 +34,10 @@ class HomeController extends Controller
                 $count++;
             }
         }
+        $departments=Department::all();
         $bigposter=Bigposter::all();
         $latestproducts=Products::orderBy('created_at','DESC')->get()->take(4);
-        return view('layout.index',compact('category','products','latestproducts','cart','count','bigposter'));
+        return view('layout.index',compact('category','products','latestproducts','cart','count','bigposter','departments'));
     }
 
     public function shop(Request $request){
@@ -43,7 +46,8 @@ class HomeController extends Controller
         $products=Products::all();
         $brands=Brand::all();
         $uniqueCategory = Category::all()->unique('categories');
-        return view('layout.shop',compact('products','category','uniqueCategory','brands'));
+        $departments=Department::all();
+        return view('layout.shop',compact('products','category','uniqueCategory','brands','departments'));
     }
     public function PriceFilter(Request $req){
         if($req->ajax()){

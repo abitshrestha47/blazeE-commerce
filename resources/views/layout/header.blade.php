@@ -11,24 +11,24 @@
         integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Favicon  -->
-    <link rel="icon" href="img/core-img/favicon.ico">
+    <link rel="icon" href="{{asset('img/core-img/favicon.ico')}}">
 
     <!-- Core Style CSS -->
-    <link rel="stylesheet" href="home/css/core-style.css">
+    <link rel="stylesheet" href="{{asset('home/css/core-style.css')}}">
 
     <!-- Responsive CSS -->
-    <link href="home/css/responsive.css" rel="stylesheet">
+    <link href="{{asset('home/css/responsive.css" rel="stylesheet')}}">
     <!-- Css Styles -->
-    <link rel="stylesheet" href="home/css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="home/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="home/css/themify-icons.css" type="text/css">
-    <link rel="stylesheet" href="home/css/themify-icon.css" type="text/css">
-    <link rel="stylesheet" href="home/css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="home/css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="home/css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="home/css/jquery-ui.min.css" type="text/css">
-    <link rel="stylesheet" href="home/css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="home/css/style.css" type="text/css">
+    <link rel="stylesheet" href="{{asset('home/css/bootstrap.min.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('home/css/font-awesome.min.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('home/css/themify-icons.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('home/css/themify-icon.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('home/css/elegant-icons.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('home/css/owl.carousel.min.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('home/css/nice-select.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('home/css/jquery-ui.min.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('home/css/slicknav.min.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('home/css/style.css')}}" type="text/css">
     @vite(['resources/js/app.js'])
 </head>
 <body>
@@ -172,9 +172,9 @@
                         <i class="ti-menu"></i>
                         <span>All departments</span>
                         <ul class="depart-hover">
-                            @if(isset($category))
-                            @foreach($category as $category)
-                            <li><a href="#">{{$category->categories}}</a></li>
+                            @if(isset($departments))
+                            @foreach($departments as $departmentschoose)
+                            <li style="color:black;" class='deptgo' value='{{$departmentschoose->id}}'>{{$departmentschoose->departmentName}}</li>
                             @endforeach
                             @endif
 
@@ -226,7 +226,7 @@
     <!-- Js Plugins -->
     <script src="https://cdn.lordicon.com/fudrjiwc.js"></script>
     <script src="home/js/jquery-3.3.1.min.js"></script>
-    <script src="home/js/bootstrap.min.js"></script>
+    <script src="{{asset('home/js/bootstrap.min.js')}}"></script>
     <script src="home/js/jquery-ui.min.js"></script>
     <script src="home/js/jquery.countdown.min.js"></script>
     <script src="home/js/jquery.nice-select.min.js"></script>

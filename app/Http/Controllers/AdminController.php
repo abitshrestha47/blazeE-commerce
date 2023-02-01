@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Category;
 use App\Models\Products;
+use App\Models\Department;
+
 
 class AdminController extends Controller
 {
@@ -16,7 +18,8 @@ class AdminController extends Controller
     }
     public function category(){
         $category=Category::all();
-        return view('admin.category',compact('category'));
+        $departments=Department::all();
+        return view('admin.category',compact('category','departments'));
     }
     public function dashboard(){
         return view('admin.dashboard');

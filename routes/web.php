@@ -10,6 +10,8 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\BigposterController;
+use App\Http\Controllers\DepartmentController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -70,7 +72,6 @@ Route::post('/brander',[BrandController::class,'brander'])->name('brander');
  
 Route::post('/add-cart',[CartController::class,'addCart'])->name('add-cart');
 
-
 Route::post('/delete-cart/{id}',[CartController::class,'deleteCart'])->name('deletecart');
 
 Route::get('/brander',[BrandController::class,'getBrander'])->name('brander');
@@ -90,6 +91,13 @@ Route::post('/categoryedit',[AdminController::class,'editingcategory'])->name('c
 Route::get('/bigposter',[BigposterController::class,'bigposter'])->name('bigposter');
 
 Route::post('/bigposter',[BigposterController::class,'send'])->name('bigposter');
+
+Route::get('/departments',[DepartmentController::class,'getDepartment'])->name('departments');
+
+Route::post('/departments',[DepartmentController::class,'addDepartment'])->name('departments');
+
+Route::get('/departmentView/{id}',[DepartmentController::class,'getDepartmentView'])->name('departmentthis');
+
 
 
 

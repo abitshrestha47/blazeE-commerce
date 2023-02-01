@@ -864,5 +864,6 @@
     <script src="home/js/jquery.slicknav.js"></script>
     <script src="home/js/owl.carousel.min.js"></script>
     <script src="home/js/main.js"></script>
+    <script src="{{asset('home/js/department.js')}}"></script>
     <!-- Latest Blog Section End -->
     @endsection

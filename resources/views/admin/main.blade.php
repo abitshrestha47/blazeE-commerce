@@ -75,6 +75,8 @@
                             class="fa fa-table me-2"></i>Products</a>
                     <a href="{{route('bigposter')}}" class="nav-item nav-link"><i
                             class="fa fa-table me-2"></i>Bigposter</a>
+                    <a href="{{route('departments')}}" class="nav-item nav-link"><i
+                    class="fa fa-table me-2"></i>Departments</a>
                     <a href="chart.html" class="nav-item nav-link" display="hidden"><i
                             class="fa fa-chart-bar me-2"></i>Chart</a>
                     <div class="nav-item dropdown">
