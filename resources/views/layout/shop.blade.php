@@ -598,6 +598,7 @@
         });
     });
     </script>
+    <script src="{{asset('home/js/department.js')}}"></script>
 </body>
 
 </html>

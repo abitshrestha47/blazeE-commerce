@@ -12,6 +12,7 @@ class DepartmentController extends Controller
     public function addDepartment(Request $req){
         $department=new Department();
         $department->departmentName=$req->deptname;
+        $department->departmentImage=$req->departmentImage;
         $department->save();
     }
     public function getDepartment(){
@@ -27,6 +28,7 @@ class DepartmentController extends Controller
                 array_push($productsArray, $product);
             }
         }
-        return view('layout.filterdepartments',compact('productsArray'));
+        $departments=Department::all();
+        return view('layout.filterdepartments',compact('productsArray','departments'));
     }
 }

@@ -13,6 +13,8 @@
                                 <label for="exampleInputEmail1" class="form-label">DepartmentName</label>
                                 <input type="text" class="form-control" id="exampleInputEmail1"
                                     aria-describedby="emailHelp" name="deptname">
+                                <label for="formFile" class="form-label">DepartmentImage</label>
+                                <input class="form-control bg-dark" type="file" id="formFile" name="departmentImage">
                             </div>
                             <button type="submit" class="btn btn-primary">Add</button>
                         </form>

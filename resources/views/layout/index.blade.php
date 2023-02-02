@@ -229,30 +229,32 @@
     <div class="banner-section spad">
         <div class="container-fluid">
             <div class="row">
+                @for($i=0;$i<=2;$i++)
                 <div class="col-lg-4">
                     <div class="single-banner">
-                        <img src="img/sunglass.jpg" alt="">
+                        <img src="{{$departments[$i]->departmentImage}}" alt="">
                         <div class="inner-text">
-                            <h4>Accessories</h4>
+                            <h4 class='clickit' data-value='{{$departments[$i]->id}}'>{{$departments[$i]->departmentName}}</h4>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4">
+                @endfor
+                <!-- <div class="col-lg-4">
                     <div class="single-banner">
                         <img src="img/book.jpg" alt="">
                         <div class="inner-text">
                             <h4>Books</h4>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-4">
+                </div> -->
+                <!-- <div class="col-lg-4">
                     <div class="single-banner">
                         <img src="img/electronic.jpg" alt="">
                         <div class="inner-text">
                             <h4>Electronics</h4>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>

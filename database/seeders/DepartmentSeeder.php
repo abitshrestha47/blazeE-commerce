@@ -24,6 +24,7 @@ class DepartmentSeeder extends Seeder
         for ($i=0; $i <= 7; $i++) {
             DB::table('departments')->insert([
                 'departmentName' => $faker->unique()->randomElement($departments),
+                'departmentImage' => $faker->imageUrl(640, 480, 'fashion'),
             ]);
         }
     }

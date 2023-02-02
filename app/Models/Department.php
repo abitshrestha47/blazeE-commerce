@@ -9,7 +9,7 @@ class Department extends Model
 {
     use HasFactory;
     protected $fillable=[
-        'departmentName',
+        'departmentName','departmentImage',
     ];
     public function category(){
         return $this->hasMany(Category::class);
