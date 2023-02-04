@@ -39,7 +39,7 @@
             <div class="finger"></div>
         </div>
 </div>
-<form action="{{route('logging')}}" method='post'>
+<form action="{{route('logging')}}" method='post' class='applythis'>
     @csrf
     <div class="notsigned">
         <h6> Not Signed In Yet?? <a href="{{Route('signup')}}">SignUp</a></h6>

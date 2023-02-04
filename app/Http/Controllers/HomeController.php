@@ -9,6 +9,7 @@ use App\Models\Brand;
 use App\Models\Cart;
 use App\Models\Bigposter;
 use App\Models\Department;
+use App\Models\Deal;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
@@ -25,19 +26,30 @@ class HomeController extends Controller
 
     public function main(){
         $products=Products::all();
-        $category=Category::all();
-        $cart=Cart::all();
-        $userid=Auth::id();
-        $count=0;
-         foreach($cart as $countcart){
-            if($countcart->userid==$userid){
-                $count++;
-            }
-        }
+    
+        // $userid=Auth::id();
+        // $count=0;
+        //  foreach($cart as $countcart){
+        //     if($countcart->userid==$userid){
+        //         $count++;
+        //     }
+        // }
+        $deal=Deal::all();
         $departments=Department::all();
         $bigposter=Bigposter::all();
         $latestproducts=Products::orderBy('created_at','DESC')->get()->take(4);
-        return view('layout.index',compact('category','products','latestproducts','cart','count','bigposter','departments'));
+        $category=Category::all();
+        $cart = Cart::find(Auth::id());
+        if ($cart) {
+            $productIds = json_decode($cart->product_ids, true);
+            $count = count($productIds);
+            $productData = Products::whereIn('id', $productIds)->get();
+        } else {
+            $productData = [];
+            $count=0;
+        }
+
+        return view('layout.index',compact('category','products','latestproducts','bigposter','count','productData','departments','deal'));
     }
 
     public function shop(Request $request){

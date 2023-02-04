@@ -11,7 +11,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\BigposterController;
 use App\Http\Controllers\DepartmentController;
-
+use App\Http\Controllers\DealController;
 
 /*
 |--------------------------------------------------------------------------
@@ -97,6 +97,14 @@ Route::get('/departments',[DepartmentController::class,'getDepartment'])->name('
 Route::post('/departments',[DepartmentController::class,'addDepartment'])->name('departments');
 
 Route::get('/departmentView/{id}',[DepartmentController::class,'getDepartmentView'])->name('departmentthis');
+
+Route::post('/deals',[DealController::class,'addDeal'])->name('deals');
+
+Route::get('/deals',[DealController::class,'getDeal'])->name('deals');
+
+Route::get('/test',[DealController::class,'test'])->name('test');
+
+
 
 
 

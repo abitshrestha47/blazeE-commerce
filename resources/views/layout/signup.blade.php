@@ -39,7 +39,7 @@
             <div class="finger"></div>
         </div>
 </div>
-<form action="{{route('signup')}}" method='post'>
+<form action="{{route('signup')}}" method='post' class='applythis'>
     @csrf
     <div class="hand"></div>
     <div class="hand rgt"></div>

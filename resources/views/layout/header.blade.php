@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="{{asset('home/css/core-style.css')}}">
 
     <!-- Responsive CSS -->
-    <link href="{{asset('home/css/responsive.css" rel="stylesheet')}}">
+    <link href="{{asset('home/css/responsive.css')}}" rel="stylesheet">
     <!-- Css Styles -->
     <link rel="stylesheet" href="{{asset('home/css/bootstrap.min.css')}}" type="text/css">
     <link rel="stylesheet" href="{{asset('home/css/font-awesome.min.css')}}" type="text/css">
@@ -96,16 +96,15 @@
                                     <div class="select-items">
                                         <table>
                                             <tbody>
-                                                @if(isset($cart))
-                                                @foreach($cart as $cart)
-                                                @if(Auth::id()==$cart->userid)
+                                                @if(isset($productData))
+                                                @foreach($productData as $cart)
                                                 <tr>
-                                                    <td class="si-pic"><img src="{{$cart->productimg}}" alt=""
+                                                    <td class="si-pic"><img src="{{$cart->photo}}" alt=""
                                                             width='80vw' height='80vw'></td>
                                                     <td class="si-text">
                                                         <div class="product-selected">
-                                                            <p>{{'$'.$cart->productprice}}</p>
-                                                            <h6>{{$cart->productname}}</h6>
+                                                            <p>{{'$'.$cart->price}}</p>
+                                                            <h6>{{$cart->name}}</h6>
                                                         </div>
                                                     </td>
                                                     <!-- <td class="si-close">
@@ -119,7 +118,6 @@
                                                         </div>
                                                     </td> -->
                                                 </tr>
-                                                @endif
                                                 @endforeach
                                                 @endif
                                                 <!-- <tr>

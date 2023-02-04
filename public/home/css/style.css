@@ -4716,7 +4716,7 @@ right: auto;
 	left: 55px;
 	right: auto;
 	}
-form{
+.applythis{
 	display: none;
 	max-width: 400px;
 	padding: 20px 40px;
@@ -4730,6 +4730,9 @@ form{
 	transform: translateY(-100px);
 	z-index:500;
 	border: 1px solid #eee;
+}
+.nomargin{
+	margin-top:-3vh;
 }
 form.up{
 	transform: translateY(-180px);

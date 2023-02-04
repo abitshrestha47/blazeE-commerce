@@ -1,5 +1,6 @@
 @extends('layout.header')
 
+<link rel="stylesheet" href="{{asset('home/css/style.css')}}" type="text/css">
 @section('contents')
 <div class="cart_area section_padding_100 clearfix">
     <div class="container">
