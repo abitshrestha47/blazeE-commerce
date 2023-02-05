@@ -22,6 +22,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Css Styles -->
     <link rel="stylesheet" href="home/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="home/css/quickview.css" type="text/css">
     <link rel="stylesheet" href="home/css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="home/css/themify-icons.css" type="text/css">
     <link rel="stylesheet" href="home/css/elegant-icons.css" type="text/css">
@@ -34,6 +35,7 @@
 </head>
 
 <body>
+
     <!-- Hero Section Begin -->
     <section class="hero-section">
         <div class="hero-items owl-carousel">
@@ -108,7 +110,8 @@
                 </div>
                 <div class="col-lg-8 offset-lg-1">
                     <div class="filter-control">
-                        <h3>Special Offers</h3>
+
+                        <h2>Special Offers</h2>
                     </div>
                     <div class="product-slider owl-carousel">
 
@@ -154,7 +157,7 @@
         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
             <div class="modal-content">
                 <button type="button" class="close btn" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+                    <span aria-hidden="false">&times;</span>
                 </button>
 
                 <div class="modal-body">
@@ -162,40 +165,57 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-12 col-lg-5">
-                                    <div class="quickview_pro_img">
+                                    <div class="quickview_pro_img" style="margin-top: 1.5rem">
                                         <!-- <img src="img/products/sale.jpg" alt=""> -->
                                         <img class="product-img" src="">
                                     </div>
                                 </div>
                                 <div class="col-12 col-lg-7">
                                     <div class="quickview_pro_des">
-                                        <p><strong>Name:</strong> <span class="product-name"></span></p>
+                                        <h4><strong>Name:</strong> <span class="product-name"></span></h4>
                                         <div class="top_seller_product_rating mb-15">
                                             <i class="fa fa-star" aria-hidden="true"></i>
                                             <i class="fa fa-star" aria-hidden="true"></i>
                                             <i class="fa fa-star" aria-hidden="true"></i>
                                             <i class="fa fa-star" aria-hidden="true"></i>
                                             <i class="fa fa-star" aria-hidden="true"></i>
-                                        </div>
+                                        </div> 
                                         <!-- <h5 class="price">$120.99 <span>$130</span></h5> -->
-                                        <p><strong>Price:</strong> <span class="product-price"></span></p>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia
+                                        <h4><strong>Price:</strong> <span class="product-price"></span></h4>
+                                        <p class="des">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia
                                             expedita
                                             quibusdam aspernatur, sapiente consectetur accusantium perspiciatis
                                             praesentium eligendi, in fugiat?</p>
-                                    </div>
+                                        <a href="{{route('readmore')}}"><button type="submit" class="buton">Read More</button></a>
+                                        
+                                         <div class="quantity mt-3">
+                                                <h4><strong>Quantity:</strong></h4>
+                                                <span class="qty-minus"
+                                                    onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i
+                                                        class="fa fa-minus" aria-hidden="true"></i></span>
 
-                                    <div class="share_wf mt-30">
-                                        <p>Share With Friend</p>
-                                        <div class="_icon">
-                                            <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                                            <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                                            <a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
-                                            <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+                                                <input type="number" class="qty-text" id="qty" step="1" min="1" max="12"
+                                                    name="quantity" value="1">
+
+                                                <span class="qty-plus"
+                                                    onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i
+                                                        class="fa fa-plus" aria-hidden="true"></i></span>
+                                                <div class="modal_pro_cart">
+                                                    <a href="{{route('cart')}}" target="_blank"><i class="fa-solid fa-cart-shopping"></i></a>
+                                                </div>
+                                            </div>
+                                        <div class="share_wf mt-15">
+                                            <p><Strong>Share With Friend</Strong></p>
+                                            <div class="_icon">
+                                                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                                                <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                                                <a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
+                                                <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
 
+                                </div> 
                             </div>
                         </div>
                     </div>
@@ -245,32 +265,24 @@
         @endif
         <!-- Deal Of The Week Section End -->
 
-        <!-- Man Banner Section Begin -->
-        <section class="man-banner spad">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-8">
-                        <div class="filter-control">
-                            <!-- <ul> -->
-                            <!-- <li class="active">Clothings</li>
-                            <li>HandBag</li>
-                            <li>Shoes</li>
-                            <li>Accessories</li> -->
-                            <!-- @foreach($category as $c)
-                            <li class='normal' value="{{$c->id}}">{{$c->categories}}</li>
-                            @endforeach
-                        </ul> -->
-                            <h3>Latest Products</h3>
-                        </div>
-                        <div id='test'>
-                            <div class="product-slider owl-carousel">
-                                @foreach($latestproducts as $normalproducts)
-                                <div class="single_gallery_item wow fadeInUpBig" data-wow-delay="0.4s">
-                                    <!-- Product Image -->
-                                    <div class="product-img">
-                                        <img src="{{$normalproducts->photo}}" alt="">
-                                        <div class="product-quicview">
-                                            <!-- <a href="#" data-toggle="modal" data-target="#quickview"><i
+
+    <!-- Man Banner Section Begin -->
+    <section class="man-banner spad">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="filter-control">
+                        <h2>Latest Products</h2>
+                    </div>
+                    <div id='test'>
+                        <div class="product-slider owl-carousel">
+                            @foreach($latestproducts as $normalproducts)
+                            <div class="single_gallery_item wow fadeInUpBig" data-wow-delay="0.4s">
+                                <!-- Product Image -->
+                                <div class="product-img">
+                                    <img src="{{$normalproducts->photo}}" alt="">
+                                    <div class="product-quicview">
+                                        <!-- <a href="#" data-toggle="modal" data-target="#quickview"><i
                                                 class="ti-plus"></i></a> -->
                                             <a href="#" data-toggle="modal" data-target="#quickview"
                                                 data-id="{{$normalproducts->id}}" id="productModalLink"
@@ -491,49 +503,52 @@
         </div>
         <!-- Partner Logo Section End -->
 
-        <!-- Footer Section Begin -->
-        <footer class="footer-section">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-3">
-                        <div class="footer-left">
-                            <div class="footer-logo">
-                                <a href="#"><img src="img/footer-logo.png" alt=""></a>
-                            </div>
-                            <ul>
-                                <li>Address: 60-49 Road 11378 New York</li>
-                                <li>Phone: +65 11.188.888</li>
-                                <li>Email: hello.colorlib@gmail.com</li>
-                            </ul>
-                            <div class="footer-social">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-instagram"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-pinterest"></i></a>
-                            </div>
+
+    <!-- Footer Section Begin -->
+    <footer class="footer-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="footer-left">
+                        <div class="footer-logo">
+                            <a href="./index.html">
+                                <img src="img/products/ask logo footer.png" alt="">
+                                <span>A S K BLAZE</span>
+                            </a>
+                        </div>
+                        <ul>
+                            <li>Address: Kamalpokhari, Kathmandu, Nepal</li>
+                            <li>Phone: +977 9823884432</li>
+                            <li>Email: askblaze12@gmail.com</li>
+                        </ul>
+                        <div class="footer-social">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-pinterest"></i></a>
                         </div>
                     </div>
-                    <div class="col-lg-2 offset-lg-1">
-                        <div class="footer-widget">
-                            <h5>Information</h5>
-                            <ul>
-                                <li><a href="#">About Us</a></li>
-                                <li><a href="#">Checkout</a></li>
-                                <li><a href="#">Contact</a></li>
-                                <li><a href="#">Serivius</a></li>
-                            </ul>
-                        </div>
+                </div>
+                <div class="col-lg-2 offset-lg-1">
+                    <div class="footer-widget">
+                        <h5>Information</h5>
+                        <ul>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="{{route('checkout')}}">Checkout</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                            <li><a href="#">Services</a></li>
+                        </ul>
                     </div>
-                    <div class="col-lg-2">
-                        <div class="footer-widget">
-                            <h5>My Account</h5>
-                            <ul>
-                                <li><a href="#">My Account</a></li>
-                                <li><a href="#">Contact</a></li>
-                                <li><a href="#">Shopping Cart</a></li>
-                                <li><a href="#">Shop</a></li>
-                            </ul>
-                        </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="footer-widget">
+                        <h5>My Account</h5>
+                        <ul>
+                            <li><a href="#">My Account</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="{{route('cart')}}">Shopping Cart</a></li>
+                            <li><a href="{{route('shop')}}">Shop</a></li>
+                        </ul>
                     </div>
                     <div class="col-lg-4">
                         <div class="newslatter-item">
@@ -586,19 +601,19 @@
                     }
                 });
             });
-            $('.productModalLink').click(function() {
-                var productId = $(this).data('id');
-                alert(productId);
-                $.ajax({
-                    url: '/get-product/' + productId,
-                    type: 'GET',
-                    success: function(data) {
-                        $('#quickview').find('.product-name').text(data.name);
-                        $('#quickview').find('.product-price').text(data.price);
-                        $('#quickview').find('.product-brand').text(data.brand);
-                        $('#quickview').find('.product-img').attr('src', data.photo);
-                    }
-                });
+
+        });
+        $('.productModalLink').click(function() {
+            var productId = $(this).data('id');
+            $.ajax({
+                url: '/get-product/' + productId,
+                type: 'GET',
+                success: function(data) {
+                    $('#quickview').find('.product-name').text(data.name);
+                    $('#quickview').find('.product-price').text(data.price);
+                    $('#quickview').find('.product-brand').text(data.brand);
+                    $('#quickview').find('.product-img').attr('src', data.photo);
+                }
             });
         });
         </script>

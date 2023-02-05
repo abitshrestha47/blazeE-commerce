@@ -46,7 +46,7 @@ Route::get('/dashboard',[DashboardController::class,'adminUser'])->name('dashboa
 
 Route::get('/shop',[HomeController::class,'shop'])->name('shop');
 
-Route::get('/buynow',[HomeController::class,'buynow'])->name('buynow');
+Route::get('/readmore',[HomeController::class,'readmore'])->name('readmore');
 
 Route::get('/cart',[CartController::class,'cart'])->name('cart');
 

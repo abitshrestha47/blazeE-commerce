@@ -195,11 +195,11 @@
                         <li><a href="#">Pages</a>
                             <ul class="dropdown">
                                 <li><a href="./blog-details.html">Blog Details</a></li>
-                                <li><a href="./shopping-cart.html">Shopping Cart</a></li>
-                                <li><a href="./check-out.html">Checkout</a></li>
+                                <li><a href="{{route('cart')}}">Shopping Cart</a></li>
+                                <li><a href="{{route('checkout')}}">Checkout</a></li>
                                 <li><a href="./faq.html">Faq</a></li>
-                                <li><a href="./register.html">Register</a></li>
-                                <li><a href="./login.html">Login</a></li>
+                                <li><a href="{{route('signup')}}">Register</a></li>
+                                <li><a href="{{route('login')}}">Login</a></li>
                             </ul>
                         </li>
                     </ul>
