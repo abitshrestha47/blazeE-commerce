@@ -12,11 +12,18 @@ class UserController extends Controller
 {
     //
     public function signup(Request $req){
+        $req->validate([
+            'username'=>'required',
+            'email'=>'required',
+            'password'=>'required',
+        ],
+        [
+            'email.required'=>'email should not be empty',
+        ]);
         $user=null;
         $user=User::create([
             'username' => $req->username,
             'email' => $req->email,
-            'phone' => $req->phone,
             'password' => Hash::make($req->password),
         ]);
         return redirect()->route('login');

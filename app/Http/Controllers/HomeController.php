@@ -34,6 +34,7 @@ class HomeController extends Controller
         //         $count++;
         //     }
         // }
+        $endDate=null;
         $deal=Deal::all();
         foreach($deal as $d){
             $endDate=$d->endDate;
@@ -116,35 +117,6 @@ class HomeController extends Controller
                 return view('layout.categoryfilter', compact('goods'));           
             }
         }
-        // if($req->ajax()){
-        //     $minamount = filter_var($req->minamount, FILTER_SANITIZE_NUMBER_INT);
-        //     $maxamount = filter_var($req->maxamount, FILTER_SANITIZE_NUMBER_INT);
-        //     if(empty($req->category)){
-        //         $unfilteredgoods=Products::all();
-        //         // foreach ($unfilteredgoods as $goods) {
-        //         //     $goods->price = str_replace("$", "", $goods->price);
-        //         // }
-        //         $unfilteredgoods = Products::all()->map(function($item) {
-        //             $item->price = intval($item->price);
-        //             return $item;
-        //         });
-        //         $goods = $unfilteredgoods->filter(function($item) use ($minamount, $maxamount) {
-        //             return $item->price >= $minamount && $item->price <= $maxamount;
-        //         });
-        //         return view('layout.categoryfilter', compact('goods'));
-        //     }
-        //     else{
-        //         $unfiltercategorygoods = Products::where('categoryid', $req->category)->get();
-        //         $unfilteredgoods = $unfiltercategorygoods->map(function($item) {
-        //             $item->price = intval($item->price);
-        //             return $item;
-        //         }); 
-        //         $goods = $unfilteredgoods->filter(function($item) use ($minamount, $maxamount) {
-        //             return $item->price >= $minamount && $item->price <= $maxamount;
-        //         });
-        //         return view('layout.categoryfilter', compact('goods'));
-        //     }
-        // }
     }
     public function data(Request $request){
         $category=Category::all();

@@ -31,6 +31,8 @@
     <link rel="stylesheet" href="home/css/jquery-ui.min.css" type="text/css">
     <link rel="stylesheet" href="home/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="home/css/style.css" type="text/css">
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js"></script>
+
     
 </head>
 
@@ -228,7 +230,7 @@
 
     <!-- Deal Of The Week Section Begin-->
     @if(isset($deal[0]))
-    @for($i=0;$i<=0;$i++) <section class="deal-of-week set-bg spad" data-setbg="{{$deal[$i]->dealBackgroundImage}}">
+    @for($i=0;$i<=0;$i++) <section class="deal-of-week set-bg spad" data-setbg="{{asset('/storage/'.$deal[$i]->dealBackgroundImage)}}">
         <div class="container">
             <div class="col-lg-6 text-center">
                 <div class="section-title">
@@ -239,21 +241,21 @@
                         <span>/ HanBag</span>
                     </div>
                 </div>
-                <div class="countdown-timer" id="countdown">
+                <div class="countdown-timer">
                     <div class="cd-item">
-                        <span>56</span>
+                        <span id='days'></span>
                         <p>Days</p>
                     </div>
                     <div class="cd-item">
-                        <span>12</span>
+                        <span id='hours'></span>
                         <p>Hrs</p>
                     </div>
                     <div class="cd-item">
-                        <span>40</span>
+                        <span id='minutes'></span>
                         <p>Mins</p>
                     </div>
                     <div class="cd-item">
-                        <span>52</span>
+                        <span id='seconds'></span>
                         <p>Secs</p>
                     </div>
                 </div>
