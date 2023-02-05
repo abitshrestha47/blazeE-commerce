@@ -74,7 +74,7 @@ class HomeController extends Controller
                 return view('layout.categoryfilter', compact('goods'));
             }
             else if(!empty($req->category) && !empty($req->globalBrands)){
-                $goods=Products::where('categoryid',$req->category)->whereIn('brand',$req->globalBrands)->get();
+                $goods=Products::where('categoryid',$req->category)->whereIn('brandId',$req->globalBrands)->get();
                 $goods = $goods->map(function($item) {
                     $item->price = intval($item->price);
                         return $item;
@@ -160,8 +160,8 @@ class HomeController extends Controller
         return response()->json($product);
     }
 
-    public function buynow(){
-        return view('layout.buynow');
+    public function readmore(){
+        return view('layout.readmore');
     }
     public function cart(){
         return view('layout.cart');

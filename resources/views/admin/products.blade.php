@@ -316,31 +316,6 @@
 
 <!-- Back to Top -->
 <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
-<div class="container">
-    <table class="table">
-        <thead>
-            <th>SNo.</th>
-            <th>Name</th>
-            <th>Price</th>
-            <th>CategoryId</th>
-            <th>Color</th>
-            <th>Brand</th>
-            <th>Photo</th>
-            <th colspan='2'>Action</th>
-        </thead>
-        @foreach($products as $products)
-        <tr>
-            <td>{{$products->id}}</td>
-            <td>{{$products->name}}</td>
-            <td>{{$products->price}}</td>
-            <td>{{$products->categoryid}}</td>
-            <td>{{$products->color}}</td>
-            <td>{{$products->brand->brandName}}</td>
-            <td><img height='100vh' width='100vh' src="{{asset('/storage/'.$products->photo)}}" alt=""></td>
-            <td><a href="{{route('productdelete',$products->id)}}">Delete</a></td>
-        </tr>
-        @endforeach
-    </table>
 </div>
 
     <!-- JavaScript Libraries -->
