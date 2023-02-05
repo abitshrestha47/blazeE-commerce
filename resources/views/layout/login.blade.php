@@ -12,11 +12,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>A.S.K Ecommerce</title>
-    <link rel="stylesheet" href="home/css/style.css">
+    <link rel="stylesheet" href="home/css/panda.css">
 </head>
 <body class="bod">
 
-<div class="bod">
 <div class="panda">
     <div class="ear"></div>
         <div class="face">
@@ -39,7 +38,7 @@
             <div class="finger"></div>
         </div>
 </div>
-<form action="{{route('logging')}}" method='post'>
+<form action="{{route('logging')}}" method='post' class="pandaform">
     @csrf
     <div class="notsigned">
         <h6> Not Signed In Yet?? <a href="{{Route('signup')}}">SignUp</a></h6>
@@ -57,10 +56,9 @@
         <label class="form-label">Password</label>
         <input type="checkbox" name="" onclick="myFunction()">
         <p class="alert">Invalid Credentials..!!</p><br>
-        <button class="btn" type="submit">Submit</button>
+        <button class="bttn" type="submit">Submit</button>
     </div>
 </form>
-</div>
 
     <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
     <script src="home/js/script.js"></script>

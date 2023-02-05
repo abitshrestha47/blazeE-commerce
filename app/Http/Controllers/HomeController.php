@@ -160,8 +160,8 @@ class HomeController extends Controller
         return response()->json($product);
     }
 
-    public function buynow(){
-        return view('layout.buynow');
+    public function readmore(){
+        return view('layout.readmore');
     }
     public function cart(){
         return view('layout.cart');

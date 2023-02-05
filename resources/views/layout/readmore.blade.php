@@ -2,16 +2,42 @@
 @extends('layout.header')
 
 @section('contents')
-    <!-- wrapper start -->
-    <!-- <div id="wrapper"> -->
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Fashi Template">
+    <meta name="keywords" content="Fashi, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Fashi | Template</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="home/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="home/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="home/css/themify-icons.css" type="text/css">
+    <link rel="stylesheet" href="home/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="home/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="home/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="home/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="home/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="home/css/style.css" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+<body>
         <!-- Breadcrumb Section Begin -->
     <div class="breacrumb-section">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb-text">
-                        <a href="#"><i class="fa fa-home"></i>Shop</a>
-                        <span>Buy Now</span>
+                        <a href="{{route('shop')}}"><i class="fa fa-home"></i>Shop</a>
+                        <span>ReadMore</span>
                     </div>
                 </div>
             </div>
@@ -27,37 +53,10 @@
                     <div class="col-12 col-md-6">
                         <div class="single_product_thumb">
                             <div id="product_details_slider" class="carousel slide" data-ride="carousel">
-
-                                <ol class="carousel-indicators">
-                                    <li class="active" data-target="#product_details_slider" data-slide-to="0" style="background-image: url(img/product-img/product-9.jpg);">
-                                    </li>
-                                    <li data-target="#product_details_slider" data-slide-to="1" style="background-image: url(img/product-img/product-2.jpg);">
-                                    </li>
-                                    <li data-target="#product_details_slider" data-slide-to="2" style="background-image: url(img/product-img/product-3.jpg);">
-                                    </li>
-                                    <li data-target="#product_details_slider" data-slide-to="3" style="background-image: url(img/product-img/product-4.jpg);">
-                                    </li>
-                                </ol>
-
                                 <div class="carousel-inner">
                                     <div class="carousel-item active">
                                         <a class="gallery_img" href="img/product-img/product-9.jpg">
                                         <img class="d-block w-100" src="img/product-img/product-9.jpg" alt="First slide">
-                                    </a>
-                                    </div>
-                                    <div class="carousel-item">
-                                        <a class="gallery_img" href="img/product-img/product-2.jpg">
-                                        <img class="d-block w-100" src="img/product-img/product-2.jpg" alt="Second slide">
-                                    </a>
-                                    </div>
-                                    <div class="carousel-item">
-                                        <a class="gallery_img" href="img/product-img/product-3.jpg">
-                                        <img class="d-block w-100" src="img/product-img/product-3.jpg" alt="Third slide">
-                                    </a>
-                                    </div>
-                                    <div class="carousel-item">
-                                        <a class="gallery_img" href="img/product-img/product-4.jpg">
-                                        <img class="d-block w-100" src="img/product-img/product-4.jpg" alt="Fourth slide">
                                     </a>
                                     </div>
                                 </div>
@@ -72,7 +71,7 @@
 
                             <h4 class="price">$ 39.99</h4>
 
-                            <p class="available">Available: <span class="text-muted">In Stock</span></p>
+                            <p class="available"><strong>Available:</strong> <span class="text">In Stock</span></p>
 
                             <div class="single_product_ratings mb-15">
                                 <i class="fa fa-star" aria-hidden="true"></i>
@@ -103,7 +102,11 @@
                                     <input type="number" class="qty-text" id="qty" step="1" min="1" max="12" name="quantity" value="1">
                                     <span class="qty-plus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-plus" aria-hidden="true"></i></span>
                                 </div>
-                                <button type="submit" name="addtocart" value="5" class="btn cart-submit d-block">Add to cart</button>
+                                <!-- <button type="submit" name="addtocart" value="5" class="btn cart-submit d-block">Add to cart</button> -->
+                                <div class="modal_pro_cart">
+                                    <a href="{{route('cart')}}" target="_blank"><i class="fa-solid fa-cart-shopping"></i></a>
+                                </div>
+                                <a href="{{route('checkout')}}"><button type="submit" class="buton">Proceed to Checkout</button></a>
                             </form>
 
                             <div id="accordion" role="tablist">
@@ -293,60 +296,6 @@
                                         <a href="#" class="add-to-cart-btn">ADD TO CART</a>
                                     </div>
                                 </div>
-
-                                <!-- Single gallery Item -->
-                                <div class="col-12 col-sm-6 col-lg-4 single_gallery_item wow fadeInUpBig" data-wow-delay="0.5s">
-                                    <!-- Product Image -->
-                                    <div class="product-img">
-                                        <img src="img/product-img/product-4.jpg" alt="">
-                                        <div class="product-quicview">
-                                            <a href="#" data-toggle="modal" data-target="#quickview"><i class="ti-plus"></i></a>
-                                        </div>
-                                    </div>
-                                    <!-- Product Description -->
-                                    <div class="product-description">
-                                        <h4 class="product-price">$39.90</h4>
-                                        <p>Jeans midi cocktail dress</p>
-                                        <!-- Add to Cart -->
-                                        <a href="#" class="add-to-cart-btn">ADD TO CART</a>
-                                    </div>
-                                </div>
-
-                                <!-- Single gallery Item -->
-                                <div class="col-12 col-sm-6 col-lg-4 single_gallery_item wow fadeInUpBig" data-wow-delay="0.6s">
-                                    <!-- Product Image -->
-                                    <div class="product-img">
-                                        <img src="img/product-img/product-5.jpg" alt="">
-                                        <div class="product-quicview">
-                                            <a href="#" data-toggle="modal" data-target="#quickview"><i class="ti-plus"></i></a>
-                                        </div>
-                                    </div>
-                                    <!-- Product Description -->
-                                    <div class="product-description">
-                                        <h4 class="product-price">$39.90</h4>
-                                        <p>Jeans midi cocktail dress</p>
-                                        <!-- Add to Cart -->
-                                        <a href="#" class="add-to-cart-btn">ADD TO CART</a>
-                                    </div>
-                                </div>
-
-                                <!-- Single gallery Item -->
-                                <div class="col-12 col-sm-6 col-lg-4 single_gallery_item wow fadeInUpBig" data-wow-delay="0.7s">
-                                    <!-- Product Image -->
-                                    <div class="product-img">
-                                        <img src="img/product-img/product-6.jpg" alt="">
-                                        <div class="product-quicview">
-                                            <a href="#" data-toggle="modal" data-target="#quickview"><i class="ti-plus"></i></a>
-                                        </div>
-                                    </div>
-                                    <!-- Product Description -->
-                                    <div class="product-description">
-                                        <h4 class="product-price">$39.90</h4>
-                                        <p>Jeans midi cocktail dress</p>
-                                        <!-- Add to Cart -->
-                                        <a href="#" class="add-to-cart-btn">ADD TO CART</a>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                         <div class="loading-more">
@@ -421,12 +370,15 @@
                 <div class="col-lg-3">
                     <div class="footer-left">
                         <div class="footer-logo">
-                            <a href="#"><img src="img/footer-logo.png" alt=""></a>
+                            <a href="./index.html">
+                                <img src="img/products/ask logo footer.png" alt="">
+                                <span>A S K BLAZE</span>
+                            </a>
                         </div>
                         <ul>
-                            <li>Address: 60-49 Road 11378 New York</li>
-                            <li>Phone: +65 11.188.888</li>
-                            <li>Email: hello.colorlib@gmail.com</li>
+                            <li>Address: Kamalpokhari, Kathmandu, Nepal</li>
+                            <li>Phone: +977 9823884432</li>
+                            <li>Email: askblaze12@gmail.com</li>
                         </ul>
                         <div class="footer-social">
                             <a href="#"><i class="fa fa-facebook"></i></a>
@@ -442,7 +394,7 @@
                         <ul>
                             <li><a href="#">About Us</a></li>
                             <li><a href="#">Checkout</a></li>
-                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">Contact Us</a></li>
                             <li><a href="#">Services</a></li>
                         </ul>
                     </div>
