@@ -6,11 +6,17 @@ use Illuminate\Http\Request;
 use App\Models\Products;
 use App\Models\Category;
 use App\Models\Brand;
+use App\Models\Cart;
+use App\Models\Bigposter;
+use App\Models\Department;
+use App\Models\Deal;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
     //
+
     public function signup(){
         return view('layout.signup');
     }
@@ -20,9 +26,33 @@ class HomeController extends Controller
 
     public function main(){
         $products=Products::all();
-        $category=Category::all();
+    
+        // $userid=Auth::id();
+        // $count=0;
+        //  foreach($cart as $countcart){
+        //     if($countcart->userid==$userid){
+        //         $count++;
+        //     }
+        // }
+        $deal=Deal::all();
+        foreach($deal as $d){
+            $endDate=$d->endDate;
+        }
+        $departments=Department::all();
+        $bigposter=Bigposter::all();
         $latestproducts=Products::orderBy('created_at','DESC')->get()->take(4);
-        return view('layout.index',compact('category','products','latestproducts'));
+        $category=Category::all();
+        $cart = Cart::find(Auth::id());
+        if ($cart) {
+            $productIds = json_decode($cart->product_ids, true);
+            $count = count($productIds);
+            $productData = Products::whereIn('id', $productIds)->get();
+        } else {
+            $productData = [];
+            $count=0;
+        }
+
+        return view('layout.index',compact('category','products','latestproducts','bigposter','count','productData','departments','deal','endDate'));
     }
 
     public function shop(Request $request){
@@ -31,7 +61,8 @@ class HomeController extends Controller
         $products=Products::all();
         $brands=Brand::all();
         $uniqueCategory = Category::all()->unique('categories');
-        return view('layout.shop',compact('products','category','uniqueCategory','brands'));
+        $departments=Department::all();
+        return view('layout.shop',compact('products','category','uniqueCategory','brands','departments'));
     }
     public function PriceFilter(Request $req){
         if($req->ajax()){
@@ -162,9 +193,6 @@ class HomeController extends Controller
 
     public function readmore(){
         return view('layout.readmore');
-    }
-    public function cart(){
-        return view('layout.cart');
     }
     public function checkout(){
         return view('layout.checkout');

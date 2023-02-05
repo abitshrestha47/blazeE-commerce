@@ -12,10 +12,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>A.S.K Ecommerce</title>
-    <link rel="stylesheet" href="home/css/panda.css">
+    <link rel="stylesheet" href="home/css/style.css">
 </head>
 <body class="bod">
 
+<div class="bod">
 <div class="panda">
     <div class="ear"></div>
         <div class="face">
@@ -30,44 +31,29 @@
             <div class="nose"></div>
             <div class="mouth"></div>
         </div>
-        <div class="body1"></div>
-        <div class="foot1">
+        <div class="body"></div>
+        <div class="foot">
             <div class="finger"></div>
         </div>
-        <div class="foot1 rgt">
+        <div class="foot rgt">
             <div class="finger"></div>
         </div>
 </div>
-
-<form action="{{route('signup')}}" method='post' class="pandaform">
+<form action="{{route('forgotit')}}" method='post' class='applythis'>
     @csrf
     <div class="hand"></div>
     <div class="hand rgt"></div>
-    <h1>SignUp</h1>
+    
+    <p>Enter your details</p>
     <div class="form-group">
-        <input type="text" class="form-control" id="username" name='username'>
-        <label for="username" class="form-label">Username</label>
-    </div>
-    <div class="form-group">
-        <input type="email" class="form-control" name="email"/>
-        <label class="form-label">Email</label>
-    </div>
-
-    <form action="{{route('forgotit')}}" method='POST'>
-    <div class="form-group">
-        <input type="text" class="form-control" name="phone"/>
+        <input type="text" required="required" class="form-control" name="phone"/>
         <label class="form-label">Phone</label>
     </div>
-    </form>
-    
     <div class="form-group">
-        <input id="password" name="password" type="password" class="form-control"/>
-        <label class="form-label">Password</label>
-        <input type="checkbox" name="" onclick="myFunction()">
-        <p class="alert">Invalid Credentials..!!</p><br>
-        <button class="bttn" type="submit">Submit</button>
+        <button class="btn" type="submit">Submit</button>
     </div>
 </form>
+</div>
     <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
     <script src="home/js/script.js"></script>
 </body>

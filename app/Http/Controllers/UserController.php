@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -15,6 +16,7 @@ class UserController extends Controller
         $user=User::create([
             'username' => $req->username,
             'email' => $req->email,
+            'phone' => $req->phone,
             'password' => Hash::make($req->password),
         ]);
         return redirect()->route('login');
@@ -37,5 +39,10 @@ class UserController extends Controller
         auth()->logout();
 
         return redirect()->route('main');
+    }
+    public function forgot(){
+        return view('layout.forgot');
+    }
+    public function reset(){
     }
 }

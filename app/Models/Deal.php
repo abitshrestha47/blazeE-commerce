@@ -5,13 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class User extends Model
+class Deal extends Model
 {
     use HasFactory;
     protected $fillable=[
-        'username','email','password','phone'
+        'dealTitle','dealDescription','dealPrice','dealBackgroundImage','product_id','endDate',
     ];
-    public function cart(){
-        return $this->hasMany(Cart::class,'userid');
-    }
 }

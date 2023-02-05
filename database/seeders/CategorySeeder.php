@@ -19,10 +19,11 @@ class CategorySeeder extends Seeder
     {
         //
         $faker=Faker::create();
-        $categories = ['Electronics', 'Clothing', 'Mobiles', 'Shoes','Bags','Hats','Books','Music'];
+        $categories = ['Clothing', 'Mobiles', 'Shoes','Bags','Hats','Music','Chairs','Earphones'];
         for ($i=0; $i <= 6; $i++) {
             DB::table('categories')->insert([
                 'categories' => $faker->unique()->randomElement($categories),
+                'department_id'=>$faker->randomElement(['1','2','3','4','5','6','7']),
             ]);
         }
     }

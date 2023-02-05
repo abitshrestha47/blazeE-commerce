@@ -38,6 +38,7 @@
             <div class="finger"></div>
         </div>
 </div>
+
 <form action="{{route('logging')}}" method='post' class="pandaform">
     @csrf
     <div class="notsigned">
@@ -58,6 +59,7 @@
         <p class="alert">Invalid Credentials..!!</p><br>
         <button class="bttn" type="submit">Submit</button>
     </div>
+    <a href="/forgotit">Forget Password</a>
 </form>
 
     <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>

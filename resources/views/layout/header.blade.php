@@ -5,28 +5,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    
+
     <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Favicon  -->
-    <link rel="icon" href="img/core-img/favicon.ico">
+    <link rel="icon" href="{{asset('img/core-img/favicon.ico')}}">
 
     <!-- Core Style CSS -->
-    <link rel="stylesheet" href="home/css/core-style.css">
+    <link rel="stylesheet" href="{{asset('home/css/core-style.css')}}">
 
     <!-- Responsive CSS -->
-    <link href="home/css/responsive.css" rel="stylesheet">
+    <link href="{{asset('home/css/responsive.css')}}" rel="stylesheet">
     <!-- Css Styles -->
-    <link rel="stylesheet" href="home/css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="home/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="home/css/themify-icons.css" type="text/css">
-    <link rel="stylesheet" href="home/css/themify-icon.css" type="text/css">
-    <link rel="stylesheet" href="home/css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="home/css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="home/css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="home/css/jquery-ui.min.css" type="text/css">
-    <link rel="stylesheet" href="home/css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="home/css/style.css" type="text/css">
+    <link rel="stylesheet" href="{{asset('home/css/bootstrap.min.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('home/css/font-awesome.min.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('home/css/themify-icons.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('home/css/themify-icon.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('home/css/elegant-icons.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('home/css/owl.carousel.min.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('home/css/nice-select.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('home/css/jquery-ui.min.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('home/css/slicknav.min.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('home/css/style.css')}}" type="text/css">
     @vite(['resources/js/app.js'])
 </head>
 <body>
@@ -88,13 +90,37 @@
                             <li class="cart-icon">
                                 <a href="{{route('cart')}}">
                                     <i class="icon_bag_alt"></i>
-                                    <span>3</span>
+                                    <span>@if(isset($count)){{$count}}@endif</span>
                                 </a>
                                 <div class="cart-hover">
                                     <div class="select-items">
                                         <table>
                                             <tbody>
+                                                @if(isset($productData))
+                                                @foreach($productData as $cart)
                                                 <tr>
+                                                    <td class="si-pic"><img src="{{$cart->photo}}" alt=""
+                                                            width='80vw' height='80vw'></td>
+                                                    <td class="si-text">
+                                                        <div class="product-selected">
+                                                            <p>{{'$'.$cart->price}}</p>
+                                                            <h6>{{$cart->name}}</h6>
+                                                        </div>
+                                                    </td>
+                                                    <!-- <td class="si-close">
+                                                        <div class="custom-class">
+                                                        <form method="post"
+                                                            action="{{route('deletecart', ['id' => $cart->id])}}">
+                                                            @csrf
+                                                            <button type="submit" class="btn btn-danger"><i
+                                                                class="ti-close"></i></button>
+                                                        </form>
+                                                        </div>
+                                                    </td> -->
+                                                </tr>
+                                                @endforeach
+                                                @endif
+                                                <!-- <tr>
                                                     <td class="si-pic"><img src="img/select-product-1.jpg" alt=""></td>
                                                     <td class="si-text">
                                                         <div class="product-selected">
@@ -105,8 +131,8 @@
                                                     <td class="si-close">
                                                         <i class="ti-close"></i>
                                                     </td>
-                                                </tr>
-                                                <tr>
+                                                </tr> -->
+                                                <!-- <tr>
                                                     <td class="si-pic"><img src="img/select-product-2.jpg" alt=""></td>
                                                     <td class="si-text">
                                                         <div class="product-selected">
@@ -117,7 +143,7 @@
                                                     <td class="si-close">
                                                         <i class="ti-close"></i>
                                                     </td>
-                                                </tr>
+                                                </tr> -->
                                             </tbody>
                                         </table>
                                     </div>
@@ -144,9 +170,9 @@
                         <i class="ti-menu"></i>
                         <span>All departments</span>
                         <ul class="depart-hover">
-                            @if(isset($category))
-                            @foreach($category as $category)
-                            <li><a href="#">{{$category->categories}}</a></li>
+                            @if(isset($departments))
+                            @foreach($departments as $departmentschoose)
+                            <li style="color:black;" class='deptgo' value='{{$departmentschoose->id}}'>{{$departmentschoose->departmentName}}</li>
                             @endforeach
                             @endif
 
@@ -183,29 +209,30 @@
         </div>
     </header>
     <!-- header end -->
-    
+
     <!-- Js Plugins -->
-    <script src="home/js/jquery/jquery-2.2.4.min.js"></script>
+    <script></script>
+    <script src="{{asset('home/js/jquery/jquery-2.2.4.min.js')}}"></script>
     <!-- Popper js -->
-    <script src="home/js/popper.min.js"></script>
+    <script src="{{asset('home/js/popper.min.js')}}"></script>
     <!-- Bootstrap js -->
-    <script src="home/js/bootstrap.min.js"></script>
+    <script src="{{asset('home/js/bootstrap.min.js')}}"></script>
     <!-- Plugins js -->
-    <script src="home/js/plugins.js"></script>
+    <script src="{{asset('home/js/plugins.js')}}"></script>
     <!-- Active js -->
-    <script src="home/js/active.js"></script>
+    <script src="{{asset('home/js/active.js')}}"></script>
     <!-- Js Plugins -->
     <script src="https://cdn.lordicon.com/fudrjiwc.js"></script>
-    <script src="home/js/jquery-3.3.1.min.js"></script>
-    <script src="home/js/bootstrap.min.js"></script>
-    <script src="home/js/jquery-ui.min.js"></script>
-    <script src="home/js/jquery.countdown.min.js"></script>
-    <script src="home/js/jquery.nice-select.min.js"></script>
-    <script src="home/js/jquery.zoom.min.js"></script>
-    <script src="home/js/jquery.dd.min.js"></script>
-    <script src="home/js/jquery.slicknav.js"></script>
-    <script src="home/js/owl.carousel.min.js"></script>
-    <script src="home/js/main.js"></script>
+    <script src="{{asset('home/js/jquery-3.3.1.min.js')}}"></script>
+    <script src="{{asset('home/js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('home/js/jquery-ui.min.js')}}"></script>
+    <script src="{{asset('home/js/jquery.countdown.min.js')}}"></script>
+    <script src="{{asset('home/js/jquery.nice-select.min.js')}}"></script>
+    <script src="{{asset('home/js/jquery.zoom.min.js')}}"></script>
+    <script src="{{asset('home/js/jquery.dd.min.js')}}"></script>
+    <script src="{{asset('home/js/jquery.slicknav.js')}}"></script>
+    <script src="{{asset('home/js/owl.carousel.min.js')}}"></script>
+    <script src="{{asset('home/js/main.js')}}"></script>
     @yield('contents')
 </body>
 </html>
