@@ -14,8 +14,9 @@
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@500;700&display=swap" rel="stylesheet"> 
-    
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@500;700&display=swap"
+        rel="stylesheet">
+
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
@@ -31,7 +32,7 @@
     <link href="admin/css/style.css" rel="stylesheet">
 </head>
 
- <body>
+<body>
     <div class="container-fluid position-relative d-flex p-0">
         <!-- Sidebar Start -->
         <div class="sidebar pe-4 pb-3">
@@ -42,7 +43,9 @@
                 <div class="d-flex align-items-center ms-4 mb-4">
                     <div class="position-relative">
                         <img class="rounded-circle" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
-                        <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
+                        <div
+                            class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1">
+                        </div>
                     </div>
                     <div class="ms-3">
                         <h6 class="mb-0">Jhon Doe</h6>
@@ -50,9 +53,11 @@
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
-                    <a href="{{route('dashboard')}}" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+                    <a href="{{route('dashboard')}}" class="nav-item nav-link active"><i
+                            class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Elements</a>
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
+                                class="fa fa-laptop me-2"></i>Elements</a>
                         <div class="dropdown-menu bg-transparent border-0">
                             <a href="button.html" class="dropdown-item">Buttons</a>
                             <a href="typography.html" class="dropdown-item">Typography</a>
@@ -60,11 +65,14 @@
                         </div>
                     </div>
                     <a href="widget.html" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Widgets</a>
-                    <a href="{{route('category')}}" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Category</a>
-                    <a href="{{route('products')}}" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Products</a>
+                    <a href="{{route('category')}}" class="nav-item nav-link"><i
+                            class="fa fa-keyboard me-2"></i>Category</a>
+                    <a href="{{route('products')}}" class="nav-item nav-link"><i
+                            class="fa fa-table me-2"></i>Products</a>
                     <a href="chart.html" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Charts</a>
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="far fa-file-alt me-2"></i>Pages</a>
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
+                                class="far fa-file-alt me-2"></i>Pages</a>
                         <div class="dropdown-menu bg-transparent border-0">
                             <a href="signin.html" class="dropdown-item">Sign In</a>
                             <a href="signup.html" class="dropdown-item">Sign Up</a>
@@ -72,52 +80,6 @@
                             <a href="blank.html" class="dropdown-item">Blank Page</a>
                         </div>
                     </div>
-@extends('admin.dashboard')
-
-@section('contents')
-<div class="container" style='height:80vh;'>
-    <div class="card bg-secondary w-100 p-5">
-        <h1 class='text-center'>Add Products</h1>
-        <div class="card-body">
-            <form action="{{route('products')}}" method='post' enctype='multipart/form-data'>
-                @csrf
-                <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Name</label>
-                    <input type="text" id="exampleInputEmail1" aria-describedby="emailHelp" name='name'>
-                    <label for="exampleInputPassword1" class="form-label">Price</label>
-                    <input type="text" name='price' id='price'>
-                </div>
-                <!-- <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Price</label>
-                    <input type="text" class="form-control" id="exampleInputPassword1" name='price'>
-                </div> -->
-                <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Photo</label>
-                    <input type="file" id="exampleInputPassword1" name='image'>
-                    <label for="brand" class="form-label">Brand</label>
-                    <select name="brand" id="brand">
-                        <option selected>Select Brand</option>
-                        @foreach($products as $brandid)
-                        <option value="{{$brandid->brand->id}}">{{$brandid->brand->brandName}}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <!-- <div class="mb-3">
-                    <label for="brand" class="form-label">Brand</label>
-                    <input type="text" class="form-control" id="brand" name='brand'>
-                </div> -->
-                <div class="mb-3">
-                    <label for="color" class="form-label">Color</label>
-                    <input type="text" id="color" name='color'>
-                </div>
-                <div class="mb-3">
-                    <label for="categoryid" class="form-label">CategoryId</label>
-                    <select name="categoryid" id="categoryid">
-                        <option selected>Select Category</option>
-                        @foreach($products as $categoryid)
-                            <option value="{{$categoryid->id}}">{{$categoryid->category->categories}}</option>
-                        @endforeach
-                    </select>
                 </div>
             </nav>
         </div>
@@ -126,7 +88,7 @@
 
         <!-- Content Start -->
         <div class="content">
-          
+
             <!-- Navbar Start -->
             <nav class="navbar navbar-expand bg-secondary navbar-dark sticky-top px-4 py-0">
                 <a href="index.html" class="navbar-brand d-flex d-lg-none me-4">
@@ -147,7 +109,8 @@
                         <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
                             <a href="#" class="dropdown-item">
                                 <div class="d-flex align-items-center">
-                                    <img class="rounded-circle" src="admin/img/user.jpg" alt="" style="width: 40px; height: 40px;">
+                                    <img class="rounded-circle" src="admin/img/user.jpg" alt=""
+                                        style="width: 40px; height: 40px;">
                                     <div class="ms-2">
                                         <h6 class="fw-normal mb-0">Jhon send you a message</h6>
                                         <small>15 minutes ago</small>
@@ -157,7 +120,8 @@
                             <hr class="dropdown-divider">
                             <a href="#" class="dropdown-item">
                                 <div class="d-flex align-items-center">
-                                    <img class="rounded-circle" src="admin/img/user.jpg" alt="" style="width: 40px; height: 40px;">
+                                    <img class="rounded-circle" src="admin/img/user.jpg" alt=""
+                                        style="width: 40px; height: 40px;">
                                     <div class="ms-2">
                                         <h6 class="fw-normal mb-0">Jhon send you a message</h6>
                                         <small>15 minutes ago</small>
@@ -167,7 +131,8 @@
                             <hr class="dropdown-divider">
                             <a href="#" class="dropdown-item">
                                 <div class="d-flex align-items-center">
-                                    <img class="rounded-circle" src="admin/img/user.jpg" alt="" style="width: 40px; height: 40px;">
+                                    <img class="rounded-circle" src="admin/img/user.jpg" alt=""
+                                        style="width: 40px; height: 40px;">
                                     <div class="ms-2">
                                         <h6 class="fw-normal mb-0">Jhon send you a message</h6>
                                         <small>15 minutes ago</small>
@@ -204,7 +169,8 @@
                     </div>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                            <img class="rounded-circle me-lg-2" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
+                            <img class="rounded-circle me-lg-2" src="img/user.jpg" alt=""
+                                style="width: 40px; height: 40px;">
                             <span class="d-none d-lg-inline-flex">John Doe</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
@@ -213,124 +179,125 @@
                             <a href="{{route('logout')}}" class="dropdown-item">Log Out</a>
                         </div>
                     </div>
-                <div class="mb-3">
-                    <label for="categoryid" class="form-label">quantity</label>
-                    <input type="number" id="categoryid" name='quantity' min='1'>
-                </div>
-                <div class="mb-3">
-                    <label for="categoryid" class="form-label">size</label>
-                    <input type="text" id="categoryid" name='size'>
-                </div>
             </nav>
             <!-- Navbar End -->
-<!-- form start -->
-<div class="container-fluid pt-4 px-4">
-            <div class="col-sm-12">
-                    
-                        <div class="bg-secondary rounded h-100 p-4">
-                                @if(Session::has('msg'))
-                                    <div class="alert alert-success" role="alert">
-                                        {{Session::get('msg')}}
-                                    </div>
-                                @endif
-                                @if(Session::has('delmg'))
-                                    <div class="alert alert-danger" role="alert">
-                                        {{Session::get('delmg')}}
-                                    </div>
-                                @endif
-                            <h1 class="mb-4" style="text-align:center">Add Products</h1>
-                            <form action="{{route('products')}}" method='post' enctype='multipart/form-data'>
-                                @csrf
-                                <div class="mb-3">
-                                    <label for="exampleInputEmail1" class="form-label">Name</label>
-                                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="name">
-                                    <label for="exampleInputEmail1" class="form-label">Price</label>
-                                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="price">
-                                    <label for="exampleInputEmail1" class="form-label">Brand</label>
-                                    <input type="text" class="form-control" id="brand" aria-describedby="emailHelp" name="brand">
-                                    <label for="exampleInputEmail1" class="form-label">Color</label>
-                                    <input type="text" class="form-control" id="color" aria-describedby="emailHelp" name="color">
-                                    <label for="exampleInputEmail1" class="form-label">CategoryID</label>
-                                    <input type="text" class="form-control" id="categoryid" aria-describedby="emailHelp" name="categoryid">
-                                    <label for="exampleInputEmail1" class="form-label">Quantity</label>
-                                    <input type="text" class="form-control" id="categoryid" aria-describedby="emailHelp" name="quantity">
-                                    <label for="exampleInputEmail1" class="form-label">Size</label>
-                                    <input type="text" class="form-control" id="categoryid" aria-describedby="emailHelp" name="size"><br>
-                                    <select class="form-select" aria-label="Default select example" name='choices'>
-                                        <option selected>Special Product</option>
-                                        <option value="1">Yes</option>
-                                        <option value="2">No</option>
-                                    </select>
-                                    <label for="formFile" class="form-label">Photo</label>
-                                    <input class="form-control bg-dark" type="file" id="formFile" name="image">
-                                    
-                                </div>
-                                <button type="submit" class="btn btn-primary">Add</button>
-                            </form>
+            <!-- form start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="col-sm-12">
+
+                    <div class="bg-secondary rounded h-100 p-4">
+                        @if(Session::has('msg'))
+                        <div class="alert alert-success" role="alert">
+                            {{Session::get('msg')}}
+                        </div>
+                        @endif
+                        @if(Session::has('delmg'))
+                        <div class="alert alert-danger" role="alert">
+                            {{Session::get('delmg')}}
+                        </div>
+                        @endif
+                        <h1 class="mb-4" style="text-align:center">Add Products</h1>
+                        <form action="{{route('products')}}" method='post' enctype='multipart/form-data'>
+                            @csrf
+                            <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Name</label>
+                                <input type="text" class="form-control" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp" name="name">
+                                <label for="exampleInputEmail1" class="form-label">Price</label>
+                                <input type="text" class="form-control" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp" name="price">
+                                <label for="exampleInputEmail1" class="form-label">Brand</label>
+                                <input type="text" class="form-control" id="brand" aria-describedby="emailHelp"
+                                    name="brand">
+                                <label for="exampleInputEmail1" class="form-label">Color</label>
+                                <input type="text" class="form-control" id="color" aria-describedby="emailHelp"
+                                    name="color">
+                                <label for="exampleInputEmail1" class="form-label">CategoryID</label>
+                                <input type="text" class="form-control" id="categoryid" aria-describedby="emailHelp"
+                                    name="categoryid">
+                                <label for="exampleInputEmail1" class="form-label">Quantity</label>
+                                <input type="text" class="form-control" id="categoryid" aria-describedby="emailHelp"
+                                    name="quantity">
+                                <label for="exampleInputEmail1" class="form-label">Size</label>
+                                <input type="text" class="form-control" id="categoryid" aria-describedby="emailHelp"
+                                    name="size"><br>
+                                <select class="form-select" aria-label="Default select example" name='choices'>
+                                    <option selected>Special Product</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">No</option>
+                                </select>
+                                <label for="formFile" class="form-label">Photo</label>
+                                <input class="form-control bg-dark" type="file" id="formFile" name="image">
+
+                            </div>
+                            <button type="submit" class="btn btn-primary">Add</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- form end -->
+
+
+            <!-- table starts -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="col-12">
+                    <div class="bg-secondary rounded h-100 p-4">
+                        <h3 class="mb-4" style="text-align:center">Products Table</h3>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">SNo.</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Price</th>
+                                        <th scope="col">CategoryId</th>
+                                        <th scope="col">Color</th>
+                                        <th scope="col">Brand</th>
+                                        <th scope="col">Photo.</th>
+                                        <th scope="col" colspan='2'>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($products as $products)
+                                    <tr>
+                                        <th scope="row">{{$products->id}}</th>
+                                        <td>{{$products->name}}</td>
+                                        <td>{{$products->price}}</td>
+                                        <td>{{$products->categoryid}}</td>
+                                        <td>{{$products->color}}</td>
+                                        <td>{{$products->brand}}</td>
+                                        <td><img height='100vh' width='100vh'
+                                                src="{{asset('/storage/'.$products->photo)}}" alt=""></td>
+                                        <td><a href="{{route('productdelete',$products->id)}}">Delete</a></td>
+                                    </tr>
+                                </tbody>
+                                @endforeach
+                            </table>
                         </div>
                     </div>
-</div>
-<!-- form end -->
-
-
-<!-- table starts -->
-<div class="container-fluid pt-4 px-4">
-    <div class="col-12">
-        <div class="bg-secondary rounded h-100 p-4">
-            <h3 class="mb-4" style="text-align:center">Products Table</h3>
-            <div class="table-responsive">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">SNo.</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Price</th>
-                            <th scope="col">CategoryId</th>
-                            <th scope="col">Color</th>
-                            <th scope="col">Brand</th>
-                            <th scope="col">Photo.</th>
-                            <th scope="col" colspan='2'>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    @foreach($products as $products)
-                        <tr>
-                            <th scope="row">{{$products->id}}</th>
-                            <td>{{$products->name}}</td>
-                            <td>{{$products->price}}</td>
-                            <td>{{$products->categoryid}}</td>
-                            <td>{{$products->color}}</td>
-                            <td>{{$products->brand}}</td>
-                            <td><img height='100vh' width='100vh' src="{{asset('/storage/'.$products->photo)}}" alt=""></td>
-                            <td><a href="{{route('productdelete',$products->id)}}">Delete</a></td>
-                        </tr>
-                    </tbody>
-                    @endforeach
-                </table>
+                </div>
             </div>
-        </div>
-    </div>
-</div>
-<!-- table end -->
+            <!-- table end -->
 
 
 <!-- Back to Top -->
 <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
 </div>
+            
 
-    <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="admin/lib/chart/chart.min.js"></script>
-    <script src="admin/lib/easing/easing.min.js"></script>
-    <script src="admin/lib/waypoints/waypoints.min.js"></script>
-    <script src="admin/lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="admin/lib/tempusdominus/js/moment.min.js"></script>
-    <script src="admin/lib/tempusdominus/js/moment-timezone.min.js"></script>
-    <script src="admin/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+        <!-- JavaScript Libraries -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="admin/lib/chart/chart.min.js"></script>
+        <script src="admin/lib/easing/easing.min.js"></script>
+        <script src="admin/lib/waypoints/waypoints.min.js"></script>
+        <script src="admin/lib/owlcarousel/owl.carousel.min.js"></script>
+        <script src="admin/lib/tempusdominus/js/moment.min.js"></script>
+        <script src="admin/lib/tempusdominus/js/moment-timezone.min.js"></script>
+        <script src="admin/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
-    <!-- Template Javascript -->
-    <script src="admin/js/main.js"></script>
+        <!-- Template Javascript -->
+        <script src="admin/js/main.js"></script>
 </body>
 
 </html>
