@@ -21,6 +21,9 @@
                                     name="dealPrice">
                                 <label for="formFile" class="form-label">DealBackgroundImage</label>
                                 <input class="form-control bg-dark" type="file" id="formFile" name="dealBackgroundImage">
+                                <label for="exampleInputEmail1" class="form-label">EndDate</label>
+                                <input type="date" class="form-control" id="categoryid" aria-describedby="emailHelp"
+                                name="endDate"><br>
                                 <label for="exampleInputEmail1" class="form-label">Product</label>
                                 <input type="text" class="form-control" id="categoryid" aria-describedby="emailHelp"
                                 name="product"><br>

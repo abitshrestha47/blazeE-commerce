@@ -12,6 +12,8 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\BigposterController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\DealController;
+use App\Http\Controllers\TestController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -46,7 +48,7 @@ Route::get('/shop',[HomeController::class,'shop'])->name('shop');
 
 Route::get('/buynow',[HomeController::class,'buynow'])->name('buynow');
 
-Route::get('/cart',[HomeController::class,'cart'])->name('cart');
+Route::get('/cart',[CartController::class,'cart'])->name('cart');
 
 Route::get('/incDecprice',[CartController::class,'incDecprice'])->name('incDecprice');
 
@@ -102,7 +104,12 @@ Route::post('/deals',[DealController::class,'addDeal'])->name('deals');
 
 Route::get('/deals',[DealController::class,'getDeal'])->name('deals');
 
-Route::get('/test',[DealController::class,'test'])->name('test');
+Route::get('/test',[TestController::class,'test'])->name('test');
+
+Route::get('/forgotit',[UserController::class,'forgot'])->name('forgotit');
+
+Route::post('/forgotit',[UserController::class,'reset'])->name('forgotit');
+
 
 
 

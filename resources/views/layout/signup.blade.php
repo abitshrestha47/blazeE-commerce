@@ -52,6 +52,13 @@
         <input type="email" class="form-control" name="email"/>
         <label class="form-label">Email</label>
     </div>
+
+    <form action="{{route('forgotit')}}" method='POST'>
+    <div class="form-group">
+        <input type="text" class="form-control" name="phone"/>
+        <label class="form-label">Phone</label>
+    </div>
+    </form>
     
     <div class="form-group">
         <input id="password" name="password" type="password" class="form-control"/>

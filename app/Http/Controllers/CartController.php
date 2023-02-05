@@ -62,4 +62,19 @@ class CartController extends Controller
         $cart->delete();
         return redirect()->back();
     }
+    public function cart(Request $request){
+        // $getAllPrice=$request->input('getAllPrice');
+        // $sendAllPrice=array_sum($getAllPrice);
+        $cart=Cart::all();
+        $cart = Cart::find(Auth::id());
+        if ($cart) {
+            $productIds = json_decode($cart->product_ids, true);
+            $count = count($productIds);
+            $productData = Products::whereIn('id', $productIds)->get();
+        } else {
+            $productData = [];
+            $count=0;
+        }
+        return view('layout.cart',compact('cart','productData','count'));
+    }
 }

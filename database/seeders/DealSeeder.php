@@ -29,6 +29,7 @@ class DealSeeder extends Seeder
             'dealDescription' =>$faker->sentence,
             'dealPrice' =>12.33,
             'dealBackgroundImage'=>$faker->imageUrl(640,480),
+            'endDate' => $faker->dateTimeBetween('-30 days', '+30 days'),
             'product_id'=>3,
         ]);
     }

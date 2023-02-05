@@ -9,7 +9,7 @@ class User extends Model
 {
     use HasFactory;
     protected $fillable=[
-        'username','email','password',
+        'username','email','password','phone'
     ];
     public function cart(){
         return $this->hasMany(Cart::class,'userid');

@@ -35,6 +35,9 @@ class HomeController extends Controller
         //     }
         // }
         $deal=Deal::all();
+        foreach($deal as $d){
+            $endDate=$d->endDate;
+        }
         $departments=Department::all();
         $bigposter=Bigposter::all();
         $latestproducts=Products::orderBy('created_at','DESC')->get()->take(4);
@@ -49,7 +52,7 @@ class HomeController extends Controller
             $count=0;
         }
 
-        return view('layout.index',compact('category','products','latestproducts','bigposter','count','productData','departments','deal'));
+        return view('layout.index',compact('category','products','latestproducts','bigposter','count','productData','departments','deal','endDate'));
     }
 
     public function shop(Request $request){
@@ -190,10 +193,6 @@ class HomeController extends Controller
 
     public function buynow(){
         return view('layout.buynow');
-    }
-    public function cart(){
-        $cart=Cart::all();
-        return view('layout.cart',compact('cart'));
     }
     public function checkout(){
         return view('layout.checkout');

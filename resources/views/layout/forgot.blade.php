@@ -39,30 +39,21 @@
             <div class="finger"></div>
         </div>
 </div>
-<form action="{{route('logging')}}" method='post' class='applythis'>
+<form action="{{route('forgotit')}}" method='post' class='applythis'>
     @csrf
-    <div class="notsigned">
-        <h6> Not Signed In Yet?? <a href="{{Route('signup')}}">SignUp</a></h6>
-    </div>
     <div class="hand"></div>
     <div class="hand rgt"></div>
     
-    <h1>Login</h1>
+    <p>Enter your details</p>
     <div class="form-group">
-        <input type="email" required="required" class="form-control" name="email"/>
-        <label class="form-label">Email</label>
+        <input type="text" required="required" class="form-control" name="phone"/>
+        <label class="form-label">Phone</label>
     </div>
     <div class="form-group">
-        <input id="password" name="password" type="password" required="required" class="form-control"/>
-        <label class="form-label">Password</label>
-        <input type="checkbox" name="" onclick="myFunction()">
-        <p class="alert">Invalid Credentials..!!</p><br>
         <button class="btn" type="submit">Submit</button>
     </div>
-    <a href="/forgotit">Forget Password</a>
 </form>
 </div>
-
     <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
     <script src="home/js/script.js"></script>
 </body>

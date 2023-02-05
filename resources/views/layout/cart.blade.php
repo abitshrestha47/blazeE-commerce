@@ -17,16 +17,15 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @if(isset($cart))
-                            @foreach($cart as $cartincart)
-                            @if(Auth::id()==$cartincart->userid)
+                            @if(isset($productData))
+                            @foreach($productData as $cartincart)
                             <tr>
                                 <td class="cart_product_img d-flex align-items-center">
-                                    <a href="#"><img src="{{$cartincart->productimg}}" alt="Product"></a>
+                                    <a href="#"><img src="{{$cartincart->photo}}" alt="Product"></a>
                                     <h6>{{$cartincart->productname}}</h6>
                                 </td>
                                 <td class="price"><span class='productprice'
-                                        data-price='{{$cartincart->productprice}}'>{{'$'.$cartincart->productprice}}</span>
+                                        data-price='{{$cartincart->price}}'>{{'$'.$cartincart->price}}</span>
                                 </td>
                                 <td class="qty">
                                     <div class="quantity">
@@ -40,9 +39,8 @@
                                                 class="fa fa-plus" aria-hidden="true"></i></span>
                                     </div>
                                 </td>
-                                <td class="total_price"><span class='pricing'>{{"$".$cartincart->productprice}}</span></td>
+                                <td class="total_price"><span class='pricing'>{{"$".$cartincart->price}}</span></td>
                             </tr>
-                            @endif
                             @endforeach
                             @endif
                         </tbody>
@@ -109,7 +107,7 @@
                     </div>
 
                     <ul class="cart-total-chart">
-                        <li><span>Subtotal</span> <span>$59.90</span></li>
+                        <li><span>Subtotal</span> <span class='subtotal' id='subtotal'></span></li>
                         <li><span>Shipping</span> <span>Free</span></li>
                         <li><span><strong>Total</strong></span> <span><strong>$59.90</strong></span></li>
                     </ul>
@@ -245,7 +243,7 @@
                 url:'/incDecprice',
                 data:{
                     'productprice' : productprice,
-                    'quantity' : quantity
+                    'quantity' : quantity,
                 },
                 success:function(data){
                     $(self).closest('tr').find('.pricing').text('$'+data);
@@ -303,4 +301,5 @@
 <script src="home/js/jquery.slicknav.js"></script>
 <script src="home/js/owl.carousel.min.js"></script>
 <script src="home/js/main.js"></script>
+<script src="{{asset('home/js/cart.js')}}"></script>
 @endsection
