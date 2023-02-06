@@ -24,7 +24,8 @@ class DealController extends Controller
         return redirect()->back();
     }
     public function getDeal(){
-        return view('admin.deal');
+        $deal=Deal::all();
+        return view('admin.deal',compact('deal'));
     }
 
 }

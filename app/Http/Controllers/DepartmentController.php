@@ -10,9 +10,11 @@ class DepartmentController extends Controller
 {
     //
     public function addDepartment(Request $req){
+        $image=$req->file('departmentImage');
+        $response=$image->store('dbimages','public');
         $department=new Department();
         $department->departmentName=$req->deptname;
-        $department->departmentImage=$req->departmentImage;
+        $department->departmentImage=$response;
         $department->save();
     }
     public function getDepartment(){
