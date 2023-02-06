@@ -230,8 +230,8 @@
     <!-- quick view model end -->
 
     <!-- Deal Of The Week Section Begin-->
-    @if(isset($deal))
-    @foreach($deal as $deal)
+    @if(isset($dealsort))
+    @foreach($dealsort as $deal)
      <section class="deal-of-week set-bg spad" data-setbg="{{asset('/storage/'.$deal->dealBackgroundImage)}}">
         <div class="container">
             <div class="col-lg-6 text-center">
