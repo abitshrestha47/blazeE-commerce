@@ -24,7 +24,18 @@ class DealController extends Controller
         return redirect()->back();
     }
     public function getDeal(){
-        return view('admin.deal');
+        $deal=Deal::all();
+        return view('admin.deal',compact('deal'));
     }
-
+    public function dealShow(Request $request){
+        $deal=Deal::all();
+        foreach($deal as $makezero){
+            $makezero->toshow=false;
+            $makezero->save();
+        }
+        $data=$request->selectedValue;
+        $dealsort=Deal::find($data);
+        $dealsort->toshow=true;
+        $dealsort->save();
+    }
 }

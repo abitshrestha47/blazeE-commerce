@@ -49,15 +49,15 @@
     
     <h1>Login</h1>
     <div class="form-group">
-        <input type="email" required="required" class="form-control" name="email"/>
+        <input type="email" required="required" class="form-control" name="email" tabindex='1'/>
         <label class="form-label">Email</label>
     </div>
     <div class="form-group">
-        <input id="password" name="password" type="password" required="required" class="form-control"/>
+        <input id="password" tabindex='2' name="password" type="password" required="required" class="form-control"/>
         <label class="form-label">Password</label>
         <input type="checkbox" name="" onclick="myFunction()">
         <p class="alert">Invalid Credentials..!!</p><br>
-        <button class="bttn" type="submit">Submit</button>
+        <button class="bttn" type="submit" tabindex='3'>Submit</button>
     </div>
     <a href="/forgotit">Forget Password</a>
 </form>

@@ -30,6 +30,9 @@ use App\Http\Controllers\TestController;
 
 Route::get('/',[HomeController::class,'main'])->name('main');
 
+Route::post('/',[HomeController::class,'main'])->name('main');
+
+
 Route::get('/signup',[HomeController::class,'signup'])->name('signup');
 
 Route::post('/signup',[UserController::class,'signup'])->name('signup');
@@ -102,9 +105,13 @@ Route::get('/departmentView/{id}',[DepartmentController::class,'getDepartmentVie
 
 Route::post('/deals',[DealController::class,'addDeal'])->name('deals');
 
+Route::post('/dealshow',[DealController::class,'dealShow'])->name('dealshow');
+
 Route::get('/deals',[DealController::class,'getDeal'])->name('deals');
 
 Route::get('/test',[TestController::class,'test'])->name('test');
+
+Route::post('/test',[TestController::class,'test'])->name('test');
 
 Route::get('/forgotit',[UserController::class,'forgot'])->name('forgotit');
 

@@ -83,17 +83,18 @@
     <div class="banner-section spad">
         <div class="container-fluid">
             <div class="row">
-                @if(isset($departments[0]))
-                @for($i=0;$i<=2;$i++) <div class="col-lg-4">
+                @if(isset($departments))
+                @foreach($departments as $banner)
+                 <div class="col-lg-4">
                     <div class="single-banner">
-                        <img src="{{$departments[$i]->departmentImage}}" alt="">
+                        <img src="{{asset('/storage/'.$banner->departmentImage)}}" alt="">
                         <div class="inner-text">
-                            <h4 class='clickit' data-value='{{$departments[$i]->id}}'>
-                                {{$departments[$i]->departmentName}}</h4>
+                            <h4 class='clickit' data-value='{{$banner->id}}'>
+                                {{$banner->departmentName}}</h4>
                         </div>
                     </div>
             </div>
-            @endfor
+            @endforeach
             @endif
         </div>
     </div>
@@ -229,15 +230,16 @@
     <!-- quick view model end -->
 
     <!-- Deal Of The Week Section Begin-->
-    @if(isset($deal[0]))
-    @for($i=0;$i<=0;$i++) <section class="deal-of-week set-bg spad" data-setbg="{{asset('/storage/'.$deal[$i]->dealBackgroundImage)}}">
+    @if(isset($dealsort))
+    @foreach($dealsort as $deal)
+     <section class="deal-of-week set-bg spad" data-setbg="{{asset('/storage/'.$deal->dealBackgroundImage)}}">
         <div class="container">
             <div class="col-lg-6 text-center">
                 <div class="section-title">
-                    <h2>{{$deal[$i]->dealTitle}}</h2>
-                    <p>{{$deal[$i]->dealDescription}}</p>
+                    <h2>{{$deal->dealTitle}}</h2>
+                    <p>{{$deal->dealDescription}}</p>
                     <div class="product-price">
-                        ${{$deal[$i]->dealPrice}}
+                        ${{$deal->dealPrice}}
                         <span>/ HanBag</span>
                     </div>
                 </div>
@@ -263,7 +265,7 @@
             </div>
         </div>
         </section>
-        @endfor
+        @endforeach
         @endif
         <!-- Deal Of The Week Section End -->
 

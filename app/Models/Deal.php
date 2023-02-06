@@ -9,6 +9,6 @@ class Deal extends Model
 {
     use HasFactory;
     protected $fillable=[
-        'dealTitle','dealDescription','dealPrice','dealBackgroundImage','product_id','endDate',
+        'dealTitle','dealDescription','dealPrice','dealBackgroundImage','product_id','endDate','toshow'
     ];
 }

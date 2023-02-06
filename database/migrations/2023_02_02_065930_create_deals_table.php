@@ -22,6 +22,7 @@ return new class extends Migration
             $table->date('endDate');
             $table->unsignedBigInteger('product_id');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+            $table->boolean('toshow')->default(false);
             $table->timestamps();
         });
     }

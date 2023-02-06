@@ -26,14 +26,7 @@ class HomeController extends Controller
 
     public function main(){
         $products=Products::all();
-    
-        // $userid=Auth::id();
-        // $count=0;
-        //  foreach($cart as $countcart){
-        //     if($countcart->userid==$userid){
-        //         $count++;
-        //     }
-        // }
+        $dealsort=Deal::where('toshow',true)->get();
         $endDate=null;
         $deal=Deal::all();
         foreach($deal as $d){
@@ -53,7 +46,7 @@ class HomeController extends Controller
             $count=0;
         }
 
-        return view('layout.index',compact('category','products','latestproducts','bigposter','count','productData','departments','deal','endDate'));
+        return view('layout.index',compact('category','products','latestproducts','bigposter','count','productData','departments','deal','endDate','dealsort'));
     }
 
     public function shop(Request $request){
