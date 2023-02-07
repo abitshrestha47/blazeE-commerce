@@ -84,10 +84,10 @@
         <div class="container-fluid">
             <div class="row">
                 @if(isset($departments))
-                @foreach($departments as $banner)
+                @foreach($departments->slice(0,3) as $banner)
                  <div class="col-lg-4">
                     <div class="single-banner">
-                        <img src="{{asset('/storage/'.$banner->departmentImage)}}" alt="">
+                        <img src="{{$banner->departmentImage}}" alt="">
                         <div class="inner-text">
                             <h4 class='clickit' data-value='{{$banner->id}}'>
                                 {{$banner->departmentName}}</h4>
