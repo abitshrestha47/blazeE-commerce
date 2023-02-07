@@ -10,6 +10,7 @@ use App\Models\Cart;
 use App\Models\Bigposter;
 use App\Models\Department;
 use App\Models\Deal;
+use App\Models\Contact;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
@@ -23,7 +24,9 @@ class HomeController extends Controller
     public function login(){
         return view('layout.login');
     }
-
+    public function contact(){
+        return view('layout.contact');
+    }
     public function main(){
         $products=Products::all();
         $dealsort=Deal::where('toshow',true)->get();
@@ -43,7 +46,8 @@ class HomeController extends Controller
             $productIds = json_decode($exist->product_ids, true);
             $count = count($productIds);
             $productData = Products::whereIn('id', $productIds)->get();
-        } else {
+        } 
+        else {
             $productData = [];
             $count=0;
         }
@@ -58,7 +62,19 @@ class HomeController extends Controller
         $brands=Brand::all();
         $uniqueCategory = Category::all()->unique('categories');
         $departments=Department::all();
-        return view('layout.shop',compact('products','category','uniqueCategory','brands','departments'));
+        $cart=Cart::all();
+        $userId=Auth::id();
+        $exist = Cart::where('userid', $userId)->first();
+        if ($exist){
+            $productIds = json_decode($exist->product_ids, true);
+            $count = count($productIds); 
+            $productData = Products::whereIn('id', $productIds)->get();
+        } 
+        else {
+            $productData = [];
+            $count=0;
+        }
+        return view('layout.shop',compact('products','category','uniqueCategory','brands','departments','count','productData'));
     }
     public function PriceFilter(Request $req){
         if($req->ajax()){

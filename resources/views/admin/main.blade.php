@@ -85,12 +85,11 @@
                             class="fa fa-shopping-cart"></i>Category</a>
                     <a href="{{route('products')}}" class="nav-item nav-link"><i class="fa fa-box"></i>Products</a>
                     <a href="{{route('bigposter')}}" class="nav-item nav-link"><i class="fa fa-image"></i>Bigposter</a>
-                    <a href="{{route('departments')}}" class="nav-item nav-link"><i
-                            class="fa fa-cogs"></i>Departments</a>
+                    <a href="{{route('departments')}}" class="nav-item nav-link"><i class="fa fa-cogs"></i>Departments</a>
                     <a href="{{route('deals')}}" class="nav-item nav-link"><i class="fa fa-tag"></i>
                         Deals</a>
-                    <a href="chart.html" class="nav-item nav-link" display="hidden"><i
-                            class="fa fa-chart-bar me-2"></i>Chart</a>
+                    <a href="{{route('contacts')}}" class="nav-item nav-link" display="hidden"><i
+                            class="fa fa-table me-2"></i>Contact</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
                                 class="far fa-file-alt me-2"></i>Pages</a>
