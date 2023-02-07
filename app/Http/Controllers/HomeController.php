@@ -39,12 +39,12 @@ class HomeController extends Controller
         $bigposter=Bigposter::all();
         $latestproducts=Products::orderBy('created_at','DESC')->get()->take(4);
         $category=Category::all();
-        $cart=Cart::all();
-        $userId=Auth::id();
+        $cart = Cart::all();
+        $userId = Auth::id(); 
         $exist = Cart::where('userid', $userId)->first();
-        if ($exist){
+        if ($exist) {
             $productIds = json_decode($exist->product_ids, true);
-            $count = count($productIds); 
+            $count = count($productIds);
             $productData = Products::whereIn('id', $productIds)->get();
         } 
         else {
