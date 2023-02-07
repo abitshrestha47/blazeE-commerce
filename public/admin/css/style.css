@@ -288,3 +288,14 @@
     background: var(--dark);
     border-color: var(--primary);
 }
+ .sizing{
+    width:50vw !important;
+    margin-left:5vw;
+}
+
+.col-form-label {
+    margin-right: -60px;
+}
+.space{
+    margin-left:60px;
+}
