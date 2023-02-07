@@ -50,7 +50,7 @@
                     <div class="ms-3">
                         <h6 class="mb-0">
                             @if (Auth::check())
-                                {{ Auth::user()->username }}
+                            {{ Auth::user()->username }}
                             @endif
                         </h6>
                         <span>Admin</span>
@@ -70,15 +70,13 @@
                     </div>
                     <a href="widget.html" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Widgets</a>
                     <a href="{{route('category')}}" class="nav-item nav-link"><i
-                            class="fa fa-keyboard me-2"></i>Category</a>
-                    <a href="{{route('products')}}" class="nav-item nav-link"><i
-                            class="fa fa-table me-2"></i>Products</a>
-                    <a href="{{route('bigposter')}}" class="nav-item nav-link"><i
-                            class="fa fa-table me-2"></i>Bigposter</a>
+                            class="fa fa-shopping-cart"></i>Category</a>
+                    <a href="{{route('products')}}" class="nav-item nav-link"><i class="fa fa-box"></i>Products</a>
+                    <a href="{{route('bigposter')}}" class="nav-item nav-link"><i class="fa fa-image"></i>Bigposter</a>
                     <a href="{{route('departments')}}" class="nav-item nav-link"><i
-                    class="fa fa-table me-2"></i>Departments</a>
-                    <a href="{{route('deals')}}" class="nav-item nav-link"><i
-                    class="fa fa-table me-2"></i>Deals</a>
+                            class="fa fa-cogs"></i>Departments</a>
+                    <a href="{{route('deals')}}" class="nav-item nav-link"><i class="fa fa-tag"></i>
+                        Deals</a>
                     <a href="chart.html" class="nav-item nav-link" display="hidden"><i
                             class="fa fa-chart-bar me-2"></i>Chart</a>
                     <div class="nav-item dropdown">
@@ -196,7 +194,7 @@
             </nav>
             <!-- Navbar End -->
 
-            
+
             @yield('contents')
 
 

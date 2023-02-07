@@ -20,24 +20,47 @@
             <form action="{{route('products')}}" method='post' enctype='multipart/form-data'>
                 @csrf
                 <div class="mb-3">
-                    <div class="form-group row">
-                        <label for="exampleInputEmail1" class="col-sm-2 col-form-label">Name</label>
-                        <div class="col-sm-4">
-                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                                name="name">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="row">
+                                <label for="exampleInputEmail1" class="col-sm-2 col-form-label">Name</label>
+                            </div>
+                            <div class="row">
+                                <div class="col-11">
+                                    <input type="text" class="form-control" id="exampleInputEmail1"
+                                        aria-describedby="emailHelp" name="name">
+                                </div>
+                            </div>
                         </div>
-
-                        <label for="exampleInputEmail2" class="col-sm-2 col-form-label space">Price</label>
-                        <div class="col-sm-4">
-                            <input type="text" class="form-control" id="exampleInputEmail2" aria-describedby="emailHelp"
-                                name="price">
+                        <div class="col-6">
+                            <label for="exampleInputEmail2" class="col-sm-2 col-form-label space">Price</label>
+                            <div class="col-11">
+                                <input type="text" class="form-control" id="exampleInputEmail2"
+                                    aria-describedby="emailHelp" name="price">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="row">
+                                <label for="exampleInputEmail1" class="form-label">Brand</label>
+                            </div>
+                            <div class="row">
+                                <div class="col-11">
+                                    <input type="text" class="form-control" id="brand" aria-describedby="emailHelp"
+                                        name="brand">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <label for="exampleInputEmail1" class="form-label">Color</label>
+                            <div class="col-11">
+                                <input type="text" class="form-control" id="color" aria-describedby="emailHelp"
+                                    name="color">
+                            </div>
                         </div>
                     </div>
 
-                    <label for="exampleInputEmail1" class="form-label">Brand</label>
-                    <input type="text" class="form-control" id="brand" aria-describedby="emailHelp" name="brand">
-                    <label for="exampleInputEmail1" class="form-label">Color</label>
-                    <input type="text" class="form-control" id="color" aria-describedby="emailHelp" name="color">
                     <label for="exampleInputEmail1" class="form-label">CategoryID</label>
                     <input type="text" class="form-control" id="categoryid" aria-describedby="emailHelp"
                         name="categoryid">
