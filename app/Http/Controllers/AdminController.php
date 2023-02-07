@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Category;
 use App\Models\Products;
+use App\Models\Contact;
 use App\Models\Department;
 
 
@@ -20,6 +21,10 @@ class AdminController extends Controller
         $category=Category::all();
         $departments=Department::all();
         return view('admin.category',compact('category','departments'));
+    }
+    public function contacts(){
+        $contacts=Contact::all();
+        return view('admin.contacts',compact('contacts'));
     }
     public function dashboard(){
         return view('admin.dashboard');

@@ -66,12 +66,14 @@ class CartController extends Controller
         // $getAllPrice=$request->input('getAllPrice');
         // $sendAllPrice=array_sum($getAllPrice);
         $cart=Cart::all();
-        $cart = Cart::find(Auth::id());
-        if ($cart) {
-            $productIds = json_decode($cart->product_ids, true);
-            $count = count($productIds);
+        $userId=Auth::id();
+        $exist = Cart::where('userid', $userId)->first();
+        if ($exist){
+            $productIds = json_decode($exist->product_ids, true);
+            $count = count($productIds); 
             $productData = Products::whereIn('id', $productIds)->get();
-        } else {
+        } 
+        else {
             $productData = [];
             $count=0;
         }

@@ -10,10 +10,11 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\BigposterController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\DealController;
 use App\Http\Controllers\TestController;
-
+use PSpell\Config;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,6 +67,12 @@ Route::get('/products',[AdminController::class,'products'])->name('products')->m
 Route::get('/priceFilter',[HomeController::class,'priceFilter'])->name('priceFilter');
 
 Route::get('/boxFilter',[HomeController::class,'boxFilter'])->name('boxFilter');
+
+Route::get('/contact',[HomeController::class,'contact'])->name('contact');
+
+Route::post('/contact', [ContactController::class, 'contact'])->name('contact');
+
+Route::get('/contacts',[AdminController::class,'contacts'])->name('contacts');
 
 Route::post('/products',[ProductsController::class,'products'])->name('products');
 
