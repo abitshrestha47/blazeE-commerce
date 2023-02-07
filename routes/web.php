@@ -117,6 +117,8 @@ Route::get('/forgotit',[UserController::class,'forgot'])->name('forgotit');
 
 Route::post('/forgotit',[UserController::class,'reset'])->name('forgotit');
 
+Route::post('/addimg',[UserController::class,'addImg'])->name('addimg');
+
 
 
 
