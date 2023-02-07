@@ -123,6 +123,7 @@ Route::post('/test',[TestController::class,'test'])->name('test');
 Route::get('/forgotit',[UserController::class,'forgot'])->name('forgotit');
 
 Route::post('/forgotit',[UserController::class,'reset'])->name('forgotit');
+Route::get('/aboutUs',[HomeController::class,'about'])->name('aboutUs');
 
 Route::post('/addimg',[UserController::class,'addImg'])->name('addimg');
 

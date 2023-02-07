@@ -181,4 +181,8 @@ class HomeController extends Controller
         return view('layout.checkout');
     }
 
+    public function about(){
+        return view('layout.aboutUs');
+    }
+
 }
