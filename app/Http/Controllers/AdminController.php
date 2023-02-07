@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Category;
 use App\Models\Products;
 use App\Models\Department;
+use App\Models\User;
 
 
 class AdminController extends Controller
@@ -22,7 +23,8 @@ class AdminController extends Controller
         return view('admin.category',compact('category','departments'));
     }
     public function dashboard(){
-        return view('admin.dashboard');
+        $use=User::all();
+        return view('admin.dashboard',compact('use'));
     }
     public function delete($id){
         $category=Category::find($id);

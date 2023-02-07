@@ -52,4 +52,12 @@ class UserController extends Controller
     }
     public function reset(){
     }
+    public function addImg(Request $req){
+        $image=$req->file('image');
+        $response=$image->store('dbimages','public');
+        $user=Auth::user()->id;
+        $data=User::find($user);
+        $data->img=$response;
+        $data->save();
+    }
 }
