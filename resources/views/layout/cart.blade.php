@@ -46,6 +46,8 @@
     <!-- Breadcrumb Section Begin -->
 
     <!-- ****** Cart Area Start ****** -->
+    <form action="{{route('test')}}" method='POST'>
+        @csrf
     <div class="cart_area section_padding_100 clearfix">
         <div class="container">
             <div class="row">
@@ -67,14 +69,21 @@
                                     <td class="cart_product_img d-flex align-items-center">
                                         <a href="#"><img src="{{$cartincart->photo}}" alt="Product"></a>
                                         <h6>{{$cartincart->productname}}</h6>
+                                        <input type="hidden" value="{{$cartincart->id}}" name='productid[]'>
                                     </td>
-                                    <td class="price"><span class='productprice' data-price='{{$cartincart->price}}'>{{'$'.$cartincart->price}}</span>
+                                    <td class="price"><span class='productprice'
+                                            data-price='{{$cartincart->price}}'>{{'$'.$cartincart->price}}</span>
                                     </td>
                                     <td class="qty">
                                         <div class="quantity">
-                                            <span id='minus-{{$cartincart->id}}' class="qty-minus minus" onclick="var effect = document.getElementById('qty-{{$cartincart->id}}'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i class="fa fa-minus" aria-hidden="true"></i></span>
-                                            <input type="number" class="qty-text qtyqty" id="qty-{{$cartincart->id}}" step="1" min="1" max="99" name="quantity" value='1'>
-                                            <span class="qty-plus plus" onclick="var effect = document.getElementById('qty-{{$cartincart->id}}'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-plus" aria-hidden="true"></i></span>
+                                            <span id='minus-{{$cartincart->id}}' class="qty-minus minus"
+                                                onclick="var effect = document.getElementById('qty-{{$cartincart->id}}'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i
+                                                    class="fa fa-minus" aria-hidden="true"></i></span>
+                                            <input type="number" class="qty-text qtyqty" id="qty-{{$cartincart->id}}"
+                                                step="1" min="1" max="99" name="quantity[]" value='1'>
+                                            <span class="qty-plus plus"
+                                                onclick="var effect = document.getElementById('qty-{{$cartincart->id}}'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i
+                                                    class="fa fa-plus" aria-hidden="true"></i></span>
                                         </div>
                                     </td>
                                     <td class="total_price"><span class='pricing'>{{"$".$cartincart->price}}</span></td>
@@ -91,7 +100,7 @@
                         </div>
                         <div class="update-checkout w-50 text-right">
                             <a href="#">clear cart</a>
-                            <a href="#">Update cart</a>
+                                <button type='submit'>Update cart</button>
                         </div>
                     </div>
 
@@ -120,17 +129,20 @@
 
                         <div class="custom-control custom-radio mb-30">
                             <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
-                            <label class="custom-control-label d-flex align-items-center justify-content-between" for="customRadio1"><span>Next day delivery</span><span>$4.99</span></label>
+                            <label class="custom-control-label d-flex align-items-center justify-content-between"
+                                for="customRadio1"><span>Next day delivery</span><span>$4.99</span></label>
                         </div>
 
                         <div class="custom-control custom-radio mb-30">
                             <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
-                            <label class="custom-control-label d-flex align-items-center justify-content-between" for="customRadio2"><span>Standard delivery</span><span>$1.99</span></label>
+                            <label class="custom-control-label d-flex align-items-center justify-content-between"
+                                for="customRadio2"><span>Standard delivery</span><span>$1.99</span></label>
                         </div>
 
                         <div class="custom-control custom-radio">
                             <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input">
-                            <label class="custom-control-label d-flex align-items-center justify-content-between" for="customRadio3"><span>Personal Pickup</span><span>Free</span></label>
+                            <label class="custom-control-label d-flex align-items-center justify-content-between"
+                                for="customRadio3"><span>Personal Pickup</span><span>Free</span></label>
                         </div>
                     </div>
                 </div>
@@ -152,6 +164,7 @@
             </div>
         </div>
     </div>
+    </form>
     <!-- ****** Cart Area End ****** -->
 
 
@@ -241,54 +254,54 @@
     <!-- Js Plugins -->
 
     <script>
-        $(document).ready(function() {
-            $('.minus,.plus').click(function() {
-                var self = this;
-                var productprice = $(this).closest('tr').find('.productprice').data("price");
-                var quantity = $(this).closest('tr').find('.qtyqty').val();
-                // alert(productprice+quantity);
-                $.ajax({
-                    url: '/incDecprice',
-                    data: {
-                        'productprice': productprice,
-                        'quantity': quantity,
-                    },
-                    success: function(data) {
-                        $(self).closest('tr').find('.pricing').text('$' + data);
-                    }
-                });
+    $(document).ready(function() {
+        $('.minus,.plus').click(function() {
+            var self = this;
+            var productprice = $(this).closest('tr').find('.productprice').data("price");
+            var quantity = $(this).closest('tr').find('.qtyqty').val();
+            // alert(productprice+quantity);
+            $.ajax({
+                url: '/incDecprice',
+                data: {
+                    'productprice': productprice,
+                    'quantity': quantity,
+                },
+                success: function(data) {
+                    $(self).closest('tr').find('.pricing').text('$' + data);
+                }
             });
         });
-        // $(document).ready(function() {
-        //     $('.minus').click(function() {
-        //         var productprice = $('.productprice').data('price');
-        //         var qty = $('.qtyqty').val();
-        //         $.ajax({
-        //             url: '/incDecprice',
-        //             data: {
-        //                 'productprice': productprice,
-        //                 'quantity': qty
-        //             },
-        //             success: function(data) {
-        //                 $('.clearfix').find('.changingprice').text("$"+data);
-        //             }
-        //         });
-        //     });
-        //     $('.plus').click(function() {
-        //         var productprice = $('.productprice').data('price');
-        //         var qty = $('.qtyqty').val();
-        //         $.ajax({
-        //             url: '/incDecprice',
-        //             data: {
-        //                 'productprice': productprice,
-        //                 'quantity': qty
-        //             },
-        //             success: function(data) {
-        //                 $('.clearfix').find('.changingprice').text("$"+data);
-        //             }
-        //         });
-        //     });
-        // });
+    });
+    // $(document).ready(function() {
+    //     $('.minus').click(function() {
+    //         var productprice = $('.productprice').data('price');
+    //         var qty = $('.qtyqty').val();
+    //         $.ajax({
+    //             url: '/incDecprice',
+    //             data: {
+    //                 'productprice': productprice,
+    //                 'quantity': qty
+    //             },
+    //             success: function(data) {
+    //                 $('.clearfix').find('.changingprice').text("$"+data);
+    //             }
+    //         });
+    //     });
+    //     $('.plus').click(function() {
+    //         var productprice = $('.productprice').data('price');
+    //         var qty = $('.qtyqty').val();
+    //         $.ajax({
+    //             url: '/incDecprice',
+    //             data: {
+    //                 'productprice': productprice,
+    //                 'quantity': qty
+    //             },
+    //             success: function(data) {
+    //                 $('.clearfix').find('.changingprice').text("$"+data);
+    //             }
+    //         });
+    //     });
+    // });
     </script>
     <script src="home/js/jquery/jquery-2.2.4.min.js"></script>
     <!-- Popper js -->

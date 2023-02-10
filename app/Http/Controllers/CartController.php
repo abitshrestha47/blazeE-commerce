@@ -23,31 +23,68 @@ class CartController extends Controller
             // $cart->userid=Auth::id();
             // $cart->productid=$product->id;
             // $cart->save();
+            // $userid = Auth::id();
+            // $checkcart = Cart::where('userid', $userid)->first();
+            // if(!$checkcart){
+            //     $checkcart=new Cart;
+            //     $productId = $req->input('productId');
+            //     // $checkcart->product_ids = json_encode([
+            //     //     'id' => $productId
+            //     // ]);
+                
+            //     $checkcart->product_ids=json_encode([
+            //         $productId
+            //     ]);
+            //     $checkcart->userid=Auth::id();
+            //     $checkcart->save();
+            // }
+            // else{
+            //     $productId = $req->input('productId');
+            //     $productIds = json_decode($checkcart->product_ids, true);
+                
+            //     if(!in_array($productId, $productIds)) {
+            //         $productIds[] = $productId;
+            //     }
+                
+            //     $checkcart->product_ids = json_encode($productIds);
+            //     $checkcart->save();
+            // }
             $userid = Auth::id();
-            $checkcart = Cart::where('userid', $userid)->first();
-            if(!$checkcart){
-                $checkcart=new Cart;
-                $productId = $req->input('productId');
-                // $checkcart->product_ids = json_encode([
-                //     'id' => $productId
-                // ]);
-                $checkcart->product_ids=$id=json_encode([
-                    $productId
-                ]);
-                $checkcart->userid=Auth::id();
-                $checkcart->save();
-            }
-            else{
-                $productId = $req->input('productId');
-                $productIds = json_decode($checkcart->product_ids, true);
-                
-                if(!in_array($productId, $productIds)) {
-                    $productIds[] = $productId;
+            $checkcart = Cart::where('userid', $userid)->first();   
+            if(!$checkcart){     
+            $checkcart=new Cart;
+            $productId=$req->input('productId');
+            $quantity=1; 
+            $productIds=[];
+            $productIds[$productId]=$quantity;
+            $checkcart->product_ids=json_encode(
+                $productIds
+            );
+            $checkcart->userid=Auth::id();
+            $checkcart->save();
+             }
+             else{
+                $productId=$req->input('productId');
+                $quantity=1;
+                $productIds=json_decode($checkcart->product_ids,true);
+                if(!in_array($productId,$productIds)){
+                    $productIds[$productId]=$quantity;
                 }
-                
-                $checkcart->product_ids = json_encode($productIds);
+                $checkcart->product_ids=json_encode($productIds);
                 $checkcart->save();
-            }
+            
+             }
+        // else{
+        //     $productId=$request->input('productid');
+        //     $quantity=0;      
+        //     $productIds = json_decode($checkcart->product_ids, true);
+        //     foreach($productId as $key=>$product){
+        //         $product=(string)$product;
+        //         $productIds[$product]=$quantity[$key];
+        //     }
+        //     $checkcart->product_ids = json_encode($productIds);
+        //     $checkcart->save();
+        // }
         }
         else{
             return redirect()->route('login');
