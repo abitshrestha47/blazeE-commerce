@@ -68,7 +68,7 @@
                                 <tr>
                                     <td class="cart_product_img d-flex align-items-center">
                                         <a href="#"><img src="{{$cartincart->photo}}" alt="Product"></a>
-                                        <h6>{{$cartincart->productname}}</h6>
+                                        <h6>{{$cartincart->name}}</h6>
                                         <input type="hidden" value="{{$cartincart->id}}" name='productid[]'>
                                     </td>
                                     <td class="price"><span class='productprice'

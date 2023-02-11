@@ -74,7 +74,7 @@ class CartController extends Controller
                     $checkcart->save();
                 }
                 else{
-                    session()->flash('message', 'Product already added, wanna add it more? Check out on Cart');
+                    session()->flash('message', 'Product already added, wanna add it more?Check out on Cart');
                     session()->flash('productId', $productId);
                     return back();
                 }
@@ -112,13 +112,14 @@ class CartController extends Controller
         $exist = Cart::where('userid', $userId)->first();
         if ($exist){
             $productIds = json_decode($exist->product_ids, true);
+            $product_keys=array_keys($productIds);
             $count = count($productIds); 
-            $productData = Products::whereIn('id', $productIds)->get();
+            $productData = Products::whereIn('id', $product_keys)->get();
         } 
         else {
             $productData = [];
             $count=0;
         }
-        return view('layout.cart',compact('cart','productData','count'));
+        return view('layout.cart',compact('cart','productData','count','productIds'));
     }
 }

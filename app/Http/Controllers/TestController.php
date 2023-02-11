@@ -25,28 +25,25 @@ class TestController extends Controller
     public function test(Request $request){
         $userid = Auth::id();
         $checkcart = Cart::where('userid', $userid)->first();   
-        if(!$checkcart){     
-        $checkcart=new Cart;
         $productId=$request->input('productid');
-        $quantity=$request->input('quantity'); 
-        $combined = array_combine($productId, $quantity);       
-        $checkcart->product_ids=json_encode(
-            $combined
-        );
-        $checkcart->userid=Auth::id();
-        $checkcart->save();
-         }
-    else{
-        $productId=$request->input('productid');
-        $quantity=$request->input('quantity');      
+        $quantity=$request->input('quantity');   
+        $newArray = array_combine($productId, $quantity);
         $productIds = json_decode($checkcart->product_ids, true);
-        foreach($productId as $key=>$product){
-            $product=(string)$product;
-            $productIds[$product]=$quantity[$key];
+        // dd($productIds);
+        $newArray = array_map(function ($value) {
+            return intval($value);
+        }, $newArray);
+        foreach ($newArray as $key => $value) {
+            if($productIds[$key]==$newArray[$key]) {
+                    continue;
+            }
+            else{
+                $productIds[$key]=$value;
+            }
         }
+        // dd($productIds);
         $checkcart->product_ids = json_encode($productIds);
         $checkcart->save();
-    }
     }
     public function cart(){
         $cart=Cart::all();
