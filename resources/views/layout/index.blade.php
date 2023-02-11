@@ -139,6 +139,7 @@
                                 <!-- Add to Cart -->
                                 <form action="{{route('add-cart')}}" method='POST' class='nomargin'>
                                     @csrf
+                                    <input type="hidden" value='{{$singlegallery->price}}' name='price'>
                                     <input type="hidden" value="{{Auth::id()}}" name='id'>
                                     @if (session()->has('message') && session()->get('productId')===$singlegallery->id)
                                     <div class="floating-message">

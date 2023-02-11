@@ -26,7 +26,9 @@ class TestController extends Controller
         $userid = Auth::id();
         $checkcart = Cart::where('userid', $userid)->first();   
         $productId=$request->input('productid');
-        $quantity=$request->input('quantity');   
+        $quantity=$request->input('quantity');
+        $pricetoalter=$request->pricetoalter;
+        $pricetoalter = str_replace("$", "", $pricetoalter);
         $newArray = array_combine($productId, $quantity);
         $productIds = json_decode($checkcart->product_ids, true);
         // dd($productIds);

@@ -53,10 +53,22 @@ class CartController extends Controller
             $checkcart = Cart::where('userid', $userid)->first();   
             if(!$checkcart){     
             $checkcart=new Cart;
-            $productId=$req->input('productId');
+            $productId=(int)$req->input('productId');
+            $price=(int)$req->input('price');
             $quantity=1; 
             $productIds=[];
-            $productIds[$productId]=$quantity;
+            // $productIds[$productId]=$quantity;
+            $productIds=[
+                'productid'=>$productId,
+                'qty' => $quantity,
+                'price' => $price,
+              ];
+            // $data = array(
+            //     1 => array(
+            //       "price" => 0,
+            //       "qty" => 0
+            //     )
+            //   );
             $checkcart->product_ids=json_encode(
                 $productIds
             );
@@ -65,18 +77,23 @@ class CartController extends Controller
              }
              else{
                 $productId=$req->input('productId');
+                $price=(int)$req->input('price');
                 $productId=(int)$productId;
                 $quantity=1;
                 $productIds=json_decode($checkcart->product_ids,true);
-                if(!array_key_exists($productId,$productIds)){
-                    $productIds[$productId]=$quantity;
-                    $checkcart->product_ids=json_encode($productIds);
-                    $checkcart->save();
-                }
-                else{
-                    session()->flash('message', 'Product already added, wanna add it more?Check out on Cart');
-                    session()->flash('productId', $productId);
-                    return back();
+                foreach($productIds as $idcheck){
+                    if(array_key_exists($productId,$productIds)){
+                        $productIds['productId']=$productId;
+                        $productIds['qty']=$quantity;
+                        $productIds['price']=$price;
+                        $checkcart->product_ids=json_encode($productIds);
+                        $checkcart->save();
+                    }
+                    else{
+                        session()->flash('message', 'Product already added, wanna add it more?Check out on Cart');
+                        session()->flash('productId', $productId);
+                        return back();
+                    }
                 }
              }
         // else{
