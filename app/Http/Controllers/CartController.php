@@ -65,14 +65,19 @@ class CartController extends Controller
              }
              else{
                 $productId=$req->input('productId');
+                $productId=(int)$productId;
                 $quantity=1;
                 $productIds=json_decode($checkcart->product_ids,true);
-                if(!in_array($productId,$productIds)){
+                if(!array_key_exists($productId,$productIds)){
                     $productIds[$productId]=$quantity;
+                    $checkcart->product_ids=json_encode($productIds);
+                    $checkcart->save();
                 }
-                $checkcart->product_ids=json_encode($productIds);
-                $checkcart->save();
-            
+                else{
+                    session()->flash('message', 'Product already added, wanna add it more? Check out on Cart');
+                    session()->flash('productId', $productId);
+                    return back();
+                }
              }
         // else{
         //     $productId=$request->input('productid');
