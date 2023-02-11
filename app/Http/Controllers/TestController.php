@@ -45,6 +45,12 @@ class TestController extends Controller
         $checkcart->product_ids = json_encode($productIds);
         $checkcart->save();
     }
+    public function clear(Request $req){
+        $cart=Cart::all();
+        $userid=$req->od;
+        $get=Cart::where('userid',$userid)->first();
+        $get->delete();
+    }
     public function cart(){
         $cart=Cart::all();
         $userid=Auth::id();

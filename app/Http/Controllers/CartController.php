@@ -112,6 +112,7 @@ class CartController extends Controller
         $exist = Cart::where('userid', $userId)->first();
         if ($exist){
             $productIds = json_decode($exist->product_ids, true);
+            $productqty = json_decode($exist->product_ids, true);
             $product_keys=array_keys($productIds);
             $count = count($productIds); 
             $productData = Products::whereIn('id', $product_keys)->get();
@@ -119,7 +120,9 @@ class CartController extends Controller
         else {
             $productData = [];
             $count=0;
+            $productIds=[];
+            $productqty=[];
         }
-        return view('layout.cart',compact('cart','productData','count','productIds'));
+        return view('layout.cart',compact('cart','productData','count','productIds','productqty'));
     }
 }

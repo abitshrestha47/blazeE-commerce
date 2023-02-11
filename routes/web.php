@@ -120,6 +120,8 @@ Route::get('/test',[TestController::class,'test'])->name('test');
 
 Route::post('/test',[TestController::class,'test'])->name('test');
 
+Route::post('/clear',[TestController::class,'clear'])->name('clearevery');
+
 Route::get('/forgotit',[UserController::class,'forgot'])->name('forgotit');
 
 Route::post('/forgotit',[UserController::class,'reset'])->name('forgotit');
