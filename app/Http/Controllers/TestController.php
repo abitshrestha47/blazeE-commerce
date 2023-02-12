@@ -30,8 +30,8 @@ class TestController extends Controller
         $pricetoalter=$request->pricetoalter;
         $pricetoalter = str_replace("$", "", $pricetoalter);
         $newArray = array_combine($productId, $quantity);
+        dd($newArray);
         $productIds = json_decode($checkcart->product_ids, true);
-        // dd($productIds);
         $newArray = array_map(function ($value) {
             return intval($value);
         }, $newArray);
