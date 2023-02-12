@@ -51,6 +51,7 @@
                                                 <span id='minus-{{$cartincart->id}}' class="qty-minus minus"
                                                     onclick="var effect = document.getElementById('qty-{{$cartincart->id}}'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i
                                                         class="fa fa-minus" aria-hidden="true"></i></span>
+                                                        <input type="hidden" name="pricetoalter[]" value='{{$cartincart->price}}' class='pricetoalter'>
                                                 @foreach($product_qty as $key=>$value)
                                                 @if($key == $cartincart->id)
                                                 <input type="number" class="qty-text qtyqty"
@@ -63,7 +64,6 @@
                                                         class="fa fa-plus" aria-hidden="true"></i></span>
                                             </div>
                                         </td>
-                                        <input type="hidden" name="pricetoalter" id="pricetoalter">
                                         <td class="total_price"><span class='pricing'>{{"$".$cartincart->price}}</span>
                                         </td>
                                     </tr>
@@ -235,8 +235,8 @@
 
     <!-- Js Plugins -->
 
+
     <script>
-    document.getElementById("pricetoalter").value = document.querySelector('.pricing').innerText;
     $(document).ready(function() {
         $('.minus,.plus').click(function() {
             var self = this;
@@ -251,7 +251,7 @@
                 },
                 success: function(data) {
                     $(self).closest('tr').find('.pricing').text('$' + data);
-                    document.getElementById('pricetoalter').value=document.querySelector('.pricing').innerText;
+                    $(self).closest('tr').find('.pricetoalter').val(data);
                 }
             });
         });

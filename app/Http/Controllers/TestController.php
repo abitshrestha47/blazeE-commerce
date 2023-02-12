@@ -27,23 +27,26 @@ class TestController extends Controller
         $checkcart = Cart::where('userid', $userid)->first();   
         $productId=$request->input('productid');
         $quantity=$request->input('quantity');
-        $pricetoalter=$request->pricetoalter;
-        $pricetoalter = str_replace("$", "", $pricetoalter);
-        $newArray = array_combine($productId, $quantity);
-        dd($newArray);
+        $forqty = array_combine($productId, array_map('intval',$quantity));
+        $pricetoalter=$request->input('pricetoalter');
+        $forprice = array_combine($productId, array_map('intval', $pricetoalter));
         $productIds = json_decode($checkcart->product_ids, true);
-        $newArray = array_map(function ($value) {
-            return intval($value);
-        }, $newArray);
-        foreach ($newArray as $key => $value) {
-            if($productIds[$key]==$newArray[$key]) {
-                    continue;
-            }
-            else{
-                $productIds[$key]=$value;
+        foreach($productIds as &$element){
+            foreach($forqty as $key=>$value){
+                if($element['productid']==$key){
+                    $element['qty']=$forqty[$key];
+                }
             }
         }
-        // dd($productIds);
+        $checkcart->product_ids = json_encode($productIds);
+        $checkcart->save();
+        foreach($productIds as &$element){
+            foreach($forprice as $key=>$value){
+                if($element['productid']==$key){
+                    $element['price']=$forprice[$key];
+                }
+            }
+        }
         $checkcart->product_ids = json_encode($productIds);
         $checkcart->save();
     }
