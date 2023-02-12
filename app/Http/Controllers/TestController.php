@@ -45,6 +45,9 @@ class TestController extends Controller
                 if($element['productid']==$key){
                     $element['price']=$forprice[$key];
                 }
+                else if($element['productid']!=$key){
+                    $element['price']=$element['price'];
+                }
             }
         }
         $checkcart->product_ids = json_encode($productIds);

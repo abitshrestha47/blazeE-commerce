@@ -64,8 +64,14 @@
                                                         class="fa fa-plus" aria-hidden="true"></i></span>
                                             </div>
                                         </td>
-                                        <td class="total_price"><span class='pricing'>{{"$".$cartincart->price}}</span>
+                                        @if(isset($pricesent))
+                                        @foreach($pricesent as $key=>$value)
+                                        @if($key==$cartincart->id)
+                                        <td class="total_price"><span class='pricing'>{{$value}}</span>
                                         </td>
+                                        @endif
+                                        @endforeach
+                                        @endif
                                     </tr>
                                     @endforeach
                                     @endif
