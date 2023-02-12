@@ -51,7 +51,7 @@
                                                 <span id='minus-{{$cartincart->id}}' class="qty-minus minus"
                                                     onclick="var effect = document.getElementById('qty-{{$cartincart->id}}'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i
                                                         class="fa fa-minus" aria-hidden="true"></i></span>
-                                                @foreach($productqty as $key=>$value)
+                                                @foreach($product_qty as $key=>$value)
                                                 @if($key == $cartincart->id)
                                                 <input type="number" class="qty-text qtyqty"
                                                     id="qty-{{$cartincart->id}}" step="1" min="1" max="99"

@@ -76,17 +76,25 @@ class CartController extends Controller
         $exist = Cart::where('userid', $userId)->first();
         if ($exist){
             $productIds = json_decode($exist->product_ids, true);
-            $productqty = json_decode($exist->product_ids, true);
-            $product_keys=array_keys($productIds);
-            $count = count($productIds); 
+            $product_qty = [];
+            foreach($productIds as $idforproduct){
+                $product_qty[$idforproduct['productid']]=$idforproduct['qty'];
+            }
+            $pricesent=[];
+            foreach($productIds as $price){
+                $pricesent[$price['productid']]=$price['price'];
+            }
+            $product_keys=array_keys($product_qty);
+            $count = count($product_keys); 
             $productData = Products::whereIn('id', $product_keys)->get();
         } 
         else {
             $productData = [];
             $count=0;
             $productIds=[];
-            $productqty=[];
+            $product_qty=[];
+            $pricesent=[];
         }
-        return view('layout.cart',compact('cart','productData','count','productIds','productqty'));
+        return view('layout.cart',compact('cart','productData','count','productIds','product_qty','pricesent'));
     }
 }
