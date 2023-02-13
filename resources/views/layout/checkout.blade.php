@@ -140,7 +140,14 @@
 
                             <ul class="order-details-form mb-4">
                                 <li><span>Product</span> <span>Total</span></li>
-                                <li><span>Cocktail Yellow dress</span> <span>$59.90</span></li>
+                                @foreach($productsgive as $ch)
+                                <li><span>{{$ch->name}}</span> 
+                                    @foreach($price as $key=>$value)
+                                        @if($ch->id==$key)
+                                        <span>${{$value}}</span></li>
+                                        @endif
+                                    @endforeach
+                                @endforeach
                                 <li><span>Subtotal</span> <span>$59.90</span></li>
                                 <li><span>Shipping</span> <span>Free</span></li>
                                 <li><span>Total</span> <span>$59.90</span></li>

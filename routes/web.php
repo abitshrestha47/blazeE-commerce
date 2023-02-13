@@ -14,6 +14,8 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\DealController;
 use App\Http\Controllers\TestController;
+use App\Http\Controllers\CheckoutController;
+
 use PSpell\Config;
 
 /*
@@ -57,6 +59,8 @@ Route::get('/cart',[CartController::class,'cart'])->name('cart');
 Route::get('/incDecprice',[CartController::class,'incDecprice'])->name('incDecprice');
 
 Route::get('/checkout',[HomeController::class,'checkout'])->name('checkout');
+
+Route::get('/checkout',[CheckoutController::class,'getDatas'])->name('checkout');
 
 Route::get('/data',[HomeController::class,'data'])->name('data');
 

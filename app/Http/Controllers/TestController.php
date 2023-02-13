@@ -31,22 +31,15 @@ class TestController extends Controller
         $pricetoalter=$request->input('pricetoalter');
         $forprice = array_combine($productId, array_map('intval', $pricetoalter));
         $productIds = json_decode($checkcart->product_ids, true);
-        foreach($productIds as &$element){
+        foreach($productIds as &$change){
             foreach($forqty as $key=>$value){
-                if($element['productid']==$key){
-                    $element['qty']=$forqty[$key];
+                if($change['productid']==$key){
+                    $change['qty']=$forqty[$key];
                 }
             }
-        }
-        $checkcart->product_ids = json_encode($productIds);
-        $checkcart->save();
-        foreach($productIds as &$element){
             foreach($forprice as $key=>$value){
-                if($element['productid']==$key){
-                    $element['price']=$forprice[$key];
-                }
-                else if($element['productid']!=$key){
-                    $element['price']=$element['price'];
+                if($change['productid']==$key && $forprice[$key]!=null){
+                    $change['price']=$forprice[$key];
                 }
             }
         }

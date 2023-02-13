@@ -51,7 +51,7 @@
                                                 <span id='minus-{{$cartincart->id}}' class="qty-minus minus"
                                                     onclick="var effect = document.getElementById('qty-{{$cartincart->id}}'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i
                                                         class="fa fa-minus" aria-hidden="true"></i></span>
-                                                        <input type="hidden" name="pricetoalter[]" value='{{$cartincart->price}}' class='pricetoalter'>
+                                                        <input type="hidden" name="pricetoalter[]" class='pricetoalter'>
                                                 @foreach($product_qty as $key=>$value)
                                                 @if($key == $cartincart->id)
                                                 <input type="number" class="qty-text qtyqty"
@@ -67,7 +67,7 @@
                                         @if(isset($pricesent))
                                         @foreach($pricesent as $key=>$value)
                                         @if($key==$cartincart->id)
-                                        <td class="total_price"><span class='pricing'>{{$value}}</span>
+                                        <td class="total_price"><span class='pricing'>{{'$'.$value}}</span>
                                         </td>
                                         @endif
                                         @endforeach
