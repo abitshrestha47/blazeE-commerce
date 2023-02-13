@@ -41,6 +41,9 @@
 
 <form action="{{route('logging')}}" method='post' class="pandaform">
     @csrf
+    @if (session()->has('fail'))
+       <div style="color:black;background:lightcoral">{{session()->get('fail')}}</div>
+    @endif 
     <div class="notsigned">
         <h6> Not Signed In Yet?? <a href="{{Route('signup')}}">SignUp</a></h6>
     </div>
@@ -55,11 +58,11 @@
     <div class="form-group">
         <input id="password" tabindex='2' name="password" type="password" required="required" class="form-control"/>
         <label class="form-label">Password</label>
-        <input type="checkbox" name="" onclick="myFunction()">
+        <input type="checkbox" name="" onclick="myFunction()"><br>
+        <a href="{{route('forget_password')}}">Forgot Password?</a>
         <p class="alert">Invalid Credentials..!!</p><br>
         <button class="bttn" type="submit" tabindex='3'>Submit</button>
     </div>
-    <a href="/forgotit">Forget Password</a>
 </form>
 
     <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>

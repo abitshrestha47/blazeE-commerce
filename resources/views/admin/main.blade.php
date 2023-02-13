@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>DarkPan - Bootstrap 5 Admin Template</title>
+    <title>A S K BLaze Admin panel</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -191,13 +191,19 @@
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                             <img class="rounded-circle me-lg-2" src="img/user.jpg" alt=""
                                 style="width: 40px; height: 40px;">
-                            <span class="d-none d-lg-inline-flex">John Doe</span>
+                            <span class="d-none d-lg-inline-flex">
+                                <h6 class="mb-0">
+                                    @if (Auth::check())
+                                    {{ Auth::user()->username }}
+                                    @endif
+                                </h6>
+                            </span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
                             <a href="#" class="dropdown-item">My Profile</a>
                             <a href="#" class="dropdown-item">Settings</a>
                             <form action="{{route('logout')}}" method='get'>
-                                <button type="submit">Logout</button>
+                                <a href="" class="dropdown-item"><button type="submit">Logout</button></a>
                             </form>
                         </div>
                     </div>

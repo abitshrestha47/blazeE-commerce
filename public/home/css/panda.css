@@ -118,7 +118,7 @@ box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
 	left: -20px;
 	border-radius: 100px 100px 100px 100px/126px 126px 96px 96px;
 	width:250px; 
-	height: 320px;
+	height: 450px;
 	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
 	}
 .hand, .hand:after, .hand:before {
@@ -160,7 +160,7 @@ right: -25px;
 	height: 120px;
 }
 .foot1{
-	top: 420px;
+	top: 550px;
 	left: -80px;	
 	position: absolute;
 	background: #000;
@@ -279,8 +279,34 @@ right: auto;
 	z-index:500;
 	border: 1px solid #eee;
 }
+.pandaformsignup{
+	display: none;
+	max-width: 400px;
+	padding: 20px 40px;
+	background: #fff;
+	height: 75vh;
+	margin: auto;
+	display: block;
+	box-shadow: 0 10px 15px rgba(0,0,0,0.15);
+	transition: 0.3s;
+	position: relative;
+	transform: translateY(-100px);
+	z-index:500;
+	border: 1px solid #eee;
+}
+.pandaformsignup.up{
+	transform: translateY(-180px);
+}
 .pandaform.up{
 	transform: translateY(-180px);
+}
+.pandaform a{
+	color: #000;
+	text-decoration: none;
+}
+.pandaform a:hover{
+	color: #dc1e3a;
+	border: 2px solid #dc1e3a;
 }
 h1{
 	color: #ff4081;

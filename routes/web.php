@@ -38,6 +38,8 @@ Route::get('/signup',[HomeController::class,'signup'])->name('signup');
 
 Route::post('/signup',[UserController::class,'signup'])->name('signup');
 
+Route::get('/registration/verify/{token}/{email}', [UserController::class, 'registration_verify']);
+
 Route::get('/login',[HomeController::class,'login'])->name('login');
 
 Route::post('/login',[UserController::class,'logging'])->name('logging');
@@ -120,9 +122,13 @@ Route::get('/test',[TestController::class,'test'])->name('test');
 
 Route::post('/test',[TestController::class,'test'])->name('test');
 
-Route::get('/forgotit',[UserController::class,'forgot'])->name('forgotit');
+Route::get('/forgotpsw',[UserController::class,'forget_password'])->name('forget_password');
 
-Route::post('/forgotit',[UserController::class,'reset'])->name('forgotit');
+Route::post('/forget_password_submit', [UserController::class, 'forget_password_submit'])->name('forget_password_submit');
+
+Route::get('/reset-password/{token}/{email}', [UserController::class, 'reset_password'])->name('reset_password');
+Route::post('/reset_password_submit', [UserController::class, 'reset_password_submit'])->name('reset_password_submit');
+
 Route::get('/aboutUs',[HomeController::class,'about'])->name('aboutUs');
 
 Route::post('/addimg',[UserController::class,'addImg'])->name('addimg');

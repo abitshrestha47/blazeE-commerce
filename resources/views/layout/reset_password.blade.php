@@ -39,38 +39,37 @@
         </div>
     </div>
 
-    <form action="{{route('signup')}}" method='post' class="pandaformsignup">
+    <form action="{{route('reset_password_submit')}}" method='post' class="pandaform">
         @csrf
         <div class="hand"></div>
         <div class="hand rgt"></div>
         @if (session()->has('Error'))
             <div style="color:black;background:lightcoral">{{session()->get('Error')}}</div>
         @endif 
-        @if (session()->has('success'))
-            <div style="color:black;background:lightgreen">{{session()->get('success')}}</div>
-        @endif 
-        <h1>SignUp</h1>
-        <div class="form-group">
-            <input type="text" class="form-control" id="username" name='username'>
-            <label for="username" class="form-label">Username</label>
-        </div>
-        <div class="form-group">
-            <input type="email" class="form-control" name="email" />
-            <label class="form-label">Email</label>
-        </div>
+        <h1>Reset Password</h1>
+        <input type="hidden" name="token" value="{{ $token }}">
+        <input type="hidden" name="email" value="{{ $email }}">
 
         <div class="form-group">
-            <input id="password" name="password" type="password" class="form-control" />
+            <input name="password" type="password"  class="form-control" />
             <label class="form-label">Password</label>
-            
+            @error('password')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
         </div>
         <div class="form-group">
-            <input name="retype_password" type="password" class="form-control" />
-            <label class="form-label">Re-type Password</label>
-            <p class="alert">Invalid Credentials..!!</p><br>
-            <button class="bttn" type="submit">Submit</button>
+            <input id="password" name="repassword" type="password" class="form-control" />
+            <label class="form-label">Re-enter your Password</label>
+            @error('retype_password')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
         </div>
-        
+        <button class="bttn" type="submit">Reset</button>
+
     </form>
     <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
     <script src="home/js/script.js"></script>

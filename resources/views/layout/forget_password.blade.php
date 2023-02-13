@@ -12,11 +12,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>A.S.K Ecommerce</title>
-    <link rel="stylesheet" href="home/css/style.css">
+    <link rel="stylesheet" href="home/css/panda.css">
 </head>
 <body class="bod">
 
-<div class="bod">
+
 <div class="panda">
     <div class="ear"></div>
         <div class="face">
@@ -39,21 +39,28 @@
             <div class="finger"></div>
         </div>
 </div>
-<form action="{{route('forgotit')}}" method='post' class='applythis'>
+
+<form action="{{route('forget_password_submit')}}" method='post' class="pandaform">
     @csrf
     <div class="hand"></div>
     <div class="hand rgt"></div>
-    
-    <p>Enter your details</p>
+    @if (session()->has('fail'))
+    <div style="color:black;background:lightcoral">{{session()->get('fail')}}</div>
+    @endif
+    @if (session()->has('success'))
+       <div style="color:black;background:lightgreen">{{session()->get('success')}}</div>
+    @endif 
+    <h1>Forgot Your Password</h1> 
     <div class="form-group">
-        <input type="text" required="required" class="form-control" name="phone"/>
-        <label class="form-label">Phone</label>
+        <input type="email" required="required" class="form-control" name="email" tabindex='1'/>
+        <label class="form-label">Email</label>
     </div>
+    <button class="bttn" type="submit" tabindex='3'>Send Link Code</button>
     <div class="form-group">
-        <button class="btn" type="submit">Submit</button>
+        <a href="{{ route('login') }}">Back to login</a>
     </div>
 </form>
-</div>
+
     <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
     <script src="home/js/script.js"></script>
 </body>
