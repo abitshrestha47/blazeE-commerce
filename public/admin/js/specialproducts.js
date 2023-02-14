@@ -1,5 +1,15 @@
 $(document).ready(function() {
-    const originalPriceInput = document.getElementById('originalPrice');
+    const productId=$('#productId').val();
+    const productPrice=$('#productId option:selected').data('price');
+    $('#originalPrice').val(productPrice);
+
+    $('#productId').on('change',function(){
+        const productId=$('#productId').val();
+        const productPrice=$('#productId option:selected').data('price');
+        $('#originalPrice').val(productPrice);
+    });
+
+    const originalPriceInput=document.getElementById('originalPrice');
     const discountPercentInput = document.getElementById('discountPercent');
     const discountPriceInput = document.getElementById('discountPrice');
 

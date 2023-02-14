@@ -35,9 +35,11 @@
                     <label for="products" class="form-label">ProductName</label>
                     <select name="productId" id="productId">
                     @foreach($products as $producting)
-                        <option value="{{$producting->id}}">{{$producting->name}}</option>
+                        <option value="{{$producting->id}}" data-price="{{$producting->price}}">{{$producting->name}}</option>
                     @endforeach
                     </select>
+                    <label for="productprice" class='form-label'>Price</label>
+                    <input type="text" name='productprice' id='originalPrice' class='form-control' readonly>
 
                 </div>
                 <button type="submit" class="btn btn-primary">Add</button>

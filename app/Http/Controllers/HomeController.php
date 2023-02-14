@@ -70,10 +70,13 @@ class HomeController extends Controller
         $cart=Cart::all();
         $userId=Auth::id();
         $exist = Cart::where('userid', $userId)->first();
-        if ($exist){
+        if ($exist) {
             $productIds = json_decode($exist->product_ids, true);
-            $count = count($productIds); 
-            $productData = Products::whereIn('id', $productIds)->get();
+            foreach($productIds as $getids){
+                $product_keys[]=$getids['productid'];
+            }
+            $count = count($product_keys);
+            $productData = Products::whereIn('id', $product_keys)->get();
         } 
         else {
             $productData = [];

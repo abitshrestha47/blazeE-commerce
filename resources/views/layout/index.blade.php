@@ -119,6 +119,7 @@
                     <div class="product-slider owl-carousel">
 
                         <!-- Single gallery Item -->
+                        @if(isset($specialproduct))
                         @foreach($specialproduct as $singlegallery)
                         <div class="single_gallery_item wow fadeInUpBig" data-wow-delay="0.5s">
                             <!-- Product Image -->
@@ -139,7 +140,7 @@
                                 <!-- Add to Cart -->
                                 <form action="{{route('add-cart')}}" method='POST' class='nomargin'>
                                     @csrf
-                                    <input type="hidden" value='{{$singlegallery->product->price}}' name='price'>
+                                    <input type="hidden" value='{{$singlegallery->price}}' name='price'>
                                     <input type="hidden" value="{{Auth::id()}}" name='id'>
                                     @if (session()->has('message') && session()->get('productId')===$singlegallery->id)
                                     <div class="floating-message">
@@ -153,6 +154,7 @@
                             </div>
                         </div>
                         @endforeach
+                        @endif
                     </div>
                 </div>
             </div>
