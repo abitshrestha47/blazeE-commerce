@@ -19,9 +19,10 @@ return new class extends Migration
             $table->float('price');
             $table->string('photo');
             $table->string('color');
+            $table->float('discountprice');
             $table->string('size')->nullable();
             $table->string('description')->nullable();
-            $table->string('discountoffer')->nullable();
+            $table->integer('discountoffer');
             $table->integer('quantity');
             $table->unsignedBigInteger('categoryid');
             $table->unsignedBigInteger('brandId');

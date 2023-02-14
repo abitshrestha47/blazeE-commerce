@@ -2,6 +2,8 @@
 
 @section('contents')
 <!-- form start -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <div class="container-fluid pt-4 px-4 sizing">
     <div class="col-sm-12">
 
@@ -35,7 +37,7 @@
                         <div class="col-6">
                             <label for="exampleInputEmail2" class="col-sm-2 col-form-label space">Price</label>
                             <div class="col-11">
-                                <input type="text" class="form-control" id="exampleInputEmail2"
+                                <input type="text" class="form-control" id="originalPrice"
                                     aria-describedby="emailHelp" name="price">
                             </div>
                         </div>
@@ -79,7 +81,10 @@
                     <input class="form-control" type="text" id="description" name="description">
 
                     <label for="discountif" class="form-label">DiscountOffer(%)</label>
-                    <input class="form-control" type="text" id="discoutoffer" name="discountoffer">
+                    <input class="form-control" type="text" id="discountPercent" name="discountoffer">
+
+                    <label for="discountprice" class="form-label">DiscountPrice</label>
+                    <input class="form-control" type="text" id="discountPrice" name="discountprice">
 
                 </div>
                 <button type="submit" class="btn btn-primary">Add</button>
@@ -88,4 +93,6 @@
     </div>
 </div>
 <!-- form end -->
+
+<script src="{{asset('admin/js/specialproducts.js')}}"></script>
 @endsection

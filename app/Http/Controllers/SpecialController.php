@@ -25,6 +25,7 @@ class SpecialController extends Controller
             'size'=>$req->size,
             'description'=>$req->description,
             'discountoffer'=>$req->discountoffer,
+            'discountprice'=>$req->discountprice,
         ]);
         return back()->with('msg','Products added Successfully!');
     }
