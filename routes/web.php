@@ -14,6 +14,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\DealController;
 use App\Http\Controllers\TestController;
+use App\Http\Controllers\Test2Controller;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\SpecialController;
 
@@ -35,7 +36,6 @@ use PSpell\Config;
 Route::get('/',[HomeController::class,'main'])->name('main');
 
 Route::post('/',[HomeController::class,'main'])->name('main');
-
 
 Route::get('/signup',[HomeController::class,'signup'])->name('signup');
 

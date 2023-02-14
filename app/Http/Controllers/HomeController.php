@@ -11,6 +11,7 @@ use App\Models\Bigposter;
 use App\Models\Department;
 use App\Models\Deal;
 use App\Models\Contact;
+use App\Models\SpecialProduct;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
@@ -28,6 +29,7 @@ class HomeController extends Controller
         return view('layout.contact');
     }
     public function main(){
+        $specialproduct=SpecialProduct::all();
         $products=Products::all();
         $dealsort=Deal::where('toshow',true)->get();
         $endDate=null;
@@ -55,7 +57,7 @@ class HomeController extends Controller
             $count=0;
         }
 
-        return view('layout.index',compact('category','products','latestproducts','bigposter','count','productData','departments','deal','endDate','dealsort'));
+        return view('layout.index',compact('category','products','latestproducts','bigposter','count','productData','departments','deal','endDate','dealsort','specialproduct'));
     }
 
     public function shop(Request $request){

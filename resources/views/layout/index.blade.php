@@ -119,8 +119,7 @@
                     <div class="product-slider owl-carousel">
 
                         <!-- Single gallery Item -->
-                        @foreach($products as $singlegallery)
-                        @if($singlegallery->choices==='1')
+                        @foreach($specialproduct as $singlegallery)
                         <div class="single_gallery_item wow fadeInUpBig" data-wow-delay="0.5s">
                             <!-- Product Image -->
                             <div class="product-img">
@@ -134,7 +133,8 @@
                             </div>
                             <!-- Product Description -->
                             <div class="product-description">
-                                <h4 class="product-price">{{'$'.$singlegallery->price}}</h4>
+                                <h4 class="product-price"><strike>{{'$'.$singlegallery->price}}</strike></h4>
+                                <h4 class="product-price">{{'$'.$singlegallery->discountprice. "--"}}{{$singlegallery->discountoffer."%"}}</h4>
                                 <p>{{$singlegallery->name}}</p>
                                 <!-- Add to Cart -->
                                 <form action="{{route('add-cart')}}" method='POST' class='nomargin'>
@@ -152,7 +152,6 @@
                                 </form>
                             </div>
                         </div>
-                        @endif
                         @endforeach
                     </div>
                 </div>
