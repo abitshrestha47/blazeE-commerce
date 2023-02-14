@@ -15,19 +15,11 @@ return new class extends Migration
     {
         Schema::create('special_products', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->float('price');
-            $table->string('photo');
-            $table->string('color');
             $table->float('discountprice')->nullable();
-            $table->string('size')->nullable();
             $table->string('description')->nullable();
             $table->integer('discountoffer')->nullable();
-            $table->integer('quantity');
-            $table->unsignedBigInteger('categoryid');
-            $table->unsignedBigInteger('brandId');
-            $table->foreign('categoryid')->references('id')->on('categories')->onDelete('cascade');
-            $table->foreign('brandId')->references('id')->on('brands')->onDelete('cascade');
+            $table->unsignedBigInteger('productId');
+            $table->foreign('productId')->references('id')->on('products')->onDelete('cascade');
             $table->timestamps();
         });
     }

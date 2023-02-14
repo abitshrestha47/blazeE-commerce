@@ -133,13 +133,13 @@
                             </div>
                             <!-- Product Description -->
                             <div class="product-description">
-                                <h4 class="product-price"><strike>{{'$'.$singlegallery->price}}</strike></h4>
+                                <h4 class="product-price"><strike>{{'$'.$singlegallery->product->price}}</strike></h4>
                                 <h4 class="product-price">{{'$'.$singlegallery->discountprice. "--"}}{{$singlegallery->discountoffer."%"}}</h4>
-                                <p>{{$singlegallery->name}}</p>
+                                <p>{{$singlegallery->product->name}}</p>
                                 <!-- Add to Cart -->
                                 <form action="{{route('add-cart')}}" method='POST' class='nomargin'>
                                     @csrf
-                                    <input type="hidden" value='{{$singlegallery->price}}' name='price'>
+                                    <input type="hidden" value='{{$singlegallery->product->price}}' name='price'>
                                     <input type="hidden" value="{{Auth::id()}}" name='id'>
                                     @if (session()->has('message') && session()->get('productId')===$singlegallery->id)
                                     <div class="floating-message">
@@ -147,7 +147,7 @@
                                     </div>
                                     @endif
                                     <button type='submit' class="add-to-cart-btn cart_add"
-                                        data-id="{{$singlegallery->id}}" value='{{$singlegallery->id}}' name='productId'
+                                        data-id="{{$singlegallery->product->id}}" value='{{$singlegallery->product->id}}' name='productId'
                                         data-user-id="{{Auth::id()}}">ADD TO CART</button>
                                 </form>
                             </div>

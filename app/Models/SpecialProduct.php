@@ -9,6 +9,9 @@ class SpecialProduct extends Model
 {
     use HasFactory;
     protected $fillable=[
-        'name','price','photo','categoryid','brandId','color','choices','quantity','size','description','discountoffer','discountprice'
+        'discountoffer','discountprice','description','productId'
     ];
+    public function product(){
+        return $this->belongsTo(Products::class,'productId');
+    }
 }
