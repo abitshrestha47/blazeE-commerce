@@ -48,26 +48,27 @@
                             <label for="file">
                                 <i class="fa fa-cloud-upload-alt"></i>
                             </label>
-                            <input type="file" id='file'  name='image' onchange="this.form.submit()" style="display:none">
+                            <input type="file" id='file' name='image' onchange="this.form.submit()"
+                                style="display:none">
                         </form>
                         @else
                         <div class="img-hover">
                             <img src="{{asset('/storage/'.auth()->user()->img)}}" width='150vw' height='150vh'>
                         </div>
                         @endif
-                         <div
+                        <div
                             class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1">
                         </div>
                     </div>
                 </div>
                 <div class="ms-3">
-                        <h6 class="mb-0">
-                            @if (Auth::check())
-                            {{ Auth::user()->username }}
-                            @endif
-                        </h6>
-                        <span>Admin</span>
-                    </div>
+                    <h6 class="mb-0">
+                        @if (Auth::check())
+                        {{ Auth::user()->username }}
+                        @endif
+                    </h6>
+                    <span>Admin</span>
+                </div>
                 <div class="navbar-nav w-100">
                     <a href="{{route('dashboard')}}" class="nav-item nav-link active"><i
                             class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
@@ -83,11 +84,20 @@
                     <a href="widget.html" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Widgets</a>
                     <a href="{{route('category')}}" class="nav-item nav-link"><i
                             class="fa fa-shopping-cart"></i>Category</a>
-                    <a href="{{route('products')}}" class="nav-item nav-link"><i class="fa fa-box"></i>Products</a>
                     <a href="{{route('bigposter')}}" class="nav-item nav-link"><i class="fa fa-image"></i>Bigposter</a>
-                    <a href="{{route('departments')}}" class="nav-item nav-link"><i class="fa fa-cogs"></i>Departments</a>
+                    <a href="{{route('departments')}}" class="nav-item nav-link"><i
+                            class="fa fa-cogs"></i>Departments</a>
                     <a href="{{route('deals')}}" class="nav-item nav-link"><i class="fa fa-tag"></i>
                         Deals</a>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-box"></i>Products</a>
+                        <div class="dropdown-menu bg-transparent border-0">
+                            <a href="{{route('products')}}" class="dropdown-item">Show Products</a>
+                            <a href="{{route('add-products')}}" class="dropdown-item">Add Products</a>
+                            <a href="element.html" class="dropdown-item">Other Elements</a>
+                            <a href="{{route('special-products')}}" class="dropdown-item">Add Special Products</a>
+                        </div>
+                    </div>
                     <a href="{{route('contacts')}}" class="nav-item nav-link" display="hidden"><i
                             class="fa fa-table me-2"></i>Contact</a>
                     <div class="nav-item dropdown">

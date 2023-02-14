@@ -3,28 +3,29 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Products;
+use App\Models\SpecialProduct;
 
-class ProductsController extends Controller
+class SpecialController extends Controller
 {
     //
-    public function products(Request $req){
+    public function specialProducts(){
+        return view("admin.addspecialproducts");
+    }
+    public function addSpecialProducts(Request $req){
         $image=$req->file('image');
         $response=$image->store('dbimages','public');
-        $product=Products::create([
+        $product=SpecialProduct::create([
             'name' => $req->name,
             'price' => $req->price,
             'photo' => $response,
             'categoryid' => $req->categoryid,
             'brandId' => $req->brand,
             'color'=>$req->color,
-            'choices'=>$req->choices,
             'quantity'=>$req->quantity,
             'size'=>$req->size,
+            'description'=>$req->description,
+            'discountoffer'=>$req->discountoffer,
         ]);
         return back()->with('msg','Products added Successfully!');
-    }
-    public function addProducts(){
-        return view('admin.addproducts');
     }
 }

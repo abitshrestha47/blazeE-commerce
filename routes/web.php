@@ -15,6 +15,7 @@ use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\DealController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\SpecialController;
 
 use PSpell\Config;
 
@@ -67,6 +68,12 @@ Route::get('/data',[HomeController::class,'data'])->name('data');
 Route::get('/logout',[UserController::class,'logout'])->name('logout');
 
 Route::get('/products',[AdminController::class,'products'])->name('products')->middleware('auth','admin');
+
+Route::get('/addproducts',[ProductsController::class,'addProducts'])->name('add-products');
+
+Route::get('/specialproducts',[SpecialController::class,'SpecialProducts'])->name('special-products');
+
+Route::post('/specialproducts',[SpecialController::class,'addSpecialProducts'])->name('special-products');
 
 Route::get('/priceFilter',[HomeController::class,'priceFilter'])->name('priceFilter');
 
