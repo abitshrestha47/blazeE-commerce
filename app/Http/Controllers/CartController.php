@@ -13,7 +13,7 @@ class CartController extends Controller
         if(Auth::check()){
             $userid = Auth::id();
             $checkcart = Cart::where('userid', $userid)->first();   
-            if(!$checkcart){     
+            if(!$checkcart){   
             $checkcart=new Cart;
             $productId=(int)$req->input('productId');
             $price=(int)$req->input('price');

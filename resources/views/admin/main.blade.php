@@ -42,6 +42,7 @@
                 </a>
                 <div class="d-flex align-items-center ms-4 mb-4">
                     <div class="position-relative">
+                        @if(Auth::check())
                         @if(auth()->user()->img == null)
                         <form action="{{route('addimg')}}" method='POST' enctype='multipart/form-data'>
                             @csrf
@@ -55,6 +56,7 @@
                         <div class="img-hover">
                             <img src="{{asset('/storage/'.auth()->user()->img)}}" width='150vw' height='150vh'>
                         </div>
+                        @endif
                         @endif
                         <div
                             class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1">

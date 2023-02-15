@@ -1,14 +1,21 @@
 @extends('admin.main')
 
 @section('contents')
-    <!-- form start -->
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<!-- form start -->
 <div class="container-fluid pt-4 px-4 sizing">
     <div class="col-sm-12">
 
         <div class="bg-secondary rounded h-100 p-4">
             @if(Session::has('msg'))
-            <div class="alert alert-success" role="alert">
+            <div class="alert alert-success alert-dismissible">
                 {{Session::get('msg')}}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close" style='border:none;background:none'>
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
             @endif
             @if(Session::has('delmg'))

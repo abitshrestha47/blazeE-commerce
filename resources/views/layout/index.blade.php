@@ -124,23 +124,34 @@
                         <div class="single_gallery_item wow fadeInUpBig" data-wow-delay="0.5s">
                             <!-- Product Image -->
                             <div class="product-img">
-                                <img src="{{$singlegallery->photo}}" alt="">
+                                <img src="{{$singlegallery->product->photo}}" alt="">
                                 <div class="product-quicview">
                                     <a href="#" data-toggle="modal" data-target="#quickview"
-                                        data-id="{{ $singlegallery->id}}" id="productModalLink"
+                                        data-id="{{ $singlegallery->product->id}}" id="productModalLink"
                                         class='productModalLink'><i class="ti-plus"></i></a>
                                     <!-- <a href="#" data-toggle="modal" data-target="#quickview"><i class="ti-plus"></i></a> -->
                                 </div>
                             </div>
                             <!-- Product Description -->
                             <div class="product-description">
+                                @if($singlegallery->discountprice)
                                 <h4 class="product-price"><strike>{{'$'.$singlegallery->product->price}}</strike></h4>
-                                <h4 class="product-price">{{'$'.$singlegallery->discountprice. "--"}}{{$singlegallery->discountoffer."%"}}</h4>
+                                <h4 class="product-price">{{'$'.$singlegallery->discountprice}}</h4>
+                                {{$singlegallery->discountoffer."%"}}
+                                @else
+                                <h4 class="product-price">{{'$'.$singlegallery->product->price}}</></h4>
+                                <h2 style='color:red'>{{$singlegallery->description}}</h2>
+                                @endif
                                 <p>{{$singlegallery->product->name}}</p>
+                                
                                 <!-- Add to Cart -->
                                 <form action="{{route('add-cart')}}" method='POST' class='nomargin'>
                                     @csrf
-                                    <input type="hidden" value='{{$singlegallery->price}}' name='price'>
+                                    @if($singlegallery->discountprice)
+                                    <input type="hidden" value='{{$singlegallery->discountprice}}' name='price'>
+                                    @else
+                                    <input type="hidden" value='{{$singlegallery->product->price}}' name='price'>
+                                    @endif
                                     <input type="hidden" value="{{Auth::id()}}" name='id'>
                                     @if (session()->has('message') && session()->get('productId')===$singlegallery->id)
                                     <div class="floating-message">
@@ -308,7 +319,20 @@
                                     <h4 class="product-price">{{'$'.$normalproducts->price}}</h4>
                                     <p>{{$normalproducts->name}}</p>
                                     <!-- Add to Cart -->
-                                    <a href="#" class="add-to-cart-btn">ADD TO CART</a>
+                                    <form action="{{route('add-cart')}}" method='POST' class='nomargin'>
+                                    @csrf
+                                    <input type="hidden" value='{{$normalproducts->price}}' name='price'>
+                                    <input type="hidden" value="{{Auth::id()}}" name='id'>
+                                    @if (session()->has('message') && session()->get('productId')===$singlegallery->id)
+                                    <div class="floating-message">
+                                        {{ session()->get('message')}}
+                                    </div>
+                                    @endif
+                                    <button type='submit' class="add-to-cart-btn cart_add"
+                                        data-id="{{$normalproducts->id}}" value='{{$normalproducts->id}}' name='productId'
+                                        data-user-id="{{Auth::id()}}">ADD TO CART</button>
+                                </form>
+                                    <!-- <a href="#" class="add-to-cart-btn">ADD TO CART</a> -->
                                 </div>
                             </div>
                             @endforeach

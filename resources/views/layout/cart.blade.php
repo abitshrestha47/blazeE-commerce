@@ -43,9 +43,19 @@
                                             <h6>{{$cartincart->name}}</h6>
                                             <input type="hidden" value="{{$cartincart->id}}" name='productid[]'>
                                         </td>
+                                        @if(!$cartincart->specialproduct)
                                         <td class="price"><span class='productprice'
                                                 data-price='{{$cartincart->price}}'>{{'$'.$cartincart->price}}</span>
                                         </td>
+                                        @else
+                                            @if($cartincart->specialproduct->discountprice)
+                                            <td class="price"><span class='productprice'
+                                                data-price='{{$cartincart->price}}'>{{'$'.$cartincart->specialproduct->discountprice}}</span>
+                                            @else
+                                            <td class="price"><span class='productprice'
+                                                data-price='{{$cartincart->price}}'>{{'$'.$cartincart->price}}</span>
+                                            @endif
+                                        @endif
                                         <td class="qty">
                                             <div class="quantity">
                                                 <span id='minus-{{$cartincart->id}}' class="qty-minus minus"

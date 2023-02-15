@@ -10,12 +10,19 @@ class DepartmentController extends Controller
 {
     //
     public function addDepartment(Request $req){
+        $validateData=$req->validate([
+            'deptname'=>'required',
+            'departmentImage'=>'required',
+        ]);
+
         $image=$req->file('departmentImage');
         $response=$image->store('dbimages','public');
         $department=new Department();
         $department->departmentName=$req->deptname;
         $department->departmentImage=$response;
         $department->save();
+
+        return back()->with('success','Department created successfully');
     }
     public function getDepartment(){
         return view('admin.departments');
