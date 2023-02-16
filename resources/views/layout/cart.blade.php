@@ -94,11 +94,11 @@
                                 <a href="shop-grid-left-sidebar.html">Continue shooping</a>
                             </div>
                             <div class="update-checkout w-50 text-right">
-                                <button type='submit'>Update cart</button>
+                                <button type='submit' class='btn' style="background:#dc1e3a;">Update cart</button>
     </form>
     <form action="{{route('clearevery')}}" method='post'>
         @csrf
-        <button type='submit' value='{{Auth::user()->id}}' name='od'>clear cart</button>
+        <button type='submit' value='{{Auth::user()->id}}' name='od'  class='btn' style="background:#dc1e3a;">clear cart</button>
     </form>
     </div>
     </div>
@@ -127,19 +127,19 @@
                 </div>
 
                 <div class="custom-control custom-radio mb-30">
-                    <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
+                    <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input" value="4.99">
                     <label class="custom-control-label d-flex align-items-center justify-content-between"
-                        for="customRadio1"><span>Next day delivery</span><span>$4.99</span></label>
+                        for="customRadio1"><span class="nextday">Next day delivery</span><span>$4.99</span></label>
                 </div>
 
                 <div class="custom-control custom-radio mb-30">
-                    <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
+                    <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input" value="1.99">
                     <label class="custom-control-label d-flex align-items-center justify-content-between"
-                        for="customRadio2"><span>Standard delivery</span><span>$1.99</span></label>
+                        for="customRadio2"><span class="standard">Standard delivery</span><span>$1.99</span></label>
                 </div>
 
                 <div class="custom-control custom-radio">
-                    <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input">
+                    <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input" value="0">
                     <label class="custom-control-label d-flex align-items-center justify-content-between"
                         for="customRadio3"><span>Personal Pickup</span><span>Free</span></label>
                 </div>
@@ -154,8 +154,8 @@
 
                 <ul class="cart-total-chart">
                     <li><span>Subtotal</span> <span class='subtotal' id='subtotal'></span></li>
-                    <li><span>Shipping</span> <span>Free</span></li>
-                    <li><span><strong>Total</strong></span> <span><strong>$59.90</strong></span></li>
+                    <li><span>Shipping</span> <span id='show'></span></li>
+                    <li><span><strong>Total</strong></span> <span id="total"><strong></strong></span></li>
                 </ul>
                 <a href="{{route('checkout')}}" class="btn karl-checkout-btn">Proceed to checkout</a>
             </div>
