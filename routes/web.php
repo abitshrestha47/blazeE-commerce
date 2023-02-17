@@ -140,6 +140,9 @@ Route::get('/aboutUs',[HomeController::class,'about'])->name('aboutUs');
 
 Route::post('/addimg',[UserController::class,'addImg'])->name('addimg');
 
+Route::post('/sendship',[CheckoutController::class,'datas'])->name('sendship');
+
+
 
 
 

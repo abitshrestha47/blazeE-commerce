@@ -148,9 +148,9 @@
                                         @endif
                                     @endforeach
                                 @endforeach
-                                <li><span>Subtotal</span> <span>$59.90</span></li>
-                                <li><span>Shipping</span> <span>Free</span></li>
-                                <li><span>Total</span> <span>$59.90</span></li>
+                                <li><span>Subtotal</span> <span>${{session('subtotal')}}</span></li>
+                                <li><span>Shipping</span> <span>${{session('shipping')}}</span></li>
+                                <li><span>Total</span> <span>${{session('total')}}</span></li>
                             </ul>
 
 

@@ -37,5 +37,32 @@ $(document).ready(function() {
             total.textContent = "$"+total1;
         });
     }
+    $(".click").click(function(){
+        var token = $('meta[name="csrf-token"]').attr('content');
+        $.ajaxSetup({
+            headers: {
+               'X-CSRF-TOKEN': token
+            }
+         });
+        var subtotal=$("#subtotal").text();
+        var subtotal1=parseFloat(subtotal.replace("$", ""));
+        var shipping=$("#show").text();
+        var shipping1=parseFloat(shipping.replace("$", ""));
+        var total=$("#total").text();
+        var total1=parseFloat(total.replace("$", ""));
+        $.ajax({
+            type:'POST',
+            url:'/sendship',
+            dataType:'html',
+            data:{
+                'subtotal':subtotal1,
+                'shipping':shipping1,
+                'total':total1
+            },
+            success:function(){
+                console.log('nfkds');
+            }
+        });
+    });
 
 });

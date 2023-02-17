@@ -2,6 +2,7 @@
 
 @section('contents')
 
+<meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Breadcrumb Section Begin -->
     <div class="breacrumb-section">
         <div class="container">
@@ -127,19 +128,19 @@
                 </div>
 
                 <div class="custom-control custom-radio mb-30">
-                    <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input" value="4.99">
+                    <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input click" value="4.99">
                     <label class="custom-control-label d-flex align-items-center justify-content-between"
                         for="customRadio1"><span class="nextday">Next day delivery</span><span>$4.99</span></label>
                 </div>
 
                 <div class="custom-control custom-radio mb-30">
-                    <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input" value="1.99">
+                    <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input click" value="1.99">
                     <label class="custom-control-label d-flex align-items-center justify-content-between"
                         for="customRadio2"><span class="standard">Standard delivery</span><span>$1.99</span></label>
                 </div>
 
                 <div class="custom-control custom-radio">
-                    <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input" value="0">
+                    <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input click" value="0">
                     <label class="custom-control-label d-flex align-items-center justify-content-between"
                         for="customRadio3"><span>Personal Pickup</span><span>Free</span></label>
                 </div>
@@ -157,7 +158,7 @@
                     <li><span>Shipping</span> <span id='show'></span></li>
                     <li><span><strong>Total</strong></span> <span id="total"><strong></strong></span></li>
                 </ul>
-                <a href="{{route('checkout')}}" class="btn karl-checkout-btn">Proceed to checkout</a>
+                <a href="{{route('checkout')}}" class="btn karl-checkout-btn" id="gotoorder">Proceed to checkout</a>
             </div>
         </div>
     </div>
@@ -166,7 +167,7 @@
     <!-- ****** Cart Area End ****** -->
 
 
-
+    <!-- <button type='submit' id="gotoorder">Proceed to checkout</button> -->
 
     <!-- Footer Section Begin -->
     <footer class="footer-section">

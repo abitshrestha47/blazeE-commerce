@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 class CheckoutController extends Controller
 {
     //
-    public function getDatas(){
+    public function getDatas(Request $req){
         if(Auth::check()){
             $userid = Auth::id();
             $cart=Cart::where('userid',$userid)->first();
@@ -31,5 +31,14 @@ class CheckoutController extends Controller
             $productsgive=Products::whereIn('id',$keys)->get();
             return view('layout.checkout',compact('productsgive','qty','price'));
         }
+    }
+    public function datas(Request $req){
+        $subtotal=$req->subtotal;
+        $total=$req->total;
+        $shipping=$req->shipping;
+
+        $req->session()->put('subtotal', $subtotal);
+        $req->session()->put('total', $total);
+        $req->session()->put('shipping', $shipping);
     }
 }

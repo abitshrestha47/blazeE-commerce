@@ -97,4 +97,7 @@ class CartController extends Controller
         }
         return view('layout.cart',compact('cart','productData','count','productIds','product_qty','pricesent'));
     }
+    public function getShip(Request $req){
+        
+    }
 }
