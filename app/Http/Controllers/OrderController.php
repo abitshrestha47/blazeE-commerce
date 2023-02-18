@@ -15,20 +15,31 @@ class OrderController extends Controller
             $userid=Auth::id();
             $products=$req->products;
             $products_encode=json_encode($products);
-            $order=Order::create([
-                'firstName'=>$req->firstname,
-                'lastName'=>$req->lastname,
-                'companyName'=>$req->company,
-                'country'=>$req->country,
-                'street1'=>$req->streetaddress1,
-                'street2'=>$req->streetaddress2,
-                'town'=>$req->town,
-                'province'=>$req->province,
-                'email'=>$req->email,
-                'phone'=>$req->phone,
-                'products'=>$products_encode,
-                'userid'=>$userid,
-            ]);
+            $orderall=Order::all();
+            foreach($orderall as $idcheck){
+                if($idcheck->userid==$userid){
+                    $maketrue=true;
+                }
+            }
+            if(!$maketrue){
+                $order=Order::create([
+                    'firstName'=>$req->firstname,
+                    'lastName'=>$req->lastname,
+                    'companyName'=>$req->company,
+                    'country'=>$req->country,
+                    'street1'=>$req->streetaddress1,
+                    'street2'=>$req->streetaddress2,
+                    'town'=>$req->town,
+                    'province'=>$req->province,
+                    'email'=>$req->email,
+                    'phone'=>$req->phone,
+                    'products'=>$products_encode,
+                    'userid'=>$userid,
+                ]);
+            }
+            else{
+                dd('fjlsd');
+            }
         }
     }
     public function orders(){
