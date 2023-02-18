@@ -46,7 +46,7 @@
                     @auth
                     <a href="{{route('logout')}}" class="login-panel"><i
                             class="fa-sharp fa-solid fa-right-to-bracket"></i>Logout</a>
-                    <a href="#" class='login-panel'><i class="fa fa-user"></i>{{Auth::user()->username}}
+                    <a href="{{route('user-info')}}" class='login-panel'><i class="fa fa-user"></i>{{Auth::user()->username}}
                     </a>
                     @endauth
                     <div class="top-social">

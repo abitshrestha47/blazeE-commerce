@@ -1,5 +1,5 @@
 $(document).ready(function(){
-  var startDate=moment().utc();
+  var startDate=moment(dateValue,'YYYY-MM-DD').utc();
   var endingDate = moment(endDate, 'YYYY-MM-DD').utc();
   var duration = moment.duration(endingDate.diff(startDate));
   var month=Math.floor(duration.asMonths());

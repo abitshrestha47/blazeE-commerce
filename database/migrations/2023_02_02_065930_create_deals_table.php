@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('dealDescription');
             $table->float('dealPrice');
             $table->string('dealBackgroundImage');
-            $table->date('endDate');
+            $table->datetime('endDate');
             $table->unsignedBigInteger('product_id');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->boolean('toshow')->default(false);

@@ -149,6 +149,10 @@ Route::post('/postorder',[OrderController::class,'postOrder'])->name('postorder'
 
 Route::get('/order',[OrderController::class,'orders'])->name('order');
 
+Route::get('/userinfo',[UserController::class,'userinfo'])->name('user-info');
+
+Route::post('/changepass',[UserController::class,'changePass'])->name('changepass');
+
 
 
 

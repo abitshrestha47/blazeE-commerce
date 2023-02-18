@@ -678,6 +678,7 @@
     <script src="home/js/main.js"></script>
     <script>
     var endDate = '<?php echo json_encode($endDate); ?>';
+    var dateValue='<?php echo json_encode($dateValue); ?>';
     </script>
     <script src="{{asset('home/js/department.js')}}"></script>
     <script src="{{asset('home/js/index.js')}}"></script>

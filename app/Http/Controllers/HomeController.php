@@ -33,9 +33,15 @@ class HomeController extends Controller
         $products=Products::all();
         $dealsort=Deal::where('toshow',true)->get();
         $endDate=null;
+        $dateValue = null;
+        $startdate=null;
         $deal=Deal::all();
         foreach($deal as $d){
-            $endDate=$d->endDate;
+            if($d->toshow==1){
+                $startdate=$d->created_at;
+                $endDate=$d->endDate;
+                $dateValue = $startdate->format('Y-m-d  H:i:s');
+            }
         }
         $departments=Department::all();
         $bigposter=Bigposter::all();
@@ -57,7 +63,7 @@ class HomeController extends Controller
             $count=0;
         }
 
-        return view('layout.index',compact('category','products','latestproducts','bigposter','count','productData','departments','deal','endDate','dealsort','specialproduct'));
+        return view('layout.index',compact('category','products','latestproducts','bigposter','count','productData','departments','deal','endDate','dealsort','specialproduct','dateValue'));
     }
 
     public function shop(Request $request){
