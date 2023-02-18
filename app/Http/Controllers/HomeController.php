@@ -11,6 +11,7 @@ use App\Models\Bigposter;
 use App\Models\Department;
 use App\Models\Deal;
 use App\Models\Contact;
+use App\Models\SpecialProduct;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
@@ -28,6 +29,7 @@ class HomeController extends Controller
         return view('layout.contact');
     }
     public function main(){
+        $specialproduct=SpecialProduct::all();
         $products=Products::all();
         $dealsort=Deal::where('toshow',true)->get();
         $endDate=null;
@@ -44,15 +46,18 @@ class HomeController extends Controller
         $exist = Cart::where('userid', $userId)->first();
         if ($exist) {
             $productIds = json_decode($exist->product_ids, true);
-            $count = count($productIds);
-            $productData = Products::whereIn('id', $productIds)->get();
+            foreach($productIds as $getids){
+                $product_keys[]=$getids['productid'];
+            }
+            $count = count($product_keys);
+            $productData = Products::whereIn('id', $product_keys)->get();
         } 
         else {
             $productData = [];
             $count=0;
         }
 
-        return view('layout.index',compact('category','products','latestproducts','bigposter','count','productData','departments','deal','endDate','dealsort'));
+        return view('layout.index',compact('category','products','latestproducts','bigposter','count','productData','departments','deal','endDate','dealsort','specialproduct'));
     }
 
     public function shop(Request $request){
@@ -65,10 +70,13 @@ class HomeController extends Controller
         $cart=Cart::all();
         $userId=Auth::id();
         $exist = Cart::where('userid', $userId)->first();
-        if ($exist){
+        if ($exist) {
             $productIds = json_decode($exist->product_ids, true);
-            $count = count($productIds); 
-            $productData = Products::whereIn('id', $productIds)->get();
+            foreach($productIds as $getids){
+                $product_keys[]=$getids['productid'];
+            }
+            $count = count($product_keys);
+            $productData = Products::whereIn('id', $product_keys)->get();
         } 
         else {
             $productData = [];

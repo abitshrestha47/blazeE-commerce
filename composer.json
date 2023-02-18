@@ -63,5 +63,9 @@
         }
     },
     "minimum-stability": "dev",
-    "prefer-stable": true
+    "prefer-stable": true,
+
+
+    "illuminate/notifications": "^7.0"
+
 }

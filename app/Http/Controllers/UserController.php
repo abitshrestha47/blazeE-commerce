@@ -29,6 +29,13 @@ class UserController extends Controller
         return redirect()->route('login');
     }
     public function logging(Request $req){
+        $req->validate([
+            'email'=>'required',
+            'password'=>'required',
+        ],
+        [
+            'email.required'=>'email should be empty',
+        ]);
         if(Auth::attempt(['email' => $req->email,'password'=>$req->password])){
             $usertype=Auth::user()->usertype;
             if($usertype==='1'){
@@ -50,8 +57,7 @@ class UserController extends Controller
     public function forgot(){
         return view('layout.forgot');
     }
-    public function reset(){
-    }
+
     public function addImg(Request $req){
         $image=$req->file('image');
         $response=$image->store('dbimages','public');

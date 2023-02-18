@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Products;
+use App\Models\Category;
+use App\Models\Brand;
 
 class ProductsController extends Controller
 {
@@ -23,5 +25,11 @@ class ProductsController extends Controller
             'size'=>$req->size,
         ]);
         return back()->with('msg','Products added Successfully!');
+    }
+    public function addProducts(){
+        $products=Products::all();
+        $brand=Brand::all();
+        $category=Category::all();
+        return view('admin.addproducts',compact('products','category','brand'));
     }
 }

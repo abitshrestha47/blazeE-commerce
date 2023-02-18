@@ -51,6 +51,9 @@
     <div class="form-group">
         <input type="email" required="required" class="form-control" name="email" tabindex='1'/>
         <label class="form-label">Email</label>
+        @if($errors->has('email'))
+            <div class="alert alert-danger">{{$errors->first('email')}}</div>
+        @endif
     </div>
     <div class="form-group">
         <input id="password" tabindex='2' name="password" type="password" required="required" class="form-control"/>

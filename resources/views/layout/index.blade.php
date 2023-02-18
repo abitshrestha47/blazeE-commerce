@@ -33,7 +33,7 @@
     <link rel="stylesheet" href="home/css/style.css" type="text/css">
     <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js"></script>
 
-    
+
 </head>
 
 <body>
@@ -85,19 +85,19 @@
             <div class="row">
                 @if(isset($departments))
                 @foreach($departments->slice(0,3) as $banner)
-                 <div class="col-lg-4">
+                <div class="col-lg-4">
                     <div class="single-banner">
-                        <img src="{{$banner->departmentImage}}" alt="">
+                        <img  src="{{asset('/storage/'.$banner->departmentImage)}}" alt="">
                         <div class="inner-text">
                             <h4 class='clickit' data-value='{{$banner->id}}'>
                                 {{$banner->departmentName}}</h4>
                         </div>
                     </div>
+                </div>
+                @endforeach
+                @endif
             </div>
-            @endforeach
-            @endif
         </div>
-    </div>
     </div>
     <!-- Banner Section End -->
 
@@ -119,35 +119,53 @@
                     <div class="product-slider owl-carousel">
 
                         <!-- Single gallery Item -->
-                        @foreach($products as $singlegallery)
-                        @if($singlegallery->choices==='1')
+                        @if(isset($specialproduct))
+                        @foreach($specialproduct as $singlegallery)
                         <div class="single_gallery_item wow fadeInUpBig" data-wow-delay="0.5s">
                             <!-- Product Image -->
                             <div class="product-img">
-                                <img src="{{$singlegallery->photo}}" alt="">
+                                <img src="{{$singlegallery->product->photo}}" alt="">
                                 <div class="product-quicview">
                                     <a href="#" data-toggle="modal" data-target="#quickview"
-                                        data-id="{{ $singlegallery->id}}" id="productModalLink"
+                                        data-id="{{ $singlegallery->product->id}}" id="productModalLink"
                                         class='productModalLink'><i class="ti-plus"></i></a>
                                     <!-- <a href="#" data-toggle="modal" data-target="#quickview"><i class="ti-plus"></i></a> -->
                                 </div>
                             </div>
                             <!-- Product Description -->
                             <div class="product-description">
-                                <h4 class="product-price">{{'$'.$singlegallery->price}}</h4>
-                                <p>{{$singlegallery->name}}</p>
+                                @if($singlegallery->discountprice)
+                                <h4 class="product-price"><strike>{{'$'.$singlegallery->product->price}}</strike></h4>
+                                <h4 class="product-price">{{'$'.$singlegallery->discountprice}}</h4>
+                                {{$singlegallery->discountoffer."%"}}
+                                @else
+                                <h4 class="product-price">{{'$'.$singlegallery->product->price}}</></h4>
+                                <h2 style='color:red'>{{$singlegallery->description}}</h2>
+                                @endif
+                                <p>{{$singlegallery->product->name}}</p>
+                                
                                 <!-- Add to Cart -->
                                 <form action="{{route('add-cart')}}" method='POST' class='nomargin'>
                                     @csrf
+                                    @if($singlegallery->discountprice)
+                                    <input type="hidden" value='{{$singlegallery->discountprice}}' name='price'>
+                                    @else
+                                    <input type="hidden" value='{{$singlegallery->product->price}}' name='price'>
+                                    @endif
                                     <input type="hidden" value="{{Auth::id()}}" name='id'>
+                                    @if (session()->has('message') && session()->get('productId')===$singlegallery->id)
+                                    <div class="floating-message">
+                                        {{ session()->get('message')}}
+                                    </div>
+                                    @endif
                                     <button type='submit' class="add-to-cart-btn cart_add"
-                                        data-id="{{$singlegallery->id}}" value='{{$singlegallery->id}}' name='productId'
+                                        data-id="{{$singlegallery->product->id}}" value='{{$singlegallery->product->id}}' name='productId'
                                         data-user-id="{{Auth::id()}}">ADD TO CART</button>
                                 </form>
                             </div>
                         </div>
-                        @endif
                         @endforeach
+                        @endif
                     </div>
                 </div>
             </div>
@@ -182,31 +200,34 @@
                                             <i class="fa fa-star" aria-hidden="true"></i>
                                             <i class="fa fa-star" aria-hidden="true"></i>
                                             <i class="fa fa-star" aria-hidden="true"></i>
-                                        </div> 
+                                        </div>
                                         <!-- <h5 class="price">$120.99 <span>$130</span></h5> -->
                                         <h4><strong>Price:</strong> <span class="product-price"></span></h4>
-                                        <p class="des">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia
+                                        <p class="des">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                            Mollitia
                                             expedita
                                             quibusdam aspernatur, sapiente consectetur accusantium perspiciatis
                                             praesentium eligendi, in fugiat?</p>
-                                        <a href="{{route('readmore')}}"><button type="submit" class="buton">Read More</button></a>
-                                        
-                                         <div class="quantity mt-3">
-                                                <h4><strong>Quantity:</strong></h4>
-                                                <span class="qty-minus"
-                                                    onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i
-                                                        class="fa fa-minus" aria-hidden="true"></i></span>
+                                        <a href="{{route('readmore')}}"><button type="submit" class="buton">Read
+                                                More</button></a>
 
-                                                <input type="number" class="qty-text" id="qty" step="1" min="1" max="12"
-                                                    name="quantity" value="1">
+                                        <div class="quantity mt-3">
+                                            <h4><strong>Quantity:</strong></h4>
+                                            <span class="qty-minus"
+                                                onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i
+                                                    class="fa fa-minus" aria-hidden="true"></i></span>
 
-                                                <span class="qty-plus"
-                                                    onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i
-                                                        class="fa fa-plus" aria-hidden="true"></i></span>
-                                                <div class="modal_pro_cart">
-                                                    <a href="{{route('cart')}}" target="_blank"><i class="fa-solid fa-cart-shopping"></i></a>
-                                                </div>
+                                            <input type="number" class="qty-text" id="qty" step="1" min="1" max="12"
+                                                name="quantity" value="1">
+
+                                            <span class="qty-plus"
+                                                onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i
+                                                    class="fa fa-plus" aria-hidden="true"></i></span>
+                                            <div class="modal_pro_cart">
+                                                <a href="{{route('cart')}}" target="_blank"><i
+                                                        class="fa-solid fa-cart-shopping"></i></a>
                                             </div>
+                                        </div>
                                         <div class="share_wf mt-15">
                                             <p><Strong>Share With Friend</Strong></p>
                                             <div class="_icon">
@@ -218,7 +239,7 @@
                                         </div>
                                     </div>
 
-                                </div> 
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -232,7 +253,7 @@
     <!-- Deal Of The Week Section Begin-->
     @if(isset($dealsort))
     @foreach($dealsort as $deal)
-     <section class="deal-of-week set-bg spad" data-setbg="{{asset('/storage/'.$deal->dealBackgroundImage)}}">
+    <section class="deal-of-week set-bg spad" data-setbg="{{asset('/storage/'.$deal->dealBackgroundImage)}}">
         <div class="container">
             <div class="col-lg-6 text-center">
                 <div class="section-title">
@@ -264,10 +285,10 @@
                 <a href="#" class="primary-btn">Shop Now</a>
             </div>
         </div>
-        </section>
-        @endforeach
-        @endif
-        <!-- Deal Of The Week Section End -->
+    </section>
+    @endforeach
+    @endif
+    <!-- Deal Of The Week Section End -->
 
 
     <!-- Man Banner Section Begin -->
@@ -284,228 +305,241 @@
                             <div class="single_gallery_item wow fadeInUpBig" data-wow-delay="0.4s">
                                 <!-- Product Image -->
                                 <div class="product-img">
-                                    <img src="{{$normalproducts->photo}}" alt="">
+                                    <img src="{{asset('/storage/'.$normalproducts->photo)}}" alt="">
                                     <div class="product-quicview">
                                         <!-- <a href="#" data-toggle="modal" data-target="#quickview"><i
                                                 class="ti-plus"></i></a> -->
-                                            <a href="#" data-toggle="modal" data-target="#quickview"
-                                                data-id="{{$normalproducts->id}}" id="productModalLink"
-                                                class='productModalLink'><i class="ti-plus"></i></a>
-                                        </div>
-                                    </div>
-                                    <!-- Product Description -->
-                                    <div class="product-description">
-                                        <h4 class="product-price">{{'$'.$normalproducts->price}}</h4>
-                                        <p>{{$normalproducts->name}}</p>
-                                        <!-- Add to Cart -->
-                                        <a href="#" class="add-to-cart-btn">ADD TO CART</a>
+                                        <a href="#" data-toggle="modal" data-target="#quickview"
+                                            data-id="{{$normalproducts->id}}" id="productModalLink"
+                                            class='productModalLink'><i class="ti-plus"></i></a>
                                     </div>
                                 </div>
-                                @endforeach
+                                <!-- Product Description -->
+                                <div class="product-description">
+                                    <h4 class="product-price">{{'$'.$normalproducts->price}}</h4>
+                                    <p>{{$normalproducts->name}}</p>
+                                    <!-- Add to Cart -->
+                                    <form action="{{route('add-cart')}}" method='POST' class='nomargin'>
+                                    @csrf
+                                    <input type="hidden" value='{{$normalproducts->price}}' name='price'>
+                                    <input type="hidden" value="{{Auth::id()}}" name='id'>
+                                    @if (session()->has('message') && session()->get('productId')===$singlegallery->id)
+                                    <div class="floating-message">
+                                        {{ session()->get('message')}}
+                                    </div>
+                                    @endif
+                                    <button type='submit' class="add-to-cart-btn cart_add"
+                                        data-id="{{$normalproducts->id}}" value='{{$normalproducts->id}}' name='productId'
+                                        data-user-id="{{Auth::id()}}">ADD TO CART</button>
+                                </form>
+                                    <!-- <a href="#" class="add-to-cart-btn">ADD TO CART</a> -->
+                                </div>
                             </div>
+                            @endforeach
                         </div>
                     </div>
-                    <div class="col-lg-3 offset-lg-1">
-                        <div class="product-large set-bg m-large" data-setbg="img/products/man-large.jpg">
-                            <a href="#">Discover More</a>
+                </div>
+                <div class="col-lg-3 offset-lg-1">
+                    <div class="product-large set-bg m-large" data-setbg="img/products/man-large.jpg">
+                        <a href="#">Discover More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Man Banner Section End -->
+    <!-- Latest Blog Section Begin -->
+    <section class="latest-blog spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title">
+                        <h2>From The Blog</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-latest-blog">
+                        <img src="img/latest-1.jpg" alt="">
+                        <div class="latest-text">
+                            <div class="tag-list">
+                                <div class="tag-item">
+                                    <i class="fa fa-calendar-o"></i>
+                                    May 4,2019
+                                </div>
+                                <div class="tag-item">
+                                    <i class="fa fa-comment-o"></i>
+                                    5
+                                </div>
+                            </div>
+                            <a href="#">
+                                <h4>The Best Street Style From London Fashion Week</h4>
+                            </a>
+                            <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-latest-blog">
+                        <img src="img/latest-2.jpg" alt="">
+                        <div class="latest-text">
+                            <div class="tag-list">
+                                <div class="tag-item">
+                                    <i class="fa fa-calendar-o"></i>
+                                    May 4,2019
+                                </div>
+                                <div class="tag-item">
+                                    <i class="fa fa-comment-o"></i>
+                                    5
+                                </div>
+                            </div>
+                            <a href="#">
+                                <h4>Vogue's Ultimate Guide To Autumn/Winter 2019 Shoes</h4>
+                            </a>
+                            <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-latest-blog">
+                        <img src="img/latest-3.jpg" alt="">
+                        <div class="latest-text">
+                            <div class="tag-list">
+                                <div class="tag-item">
+                                    <i class="fa fa-calendar-o"></i>
+                                    May 4,2019
+                                </div>
+                                <div class="tag-item">
+                                    <i class="fa fa-comment-o"></i>
+                                    5
+                                </div>
+                            </div>
+                            <a href="#">
+                                <h4>How To Brighten Your Wardrobe With A Dash Of Lime</h4>
+                            </a>
+                            <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-        <!-- Man Banner Section End -->
-        <!-- Latest Blog Section Begin -->
-        <section class="latest-blog spad">
-            <div class="container">
+            <div class="benefit-items">
                 <div class="row">
-                    <div class="col-lg-12">
-                        <div class="section-title">
-                            <h2>From The Blog</h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-4 col-md-6">
-                        <div class="single-latest-blog">
-                            <img src="img/latest-1.jpg" alt="">
-                            <div class="latest-text">
-                                <div class="tag-list">
-                                    <div class="tag-item">
-                                        <i class="fa fa-calendar-o"></i>
-                                        May 4,2019
-                                    </div>
-                                    <div class="tag-item">
-                                        <i class="fa fa-comment-o"></i>
-                                        5
-                                    </div>
-                                </div>
-                                <a href="#">
-                                    <h4>The Best Street Style From London Fashion Week</h4>
-                                </a>
-                                <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat
-                                </p>
+                    <div class="col-lg-4">
+                        <div class="single-benefit">
+                            <div class="sb-icon">
+                                <img src="img/icon-1.png" alt="">
+                            </div>
+                            <div class="sb-text">
+                                <h6>Free Shipping</h6>
+                                <p>For all order over 99$</p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="single-latest-blog">
-                            <img src="img/latest-2.jpg" alt="">
-                            <div class="latest-text">
-                                <div class="tag-list">
-                                    <div class="tag-item">
-                                        <i class="fa fa-calendar-o"></i>
-                                        May 4,2019
-                                    </div>
-                                    <div class="tag-item">
-                                        <i class="fa fa-comment-o"></i>
-                                        5
-                                    </div>
-                                </div>
-                                <a href="#">
-                                    <h4>Vogue's Ultimate Guide To Autumn/Winter 2019 Shoes</h4>
-                                </a>
-                                <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat
-                                </p>
+                    <div class="col-lg-4">
+                        <div class="single-benefit">
+                            <div class="sb-icon">
+                                <img src="img/icon-2.png" alt="">
+                            </div>
+                            <div class="sb-text">
+                                <h6>Delivery On Time</h6>
+                                <p>If good have prolems</p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="single-latest-blog">
-                            <img src="img/latest-3.jpg" alt="">
-                            <div class="latest-text">
-                                <div class="tag-list">
-                                    <div class="tag-item">
-                                        <i class="fa fa-calendar-o"></i>
-                                        May 4,2019
-                                    </div>
-                                    <div class="tag-item">
-                                        <i class="fa fa-comment-o"></i>
-                                        5
-                                    </div>
-                                </div>
-                                <a href="#">
-                                    <h4>How To Brighten Your Wardrobe With A Dash Of Lime</h4>
-                                </a>
-                                <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat
-                                </p>
+                    <div class="col-lg-4">
+                        <div class="single-benefit">
+                            <div class="sb-icon">
+                                <img src="img/icon-1.png" alt="">
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="benefit-items">
-                    <div class="row">
-                        <div class="col-lg-4">
-                            <div class="single-benefit">
-                                <div class="sb-icon">
-                                    <img src="img/icon-1.png" alt="">
-                                </div>
-                                <div class="sb-text">
-                                    <h6>Free Shipping</h6>
-                                    <p>For all order over 99$</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="single-benefit">
-                                <div class="sb-icon">
-                                    <img src="img/icon-2.png" alt="">
-                                </div>
-                                <div class="sb-text">
-                                    <h6>Delivery On Time</h6>
-                                    <p>If good have prolems</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="single-benefit">
-                                <div class="sb-icon">
-                                    <img src="img/icon-1.png" alt="">
-                                </div>
-                                <div class="sb-text">
-                                    <h6>Secure Payment</h6>
-                                    <p>100% secure payment</p>
-                                </div>
+                            <div class="sb-text">
+                                <h6>Secure Payment</h6>
+                                <p>100% secure payment</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-        <!-- latest blog end -->
+        </div>
+    </section>
+    <!-- latest blog end -->
 
-        <!-- Instagram Section Begin -->
-        <div class="instagram-photo">
-            <div class="insta-item set-bg" data-setbg="img/insta-1.jpg">
-                <div class="inside-text">
-                    <i class="ti-instagram"></i>
-                    <h5><a href="#">colorlib_Collection</a></h5>
-                </div>
+    <!-- Instagram Section Begin -->
+    <div class="instagram-photo">
+        <div class="insta-item set-bg" data-setbg="img/insta-1.jpg">
+            <div class="inside-text">
+                <i class="ti-instagram"></i>
+                <h5><a href="#">colorlib_Collection</a></h5>
             </div>
-            <div class="insta-item set-bg" data-setbg="img/insta-2.jpg">
-                <div class="inside-text">
-                    <i class="ti-instagram"></i>
-                    <h5><a href="#">colorlib_Collection</a></h5>
-                </div>
+        </div>
+        <div class="insta-item set-bg" data-setbg="img/insta-2.jpg">
+            <div class="inside-text">
+                <i class="ti-instagram"></i>
+                <h5><a href="#">colorlib_Collection</a></h5>
             </div>
-            <div class="insta-item set-bg" data-setbg="img/insta-3.jpg">
-                <div class="inside-text">
-                    <i class="ti-instagram"></i>
-                    <h5><a href="#">colorlib_Collection</a></h5>
-                </div>
+        </div>
+        <div class="insta-item set-bg" data-setbg="img/insta-3.jpg">
+            <div class="inside-text">
+                <i class="ti-instagram"></i>
+                <h5><a href="#">colorlib_Collection</a></h5>
             </div>
-            <div class="insta-item set-bg" data-setbg="img/insta-4.jpg">
-                <div class="inside-text">
-                    <i class="ti-instagram"></i>
-                    <h5><a href="#">colorlib_Collection</a></h5>
-                </div>
+        </div>
+        <div class="insta-item set-bg" data-setbg="img/insta-4.jpg">
+            <div class="inside-text">
+                <i class="ti-instagram"></i>
+                <h5><a href="#">colorlib_Collection</a></h5>
             </div>
-            <div class="insta-item set-bg" data-setbg="img/insta-5.jpg">
-                <div class="inside-text">
-                    <i class="ti-instagram"></i>
-                    <h5><a href="#">colorlib_Collection</a></h5>
-                </div>
+        </div>
+        <div class="insta-item set-bg" data-setbg="img/insta-5.jpg">
+            <div class="inside-text">
+                <i class="ti-instagram"></i>
+                <h5><a href="#">colorlib_Collection</a></h5>
             </div>
-            <div class="insta-item set-bg" data-setbg="img/insta-6.jpg">
-                <div class="inside-text">
-                    <i class="ti-instagram"></i>
-                    <h5><a href="#">colorlib_Collection</a></h5>
+        </div>
+        <div class="insta-item set-bg" data-setbg="img/insta-6.jpg">
+            <div class="inside-text">
+                <i class="ti-instagram"></i>
+                <h5><a href="#">colorlib_Collection</a></h5>
+            </div>
+        </div>
+    </div>
+    <!-- Instagram Section End -->
+    <!-- Partner Logo Section Begin -->
+    <div class="partner-logo">
+        <div class="container">
+            <div class="logo-carousel owl-carousel">
+                <div class="logo-item">
+                    <div class="tablecell-inner">
+                        <img src="img/logo-carousel/logo-1.png" alt="">
+                    </div>
+                </div>
+                <div class="logo-item">
+                    <div class="tablecell-inner">
+                        <img src="img/logo-carousel/logo-2.png" alt="">
+                    </div>
+                </div>
+                <div class="logo-item">
+                    <div class="tablecell-inner">
+                        <img src="img/logo-carousel/logo-3.png" alt="">
+                    </div>
+                </div>
+                <div class="logo-item">
+                    <div class="tablecell-inner">
+                        <img src="img/logo-carousel/logo-4.png" alt="">
+                    </div>
+                </div>
+                <div class="logo-item">
+                    <div class="tablecell-inner">
+                        <img src="img/logo-carousel/logo-5.png" alt="">
+                    </div>
                 </div>
             </div>
         </div>
-        <!-- Instagram Section End -->
-        <!-- Partner Logo Section Begin -->
-        <div class="partner-logo">
-            <div class="container">
-                <div class="logo-carousel owl-carousel">
-                    <div class="logo-item">
-                        <div class="tablecell-inner">
-                            <img src="img/logo-carousel/logo-1.png" alt="">
-                        </div>
-                    </div>
-                    <div class="logo-item">
-                        <div class="tablecell-inner">
-                            <img src="img/logo-carousel/logo-2.png" alt="">
-                        </div>
-                    </div>
-                    <div class="logo-item">
-                        <div class="tablecell-inner">
-                            <img src="img/logo-carousel/logo-3.png" alt="">
-                        </div>
-                    </div>
-                    <div class="logo-item">
-                        <div class="tablecell-inner">
-                            <img src="img/logo-carousel/logo-4.png" alt="">
-                        </div>
-                    </div>
-                    <div class="logo-item">
-                        <div class="tablecell-inner">
-                            <img src="img/logo-carousel/logo-5.png" alt="">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Partner Logo Section End -->
+    </div>
+    <!-- Partner Logo Section End -->
 
 
     <!-- Footer Section Begin -->
@@ -588,64 +622,64 @@
         </div>
     </footer>
     <!-- Footer Section End -->
-        <script>
-        $(document).ready(function() {
-            $(".normal").click(function() {
-                var test = $(this).val();
-                $.ajax({
-                    type: 'GET',
-                    datatype: 'html',
-                    url: '{{url("/abc")}}',
-                    data: {
-                        'test': test
-                    },
-                    success: function(response) {
-                        $('#test').html(response);
-                    }
-                });
-            });
-
-        });
-        $('.productModalLink').click(function() {
-            var productId = $(this).data('id');
+    <script>
+    $(document).ready(function() {
+        $(".normal").click(function() {
+            var test = $(this).val();
             $.ajax({
-                url: '/get-product/' + productId,
                 type: 'GET',
-                success: function(data) {
-                    $('#quickview').find('.product-name').text(data.name);
-                    $('#quickview').find('.product-price').text(data.price);
-                    $('#quickview').find('.product-brand').text(data.brand);
-                    $('#quickview').find('.product-img').attr('src', data.photo);
+                datatype: 'html',
+                url: '{{url("/abc")}}',
+                data: {
+                    'test': test
+                },
+                success: function(response) {
+                    $('#test').html(response);
                 }
             });
         });
-        </script>
-        <!-- Js Plugins -->
-        <script src="home/js/jquery/jquery-2.2.4.min.js"></script>
-        <!-- Popper js -->
-        <script src="home/js/popper.min.js"></script>
-        <!-- Bootstrap js -->
-        <script src="home/js/bootstrap.min.js"></script>
-        <!-- Plugins js -->
-        <script src="home/js/plugins.js"></script>
-        <!-- Active js -->
-        <script src="home/js/active.js"></script>
-        <!-- Js Plugins -->
-        <script src="https://cdn.lordicon.com/fudrjiwc.js"></script>
-        <script src="home/js/jquery-3.3.1.min.js"></script>
-        <script src="home/js/bootstrap.min.js"></script>
-        <script src="home/js/jquery-ui.min.js"></script>
-        <script src="home/js/jquery.countdown.min.js"></script>
-        <script src="home/js/jquery.nice-select.min.js"></script>
-        <script src="home/js/jquery.zoom.min.js"></script>
-        <script src="home/js/jquery.dd.min.js"></script>
-        <script src="home/js/jquery.slicknav.js"></script>
-        <script src="home/js/owl.carousel.min.js"></script>
-        <script src="home/js/main.js"></script>
-        <script>
-            var endDate = '<?php echo json_encode($endDate); ?>';
-            </script>
-        <script src="{{asset('home/js/department.js')}}"></script>
-        <script src="{{asset('home/js/index.js')}}"></script>
-        <!-- Latest Blog Section End -->
-        @endsection
+
+    });
+    $('.productModalLink').click(function() {
+        var productId = $(this).data('id');
+        $.ajax({
+            url: '/get-product/' + productId,
+            type: 'GET',
+            success: function(data) {
+                $('#quickview').find('.product-name').text(data.name);
+                $('#quickview').find('.product-price').text(data.price);
+                $('#quickview').find('.product-brand').text(data.brand);
+                $('#quickview').find('.product-img').attr('src', data.photo);
+            }
+        });
+    });
+    </script>
+    <!-- Js Plugins -->
+    <script src="home/js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="home/js/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="home/js/bootstrap.min.js"></script>
+    <!-- Plugins js -->
+    <script src="home/js/plugins.js"></script>
+    <!-- Active js -->
+    <script src="home/js/active.js"></script>
+    <!-- Js Plugins -->
+    <script src="https://cdn.lordicon.com/fudrjiwc.js"></script>
+    <script src="home/js/jquery-3.3.1.min.js"></script>
+    <script src="home/js/bootstrap.min.js"></script>
+    <script src="home/js/jquery-ui.min.js"></script>
+    <script src="home/js/jquery.countdown.min.js"></script>
+    <script src="home/js/jquery.nice-select.min.js"></script>
+    <script src="home/js/jquery.zoom.min.js"></script>
+    <script src="home/js/jquery.dd.min.js"></script>
+    <script src="home/js/jquery.slicknav.js"></script>
+    <script src="home/js/owl.carousel.min.js"></script>
+    <script src="home/js/main.js"></script>
+    <script>
+    var endDate = '<?php echo json_encode($endDate); ?>';
+    </script>
+    <script src="{{asset('home/js/department.js')}}"></script>
+    <script src="{{asset('home/js/index.js')}}"></script>
+    <!-- Latest Blog Section End -->
+    @endsection

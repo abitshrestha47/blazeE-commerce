@@ -103,7 +103,15 @@
                                                             width='80vw' height='80vw'></td>
                                                     <td class="si-text">
                                                         <div class="product-selected">
+                                                            @if(!$cart->specialproduct)
                                                             <p>{{'$'.$cart->price}}</p>
+                                                            @else
+                                                                @if($cart->specialproduct->discountprice)
+                                                                    <p>{{'$'.$cart->specialproduct->discountprice}}</p>
+                                                                @else
+                                                                    <p>{{'$'.$cart->price}}</p>
+                                                                @endif
+                                                            @endif
                                                             <h6>{{$cart->name}}</h6>
                                                         </div>
                                                     </td>

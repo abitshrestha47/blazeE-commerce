@@ -14,6 +14,12 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\DealController;
 use App\Http\Controllers\TestController;
+use App\Http\Controllers\Test2Controller;
+use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\SpecialController;
+use App\Http\Controllers\ResetController;
+use App\Http\Controllers\OrderController;
+
 use PSpell\Config;
 
 /*
@@ -32,7 +38,6 @@ use PSpell\Config;
 Route::get('/',[HomeController::class,'main'])->name('main');
 
 Route::post('/',[HomeController::class,'main'])->name('main');
-
 
 Route::get('/signup',[HomeController::class,'signup'])->name('signup');
 
@@ -58,11 +63,19 @@ Route::get('/incDecprice',[CartController::class,'incDecprice'])->name('incDecpr
 
 Route::get('/checkout',[HomeController::class,'checkout'])->name('checkout');
 
+Route::get('/checkout',[CheckoutController::class,'getDatas'])->name('checkout');
+
 Route::get('/data',[HomeController::class,'data'])->name('data');
 
 Route::get('/logout',[UserController::class,'logout'])->name('logout');
 
 Route::get('/products',[AdminController::class,'products'])->name('products')->middleware('auth','admin');
+
+Route::get('/addproducts',[ProductsController::class,'addProducts'])->name('add-products');
+
+Route::get('/specialproducts',[SpecialController::class,'SpecialProducts'])->name('special-products');
+
+Route::post('/specialproducts',[SpecialController::class,'addSpecialProducts'])->name('special-products');
 
 Route::get('/priceFilter',[HomeController::class,'priceFilter'])->name('priceFilter');
 
@@ -120,12 +133,21 @@ Route::get('/test',[TestController::class,'test'])->name('test');
 
 Route::post('/test',[TestController::class,'test'])->name('test');
 
+Route::post('/clear',[TestController::class,'clear'])->name('clearevery');
+
 Route::get('/forgotit',[UserController::class,'forgot'])->name('forgotit');
 
-Route::post('/forgotit',[UserController::class,'reset'])->name('forgotit');
+Route::post('/forgotit',[ResetController::class,'reset'])->name('forgotit');
+
 Route::get('/aboutUs',[HomeController::class,'about'])->name('aboutUs');
 
 Route::post('/addimg',[UserController::class,'addImg'])->name('addimg');
+
+Route::post('/sendship',[CartController::class,'datas'])->name('sendship');
+
+Route::post('/postorder',[OrderController::class,'postOrder'])->name('postorder');
+
+Route::get('/order',[OrderController::class,'orders'])->name('order');
 
 
 

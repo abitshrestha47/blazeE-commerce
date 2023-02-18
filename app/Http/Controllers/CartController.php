@@ -9,45 +9,53 @@ use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
-    //
     public function addCart(Request $req){
         if(Auth::check()){
-            // $checkcart=Cart::all();
-            // $productId = $req->input('productId');
-            // $product=Products::find($productId);
-            // $cart=new Cart();
-            // $cart->userid=$req->input('id');
-            // $cart->productname=$product->name;
-            // $cart->productimg=$product->photo;
-            // $cart->productprice=$product->price;
-            // $cart->userid=Auth::id();
-            // $cart->productid=$product->id;
-            // $cart->save();
             $userid = Auth::id();
-            $checkcart = Cart::where('userid', $userid)->first();
-            if(!$checkcart){
-                $checkcart=new Cart;
-                $productId = $req->input('productId');
-                // $checkcart->product_ids = json_encode([
-                //     'id' => $productId
-                // ]);
-                $checkcart->product_ids=$id=json_encode([
-                    $productId
-                ]);
-                $checkcart->userid=Auth::id();
-                $checkcart->save();
-            }
-            else{
-                $productId = $req->input('productId');
-                $productIds = json_decode($checkcart->product_ids, true);
-                
-                if(!in_array($productId, $productIds)) {
-                    $productIds[] = $productId;
+            $checkcart = Cart::where('userid', $userid)->first();   
+            if(!$checkcart){   
+            $checkcart=new Cart;
+            $productId=(int)$req->input('productId');
+            $price=(int)$req->input('price');
+            $quantity=1; 
+            $productIds[] = [
+                'productid'=>$productId,
+                'qty' => $quantity,
+                'price' => $price,
+              ];
+            $checkcart->product_ids=json_encode(
+                $productIds
+            );
+            $checkcart->userid=Auth::id();
+            $checkcart->save();
+             }
+             else{
+                $productId=(int)$req->input('productId');
+                $price=(int)$req->input('price');
+                $productId=(int)$productId;
+                $quantity=1;
+                $productIds=json_decode($checkcart->product_ids,true);
+                $product_exists = false;
+                foreach($productIds as $key=>$value){
+                    if($value['productid']==$productId){
+                        $product_exists = true;
+                        break;
+                    }
                 }
-                
-                $checkcart->product_ids = json_encode($productIds);
-                $checkcart->save();
-            }
+                if (!$product_exists) {
+                    $newproductIds=[
+                        'productid'=>$productId,
+                        'qty'=>$quantity,
+                        'price'=>$price,
+                    ];
+                    array_push($productIds, $newproductIds);
+                    $checkcart->product_ids = json_encode($productIds);
+                    $checkcart->save();
+                }
+                else{
+                    return back();
+                }
+             }                             
         }
         else{
             return redirect()->route('login');
@@ -63,20 +71,40 @@ class CartController extends Controller
         return redirect()->back();
     }
     public function cart(Request $request){
-        // $getAllPrice=$request->input('getAllPrice');
-        // $sendAllPrice=array_sum($getAllPrice);
         $cart=Cart::all();
         $userId=Auth::id();
         $exist = Cart::where('userid', $userId)->first();
         if ($exist){
             $productIds = json_decode($exist->product_ids, true);
-            $count = count($productIds); 
-            $productData = Products::whereIn('id', $productIds)->get();
+            $product_qty = [];
+            foreach($productIds as $idforproduct){
+                $product_qty[$idforproduct['productid']]=$idforproduct['qty'];
+            }
+            $pricesent=[];
+            foreach($productIds as $price){
+                $pricesent[$price['productid']]=$price['price'];
+            }
+            $product_keys=array_keys($product_qty);
+            $count = count($product_keys); 
+            $productData = Products::whereIn('id', $product_keys)->get();
         } 
         else {
             $productData = [];
             $count=0;
+            $productIds=[];
+            $product_qty=[];
+            $pricesent=[];
         }
-        return view('layout.cart',compact('cart','productData','count'));
+        return view('layout.cart',compact('cart','productData','count','productIds','product_qty','pricesent'));
+    }
+    public function datas(Request $req){
+        if(Auth::check()){
+            $userid=Auth::id();
+            $cart=Cart::where('userid',$userid)->first();
+            $cart->subtotal=$req->subtotal;
+            $cart->total=$req->total;
+            $cart->shipping=$req->shipping;
+            $cart->save();
+        }
     }
 }
