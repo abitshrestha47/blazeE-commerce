@@ -16,6 +16,7 @@
                             <th scope="col">CategoryId</th>
                             <th scope="col">Color</th>
                             <th scope="col">Brand</th>
+                            <th scope="col">Status</th>
                             <th scope="col">Photo.</th>
                             <th scope="col" colspan='2'>Action</th>
                         </tr>
@@ -26,7 +27,7 @@
                             <th scope="row">{{$products->id}}</th>
                             <td>{{$products->name}}</td>
                             <td>{{$products->price}}</td>
-                            <td>{{$products->categoryid}}</td>
+                            <td>{{$products->category->categories}}</td>
                             <td>{{$products->color}}</td>
                             <td>{{$products->brand->brandName}}</td>
                             <td><img height='70vh' width='70vh' src="{{$products->photo}}" alt=""></td>

@@ -6,6 +6,7 @@
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="{{asset('/admin/css/format.css')}}">
 
 <!-- form start -->
 <div class="container-fluid pt-4 px-4">
@@ -16,8 +17,7 @@
             @if(Session::has('success'))
             <div class="alert alert-success alert-dismissible col-md-4">
                 {{Session::get('success')}}
-                <button type="button" class="close ml-auto" data-dismiss="alert" aria-label="Close"
-                    style='border:none;background:none'>
+                <button type="button" class="close btnclose" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -28,8 +28,24 @@
                     <label for="exampleInputEmail1" class="form-label">DepartmentName</label>
                     <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
                         name="deptname">
+                    @error('deptname')
+                    <br>
+                    <div class="alert alert-danger alerting">
+                        {{$message}}
+                        <button type="button" class="close btnclose" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button></div>
+                    @enderror
                     <label for="formFile" class="form-label">DepartmentImage</label>
                     <input class="form-control bg-dark" type="file" id="formFile" name="departmentImage">
+                    @error('departmentImage')
+                    <br>
+                    <div class="alert alert-danger alerting">
+                        {{$message}}
+                        <button type="button" class="close btnclose" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button></div>
+                    @enderror
                 </div>
                 <button type="submit" class="btn btn-primary">Add</button>
             </form>

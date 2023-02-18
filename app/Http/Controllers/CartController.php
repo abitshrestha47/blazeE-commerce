@@ -97,7 +97,14 @@ class CartController extends Controller
         }
         return view('layout.cart',compact('cart','productData','count','productIds','product_qty','pricesent'));
     }
-    public function getShip(Request $req){
-        
+    public function datas(Request $req){
+        if(Auth::check()){
+            $userid=Auth::id();
+            $cart=Cart::where('userid',$userid)->first();
+            $cart->subtotal=$req->subtotal;
+            $cart->total=$req->total;
+            $cart->shipping=$req->shipping;
+            $cart->save();
+        }
     }
 }

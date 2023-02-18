@@ -18,6 +18,9 @@ return new class extends Migration
             $table->id();
             $table->json('product_ids');
             $table->unsignedBigInteger('userid');
+            $table->float('subtotal')->nullable();
+            $table->float('shipping')->nullable();
+            $table->float('total')->nullable();
             $table->foreign('userid')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });

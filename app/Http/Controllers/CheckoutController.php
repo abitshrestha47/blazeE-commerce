@@ -27,18 +27,19 @@ class CheckoutController extends Controller
             foreach($data as $key=>$value){
                 $price[$value->productid]=$value->price;
             }
+            $cart=Cart::all();
             $keys = array_column($data, 'productid');
             $productsgive=Products::whereIn('id',$keys)->get();
-            return view('layout.checkout',compact('productsgive','qty','price'));
+            return view('layout.checkout',compact('productsgive','qty','price','cart'));
         }
     }
-    public function datas(Request $req){
-        $subtotal=$req->subtotal;
-        $total=$req->total;
-        $shipping=$req->shipping;
+    // public function datas(Request $req){
+    //     $subtotal=$req->subtotal;
+    //     $total=$req->total;
+    //     $shipping=$req->shipping;
 
-        $req->session()->put('subtotal', $subtotal);
-        $req->session()->put('total', $total);
-        $req->session()->put('shipping', $shipping);
-    }
+    //     $req->session()->put('subtotal', $subtotal);
+    //     $req->session()->put('total', $total);
+    //     $req->session()->put('shipping', $shipping);
+    // }
 }

@@ -46,8 +46,8 @@
     
     <p>Enter your details</p>
     <div class="form-group">
-        <input type="text" required="required" class="form-control" name="phone"/>
-        <label class="form-label">Phone</label>
+        <input type="text" required="required" class="form-control" name="email"/>
+        <label class="form-label">Email</label>
     </div>
     <div class="form-group">
         <button class="btn" type="submit">Submit</button>

@@ -17,6 +17,8 @@ use App\Http\Controllers\TestController;
 use App\Http\Controllers\Test2Controller;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\SpecialController;
+use App\Http\Controllers\ResetController;
+use App\Http\Controllers\OrderController;
 
 use PSpell\Config;
 
@@ -135,13 +137,17 @@ Route::post('/clear',[TestController::class,'clear'])->name('clearevery');
 
 Route::get('/forgotit',[UserController::class,'forgot'])->name('forgotit');
 
-Route::post('/forgotit',[UserController::class,'reset'])->name('forgotit');
+Route::post('/forgotit',[ResetController::class,'reset'])->name('forgotit');
+
 Route::get('/aboutUs',[HomeController::class,'about'])->name('aboutUs');
 
 Route::post('/addimg',[UserController::class,'addImg'])->name('addimg');
 
-Route::post('/sendship',[CheckoutController::class,'datas'])->name('sendship');
+Route::post('/sendship',[CartController::class,'datas'])->name('sendship');
 
+Route::post('/postorder',[OrderController::class,'postOrder'])->name('postorder');
+
+Route::get('/order',[OrderController::class,'orders'])->name('order');
 
 
 

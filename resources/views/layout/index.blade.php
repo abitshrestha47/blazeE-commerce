@@ -87,7 +87,7 @@
                 @foreach($departments->slice(0,3) as $banner)
                 <div class="col-lg-4">
                     <div class="single-banner">
-                        <img src="{{$banner->departmentImage}}" alt="">
+                        <img  src="{{asset('/storage/'.$banner->departmentImage)}}" alt="">
                         <div class="inner-text">
                             <h4 class='clickit' data-value='{{$banner->id}}'>
                                 {{$banner->departmentName}}</h4>
@@ -305,7 +305,7 @@
                             <div class="single_gallery_item wow fadeInUpBig" data-wow-delay="0.4s">
                                 <!-- Product Image -->
                                 <div class="product-img">
-                                    <img src="{{$normalproducts->photo}}" alt="">
+                                    <img src="{{asset('/storage/'.$normalproducts->photo)}}" alt="">
                                     <div class="product-quicview">
                                         <!-- <a href="#" data-toggle="modal" data-target="#quickview"><i
                                                 class="ti-plus"></i></a> -->

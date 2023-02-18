@@ -54,8 +54,11 @@
                             </div>
                             <div class="row">
                                 <div class="col-11">
-                                    <input type="text" class="form-control" id="brand" aria-describedby="emailHelp"
-                                        name="brand">
+                                <select name="brand" id="brand">
+                                    @foreach($brand as $brand)
+                                        <option value="{{$brand->id}}">{{$brand->brandName}}</option>
+                                    @endforeach
+                                </select>
                                 </div>
                             </div>
                         </div>
@@ -69,8 +72,13 @@
                     </div>
 
                     <label for="exampleInputEmail1" class="form-label">CategoryID</label>
-                    <input type="text" class="form-control" id="categoryid" aria-describedby="emailHelp"
-                        name="categoryid">
+                    <select name="categoryid" id="categoryid" class='form-select'>
+                        @foreach($category as $select)
+                            <option value="{{$select->id}}">{{$select->categories}}</option>
+                        @endforeach
+                    </select>
+                    <!-- <input type="text" class="form-control" id="categoryid" aria-describedby="emailHelp"
+                        name="categoryid"> -->
                     <label for="exampleInputEmail1" class="form-label">Quantity</label>
                     <input type="text" class="form-control" id="categoryid" aria-describedby="emailHelp"
                         name="quantity">
@@ -82,7 +90,7 @@
                         <option selected>Special Product</option>
                         <option value="1">Yes</option>
                         <option value="2">No</option>
-                    </select>
+                    </select> 
                     <label for="formFile" class="form-label">Photo</label>
                     <input class="form-control bg-dark" type="file" id="formFile" name="image">
 

@@ -57,8 +57,7 @@ class UserController extends Controller
     public function forgot(){
         return view('layout.forgot');
     }
-    public function reset(){
-    }
+
     public function addImg(Request $req){
         $image=$req->file('image');
         $response=$image->store('dbimages','public');

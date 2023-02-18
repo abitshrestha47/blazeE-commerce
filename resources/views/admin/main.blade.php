@@ -83,12 +83,15 @@
                             <a href="element.html" class="dropdown-item">Other Elements</a>
                         </div>
                     </div>
-                    <a href="widget.html" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Widgets</a>
                     <a href="{{route('category')}}" class="nav-item nav-link"><i
                             class="fa fa-shopping-cart"></i>Category</a>
                     <a href="{{route('bigposter')}}" class="nav-item nav-link"><i class="fa fa-image"></i>Bigposter</a>
                     <a href="{{route('departments')}}" class="nav-item nav-link"><i
                             class="fa fa-cogs"></i>Departments</a>
+                    <a href="{{route('brander')}}" class="nav-item nav-link"><i
+                            class="fa fa-cogs"></i>Brands</a>
+                    <a href="{{route('order')}}" class="nav-item nav-link"><i
+                            class="fa fa-cogs"></i>Orders</a>
                     <a href="{{route('deals')}}" class="nav-item nav-link"><i class="fa fa-tag"></i>
                         Deals</a>
                     <div class="nav-item dropdown">

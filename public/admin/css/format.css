@@ -1,0 +1,11 @@
+.alerting{
+    height:2vh;
+    display:flex;
+    align-items:center;
+    width:30vw;
+}
+
+.btnclose{
+    border:none;
+    background:none;
+}

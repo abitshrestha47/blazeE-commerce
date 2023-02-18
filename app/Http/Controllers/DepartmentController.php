@@ -5,20 +5,22 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Department;
 use App\Models\Products;
+use Illuminate\Support\Str;
 
 class DepartmentController extends Controller
 {
     //
     public function addDepartment(Request $req){
         $validateData=$req->validate([
-            'deptname'=>'required',
+            'deptname'=>'required|unique:departments,departmentName',
             'departmentImage'=>'required',
-        ]);
+        ],
+    );
 
         $image=$req->file('departmentImage');
         $response=$image->store('dbimages','public');
         $department=new Department();
-        $department->departmentName=$req->deptname;
+        $department->departmentName=Str::title($req->deptname);
         $department->departmentImage=$response;
         $department->save();
 
