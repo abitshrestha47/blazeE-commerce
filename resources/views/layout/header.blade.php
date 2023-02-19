@@ -198,7 +198,7 @@
                                 <li><a href="#">Kid's</a></li>
                             </ul>
                         </li>
-                        <li><a href="./blog.html">Blog</a></li>
+                        <li><a href="{{route('blog')}}">Blog</a></li>
                         <li><a href="{{route('contact')}}">Contact</a></li>
                         <li><a href="#">Pages</a>
                             <ul class="dropdown">

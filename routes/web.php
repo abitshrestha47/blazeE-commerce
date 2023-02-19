@@ -19,6 +19,7 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\SpecialController;
 use App\Http\Controllers\ResetController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\blogController;
 
 use PSpell\Config;
 
@@ -148,6 +149,8 @@ Route::post('/sendship',[CartController::class,'datas'])->name('sendship');
 Route::post('/postorder',[OrderController::class,'postOrder'])->name('postorder');
 
 Route::get('/order',[OrderController::class,'orders'])->name('order');
+
+Route::get('/blog',[blogController::class,'blog'])->name('blog');
 
 
 
