@@ -16,6 +16,7 @@ class OrderController extends Controller
             $products=$req->products;
             $products_encode=json_encode($products);
             $orderall=Order::all();
+            $maketrue=false;
             foreach($orderall as $idcheck){
                 if($idcheck->userid==$userid){
                     $maketrue=true;
@@ -45,8 +46,14 @@ class OrderController extends Controller
     public function orders(){
         $orderproducts=[];
         $order=Order::all();
-        foreach($order as $orders){
-            $products_decode=json_decode($orders->products,true);
+        $products_decode=[];
+        if(isset($order)){
+            foreach($order as $orders){
+                $products_decode=json_decode($orders->products,true);
+            }
+        }
+        else{
+            $products_decode=[];
         }
         return view('admin.order',compact('order','products_decode'));
     }

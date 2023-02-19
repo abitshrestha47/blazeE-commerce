@@ -27,6 +27,7 @@ class TestController extends Controller
         $checkcart = Cart::where('userid', $userid)->first();   
         $productId=$request->input('productid');
         $quantity=$request->input('quantity');
+        $updatetotalhidden=$request->input('updatetotalhidden');
         $forqty = array_combine($productId, array_map('intval',$quantity));
         $pricetoalter=$request->input('pricetoalter');
         $forprice = array_combine($productId, array_map('intval', $pricetoalter));
@@ -43,7 +44,11 @@ class TestController extends Controller
                 }
             }
         }
+
         $checkcart->product_ids = json_encode($productIds);
+        $checkcart->subtotal=$request->updatetotalhidden;
+        $checkcart->total=$request->totalhidden;
+        $checkcart->shipping=$request->shippinghidden;
         $checkcart->save();
     }
     public function clear(Request $req){

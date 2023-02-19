@@ -101,10 +101,6 @@ class CartController extends Controller
         if(Auth::check()){
             $userid=Auth::id();
             $cart=Cart::where('userid',$userid)->first();
-            $cart->subtotal=$req->subtotal;
-            $cart->total=$req->total;
-            $cart->shipping=$req->shipping;
-            $cart->save();
-        }
+         }
     }
 }

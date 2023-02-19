@@ -13,6 +13,7 @@ $(document).ready(function(){
   console.log(minutes);
   console.log(secs);
     $("#days").text(days);
+    $("#hours").text(hours);
     $("#hours").text(moment().hours(hours).format("HH"));
     $("#minutes").text(moment().minutes(minutes).format("mm"));
     setInterval(function(){

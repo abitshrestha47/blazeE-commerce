@@ -19,6 +19,8 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\SpecialController;
 use App\Http\Controllers\ResetController;
 use App\Http\Controllers\OrderController;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\Mail12;
 
 use PSpell\Config;
 
@@ -152,6 +154,22 @@ Route::get('/order',[OrderController::class,'orders'])->name('order');
 Route::get('/userinfo',[UserController::class,'userinfo'])->name('user-info');
 
 Route::post('/changepass',[UserController::class,'changePass'])->name('changepass');
+
+// Route::get('/lar',function(){
+//     Mail::to('abitshrestha2079@gmail.com')
+//     ->send(new Mail12());
+// });
+
+// Route::get('/lar', function () {
+//     $token = csrf_token();
+//     $url = "/lar/send?_token=$token";
+//     return redirect($url);
+// });
+
+// Route::post('/token',[ResetController::class,'generateToken'])->name('token');
+
+// Route::get('/token',[ResetController::class,'Token'])->name('token');
+
 
 
 
