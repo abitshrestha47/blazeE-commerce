@@ -7,11 +7,44 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <title>Blog</title>
+    <link rel="stylesheet" href="home/css/blogPage.css" type="text/css">
 </head>
 <body>
-<h2>Blog</h2>
 
+
+ <div class="container">
+    <div class="row">
+        <div class="header">
+            <h1>Our Blog</h1>
+            <p>Product reviews are typically written by customers who have used the product and want to share their experience with others.A product review can include details such as the product's quality, performance, usability, durability, and any issues or limitations that the reviewer encountered while using it.</p>
+        </div>
+        <div class="content">
+            <div class="card">
+                <img src="img/blog-img.jpg">
+                <h4>Lorem ipsum dolor sit amet</h4>
+                <p>A product review can include details such as the product's quality, performance, usability, durability, and any issues or limitations that the reviewer encountered while using it.</p>
+            </div>
+            <div class="card"></div>
+           <img src="img/">
+           <h4></h4>
+           <p></p>
+        </div>
+        <div class="content">
+            <div class="card">
+                <img src="img/blog2-img.jpg">
+                <h4>Lorem ipsum dolor sit amet</h4>
+                <p>A product review can include details such as the product's quality, performance, usability, durability, and any issues or limitations that the reviewer encountered while using it.</p>
+            </div>
+            <div class="content">
+            <div class="card">
+                <img src="img/blog3-img.jpg">
+                <h4>Lorem ipsum dolor sit amet</h4>
+                <p>A product review can include details such as the product's quality, performance, usability, durability, and any issues or limitations that the reviewer encountered while using it.</p>
+            </div>
+    </div>
+ </div>
 
 
      <!-- Footer Section Begin -->

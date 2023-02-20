@@ -1,0 +1,22 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&family=Roboto:wght@100&display=swap');
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+.container{
+    width: 100%;
+}
+.container .row{
+    width: 80%;
+    margin: auto;
+
+}
+.container .row .header{
+    width:80%;
+    text-align: center;
+    margin: auto;
+}
