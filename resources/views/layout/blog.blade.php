@@ -15,40 +15,35 @@
 
 
  <div class="container">
-    <div class="row">
-        <div class="header">
+    <div class="Intro">
+        <div class="header ">
             <h1>Our Blog</h1>
             <p>Product reviews are typically written by customers who have used the product and want to share their experience with others.A product review can include details such as the product's quality, performance, usability, durability, and any issues or limitations that the reviewer encountered while using it.</p>
         </div>
-        <div class="content">
-            <div class="card">
+    </div>
+    
+        <div class="row">
+            <div class="card col">
                 <img src="img/blog-img.jpg">
-                <h4>Lorem ipsum dolor sit amet</h4>
-                <p>A product review can include details such as the product's quality, performance, usability, durability, and any issues or limitations that the reviewer encountered while using it.</p>
+                <h4>Our Blog</h4>
+                <p>Product reviews are typically written by customers who have used the product and want to share their experience with others.A product review can include details such as the product's quality, performance, usability, durability, and any issues or limitations that the reviewer encountered while using it.</p>
             </div>
-            <div class="card"></div>
-           <img src="img/">
-           <h4></h4>
-           <p></p>
-        </div>
-        <div class="content">
-            <div class="card">
+            <div class="card col">
                 <img src="img/blog2-img.jpg">
-                <h4>Lorem ipsum dolor sit amet</h4>
-                <p>A product review can include details such as the product's quality, performance, usability, durability, and any issues or limitations that the reviewer encountered while using it.</p>
+                <h4>About Gifts</h4>
+                <p>Valentine's Day is a popular holiday that celebrates love and romance, and it's a great opportunity for e-commerce websites to offer a variety of gifts and products that cater to this occasion. Here are some ideas for Valentine's Day gifts that e-commerce websites can offer:</p>
             </div>
-            <div class="content">
-            <div class="card">
+            <div class="card col">
                 <img src="img/blog3-img.jpg">
-                <h4>Lorem ipsum dolor sit amet</h4>
-                <p>A product review can include details such as the product's quality, performance, usability, durability, and any issues or limitations that the reviewer encountered while using it.</p>
+                <h4>About Update</h4>
+                <p>Keeping up with updates and trends in the industry is essential for e-commerce businesses to stay competitive and relevant in the market. Here are some tips on how e-commerce websites can stay updated with industry news:</p>
             </div>
     </div>
  </div>
 
 
-     <!-- Footer Section Begin -->
-     <footer class="footer-section">
+    <!-- Footer Section Begin -->
+    <footer class="footer-section">
         <div class="container">
             <div class="row">
                 <div class="col-lg-3">
@@ -127,6 +122,7 @@
         </div>
     </footer>
     <!-- Footer Section End -->
+
 </body>
 </html>
 @endsection
