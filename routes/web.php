@@ -20,6 +20,7 @@ use App\Http\Controllers\SpecialController;
 use App\Http\Controllers\ResetController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\blogController;
+use App\Http\Controllers\wishListsController;
 
 use PSpell\Config;
 
@@ -97,6 +98,8 @@ Route::post('/category',[CategoryController::class,'category'])->name('category'
 Route::post('/brander',[BrandController::class,'brander'])->name('brander');
  
 Route::post('/add-cart',[CartController::class,'addCart'])->name('add-cart');
+
+Route::post('/wishLists',[wishListsController::class,'addWishlist'])->name('wishLists');
 
 Route::post('/delete-cart/{id}',[CartController::class,'deleteCart'])->name('deletecart');
 

@@ -135,6 +135,11 @@
                                         <p>{{$products->category->categories}}</p>
                                         <!-- Add to Cart -->
                                         <a href="#" class="add-to-cart-btn">ADD TO CART</a>
+                                        <form method="post" action="{{ route('wishLists') }}">
+                                          @csrf
+                                             <input type="hidden" name="product_id" value="{{ $products->id }}">
+                                            <button type="submit" class="add-to-cart-btn">Add to Wishlist</button>
+                                        </form>
                                     </div>
                                 </div>
                                 @endforeach
