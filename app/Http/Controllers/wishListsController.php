@@ -19,5 +19,6 @@ class wishListsController extends Controller
         $wishlistItem = new wishLists(['product_id' => $product->id]);
         auth()->user()->wishlist()->save($wishlistItem);
         return redirect()->back()->with('success', 'Product added to wishlist!');
+        
     }
 }
