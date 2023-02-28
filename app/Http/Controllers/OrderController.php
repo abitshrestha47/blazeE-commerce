@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
+use App\Models\DeliverMan;
+use Illuminate\Support\Facades\Date;
+
 
 
 class OrderController extends Controller
@@ -29,7 +32,7 @@ class OrderController extends Controller
                     'companyName'=>$req->company,
                     'country'=>$req->country,
                     'street1'=>$req->streetaddress1,
-                    'street2'=>$req->streetaddress2,
+                    // 'street2'=>$req->streetaddress2,
                     'town'=>$req->town,
                     'province'=>$req->province,
                     'email'=>$req->email,
@@ -43,9 +46,10 @@ class OrderController extends Controller
             }
         }
     }
-    public function orders(){
+    public function orders(Request $req){
         $orderproducts=[];
         $order=Order::all();
+        $deliverman=DeliverMan::all();
         $products_decode=[];
         if(isset($order)){
             foreach($order as $orders){
@@ -55,6 +59,20 @@ class OrderController extends Controller
         else{
             $products_decode=[];
         }
-        return view('admin.order',compact('order','products_decode'));
+        return view('admin.order',compact('order','products_decode','deliverman'));
+    }
+    public function giveproducts(Request $req){
+        $orderid=$req->orderid;
+        $order=Order::find($orderid);
+        $products_decode=[];
+        if(isset($order)){
+                $products_decode=json_decode($order->products,true);
+        }
+        else{
+            $products_decode=[];
+        }
+        return response()->json([
+            'products' => $products_decode
+        ]);
     }
 }

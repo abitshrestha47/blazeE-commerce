@@ -63,11 +63,11 @@
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label for="first_name">First Name <span>*</span></label>
-                                    <input type="text" class="form-control" id="first_name"  required name='firstname'>
+                                    <input type="text" class="form-control" id="first_name" required name='firstname'>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="last_name">Last Name <span>*</span></label>
-                                    <input type="text" class="form-control" id="last_name"  required name='lastname'>
+                                    <input type="text" class="form-control" id="last_name" required name='lastname'>
                                 </div>
                                 <div class="col-12 mb-3">
                                     <label for="company">Company Name</label>
@@ -88,8 +88,9 @@
                                 </div>
                                 <div class="col-12 mb-3">
                                     <label for="street_address">Address <span>*</span></label>
-                                    <input type="text" class="form-control mb-3" id="street_address" value="" name='streetaddress1'>
-                                    <input type="text" class="form-control" id="street_address2" value="" name='streetaddress2'>
+                                    <input type="text" class="form-control mb-3" id="street_address" value=""
+                                        name='streetaddress1'>
+                                    <!-- <input type="text" class="form-control" id="street_address2" value="" name='streetaddress2'> -->
                                 </div>
                                 <!-- <div class="col-12 mb-3">
                                         <label for="postcode">Postcode <span>*</span></label>
@@ -105,7 +106,8 @@
                                 </div>
                                 <div class="col-12 mb-3">
                                     <label for="phone_number">Phone No <span>*</span></label>
-                                    <input type="number" class="form-control" id="phone_number" min="0" value="" name='phone'>
+                                    <input type="number" class="form-control" id="phone_number" min="0" value=""
+                                        name='phone'>
                                 </div>
                                 <div class="col-12 mb-4">
                                     <label for="email_address">Email Address <span>*</span></label>
@@ -143,12 +145,14 @@
                         <ul class="order-details-form mb-4">
                             <li><span>Product</span> <span>Total</span></li>
                             @foreach($productsgive as $ch)
+                            <input type="text" name="products[{{$ch->id}}][id]" value="{{$ch->id}}">
+                            <input type="text" name="products[{{$ch->id}}][img]" value="{{$ch->photo}}">
                             <input type="hidden" name="products[{{$ch->id}}][name]" value='{{$ch->name}}'>
                             <li><span>{{$ch->name}}</span>X
                                 @foreach($qty as $key=>$value)
                                 @if($ch->id==$key)
-                                    <input type="hidden" name="products[{{$ch->id}}][qty]" value='{{$value}}'>
-                                    <span>{{$value}}</span>
+                                <input type="hidden" name="products[{{$ch->id}}][qty]" value='{{$value}}'>
+                                <span>{{$value}}</span>
                                 @endif
                                 @endforeach
                                 @foreach($price as $key=>$value)
@@ -168,7 +172,7 @@
 
 
                         <div id="accordion" role="tablist" class="mb-4">
-                            <div class="card">
+                            <!-- <div class="card">
                                 <div class="card-header" role="tab" id="headingOne">
                                     <h6 class="mb-0">
                                         <a data-toggle="collapse" href="#collapseOne" aria-expanded="false"
@@ -184,7 +188,7 @@
                                             sodales arcu id te mpus. Ut consectetur lacus.</p>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="card">
                                 <div class="card-header" role="tab" id="headingTwo">
                                     <h6 class="mb-0">
@@ -201,7 +205,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="card">
+                            <!-- <div class="card">
                                 <div class="card-header" role="tab" id="headingThree">
                                     <h6 class="mb-0">
                                         <a class="collapsed" data-toggle="collapse" href="#collapseThree"
@@ -216,8 +220,8 @@
                                             repudiandae suscipit ab soluta delectus voluptate, vero vitae</p>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="card">
+                            </div> -->
+                            <!-- <div class="card">
                                 <div class="card-header" role="tab" id="headingFour">
                                     <h6 class="mb-0">
                                         <a class="collapsed" data-toggle="collapse" href="#collapseFour"
@@ -232,7 +236,7 @@
                                             eveniet saepe fugit, impedit magni.</p>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
 
                         <button type="submit" class="btn karl-checkout-btn">Place Order</button>
@@ -325,7 +329,6 @@
         </div>
     </footer>
     <!-- Footer Section End -->
-
     <!-- Js Plugins -->
     <script src="home/js/jquery/jquery-2.2.4.min.js"></script>
     <!-- Popper js -->

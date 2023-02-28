@@ -21,6 +21,9 @@
 <!-- ****** Cart Area Start ****** -->
 <form action="{{route('test')}}" method='POST'>
     @csrf
+    <input type="text" id="updatetotalhidden" name='updatetotalhidden'>
+    <input type="text" id="totalhidden" name='totalhidden'>
+    <input type="text" id="shippinghidden" name="shippinghidden">
     <div class="cart_area section_padding_100 clearfix">
         <div class="container">
             <div class="row">
@@ -40,7 +43,7 @@
                                 @foreach($productData as $cartincart)
                                 <tr>
                                     <td class="cart_product_img d-flex align-items-center">
-                                        <a href="#"><img src="{{$cartincart->photo}}" alt="Product"></a>
+                                        <a href="#"><img src="{{asset('/storage/'.$cartincart->photo)}}" alt="Product"></a>
                                         <h6>{{$cartincart->name}}</h6>
                                         <input type="hidden" value="{{$cartincart->id}}" name='productid[]'>
                                     </td>
@@ -59,9 +62,6 @@
                                         @endif
                                     <td class="qty">
                                         <div class="quantity">
-                                            <input type="hidden" id="updatetotalhidden" name='updatetotalhidden'>
-                                            <input type="hidden" id="totalhidden" name='totalhidden'>
-                                            <input type="hidden" id="shippinghidden" name="shippinghidden">
 
                                             <span id='minus-{{$cartincart->id}}' class="qty-minus minus"
                                                 onclick="var effect = document.getElementById('qty-{{$cartincart->id}}'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i
@@ -98,13 +98,8 @@
                             <a href="shop-grid-left-sidebar.html">Continue shooping</a>
                         </div>
                         <div class="update-checkout w-50 text-right">
-                            <button type='submit' class='btn' style="background:#dc1e3a;">Update cart</button>
-</form>
-<form action="{{route('clearevery')}}" method='post'>
-    @csrf
-    <button type='submit' value='{{Auth::user()->id}}' name='od' class='btn' style="background:#dc1e3a;">clear
-        cart</button>
-</form>
+
+
 </div>
 </div>
 
@@ -112,18 +107,7 @@
 </div>
 
 <div class="row">
-    <div class="col-12 col-md-6 col-lg-4">
-        <div class="coupon-code-area mt-70">
-            <div class="cart-page-heading">
-                <h5>Cupon code</h5>
-                <p>Enter your cupone code</p>
-            </div>
-            <form action="#">
-                <input type="search" name="search" placeholder="#569ab15">
-                <button type="submit">Apply</button>
-            </form>
-        </div>
-    </div>
+
     <div class="col-12 col-md-6 col-lg-4">
         <div class="shipping-method-area mt-70">
             <div class="cart-page-heading">
@@ -152,6 +136,8 @@
             </div>
         </div>
     </div>
+ 
+
     <div class="col-12 col-lg-4">
         <div class="cart-total-area mt-70">
             <div class="cart-page-heading">
@@ -164,6 +150,13 @@
                 <li><span>Shipping</span> <span id='show'></span></li>
                 <li><span><strong>Total</strong></span> <span id="total"><strong></strong></span></li>
             </ul>
+            <button type='submit' class='btn' style="background:#dc1e3a;">Update cart</button>
+</form>
+<form action="{{route('clearevery')}}" method='post'>
+    @csrf
+    <button type='submit' value='{{Auth::user()->id}}' name='od' class='btn' style="background:#dc1e3a;">clear
+        cart</button>
+</form>
             <a href="{{route('checkout')}}" class="btn karl-checkout-btn" id="gotoorder">Proceed to checkout</a>
         </div>
     </div>
@@ -258,12 +251,19 @@
 
 <!-- Js Plugins -->
 
-
 <script>
 $(document).ready(function() {
+    $('#subtotal').on('change', function() {
+        alert('fdsf');
+    });
+});
+</script>
+<script>
+$(document).ready(function() {
+
     $('.minus,.plus').click(function() {
         var self = this;
-        var productprice = $(this).closest('tr').find('.productprice').data("price");
+    var productprice = $(this).closest('tr').find('.productprice').data("price");
         var quantity = $(this).closest('tr').find('.qtyqty').val();
         // alert(productprice+quantity);
         $.ajax({

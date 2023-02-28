@@ -19,6 +19,8 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\SpecialController;
 use App\Http\Controllers\ResetController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\DelivermanController;
+use App\Http\Controllers\DelivertrackingController;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\Mail12;
 
@@ -151,6 +153,10 @@ Route::post('/postorder',[OrderController::class,'postOrder'])->name('postorder'
 
 Route::get('/order',[OrderController::class,'orders'])->name('order');
 
+Route::get('/sendorder',[OrderController::class,'giveproducts'])->name('sendorder');
+
+Route::post('/order',[OrderController::class,'orders'])->name('order');
+
 Route::get('/userinfo',[UserController::class,'userinfo'])->name('user-info');
 
 Route::post('/changepass',[UserController::class,'changePass'])->name('changepass');
@@ -170,7 +176,21 @@ Route::post('/changepass',[UserController::class,'changePass'])->name('changepas
 
 // Route::get('/token',[ResetController::class,'Token'])->name('token');
 
+Route::post('/deliverman',[DelivermanController::class,'addDeliverman'])->name('deliver-man');
 
+Route::get('/deliverman',[DelivermanController::class,'getDeliverman'])->name('deliver-man');
+
+Route::get('/delivertrackings',[DelivertrackingController::class,'getDelivertrackings'])->name('deliver-trackings');
+
+Route::post('/delivertrack',[DelivertrackingController::class,'tracking'])->name('deliver-track');
+
+Route::get('/gettrack',[DelivertrackingController::class,'track'])->name('track');
+
+Route::post('/sendstatus',[DelivertrackingController::class,'sendstatus'])->name('sendstatus');
+
+Route::get('/giveorderid',[DelivertrackingController::class,'getOrderID'])->name('giveorderid');
+
+Route::get('/addingorder',[DelivertrackingController::class,'addingOrder'])->name('addingorder');
 
 
 
