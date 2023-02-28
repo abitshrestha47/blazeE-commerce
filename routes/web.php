@@ -23,6 +23,8 @@ use App\Http\Controllers\DelivermanController;
 use App\Http\Controllers\DelivertrackingController;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\Mail12;
+use App\Http\Controllers\blogController;
+use App\Http\Controllers\wishListsController;
 
 use PSpell\Config;
 
@@ -100,6 +102,8 @@ Route::post('/category',[CategoryController::class,'category'])->name('category'
 Route::post('/brander',[BrandController::class,'brander'])->name('brander');
  
 Route::post('/add-cart',[CartController::class,'addCart'])->name('add-cart');
+
+Route::post('/wishLists',[wishListsController::class,'addWishlist'])->name('wishLists');
 
 Route::post('/delete-cart/{id}',[CartController::class,'deleteCart'])->name('deletecart');
 
@@ -191,6 +195,8 @@ Route::post('/sendstatus',[DelivertrackingController::class,'sendstatus'])->name
 Route::get('/giveorderid',[DelivertrackingController::class,'getOrderID'])->name('giveorderid');
 
 Route::get('/addingorder',[DelivertrackingController::class,'addingOrder'])->name('addingorder');
+Route::get('/blog',[blogController::class,'blog'])->name('blog');
+
 
 
 
