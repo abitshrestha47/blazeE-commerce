@@ -28,8 +28,9 @@ class CartController extends Controller
             );
             $checkcart->userid=Auth::id();
             $checkcart->save();
-             }
-             else{
+            return redirect()->back();
+            }
+            else{
                 $productId=(int)$req->input('productId');
                 $price=(int)$req->input('price');
                 $productId=(int)$productId;
@@ -51,6 +52,7 @@ class CartController extends Controller
                     array_push($productIds, $newproductIds);
                     $checkcart->product_ids = json_encode($productIds);
                     $checkcart->save();
+                    return redirect()->back();
                 }
                 else{
                     return back();
@@ -101,10 +103,6 @@ class CartController extends Controller
         if(Auth::check()){
             $userid=Auth::id();
             $cart=Cart::where('userid',$userid)->first();
-            $cart->subtotal=$req->subtotal;
-            $cart->total=$req->total;
-            $cart->shipping=$req->shipping;
-            $cart->save();
-        }
+         }
     }
 }

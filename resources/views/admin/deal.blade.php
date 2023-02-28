@@ -25,8 +25,8 @@
                     <input class="form-control bg-dark" type="file" id="formFile" name="dealBackgroundImage"
                         tabindex='4'>
                     <label for="exampleInputEmail1" class="form-label">EndDate</label>
-                    <input type="date" class="form-control" id="categoryid" aria-describedby="emailHelp" name="endDate"
-                        tabindex='5'><br>
+                    <input type="datetime-local" class="form-control" id="categoryid" aria-describedby="emailHelp" name="endDate"
+                        tabindex='5' step="1"><br>
                     <label for="exampleInputEmail1" class="form-label">Product</label>
                     <input type="text" class="form-control" id="categoryid" aria-describedby="emailHelp" name="product"
                         tabindex='6'><br>
@@ -50,7 +50,7 @@
                             <th scope="col">DealTitle</th>
                             <th scope="col">DealDescription</th>
                             <th scope="col">DealPrice</th>
-                            <th scope="col">DealBackgroundImage/th>
+                            <th scope="col">DealBackgroundImage</th>
                             <th scope="col">EndDate</th>
                             <th scope="col">Product_ID</th>
                             <th scope="col" colspan='2'>Action</th>
@@ -61,7 +61,7 @@
                         <tr>
                             <th scope="row">{{$dealtable->id}}</th>
                             <td>{{$dealtable->dealTitle}}</td>
-                            <td>{{$dealtable->dealDescription}}</td>
+                            <td>{{$dealtable->dealDescription}}</td>d
                             <td>{{$dealtable->dealPrice}}</td>
                             <td>{{$dealtable->endDate}}</td>
                             <td><img height='70vh' width='70vh'

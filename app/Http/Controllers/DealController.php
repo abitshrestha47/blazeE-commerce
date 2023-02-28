@@ -19,7 +19,8 @@ class DealController extends Controller
         $deal->dealPrice = $req->dealPrice;
         $deal->dealBackgroundImage=$response;
         $deal->product_id = $req->product;
-        $deal->endDate=$req->endDate;
+        $dateString=$req->endDate;
+        $deal->endDate=$dateString;
         $deal->save();
         return redirect()->back();
     }
