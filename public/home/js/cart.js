@@ -8,6 +8,7 @@ $(document).ready(function() {
             return acc + current;
         }, 0);
         $("#subtotal").text("$" + total);
+        $("#updatetotalhidden").val(total);
     }
     var observer = new MutationObserver(function(mutations) {
         updateTotal();
@@ -48,8 +49,12 @@ $(document).ready(function() {
         var subtotal1=parseFloat(subtotal.replace("$", ""));
         var shipping=$("#show").text();
         var shipping1=parseFloat(shipping.replace("$", ""));
+        var shippinghidden=document.getElementById("shippinghidden");
+        shippinghidden.value=shipping1;
         var total=$("#total").text();
         var total1=parseFloat(total.replace("$", ""));
+        var totalhidden=document.getElementById("totalhidden");
+        totalhidden.value=total1;
         $.ajax({
             type:'POST',
             url:'/sendship',

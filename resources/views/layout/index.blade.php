@@ -87,7 +87,7 @@
                 @foreach($departments->slice(0,3) as $banner)
                 <div class="col-lg-4">
                     <div class="single-banner">
-                        <img  src="{{asset('/storage/'.$banner->departmentImage)}}" alt="">
+                        <img src="{{asset('/storage/'.$banner->departmentImage)}}" alt="">
                         <div class="inner-text">
                             <h4 class='clickit' data-value='{{$banner->id}}'>
                                 {{$banner->departmentName}}</h4>
@@ -124,7 +124,7 @@
                         <div class="single_gallery_item wow fadeInUpBig" data-wow-delay="0.5s">
                             <!-- Product Image -->
                             <div class="product-img">
-                                <img src="{{$singlegallery->product->photo}}" alt="">
+                                <img src="{{asset('/storage/'.$singlegallery->product->photo)}}" alt="">
                                 <div class="product-quicview">
                                     <a href="#" data-toggle="modal" data-target="#quickview"
                                         data-id="{{ $singlegallery->product->id}}" id="productModalLink"
@@ -139,11 +139,12 @@
                                 <h4 class="product-price">{{'$'.$singlegallery->discountprice}}</h4>
                                 {{$singlegallery->discountoffer."%"}}
                                 @else
-                                <h4 class="product-price">{{'$'.$singlegallery->product->price}}</></h4>
+                                <h4 class="product-price">{{'$'.$singlegallery->product->price}}</>
+                                </h4>
                                 <h2 style='color:red'>{{$singlegallery->description}}</h2>
                                 @endif
                                 <p>{{$singlegallery->product->name}}</p>
-                                
+
                                 <!-- Add to Cart -->
                                 <form action="{{route('add-cart')}}" method='POST' class='nomargin'>
                                     @csrf
@@ -159,7 +160,8 @@
                                     </div>
                                     @endif
                                     <button type='submit' class="add-to-cart-btn cart_add"
-                                        data-id="{{$singlegallery->product->id}}" value='{{$singlegallery->product->id}}' name='productId'
+                                        data-id="{{$singlegallery->product->id}}"
+                                        value='{{$singlegallery->product->id}}' name='productId'
                                         data-user-id="{{Auth::id()}}">ADD TO CART</button>
                                 </form>
                             </div>
@@ -320,18 +322,19 @@
                                     <p>{{$normalproducts->name}}</p>
                                     <!-- Add to Cart -->
                                     <form action="{{route('add-cart')}}" method='POST' class='nomargin'>
-                                    @csrf
-                                    <input type="hidden" value='{{$normalproducts->price}}' name='price'>
-                                    <input type="hidden" value="{{Auth::id()}}" name='id'>
-                                    @if (session()->has('message') && session()->get('productId')===$singlegallery->id)
-                                    <div class="floating-message">
-                                        {{ session()->get('message')}}
-                                    </div>
-                                    @endif
-                                    <button type='submit' class="add-to-cart-btn cart_add"
-                                        data-id="{{$normalproducts->id}}" value='{{$normalproducts->id}}' name='productId'
-                                        data-user-id="{{Auth::id()}}">ADD TO CART</button>
-                                </form>
+                                        @csrf
+                                        <input type="hidden" value='{{$normalproducts->price}}' name='price'>
+                                        <input type="hidden" value="{{Auth::id()}}" name='id'>
+                                        @if (session()->has('message') &&
+                                        session()->get('productId')===$singlegallery->id)
+                                        <div class="floating-message">
+                                            {{ session()->get('message')}}
+                                        </div>
+                                        @endif
+                                        <button type='submit' class="add-to-cart-btn cart_add"
+                                            data-id="{{$normalproducts->id}}" value='{{$normalproducts->id}}'
+                                            name='productId' data-user-id="{{Auth::id()}}">ADD TO CART</button>
+                                    </form>
                                     <!-- <a href="#" class="add-to-cart-btn">ADD TO CART</a> -->
                                 </div>
                             </div>
@@ -678,6 +681,7 @@
     <script src="home/js/main.js"></script>
     <script>
     var endDate = '<?php echo json_encode($endDate); ?>';
+    var dateValue = '<?php echo json_encode($dateValue); ?>';
     </script>
     <script src="{{asset('home/js/department.js')}}"></script>
     <script src="{{asset('home/js/index.js')}}"></script>

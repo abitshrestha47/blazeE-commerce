@@ -1,5 +1,5 @@
 $(document).ready(function(){
-  var startDate=moment().utc();
+  var startDate=moment(dateValue,'YYYY-MM-DD').utc();
   var endingDate = moment(endDate, 'YYYY-MM-DD').utc();
   var duration = moment.duration(endingDate.diff(startDate));
   var month=Math.floor(duration.asMonths());
@@ -13,6 +13,7 @@ $(document).ready(function(){
   console.log(minutes);
   console.log(secs);
     $("#days").text(days);
+    $("#hours").text(hours);
     $("#hours").text(moment().hours(hours).format("HH"));
     $("#minutes").text(moment().minutes(minutes).format("mm"));
     setInterval(function(){

@@ -66,4 +66,20 @@ class UserController extends Controller
         $data->img=$response;
         $data->save();
     }
+    public function userinfo(){
+        return view('layout.userinfo');
+    }
+    public function changePass(Request $req){
+        if(Auth::check()){
+            $user=User::where('email',$req->email)->first();
+            if($req->oldpassword===$user->password){
+                if($req->newpassword===$req->retypepassword){
+                    dd('ewe');
+                }
+                else{
+                    dd('fdsfs');
+                }
+            }
+        }
+    }
 }

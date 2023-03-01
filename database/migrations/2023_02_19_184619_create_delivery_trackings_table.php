@@ -13,21 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('orders', function (Blueprint $table) {
+        Schema::create('delivery_trackings', function (Blueprint $table) {
             $table->id();
-            $table->string('firstName');
-            $table->string('lastName');
-            $table->string('companyName');
-            $table->string('country');
-            $table->string('street1');
-            // $table->string('street2');
-            $table->string('town');
-            $table->string('province');
+            $table->string('nameRecipient');
+            $table->string('street');
             $table->string('phone');
             $table->string('email');
-            $table->string('products');
             $table->dateTime('date')->default(now());
-            $table->string('userid');
+            $table->string('status');
+            $table->unsignedBigInteger('orderId');
+            $table->foreign('orderId')->references('id')->on('orders')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -39,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('orders');
+        Schema::dropIfExists('delivery_trackings');
     }
 };
