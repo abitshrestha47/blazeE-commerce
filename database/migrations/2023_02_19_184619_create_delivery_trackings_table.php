@@ -19,10 +19,10 @@ return new class extends Migration
             $table->string('street');
             $table->string('phone');
             $table->string('email');
-            $table->dateTime('date')->default(now());
             $table->string('status');
             $table->unsignedBigInteger('orderId');
             $table->foreign('orderId')->references('id')->on('orders')->onDelete('cascade');
+            $table->json('products');
             $table->timestamps();
         });
     }

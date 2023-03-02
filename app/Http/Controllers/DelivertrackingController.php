@@ -15,14 +15,25 @@ class DelivertrackingController extends Controller
         return view('admin.deliverytracking',compact('order','delivertrack'));
     }
     public function tracking(Request $req){
+        $orderid=$req->orderid;
+        $order=Order::find($orderid);
+        $products=$order->products;
         $delivertrack=new DeliveryTracking();
-        $delivertrack->nameRecipient=$req->firstName;
-        $delivertrack->phone=$req->phone;
-        $delivertrack->email=$req->email;
-        $delivertrack->street=$req->address;
-        $delivertrack->orderId=$req->order;
-        $delivertrack->status='processing';
+        $delivertrack->nameRecipient=$order->firstName;
+        $delivertrack->street=$order->street1;
+        $delivertrack->phone=$order->phone;
+        $delivertrack->email=$order->email;
+        $delivertrack->status="processing";
+        $delivertrack->orderid=$order->id;
+        $delivertrack->products=$products;
         $delivertrack->save();
+    }
+
+    public function getTrackProducts(Request $req){
+        $id=$req->id;
+        $delivertrack=DeliveryTracking::find($id);
+        $products=json_decode($delivertrack->products);
+        return $products;
     }
 
     public function track(){
@@ -31,7 +42,8 @@ class DelivertrackingController extends Controller
     }
 
     public function sendstatus(Request $req){
-        $delivertrack=DeliveryTracking::where('orderId',$req->input('orderid'))->first();
+        $id=$req->input('trackid');
+        $delivertrack=DeliveryTracking::where('orderId',$id)->first();
         $delivertrack->status=$req->status;
         $delivertrack->save();
     }
