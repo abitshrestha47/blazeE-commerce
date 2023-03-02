@@ -9,18 +9,17 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class Mail12 extends Mailable
+class Websitemail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    /**
-     * Create a new message instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public $subject;
+    public $body;
+    
+    public function __construct($subject,$body)
     {
-        //
+        $this->subject=$subject;
+        $this->body=$body;
     }
 
     /**
@@ -31,7 +30,7 @@ class Mail12 extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'Mail12',
+            subject: 'Reset Password',
         );
     }
 
@@ -43,7 +42,7 @@ class Mail12 extends Mailable
     public function content()
     {
         return new Content(
-            view: 'mail.hello',
+            view: 'layout.email',
         );
     }
 

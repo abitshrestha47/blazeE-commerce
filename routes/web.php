@@ -143,9 +143,15 @@ Route::post('/test',[TestController::class,'test'])->name('test');
 
 Route::post('/clear',[TestController::class,'clear'])->name('clearevery');
 
-Route::get('/forgotit',[UserController::class,'forgot'])->name('forgotit');
+Route::get('/forgotit',[UserController::class,'forgot'])->name('forgot');
 
-Route::post('/forgotit',[ResetController::class,'reset'])->name('forgotit');
+// Route::get('/forgotpsw',[UserController::class,'forget_password'])->name('forget_password');
+
+Route::post('/forget_password_submit', [UserController::class, 'forget_password_submit'])->name('forget_password_submit');
+
+Route::get('/reset-password/{token}/{email}', [UserController::class, 'password_reset'])->name('password_reset');
+
+Route::post('/reset_password_submit', [UserController::class, 'reset_password_submit'])->name('reset_password_submit');
 
 Route::get('/aboutUs',[HomeController::class,'about'])->name('aboutUs');
 
