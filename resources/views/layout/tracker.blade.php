@@ -15,28 +15,38 @@
                         <span id="heading">Order No.</span><br>
                         @foreach($gettrackdetails as $track)
                         <span id="details">
-                        {{$track->orderid}}</span>
-                            @endforeach
+                        {{$track->orderId}}</span>
+                        @endforeach
                     </div>
                 </div>      
             </div>      
             <div class="pricing">
+                @foreach($products as $p)
                 <div class="row">
+                    <div class="col-9">
+                        <span>{{$p['name']}}</span>
+                    </div>
+                    <div class="col-3">
+                        <span>{{"$".$p['price']}}</span>
+                    </div>
+                </div>
+                @endforeach
+                <!-- <div class="row">
                     <div class="col-9">
                         <span id="name">BEATS Solo 3 Wireless Headphones</span>  
                     </div>
                     <div class="col-3">
                         <span id="price">&pound;299.99</span>
                     </div>
-                </div>
-                <div class="row">
+                </div> -->
+                <!-- <div class="row">
                     <div class="col-9">
                         <span id="name">Shipping</span>
                     </div>
                     <div class="col-3">
                         <span id="price">&pound;33.00</span>
                     </div>
-                </div>
+                </div> -->
             </div>
             <div class="total">
                 <div class="row">
@@ -49,10 +59,31 @@
             </div>
             <div class="progress-track">
                 <ul id="progressbar">
-                    <li class="step0 active " id="step1">Ordered</li>
+                    @if($getData=="processing")
+                    <li class="step0 active" id="step1">Processing</li>
+                    <li class="step0 text-center" id="step2">Shipped</li>
+                    <li class="step0 text-right" id="step3">Picked from the warehouse</li>
+                    <li class="step0 text-right" id="step4">Delivered</li> 
+                    @elseif($getData=="shipping")
+                    <li class="step0 active " id="step1">Processing</li>
+                    <li class="step0 active text-center" id="step2">Shipped</li>
+                    <li class="step0 text-right" id="step3">Picked from the warehouse</li>
+                    <li class="step0 text-right" id="step4">Delivered</li> 
+                    @elseif($getData=="Picked from warehouse")
+                    <li class="step0 active" id="step1">Processing</li>
+                    <li class="step0 active text-center" id="step2">Shipped</li>
+                    <li class="step0 active text-right" id="step3">Picked from the warehouse</li>
+                    <li class="step0 text-right" id="step4">Delivered</li> 
+                    @elseif($getData=="Delivered")
+                    <li class="step0 active" id="step1">Processing</li>
+                    <li class="step0 active text-center" id="step2">Shipped</li>
+                    <li class="step0 active text-right" id="step3">Picked from the warehouse</li>
+                    <li class="step0 active text-right" id="step4">Delivered</li> 
+                    @endif
+                    <!-- <li class="step0 active " id="step1">Ordered</li>
                     <li class="step0 active text-center" id="step2">Shipped</li>
                     <li class="step0 active text-right" id="step3">On the way</li>
-                    <li class="step0 text-right" id="step4">Delivered</li>
+                    <li class="step0 text-right" id="step4">Delivered</li> -->
                 </ul>
             </div>
             
