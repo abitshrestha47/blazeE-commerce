@@ -104,6 +104,9 @@ Route::post('/brander',[BrandController::class,'brander'])->name('brander');
 Route::post('/add-cart',[CartController::class,'addCart'])->name('add-cart');
 
 Route::post('/wishLists',[wishListsController::class,'addWishlist'])->name('wishLists');
+Route::get('/wishLists',[wishListsController::class,'UserWishlist'])->name('wishLists');
+Route::get('/remove/wishLists/{id}',[wishListsController::class,'RemoveWishlist'])->name('wishLists.remove');
+
 
 Route::post('/delete-cart/{id}',[CartController::class,'deleteCart'])->name('deletecart');
 

@@ -17,7 +17,8 @@ class wishListsController extends Controller
         $productId = $req->input('product_id');
         $product = Products::find($productId);
         $wishlistItem = new wishLists(['product_id' => $product->id]);
-        auth()->user()->wishlist()->save($wishlistItem);
+        $wishlistItem->user_id=Auth::id();
+        $wishlistItem->save();
         return redirect()->back()->with('success', 'Product added to wishlist!');
         
     }
