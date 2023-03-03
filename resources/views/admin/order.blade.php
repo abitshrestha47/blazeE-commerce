@@ -38,7 +38,7 @@
                             <td>{{$orders->firstName}}{{" ".$orders->lastName}}</td>
                             <td>{{$orders->street1}}{{"/".$orders->town}}{{"/".$orders->country}}</td>
                             <td>{{" ".$orders->province}}</td>
-                            <td>{{$orders->date}}</td>
+                            <td>{{$orders->created_at}}</td>
                             <td>{{$orders->email}}</td>
                             <td>{{$orders->phone}}</td>
                             <td><a href="#" data-toggle="modal" class="modal-trigger viewing"

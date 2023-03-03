@@ -188,6 +188,8 @@ Route::get('/delivertrackings',[DelivertrackingController::class,'getDelivertrac
 
 Route::post('/delivertrack',[DelivertrackingController::class,'tracking'])->name('deliver-track');
 
+Route::get('gettrackproducts',[DelivertrackingController::class,'getTrackProducts'])->name('get-track-products');
+
 Route::get('/gettrack',[DelivertrackingController::class,'track'])->name('track');
 
 Route::post('/sendstatus',[DelivertrackingController::class,'sendstatus'])->name('sendstatus');
