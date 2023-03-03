@@ -23,6 +23,7 @@ return new class extends Migration
             $table->unsignedBigInteger('orderId');
             $table->foreign('orderId')->references('id')->on('orders')->onDelete('cascade');
             $table->json('products');
+            $table->string('userid');
             $table->timestamps();
         });
     }

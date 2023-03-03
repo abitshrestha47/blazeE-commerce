@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\DeliveryTracking;
 use App\Models\Order;
+use Illuminate\Support\Facades\Auth;
+
 
 class DelivertrackingController extends Controller
 {
@@ -15,6 +17,7 @@ class DelivertrackingController extends Controller
         return view('admin.deliverytracking',compact('order','delivertrack'));
     }
     public function tracking(Request $req){
+        $userid=Auth::id();
         $orderid=$req->orderid;
         $order=Order::find($orderid);
         $products=$order->products;
@@ -26,6 +29,7 @@ class DelivertrackingController extends Controller
         $delivertrack->status="processing";
         $delivertrack->orderid=$order->id;
         $delivertrack->products=$products;
+        $delivertrack->userid=$userid;
         $delivertrack->save();
     }
 
@@ -37,7 +41,8 @@ class DelivertrackingController extends Controller
     }
 
     public function track(){
-        $gettrackdetails=DeliveryTracking::all();
+        $userid=Auth::id();
+        $gettrackdetails=DeliveryTracking::where('userid',$userid)->get();
         return view('layout.tracker',compact('gettrackdetails'));
     }
 
