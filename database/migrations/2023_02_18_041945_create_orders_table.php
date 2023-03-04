@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('province');
             $table->string('phone');
             $table->string('email');
-            $table->string('products');
+            $table->json('products');
             $table->string('userid');
             $table->timestamps();
         });

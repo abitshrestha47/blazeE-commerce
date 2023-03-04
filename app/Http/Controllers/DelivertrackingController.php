@@ -43,7 +43,15 @@ class DelivertrackingController extends Controller
     public function track(){
         $userid=Auth::id();
         $gettrackdetails=DeliveryTracking::where('userid',$userid)->get();
-        return view('layout.tracker',compact('gettrackdetails'));
+        $products=[];
+
+        foreach($gettrackdetails as $products){
+            $products=json_decode($products->products,true);
+        }
+        foreach($gettrackdetails as $see){
+            $getData=$see->status;
+        }
+        return view('layout.tracker',compact('gettrackdetails','products','getData'));
     }
 
     public function sendstatus(Request $req){
