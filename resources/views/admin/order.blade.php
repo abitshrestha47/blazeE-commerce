@@ -25,9 +25,10 @@
                             <th scope="col">Name</th>
                             <th scope="col">Town/City/Country</th>
                             <th scope="col">Province</th>
-                            <th scope="col">DateofPlaced</th>
+                            <th scope="col">Date of Placed</th>
                             <th scope="col">Email</th>
                             <th scope="col">Phone</th>
+                            <th scope="col">Workflow</th>
                             <th scope="col" colspan='2'>Action</th>
                         </tr>
                     </thead>
@@ -41,6 +42,7 @@
                             <td>{{$orders->created_at}}</td>
                             <td>{{$orders->email}}</td>
                             <td>{{$orders->phone}}</td>
+                            <td class="approve"><i class="fas fa-check"></i></td>
                             <td><a href="#" data-toggle="modal" class="modal-trigger viewing"
                                     data-target="#productModal" id="viewing"><i class="fas fa-eye idgive"></i>
                                 </a></td>

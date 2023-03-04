@@ -30,6 +30,7 @@
     <link rel="stylesheet" href="home/css/nice-select.css" type="text/css">
     <link rel="stylesheet" href="home/css/jquery-ui.min.css" type="text/css">
     <link rel="stylesheet" href="home/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="{{asset('home/css/ribbon.css')}}">
     <link rel="stylesheet" href="home/css/style.css" type="text/css">
     <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js"></script>
 
@@ -59,7 +60,7 @@
                 </div>
             </div>
             @endforeach
-            <div class="single-hero-items set-bg" data-setbg="img/hero-2.jpg">
+            <!-- <div class="single-hero-items set-bg" data-setbg="img/hero-2.jpg">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-5">
@@ -74,7 +75,7 @@
                         <h2>Sale <span>50%</span></h2>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </section>
     <!-- Hero Section End -->
@@ -105,13 +106,13 @@
     <section class="women-banner spad">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-3">
-                    <div class="product-large set-bg" data-setbg="img/products/sale.jpg">
-                        <!-- <h2>Sale! Sale!</h2> -->
-                        <a href="#">Discover More</a>
+                <!-- <div class="col-lg-3">
+                    <div class="product-large set-bg" data-setbg="img/products/sale.jpg"> -->
+                <!-- <h2>Sale! Sale!</h2> -->
+                <!-- <a href="#">Discover More</a>
                     </div>
-                </div>
-                <div class="col-lg-8 offset-lg-1">
+                </div> -->
+                <div class="col-lg-12">
                     <div class="filter-control">
 
                         <h2>Special Offers</h2>
@@ -122,9 +123,13 @@
                         @if(isset($specialproduct))
                         @foreach($specialproduct as $singlegallery)
                         <div class="single_gallery_item wow fadeInUpBig" data-wow-delay="0.5s">
+                            <div class="ribbon ribbon-top-left">
+                                <span>{{$singlegallery->discountoffer."% off"}}</span>
+                            </div>
                             <!-- Product Image -->
                             <div class="product-img">
-                                <img src="{{asset('/storage/'.$singlegallery->product->photo)}}" alt="">
+                                <img src="{{asset('/storage/'.$singlegallery->product->photo)}}" alt=""
+                                    style="min-width:100%">
                                 <div class="product-quicview">
                                     <a href="#" data-toggle="modal" data-target="#quickview"
                                         data-id="{{ $singlegallery->product->id}}" id="productModalLink"
@@ -135,16 +140,15 @@
                             <!-- Product Description -->
                             <div class="product-description">
                                 @if($singlegallery->discountprice)
-                                <h4 class="product-price"><strike>{{'$'.$singlegallery->product->price}}</strike></h4>
+                                <p>{{$singlegallery->product->name}}</p>
+                                <h4 class="product-price"><strike>{{'$'.$singlegallery->product->price}}</strike>
+                                </h4>
                                 <h4 class="product-price">{{'$'.$singlegallery->discountprice}}</h4>
-                                {{$singlegallery->discountoffer."%"}}
                                 @else
                                 <h4 class="product-price">{{'$'.$singlegallery->product->price}}</>
                                 </h4>
                                 <h2 style='color:red'>{{$singlegallery->description}}</h2>
                                 @endif
-                                <p>{{$singlegallery->product->name}}</p>
-
                                 <!-- Add to Cart -->
                                 <form action="{{route('add-cart')}}" method='POST' class='nomargin'>
                                     @csrf
@@ -154,7 +158,8 @@
                                     <input type="hidden" value='{{$singlegallery->product->price}}' name='price'>
                                     @endif
                                     <input type="hidden" value="{{Auth::id()}}" name='id'>
-                                    @if (session()->has('message') && session()->get('productId')===$singlegallery->id)
+                                    @if (session()->has('message') &&
+                                    session()->get('productId')===$singlegallery->id)
                                     <div class="floating-message">
                                         {{ session()->get('message')}}
                                     </div>
@@ -297,17 +302,22 @@
     <section class="man-banner spad">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-8">
+                <div class="col-lg-12">
                     <div class="filter-control">
                         <h2>Latest Products</h2>
                     </div>
                     <div id='test'>
                         <div class="product-slider owl-carousel">
                             @foreach($latestproducts as $normalproducts)
+                            @if($normalproducts->specialproduct)
                             <div class="single_gallery_item wow fadeInUpBig" data-wow-delay="0.4s">
+                                <div class="ribbon ribbon-top-left">
+                                    <span>{{$normalproducts->specialproduct->discountoffer."% Offer"}}</span>
+                                </div>
                                 <!-- Product Image -->
                                 <div class="product-img">
-                                    <img src="{{asset('/storage/'.$normalproducts->photo)}}" alt="">
+                                    <img src="{{asset('/storage/'.$normalproducts->photo)}}" alt=""
+                                        style="min-width:100%">
                                     <div class="product-quicview">
                                         <!-- <a href="#" data-toggle="modal" data-target="#quickview"><i
                                                 class="ti-plus"></i></a> -->
@@ -338,15 +348,52 @@
                                     <!-- <a href="#" class="add-to-cart-btn">ADD TO CART</a> -->
                                 </div>
                             </div>
+                            @else
+                            <div class="single_gallery_item wow fadeInUpBig" data-wow-delay="0.4s">
+                                <!-- Product Image -->
+                                <div class="product-img">
+                                    <img src="{{asset('/storage/'.$normalproducts->photo)}}" alt=""
+                                        style="min-width:100%">
+                                    <div class="product-quicview">
+                                        <!-- <a href="#" data-toggle="modal" data-target="#quickview"><i
+                                                class="ti-plus"></i></a> -->
+                                        <a href="#" data-toggle="modal" data-target="#quickview"
+                                            data-id="{{$normalproducts->id}}" id="productModalLink"
+                                            class='productModalLink'><i class="ti-plus"></i></a>
+                                    </div>
+                                </div>
+                                <!-- Product Description -->
+                                <div class="product-description">
+                                    <h4 class="product-price">{{'$'.$normalproducts->price}}</h4>
+                                    <p>{{$normalproducts->name}}</p>
+                                    <!-- Add to Cart -->
+                                    <form action="{{route('add-cart')}}" method='POST' class='nomargin'>
+                                        @csrf
+                                        <input type="hidden" value='{{$normalproducts->price}}' name='price'>
+                                        <input type="hidden" value="{{Auth::id()}}" name='id'>
+                                        @if (session()->has('message') &&
+                                        session()->get('productId')===$singlegallery->id)
+                                        <div class="floating-message">
+                                            {{ session()->get('message')}}
+                                        </div>
+                                        @endif
+                                        <button type='submit' class="add-to-cart-btn cart_add"
+                                            data-id="{{$normalproducts->id}}" value='{{$normalproducts->id}}'
+                                            name='productId' data-user-id="{{Auth::id()}}">ADD TO CART</button>
+                                    </form>
+                                    <!-- <a href="#" class="add-to-cart-btn">ADD TO CART</a> -->
+                                </div>
+                            </div>
+                            @endif
                             @endforeach
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 offset-lg-1">
+                <!-- <div class="col-lg-3 offset-lg-1">
                     <div class="product-large set-bg m-large" data-setbg="img/products/man-large.jpg">
                         <a href="#">Discover More</a>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </section>

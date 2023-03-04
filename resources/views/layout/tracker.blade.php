@@ -9,11 +9,11 @@
                 <div class="row">
                     <div class="col-7">
                         <span id="heading">Date</span><br>
-                        <span id="details">10 October 2018</span>
+                        @foreach($gettrackdetails as $track)
+                        <span id="details">{{$track->order->created_at}}</span>
                     </div>
                     <div class="col-5 pull-right">
                         <span id="heading">Order No.</span><br>
-                        @foreach($gettrackdetails as $track)
                         <span id="details">
                         {{$track->orderId}}</span>
                         @endforeach
@@ -23,13 +23,28 @@
             <div class="pricing">
                 @foreach($products as $p)
                 <div class="row">
-                    <div class="col-9">
-                        <span>{{$p['name']}}</span>
+                    <div class="col-6">
+                        <span>Name</span><span style="margin-left:22vw;">Quantity</span>
+                    </div>
+                    <div class="col-3">
+                        <span>Image</span>
+                    </div>
+                    <div class="col-3">
+                        <span>Price</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <span>{{$p['name']}}<span style="margin:0 12vw;">X</span><span>{{$p['qty']}}</span></span>
+                    </div>
+                    <div class="col-3">
+                        <img src="{{asset('/storage/'.$p['img'])}}" height="100vh" width="100vw" alt="">
                     </div>
                     <div class="col-3">
                         <span>{{"$".$p['price']}}</span>
                     </div>
                 </div>
+                <br>
                 @endforeach
                 <!-- <div class="row">
                     <div class="col-9">
