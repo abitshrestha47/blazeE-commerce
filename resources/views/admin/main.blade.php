@@ -38,9 +38,9 @@
         <div class="sidebar pe-4 pb-3">
             <nav class="navbar bg-secondary navbar-dark">
                 <a href="index.html" class="navbar-brand mx-4 mb-3">
-                    <h3 class="text-primary"><i class="fa fa-user-edit me-2"></i>DarkPan</h3>
+                    <h3 class="headname"></i>Dashboard</h3>
                 </a>
-                <div class="d-flex align-items-center ms-4 mb-4">
+                <!-- <div class="d-flex align-items-center ms-4 mb-4">
                     <div class="position-relative">
                         @if(Auth::check())
                         @if(auth()->user()->img == null)
@@ -62,19 +62,19 @@
                             class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1">
                         </div>
                     </div>
-                </div>
-                <div class="ms-3">
+                </div> -->
+                <!-- <div class="ms-3">
                     <h6 class="mb-0">
                         @if (Auth::check())
                         {{ Auth::user()->username }}
                         @endif
                     </h6>
                     <span>Admin</span>
-                </div>
+                </div> -->
                 <div class="navbar-nav w-100">
                     <a href="{{route('dashboard')}}" class="nav-item nav-link active"><i
                             class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
-                    <div class="nav-item dropdown">
+                    <!-- <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
                                 class="fa fa-laptop me-2"></i>Elements</a>
                         <div class="dropdown-menu bg-transparent border-0">
@@ -82,33 +82,32 @@
                             <a href="typography.html" class="dropdown-item">Typography</a>
                             <a href="element.html" class="dropdown-item">Other Elements</a>
                         </div>
-                    </div>
+                    </div> -->
                     <a href="{{route('category')}}" class="nav-item nav-link"><i
                             class="fa fa-shopping-cart"></i>Category</a>
                     <a href="{{route('bigposter')}}" class="nav-item nav-link"><i class="fa fa-image"></i>Bigposter</a>
                     <a href="{{route('departments')}}" class="nav-item nav-link"><i
                             class="fa fa-cogs"></i>Departments</a>
-                    <a href="{{route('deliver-man')}}" class="nav-item nav-link"><i
-                            class="fa fa-cogs"></i>DeliverMan</a>
-                    <a href="{{route('brander')}}" class="nav-item nav-link"><i class="fa fa-cogs"></i>Brands</a>
-                    <a href="{{route('order')}}" class="nav-item nav-link"><i class="fa fa-cogs"></i>Orders</a>
-                    <a href="{{route('deliver-trackings')}}" class="nav-item nav-link"><i
-                            class="fa fa-cogs"></i>DeliverTrack</a>
-                    <a href="{{route('deals')}}" class="nav-item nav-link"><i class="fa fa-tag"></i>
-                        Deals</a>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
-                                class="fa fa-box"></i>Products</a>
-                        <div class="dropdown-menu bg-transparent border-0">
-                            <a href="{{route('products')}}" class="dropdown-item">Show Products</a>
-                            <a href="{{route('add-products')}}" class="dropdown-item">Add Products</a>
-                            <a href="element.html" class="dropdown-item">Other Elements</a>
-                            <a href="{{route('special-products')}}" class="dropdown-item">Add Special Products</a>
+                    <a href="{{route('deliver-man')}}" class="nav-item nav-link"><i class="fas fa-running"></i>DeliverMan</a>
+                    <a href="{{route('brander')}}" class="nav-item nav-link"><i class="fas fa-bookmark"></i>        Brands</a>
+                    <a href="{{route('order')}}" class="nav-item nav-link"><i class="fas fa-shopping-bag"></i>Orders
+                        <a href="{{route('deliver-trackings')}}" class="nav-item nav-link"><i
+                                class="fas fa-map-marker-alt"></i>DeliverTrack</a>
+                        <a href="{{route('deals')}}" class="nav-item nav-link"><i class="fa fa-tag"></i>
+                            Deals</a>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
+                                    class="fa fa-box"></i>Products</a>
+                            <div class="dropdown-menu bg-transparent border-0">
+                                <a href="{{route('products')}}" class="dropdown-item">Show Products</a>
+                                <a href="{{route('add-products')}}" class="dropdown-item">Add Products</a>
+                                <!-- <a href="element.html" class="dropdown-item">Other Elements</a> -->
+                                <a href="{{route('special-products')}}" class="dropdown-item">Add Special Products</a>
+                            </div>
                         </div>
-                    </div>
-                    <a href="{{route('contacts')}}" class="nav-item nav-link" display="hidden"><i
-                            class="fa fa-table me-2"></i>Contact</a>
-                    <div class="nav-item dropdown">
+                        <a href="{{route('contacts')}}" class="nav-item nav-link" display="hidden"><i
+                                class="fa fa-table me-2"></i>Contact</a>
+                        <!-- <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
                                 class="far fa-file-alt me-2"></i>Pages</a>
                         <div class="dropdown-menu bg-transparent border-0">
@@ -117,7 +116,7 @@
                             <a href="404.html" class="dropdown-item">404 Error</a>
                             <a href="blank.html" class="dropdown-item">Blank Page</a>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </nav>
         </div>

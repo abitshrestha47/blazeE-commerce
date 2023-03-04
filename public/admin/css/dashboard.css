@@ -12,6 +12,7 @@
 body{
   background: rgb(226, 219, 219);
 }
+
 .header{
   display: flex;
   align-items: center;

@@ -11,4 +11,7 @@ class Order extends Model
     protected $fillable=[
         'firstName','lastName','companyName','phone','company','street1','street2','province','email','country','town','products','userid',
     ];
+    public function tracking(){
+        return $this->hasOne(DeliveryTracking::class,'orderId');
+    }
 }
