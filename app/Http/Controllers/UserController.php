@@ -11,7 +11,6 @@ use App\Mail\Websitemail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 
-
 class UserController extends Controller
 {
     //
@@ -121,16 +120,23 @@ class UserController extends Controller
         return view('layout.userinfo');
     }
     public function changePass(Request $req){
-        if(Auth::check()){
-            $user=User::where('email',$req->email)->first();
-            if($req->oldpassword===$user->password){
-                if($req->newpassword===$req->retypepassword){
-                    dd('ewe');
-                }
-                else{
-                    dd('fdsfs');
-                }
-            }
+        $req->validate([
+            'oldpassword'=>'required',
+            'newpassword'=>'required',
+            'retypepassword'=>'required|same:newpassword'
+        ]);
+        $curPassStatus = Hash::check($req->oldpassword, auth()->user()->password);
+        if ($curPassStatus) {
+            User::findOrFail(Auth::user()->id)->update([
+                'password' => Hash::make($req->newpassword),
+            ]);
+
+            return redirect()->back()->with('success', 'Password updated succesfully');
+        } else {
+            return redirect()->back()->with('error', 'Old Password not matched');
         }
     }
+                
 }
+
+
