@@ -9,6 +9,7 @@
                 <div class="row">
                     <div class="col-7">
                         <span id="heading">Date</span><br>
+                        @if(isset($gettrackdetails))
                         @foreach($gettrackdetails as $track)
                         <span id="details">{{$track->order->created_at}}</span>
                     </div>
@@ -17,10 +18,12 @@
                         <span id="details">
                         {{$track->orderId}}</span>
                         @endforeach
+                        @endif
                     </div>
                 </div>      
             </div>      
             <div class="pricing">
+                @if(isset($products))
                 @foreach($products as $p)
                 <div class="row">
                     <div class="col-6">
@@ -46,6 +49,7 @@
                 </div>
                 <br>
                 @endforeach
+                @endif
                 <!-- <div class="row">
                     <div class="col-9">
                         <span id="name">BEATS Solo 3 Wireless Headphones</span>  
@@ -74,6 +78,7 @@
             </div>
             <div class="progress-track">
                 <ul id="progressbar">
+                    @if(isset($getData))
                     @if($getData=="processing")
                     <li class="step0 active" id="step1">Processing</li>
                     <li class="step0 text-center" id="step2">Shipped</li>
@@ -95,10 +100,22 @@
                     <li class="step0 active text-right" id="step3">Picked from the warehouse</li>
                     <li class="step0 active text-right" id="step4">Delivered</li> 
                     @endif
+                    @endif
                     <!-- <li class="step0 active " id="step1">Ordered</li>
                     <li class="step0 active text-center" id="step2">Shipped</li>
                     <li class="step0 active text-right" id="step3">On the way</li>
                     <li class="step0 text-right" id="step4">Delivered</li> -->
+                    @if(isset($order))
+                    @foreach($order as $acceptreject)
+                        @if($acceptreject->acceptreject===0)
+                        {!! "Sorry! Your order has been rejected." !!}
+                        @elseif($acceptreject->acceptreject===1)
+                            {!!"Your order has been accepted. When Processed you can track your order"!!}
+                        @else
+                            {!!"Your order is being looked after."!!}
+                        @endif
+                    @endforeach
+                    @endif
                 </ul>
             </div>
             

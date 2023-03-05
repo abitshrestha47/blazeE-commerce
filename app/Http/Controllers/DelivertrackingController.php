@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\DeliveryTracking;
 use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Products;
 
 
 class DelivertrackingController extends Controller
@@ -42,16 +43,24 @@ class DelivertrackingController extends Controller
 
     public function track(){
         $userid=Auth::id();
-        $gettrackdetails=DeliveryTracking::where('userid',$userid)->get();
-        $products=[];
-
-        foreach($gettrackdetails as $products){
-            $products=json_decode($products->products,true);
+        if($userid){
+            $gettrackdetails=DeliveryTracking::where('userid',$userid)->get();
+            if($gettrackdetails->isNotEmpty()){
+                $products=[];
+                $getData=null;
+                foreach($gettrackdetails as $products){
+                    $products=json_decode($products->products,true);
+                }
+                foreach($gettrackdetails as $see){
+                    $getData=$see->status;
+                }
+                return view('layout.tracker',compact('gettrackdetails','products','getData'));
+            }
+            else{
+                $order=Order::where('userid',$userid)->get();
+                return view('layout.tracker',compact('order'));
+            }
         }
-        foreach($gettrackdetails as $see){
-            $getData=$see->status;
-        }
-        return view('layout.tracker',compact('gettrackdetails','products','getData'));
     }
 
     public function sendstatus(Request $req){
@@ -59,6 +68,28 @@ class DelivertrackingController extends Controller
         $delivertrack=DeliveryTracking::where('orderId',$id)->first();
         $delivertrack->status=$req->status;
         $delivertrack->save();
+    }
+    public function acceptReject(Request $req){
+        $orderid=$req->input('id');
+        $value=$req->input('value');
+        $order=Order::find($orderid);
+        $order->acceptreject=$value;
+        $order->save();
+        $producting=Products::all();
+        $order=Order::find($orderid);
+        if($order->acceptreject==1){
+            $products=json_decode($order->products,true);
+            foreach($products as $p){
+                foreach($producting as $productings){
+                    if($p['id']==$productings->id){
+                        $qty=$p['qty'];
+                        $quantity=$productings->quantity;
+                        $productings->quantity=$quantity-$qty;
+                        $productings->save();
+                    }
+                }
+            }
+        }
     }
     public function getOrderID(Request $req){
         $orderid=$req->input('orderid');

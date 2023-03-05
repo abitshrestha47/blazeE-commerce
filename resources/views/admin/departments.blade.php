@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="{{asset('/admin/css/format.css')}}">
 
 <!-- form start -->
-<div class="container-fluid pt-4 px-4">
+<div class="container-fluid pt-4 px-4 tabulous1">
     <div class="col-sm-12">
 
         <div class="bg-secondary rounded h-100 p-5">

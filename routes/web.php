@@ -205,6 +205,8 @@ Route::get('/giveorderid',[DelivertrackingController::class,'getOrderID'])->name
 Route::get('/addingorder',[DelivertrackingController::class,'addingOrder'])->name('addingorder');
 Route::get('/blog',[blogController::class,'blog'])->name('blog');
 
+Route::post('/acceptreject',[DelivertrackingController::class,'acceptReject'])->name('acceptreject');
+
 
 
 

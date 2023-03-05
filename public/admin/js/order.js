@@ -32,4 +32,19 @@ $(document).ready(function(){
             }
         });
     });
+    //to accept or reject orders
+    $('.tick').click(function(){
+        var id=$(this).closest('td').data('id');
+        var value=$(this).data('value');
+        $.ajax({
+            type:'POST',
+            url:'/acceptreject',
+            data:{
+                id:id,
+                value:value
+            },
+            success:function(){
+            }
+        })
+    });
 }); 

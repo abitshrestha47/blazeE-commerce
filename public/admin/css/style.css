@@ -98,7 +98,7 @@
 
 .approve{
     cursor:pointer;
-    color:#867ae8;
+    color:#867ae8 !important;
 }
 
 .tabulous{
