@@ -3,23 +3,28 @@
 @section('contents')
 <!-- table starts -->
 <style>
-    thead, tbody, tfoot, tr, td, th {
+thead,
+tbody,
+tfoot,
+tr,
+td,
+th {
     border-color: inherit;
     border-style: none !important;
     border-width: 0;
-    }
+}
 </style>
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 
-<div class="container-fluid pt-4 px-4">
+<div class="container-fluid pt-4 px-4 tabulous1">
     <div class="col-12">
         <div class="bg-secondary rounded h-100 p-4">
             <h3 class="mb-4" style="text-align:center">orders Table</h3>
             <div class="table-responsive">
                 <table class="table">
-                    <thead>
+                    <thead class="tabulous">
                         <tr>
                             <th scope="col">SNo.</th>
                             <th scope="col">Name</th>
@@ -33,6 +38,7 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @if(isset($order))
                         @foreach($order as $orders)
                         <tr>
                             <th scope="row" class='orderid'>{{$orders->id}}</th>
@@ -42,7 +48,8 @@
                             <td>{{$orders->created_at}}</td>
                             <td>{{$orders->email}}</td>
                             <td>{{$orders->phone}}</td>
-                            <td class="approve"><i class="fas fa-check"></i></td>
+                            <td class="approve" data-id="{{$orders->id}}"><i class="fas fa-check tick" data-value="1"></i>{{" "}}<i class="fas fa-times tick" data-value="0"></i>
+                            </td>
                             <td><a href="#" data-toggle="modal" class="modal-trigger viewing"
                                     data-target="#productModal" id="viewing"><i class="fas fa-eye idgive"></i>
                                 </a></td>
@@ -51,6 +58,7 @@
                                 </a></td>
                         </tr>
                         @endforeach
+                        @endif
                     </tbody>
                 </table>
                 <div class="modal fade" id="productModal" tabindex="-1" role="dialog"
@@ -58,11 +66,13 @@
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
+                                @if(isset($orders))
                                 <h5 class="modal-title" id="exampleModalLabel">
                                     {{$orders->firstName}}{{" ".$orders->lastName." "}}Products List</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
+                                @endif
                             </div>
                             <div class="modal-body">
                                 <table class='table inserting'>
@@ -113,17 +123,7 @@
                                 </table>
                                 <table class="orderproducts table" style="border-style:none !important;">
                                 </table>
-                                <!-- <div class="table-responsive">
-                                    @foreach($order as $orderbott)
-                                    Name:<span class="firstNamee">{{$orderbott->firstName}}</span><span
-                                    class="lastNamee">{{$orderbott->lastName}}</span><br>
-                                    Address:<span
-                                        class="address">{{$orderbott->street1}},{{$orderbott->country}}</span><br>
-                                    Phone:<span class="phone">{{$orderbott->phone}}</span><br>
-                                    Email:<span class="email">{{$orderbott->email}}</span><br>
-                                    OrderNo:<span class="order">{{$orderbott->id}}</span>
-                                    @endforeach
-                                </div> -->
+                       
                                 <label>DeliverBoy</label>
                                 <select name="deliverman" id="deliverman">
                                     @foreach($deliverman as $del)
@@ -139,10 +139,6 @@
                     </div>
                 </div>
             </div>
-
-
-            <!-- <td><img height='70vh' width='70vh' src="{{$orders->email}}" alt=""></td> -->
-            <!-- <td><a href="{{route('productdelete',$orders->id)}}">Delete</a></td> -->
 
         </div>
     </div>
@@ -222,7 +218,7 @@ $(document).ready(function() {
                         cell3.innerHTML = productObj[key].qty;
 
                         let cell4 = row.insertCell();
-                        cell4.innerHTML =productObj[key].price;
+                        cell4.innerHTML = productObj[key].price;
 
                         let imageUrl = window.assetUrl + '/' + productObj[key].img;
                         let cell5 = row.insertCell();
@@ -277,7 +273,7 @@ $(document).ready(function() {
                     cell3.innerHTML = pr[key].qty;
 
                     let cell4 = row.insertCell();
-                    cell4.innerHTML ="$"+ pr[key].price;
+                    cell4.innerHTML = "$" + pr[key].price;
 
                     let imageUrl = window.assetUrl + '/' + pr[key].img;
                     let cell5 = row.insertCell();

@@ -33,6 +33,7 @@
     <link rel="stylesheet" href="{{asset('home/css/jquery-ui.min.css')}}" type="text/css">
     <link rel="stylesheet" href="{{asset('home/css/slicknav.min.css')}}" type="text/css">
     <link rel="stylesheet" href="{{asset('home/css/style.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('home/css/ribbon.css')}}">
     @vite(['resources/js/app.js'])
 </head>
 <body>
@@ -103,8 +104,8 @@
                                                 @if(isset($productData))
                                                 @foreach($productData as $cart)
                                                 <tr>
-                                                    <td class="si-pic"><img src="{{$cart->photo}}" alt=""
-                                                            width='80vw' height='80vw'></td>
+                                                    <td class="si-pic"><img src="{{asset('/storage/'.$cart->photo)}}" alt=""
+                                                            width='80vw' height='40vh'></td>
                                                     <td class="si-text">
                                                         <div class="product-selected">
                                                             @if(!$cart->specialproduct)

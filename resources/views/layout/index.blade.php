@@ -51,9 +51,9 @@
                             <h1>{{$bigposter->offer}}</h1>
                             <p>{{$bigposter->description}}</p>
                             <a href="#" class="primary-btn">Shop Now</a>
-                            <div class="off-card">
+                            <!-- <div class="off-card">
                                 <h2>Sale <span>{{$bigposter->offerprice}}</span></h2>
-                            </div>
+                            </div> -->
                             <!-- <button type="submit" class="primary-btn">Shop Now</button> -->
                         </div>
                     </div>
@@ -138,9 +138,9 @@
                                 </div>
                             </div>
                             <!-- Product Description -->
-                            <div class="product-description">
+                            <div class="product-description align">
                                 @if($singlegallery->discountprice)
-                                <p>{{$singlegallery->product->name}}</p>
+                                <h3>{{$singlegallery->product->name}}</h3>
                                 <h4 class="product-price"><strike>{{'$'.$singlegallery->product->price}}</strike>
                                 </h4>
                                 <h4 class="product-price">{{'$'.$singlegallery->discountprice}}</h4>
@@ -329,11 +329,12 @@
                                 <!-- Product Description -->
                                 <div class="product-description">
                                     <h4 class="product-price">{{'$'.$normalproducts->price}}</h4>
+                                    <h4>{{'$'.$normalproducts->specialproduct->discountprice}}</h4>
                                     <p>{{$normalproducts->name}}</p>
                                     <!-- Add to Cart -->
                                     <form action="{{route('add-cart')}}" method='POST' class='nomargin'>
                                         @csrf
-                                        <input type="hidden" value='{{$normalproducts->price}}' name='price'>
+                                        <input type="hidden" value='{{$normalproducts->specialproduct->discountprice}}' name='price'>
                                         <input type="hidden" value="{{Auth::id()}}" name='id'>
                                         @if (session()->has('message') &&
                                         session()->get('productId')===$singlegallery->id)

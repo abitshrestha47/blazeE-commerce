@@ -114,16 +114,22 @@
                         <div id="productData">
                             <div class="row">
                                 @foreach($products as $products)
+                                @if($products->specialproduct)
                                 <!-- Single gallery Item -->
-                                <div class="col-12 col-sm-6 col-lg-4 single_gallery_item wow fadeInUpBig"
+                                <div class="col-12 col-sm-6 col-lg-4 single_gallery_item wow fadeInUpBig single_gallery_item"
                                     data-wow-delay="0.2s">
+                                    <div class="ribbon ribbon-top-left">
+                                        <span>{{$products->specialproduct->discountoffer."% Offer"}}</span>
+                                    </div>
                                     <!-- Product Image -->
                                     <div class="product-img">
-                                        <img src="{{asset('/storage/'.$products->photo)}}" alt="" style="width:40vw; height:40vh">
+                                        <img src="{{asset('/storage/'.$products->photo)}}" alt=""
+                                            style="width:40vw; height:40vh">
 
                                         <!-- <img src="{{asset('/storage/' .$products->photo)}}" alt=""> -->
                                         <div class="product-quicview">
-                                            <a href="#" data-toggle="modal" data-target="#quickview" class='productdatamodal' data-id='{{$products->id}}'><i
+                                            <a href="#" data-toggle="modal" data-target="#quickview"
+                                                class='productdatamodal' data-id='{{$products->id}}'><i
                                                     class="ti-plus"></i></a>
                                         </div>
                                     </div>
@@ -135,13 +141,45 @@
                                         <p>{{$products->category->categories}}</p>
                                         <!-- Add to Cart -->
                                         <a href="#" class="add-to-cart-btn">ADD TO CART</a>
-                                        <form method="post" action="{{ route('wishLists') }}">
+                                        <!-- <form method="post" action="{{ route('wishLists') }}">
                                           @csrf
                                              <input type="hidden" name="product_id" value="{{ $products->id }}">
                                             <button type="submit" class="add-to-cart-btn">Add to Wishlist</button>
-                                        </form>
+                                        </form> -->
                                     </div>
                                 </div>
+                                @else
+                                <!-- Single gallery Item -->
+                                <div class="col-12 col-sm-6 col-lg-4 single_gallery_item wow fadeInUpBig"
+                                    data-wow-delay="0.2s">
+                                    <!-- Product Image -->
+                                    <div class="product-img">
+                                        <img src="{{asset('/storage/'.$products->photo)}}" alt=""
+                                            style="width:40vw; height:40vh">
+
+                                        <!-- <img src="{{asset('/storage/' .$products->photo)}}" alt=""> -->
+                                        <div class="product-quicview">
+                                            <a href="#" data-toggle="modal" data-target="#quickview"
+                                                class='productdatamodal' data-id='{{$products->id}}'><i
+                                                    class="ti-plus"></i></a>
+                                        </div>
+                                    </div>
+                                    <!-- Product Description -->
+                                    <div class="product-description">
+                                        <h4 class="product-price">{{'$'.$products->price}}</h4>
+                                        <p>{{$products->name}}</p>
+                                        <p>{{$products->brand->brandName}}</p>
+                                        <p>{{$products->category->categories}}</p>
+                                        <!-- Add to Cart -->
+                                        <a href="#" class="add-to-cart-btn">ADD TO CART</a>
+                                        <!-- <form method="post" action="{{ route('wishLists') }}">
+                                          @csrf
+                                             <input type="hidden" name="product_id" value="{{ $products->id }}">
+                                            <button type="submit" class="add-to-cart-btn">Add to Wishlist</button>
+                                        </form> -->
+                                    </div>
+                                </div>
+                                @endif
                                 @endforeach
                             </div>
                         </div>
@@ -186,24 +224,26 @@
                                         <h4><strong>Price:</strong> <span class="product-price"></span></h4>
                                         <!-- <h5 class="price"><span class='product-price'></span></h5> -->
                                         <p class="des">this is good product</p>
-                                        <a href="{{route('readmore')}}"><button type="submit" class="buton">Read More</button></a>
-                                        
-                                            <div class="quantity mt-3">
-                                                <h4><strong>Quantity:</strong></h4>
-                                                <span class="qty-minus"
-                                                    onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i
-                                                        class="fa fa-minus" aria-hidden="true"></i></span>
+                                        <a href="{{route('readmore')}}"><button type="submit" class="buton">Read
+                                                More</button></a>
 
-                                                <input type="number" class="qty-text" id="qty" step="1" min="1" max="12"
-                                                    name="quantity" value="1">
+                                        <div class="quantity mt-3">
+                                            <h4><strong>Quantity:</strong></h4>
+                                            <span class="qty-minus"
+                                                onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i
+                                                    class="fa fa-minus" aria-hidden="true"></i></span>
 
-                                                <span class="qty-plus"
-                                                    onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i
-                                                        class="fa fa-plus" aria-hidden="true"></i></span>
-                                                <div class="modal_pro_cart">
-                                                    <a href="{{route('cart')}}" target="_blank"><i class="fa-solid fa-cart-shopping"></i></a>
-                                                </div>
+                                            <input type="number" class="qty-text" id="qty" step="1" min="1" max="12"
+                                                name="quantity" value="1">
+
+                                            <span class="qty-plus"
+                                                onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i
+                                                    class="fa fa-plus" aria-hidden="true"></i></span>
+                                            <div class="modal_pro_cart">
+                                                <a href="{{route('cart')}}" target="_blank"><i
+                                                        class="fa-solid fa-cart-shopping"></i></a>
                                             </div>
+                                        </div>
                                     </div>
 
                                     <div class="share_wf mt-15">
@@ -369,7 +409,7 @@
             $.ajax({
                 type: 'GET',
                 dataType: 'html',
-                url: '{{url('/data')}}',
+                url: '{{url(' / data ')}}',
                 data: {
                     'category': category
                 },
@@ -379,58 +419,58 @@
             });
         });
         var globalBrands = [];
-        $('#filter').click(function(){
-            var minamount=$('.minamount').val();
-            var maxamount=$('.maxamount').val();
-            var category=$('.category').val();
-            
-            alert(minamount+maxamount+category);
+        $('#filter').click(function() {
+            var minamount = $('.minamount').val();
+            var maxamount = $('.maxamount').val();
+            var category = $('.category').val();
+
+            alert(minamount + maxamount + category);
             $.ajax({
-                type:'GET',
-                dataType:'html',
-                url:'/priceFilter',
-                data:{
-                    'minamount':minamount,
-                    'maxamount':maxamount,
-                    'category':category,
+                type: 'GET',
+                dataType: 'html',
+                url: '/priceFilter',
+                data: {
+                    'minamount': minamount,
+                    'maxamount': maxamount,
+                    'category': category,
                     'globalBrands': globalBrands
                 },
-                success:function(data){
+                success: function(data) {
                     $("#productData").html(data);
                     console.log(data);
                 }
             });
         });
-        $('.brand').change(function(){
-            var category=$('.category').val();
-            var brands=[];
-            $('.brand:checked').each(function(){
+        $('.brand').change(function() {
+            var category = $('.category').val();
+            var brands = [];
+            $('.brand:checked').each(function() {
                 brands.push(this.value);
             });
             globalBrands = brands;
             alert(brands + category);
             $.ajax({
-                type:'GET',
-                dataType:'html',
-                url:'/boxFilter',
-                data:{
-                    'brands':brands,
-                    'category':category
+                type: 'GET',
+                dataType: 'html',
+                url: '/boxFilter',
+                data: {
+                    'brands': brands,
+                    'category': category
                 },
-                success:function(data){
+                success: function(data) {
                     $("#productData").html(data);
                 }
+            });
         });
-        });
-        $('.productdatamodal').click(function(){
-            var productid=$(this).data('id');
+        $('.productdatamodal').click(function() {
+            var productid = $(this).data('id');
             $.ajax({
-                url:'/get-product/'+productid,
-                type:'GET',
-                success:function(data){
+                url: '/get-product/' + productid,
+                type: 'GET',
+                success: function(data) {
                     $('#quickview').find('.product-name').text(data.name);
                     $('#quickview').find('.product-price').text(data.price);
-                    $('#quickview').find('.product-img').attr('src',data.photo);
+                    $('#quickview').find('.product-img').attr('src', data.photo);
                 }
             });
         });
