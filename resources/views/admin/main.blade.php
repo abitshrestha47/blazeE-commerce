@@ -99,10 +99,10 @@
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
                                     class="fa fa-box"></i>Products</a>
                             <div class="dropdown-menu bg-transparent border-0">
-                                <a href="{{route('products')}}" class="dropdown-item">Show Products</a>
-                                <a href="{{route('add-products')}}" class="dropdown-item">Add Products</a>
+                                <a href="{{route('products')}}" class="dropdown-item" style="color:white">Show Products</a>
+                                <a href="{{route('add-products')}}" class="dropdown-item" style="color:white">Add Products</a>
                                 <!-- <a href="element.html" class="dropdown-item">Other Elements</a> -->
-                                <a href="{{route('special-products')}}" class="dropdown-item">Add Special Products</a>
+                                <a href="{{route('special-products')}}" class="dropdown-item" style="color:white">Add Special Products</a>
                             </div>
                         </div>
                         <a href="{{route('contacts')}}" class="nav-item nav-link" display="hidden"><i
