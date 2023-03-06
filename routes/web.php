@@ -114,6 +114,8 @@ Route::get('/brander',[BrandController::class,'getBrander'])->name('brander');
 
 Route::get('/delete/{id}',[AdminController::class,'delete'])->name('delete')->middleware('auth','admin');
 
+Route::get('/branddelete/{id}',[BrandController::class,'deletebrand'])->name('deletebrand')->middleware('auth','admin');
+
 Route::get('/productdelete/{id}',[AdminController::class,'productdelete'])->name('productdelete')->middleware('auth','admin');
 
 Route::get('/editcategory/{id}',[AdminController::class,'editcategory'])->name('editcategory');

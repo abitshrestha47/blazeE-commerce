@@ -12,9 +12,15 @@ class BrandController extends Controller
         $brand=Brand::create([
             'brandName' => $req->brand,
         ]);
+        return back()->with('msg','Brand named added Successfully!');
     }
     public function getBrander(){
         $brands=Brand::all();
         return view('admin.brand',compact('brands'));
+    }
+    public function deletebrand($id){
+        $brands=Brand::find($id);
+        $brands->delete();
+        return back()->with('delmsg','Brand Deleted Successfully!');
     }
 }

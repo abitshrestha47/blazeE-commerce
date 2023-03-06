@@ -21,5 +21,6 @@ class BigposterController extends Controller
         $bigposter->offerprice=$req->offerprice;
         $bigposter->bigposterimg= $response;
         $bigposter->save();
+        return back()->with('msg','BigPoster added successfully');
     }
 }

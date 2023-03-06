@@ -14,6 +14,7 @@ class DelivermanController extends Controller
         $deliverman->phone=$req->phone;
         $deliverman->address=$req->address;
         $deliverman->save();
+        return back()->with('msg','DeliveryMan Data Added Successfully');
     }
     public function getDeliverman(){
         return view('admin.deliverman');
