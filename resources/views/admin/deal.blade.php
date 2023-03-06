@@ -5,8 +5,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- form start -->
 <div class="container-fluid pt-4 px-4">
-    <div class="col-sm-12">
-
+    <div class="col-12">
         <div class="bg-secondary rounded h-100 p-4">
             <h1 class="mb-4" style="text-align:center">Add Deal Detail</h1>
             <form action="{{route('deals')}}" method='post' enctype='multipart/form-data'>
@@ -43,7 +42,7 @@
         <div class="bg-secondary rounded h-100 p-4">
             <h3 class="mb-4" style="text-align:center">Deals Table</h3>
             <div class="table-responsive">
-                <table class="table">
+                <table class="table table-success table-striped table-hover">
                     <thead>
                         <tr>
                             <th scope="col">SNo.</th>
@@ -66,7 +65,7 @@
                             <td>{{$dealtable->endDate}}</td>
                             <td><img height='70vh' width='70vh'
                                     src="{{asset('/storage/'.$dealtable->dealBackgroundImage)}}" alt=""></td>
-                            <td><a href="">Delete</a></td>
+                            <td><a href=""><i class="fa fa-trash" aria-hidden="true"></i></a></td>
                             @if($dealtable->toshow==true)
                             <td><input type="radio" name="toshow" value="{{$dealtable->id}}" class='toshow' selected>
                                 Show this</td>

@@ -6,7 +6,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <!-- form start -->
-<div class="container-fluid pt-4 px-4 sizing">
+<div class="container-fluid pt-4 px-4">
     <div class="col-sm-12">
 
         <div class="bg-secondary rounded h-100 p-4">
