@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Brand;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Category;
@@ -36,6 +37,7 @@ class AdminController extends Controller
         $category->delete();
         return back()->with('delmsg','Category Deleted Successfully!');
     }
+    
     public function productdelete($id){
         $product=Products::find($id);
         $product->delete();
@@ -50,6 +52,6 @@ class AdminController extends Controller
         $category=Category::find($req->id);
         $category->categories=$req->category;
         $category->save();
-        return redirect()->route('category');
+        return redirect()->route('category')->with('msg','Category Edited successfully!');
     }
 }

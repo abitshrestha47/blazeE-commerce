@@ -18,10 +18,10 @@ th {
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 
-<div class="container-fluid pt-4 px-4 tabulous1">
+<div class="container-fluid pt-4 px-4">
     <div class="col-12">
         <div class="bg-secondary rounded h-100 p-4">
-            <h3 class="mb-4" style="text-align:center">orders Table</h3>
+            <h3 class="mb-4" style="text-align:center">Orders Table</h3>
             <div class="table-responsive">
                 <table class="table">
                     <thead class="tabulous">
