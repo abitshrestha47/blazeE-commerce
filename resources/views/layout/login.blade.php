@@ -64,7 +64,6 @@
         <button class="bttn" type="submit" tabindex='3'>Submit</button>
     </div>
 </form>
-
     <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
     <script src="home/js/script.js"></script>
 </body>

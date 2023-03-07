@@ -12,16 +12,16 @@
     integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous">
 </script>
 
-<div class="container-fluid pt-4 px-4 tabulous1">
+<div class="container-fluid pt-4 px-4">
     <div class="col-12">
         <div class="bg-secondary rounded h-100 p-4">
-            <h3 class="mb-4" style="text-align:center">Deliverytracks</h3>
+            <h3 class="mb-4" style="text-align:center">Delivery Tracks</h3>
             <div class="table-responsive">
                 <table class="table">
                     <thead class="tabulous">
                         <tr>
                             <th scope="col">SNo.</th>
-                            <th scope="col">NameofRecipient</th>
+                            <th scope="col">Name of Recipient</th>
                             <th scope="col">Street</th>
                             <th scope="col">Phone</th>
                             <th scope="col">Email</th>

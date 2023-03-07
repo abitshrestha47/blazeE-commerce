@@ -25,13 +25,14 @@
                     </thead>
                     <tbody>
                         @foreach($products as $products)
-                        <tr>
+                        <tr class="table-success">
                             <th scope="row">{{$products->id}}</th>
                             <td>{{$products->name}}</td>
                             <td>{{$products->price}}</td>
                             <td>{{$products->category->categories}}</td>
                             <td>{{$products->color}}</td>
                             <td>{{$products->brand->brandName}}</td>
+                            <td></td>
                             <td><img height='70vh' width='70vh' src="{{asset('/storage/'.$products->photo)}}" alt=""></td>
                             <td><a href="{{route('productdelete',$products->id)}}"><i class="fas fa-trash-alt"></i></a></td>
                         </tr>
