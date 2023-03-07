@@ -164,7 +164,7 @@
                                         {{ session()->get('message')}}
                                     </div>
                                     @endif
-                                    <button type='submit' class="add-to-cart-btn cart_add"
+                                    <button type='submit' .class="add-to-cart-btn cart_add"
                                         data-id="{{$singlegallery->product->id}}"
                                         value='{{$singlegallery->product->id}}' name='productId'
                                         data-user-id="{{Auth::id()}}">ADD TO CART</button>

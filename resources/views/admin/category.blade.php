@@ -2,6 +2,7 @@
 
 @section('contents')
 
+<input type="text" class='view' value='category'>
 <!-- category section start -->
 <div class="container-fluid pt-4 px-4">
     <div class="card bg-secondary w-100">
@@ -39,6 +40,7 @@
 <!-- category section end -->
 
 <!-- table starts -->
+<div id="filter">
 <div class="container-fluid pt-4 px-4">
     <div class="col-12">
         <div class="bg-secondary rounded h-100 p-4">
@@ -70,6 +72,7 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 <!-- table end -->
 

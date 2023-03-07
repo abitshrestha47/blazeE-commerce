@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>DarkPan - Bootstrap 5 Admin Template</title>
+    <title>Admin Dash</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -30,6 +30,23 @@
 
     <!-- Template Stylesheet -->
     <link href="admin/css/style.css" rel="stylesheet">
+    <style>
+        .m{
+            position:relative;
+        }
+        .n{
+            position: absolute;
+            height: 15px;
+            left: 50px;
+            width: 15px;
+            color: black;
+            border-radius: 50%;
+            font-size: 11px;
+            font-weight: 700;
+            text-align: center;
+            line-height: 15px;
+        }
+    </style>
 </head>
 
 <body>
@@ -135,7 +152,7 @@
                     <i class="fa fa-bars"></i>
                 </a>
                 <form class="d-none d-md-flex ms-4">
-                    <input class="form-control bg-dark border-0" type="search" placeholder="Search">
+                    <input class="form-control bg-dark border-0 search1" type="search" placeholder="Search">
                 </form>
                 <div class="navbar-nav align-items-center ms-auto">
                     <div class="nav-item dropdown">
@@ -182,12 +199,18 @@
                     </div>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                            <i class="fa fa-bell me-lg-2"></i>
+                            <i class="fa fa-bell me-lg-2 m"></i>
+                            <span class="n">{{$notification}}</span>
                             <span class="d-none d-lg-inline-flex">Notificatin</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
                             <a href="#" class="dropdown-item">
                                 <h6 class="fw-normal mb-0">Profile updated</h6>
+                                <small>15 minutes ago</small>
+                            </a>
+                            <hr class="dropdown-divider">
+                            <a href="#" class="dropdown-item">
+                                <h6 class="fw-normal mb-0">{{$notification}}</h6>
                                 <small>15 minutes ago</small>
                             </a>
                             <hr class="dropdown-divider">
@@ -506,7 +529,7 @@
     </div>
 
     <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="admin/lib/chart/chart.min.js"></script>
     <script src="admin/lib/easing/easing.min.js"></script>
@@ -517,7 +540,8 @@
     <script src="admin/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
     <!-- Template Javascript -->
-    <script src="{{asset('js/main.js')}}"></script>
+    <script src="{{asset('admin/js/main.js')}}"></script>
+    <script src="{{asset('admin/js/main1.js')}}"></script>
     <script src="{{asset('admin/js/js.js')}}"></script>
 </body>
 

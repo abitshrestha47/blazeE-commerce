@@ -1,9 +1,3 @@
-@extends('admin.main')
-
-@section('contents')
-<!-- table starts -->
-<input type="text" value="products" class="view">
-<div id="filter">
 <div class="container-fluid pt-4 px-4 tabulous1">
     <div class="col-12">
         <div class="bg-secondary rounded h-100 p-4">
@@ -42,7 +36,3 @@
         </div>
     </div>
 </div>
-</div>
-<!-- table end -->
-
-@endsection
