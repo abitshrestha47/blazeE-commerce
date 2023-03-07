@@ -7,6 +7,7 @@ use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
 use App\Models\DeliverMan;
 use Illuminate\Support\Facades\Date;
+use App\Models\Notification;
 
 
 
@@ -40,6 +41,11 @@ class OrderController extends Controller
                     'products'=>$products_encode,
                     'userid'=>$userid,
                 ]);
+                $notify=new Notification();
+                $notify->userid=Auth::id();
+                $notify->orderid=6;
+                $notify->save();
+
             }
             else{
                 dd('fjlsd');

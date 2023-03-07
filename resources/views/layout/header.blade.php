@@ -10,9 +10,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
         integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-        
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css"
+        rel="stylesheet">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
     <!-- Favicon  -->
     <link rel="icon" href="{{asset('img/core-img/favicon.ico')}}">
@@ -34,6 +36,15 @@
     <link rel="stylesheet" href="{{asset('home/css/slicknav.min.css')}}" type="text/css">
     <link rel="stylesheet" href="{{asset('home/css/style.css')}}" type="text/css">
     <link rel="stylesheet" href="{{asset('home/css/ribbon.css')}}">
+    <style>
+    /* #search-results {
+        border: 1px solid black;
+        padding: 100px;
+    } */
+    .searches{
+        cursor:pointer;
+    }
+    </style>
     @vite(['resources/js/app.js'])
 </head>
 <body>
@@ -51,7 +62,8 @@
                     @auth
                     <a href="{{route('logout')}}" class="login-panel"><i
                             class="fa-sharp fa-solid fa-right-to-bracket"></i>Logout</a>
-                    <a href="{{route('user-info')}}" class='login-panel'><i class="fa fa-user"></i>{{Auth::user()->username}}
+                    <a href="{{route('user-info')}}" class='login-panel'><i
+                            class="fa fa-user"></i>{{Auth::user()->username}}
                     </a>
                     @endauth
                     <div class="top-social">
@@ -79,7 +91,8 @@
                         <div class="advanced-search">
                             <button type="button" class="category-btn">All Categories</button>
                             <div class="input-group">
-                                <input type="text" placeholder="What do you need?">
+                                <input type="text" placeholder="What do you need?" class="search">
+                                <div id="search-results"></div>
                                 <button type="button"><i class="ti-search"></i></button>
                             </div>
                         </div>
@@ -104,18 +117,18 @@
                                                 @if(isset($productData))
                                                 @foreach($productData as $cart)
                                                 <tr>
-                                                    <td class="si-pic"><img src="{{asset('/storage/'.$cart->photo)}}" alt=""
-                                                            width='80vw' height='40vh'></td>
+                                                    <td class="si-pic"><img src="{{asset('/storage/'.$cart->photo)}}"
+                                                            alt="" width='80vw' height='40vh'></td>
                                                     <td class="si-text">
                                                         <div class="product-selected">
                                                             @if(!$cart->specialproduct)
                                                             <p>{{'$'.$cart->price}}</p>
                                                             @else
-                                                                @if($cart->specialproduct->discountprice)
-                                                                    <p>{{'$'.$cart->specialproduct->discountprice}}</p>
-                                                                @else
-                                                                    <p>{{'$'.$cart->price}}</p>
-                                                                @endif
+                                                            @if($cart->specialproduct->discountprice)
+                                                            <p>{{'$'.$cart->specialproduct->discountprice}}</p>
+                                                            @else
+                                                            <p>{{'$'.$cart->price}}</p>
+                                                            @endif
                                                             @endif
                                                             <h6>{{$cart->name}}</h6>
                                                         </div>
@@ -185,7 +198,8 @@
                         <ul class="depart-hover">
                             @if(isset($departments))
                             @foreach($departments as $departmentschoose)
-                            <li style="color:black;" class='deptgo' value='{{$departmentschoose->id}}'>{{$departmentschoose->departmentName}}</li>
+                            <li style="color:black;" class='deptgo' value='{{$departmentschoose->id}}'>
+                                {{$departmentschoose->departmentName}}</li>
                             @endforeach
                             @endif
 
@@ -249,6 +263,7 @@
     <script src="{{asset('home/js/jquery.slicknav.js')}}"></script>
     <script src="{{asset('home/js/owl.carousel.min.js')}}"></script>
     <script src="{{asset('home/js/main.js')}}"></script>
+    <script src="{{asset('home/js/header.js')}}"></script>
     @yield('contents')
 </body>
 </html>

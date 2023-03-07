@@ -25,6 +25,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\Mail12;
 use App\Http\Controllers\blogController;
 use App\Http\Controllers\wishListsController;
+use App\Http\Controllers\SearchController;
 
 use PSpell\Config;
 
@@ -211,6 +212,18 @@ Route::get('/addingorder',[DelivertrackingController::class,'addingOrder'])->nam
 Route::get('/blog',[blogController::class,'blog'])->name('blog');
 
 Route::post('/acceptreject',[DelivertrackingController::class,'acceptReject'])->name('acceptreject');
+
+Route::get('/getsearch',[SearchController::class,'getSearch'])->name('getsearch');
+
+Route::get('/searchresults',[SearchController::class,'searchResults'])->name('searchresults');
+
+Route::get('/searchthis/category',[SearchController::class,'searchThis'])->name('searchthis.category');
+
+Route::get('/searchthis/products',[SearchController::class,'searchProducts'])->name('searchthis.products');
+
+Route::get('/mainview',[AdminController::class,'mainview'])->name('mainview');
+
+
 
 
 

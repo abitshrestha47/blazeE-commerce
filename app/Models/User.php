@@ -14,4 +14,7 @@ class User extends Model
     public function cart(){
         return $this->hasMany(Cart::class,'userid');
     }
+    public function notification(){
+        return $this->hasMany(Notification::class,'userid');
+    }
 }

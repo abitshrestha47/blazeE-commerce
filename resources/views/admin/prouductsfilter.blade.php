@@ -1,9 +1,3 @@
-@extends('admin.main')
-
-@section('contents')
-<!-- table starts -->
-<input type="text" value="products" class="view">
-<div id="filter">
 <div class="container-fluid pt-4 px-4 tabulous1">
     <div class="col-12">
         <div class="bg-secondary rounded h-100 p-4">
@@ -25,14 +19,13 @@
                     </thead>
                     <tbody>
                         @foreach($products as $products)
-                        <tr class="table-success">
+                        <tr>
                             <th scope="row">{{$products->id}}</th>
                             <td>{{$products->name}}</td>
                             <td>{{$products->price}}</td>
                             <td>{{$products->category->categories}}</td>
                             <td>{{$products->color}}</td>
                             <td>{{$products->brand->brandName}}</td>
-                            <td></td>
                             <td><img height='70vh' width='70vh' src="{{asset('/storage/'.$products->photo)}}" alt=""></td>
                             <td><a href="{{route('productdelete',$products->id)}}"><i class="fas fa-trash-alt"></i></a></td>
                         </tr>
@@ -43,7 +36,3 @@
         </div>
     </div>
 </div>
-</div>
-<!-- table end -->
-
-@endsection
