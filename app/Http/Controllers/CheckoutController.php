@@ -27,7 +27,6 @@ class CheckoutController extends Controller
             foreach($data as $key=>$value){
                 $price[$value->productid]=$value->price;
             }
-            $cart=Cart::all();
             $keys = array_column($data, 'productid');
             $productsgive=Products::whereIn('id',$keys)->get();
             return view('layout.checkout',compact('productsgive','qty','price','cart'));

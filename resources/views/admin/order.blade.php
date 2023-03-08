@@ -48,8 +48,14 @@ th {
                             <td>{{$orders->created_at}}</td>
                             <td>{{$orders->email}}</td>
                             <td>{{$orders->phone}}</td>
+                            @if($orders->acceptreject==null)
                             <td class="approve" data-id="{{$orders->id}}"><i class="fas fa-check tick" data-value="1"></i>{{" "}}<i class="fas fa-times tick" data-value="0"></i>
-                            </td>
+                            </td> 
+                            @elseif($orders->acceptreject==0)  
+                            <td>Rejected</td>
+                            @elseif($orders->acceptreject==1)
+                            <td>Accepted</td>
+                            @endif
                             <td><a href="#" data-toggle="modal" class="modal-trigger viewing"
                                     data-target="#productModal" id="viewing"><i class="fas fa-eye idgive"></i>
                                 </a></td>

@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Notification extends Model
 {
     use HasFactory;
+    protected $fillable=[
+        'viewed',
+    ];
     public function user(){
         return $this->belongsTo(User::class,'userid');
     }

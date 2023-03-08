@@ -43,7 +43,7 @@ class OrderController extends Controller
                 ]);
                 $notify=new Notification();
                 $notify->userid=Auth::id();
-                $notify->orderid=6;
+                $notify->orderid=$order->id;
                 $notify->save();
 
             }

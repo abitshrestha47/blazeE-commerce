@@ -263,7 +263,7 @@ $(document).ready(function() {
 
     $('.minus,.plus').click(function() {
         var self = this;
-    var productprice = $(this).closest('tr').find('.productprice').data("price");
+        var productprice = $(this).closest('tr').find('.productprice').data("price");
         var quantity = $(this).closest('tr').find('.qtyqty').val();
         // alert(productprice+quantity);
         $.ajax({
@@ -275,6 +275,16 @@ $(document).ready(function() {
             success: function(data) {
                 $(self).closest('tr').find('.pricing').text('$' + data);
                 $(self).closest('tr').find('.pricetoalter').val(data);
+                let shipping=document.getElementById('show');
+                let subtotal=parseFloat(data);
+                shipping=document.getElementById('show').textContent;
+                shipping=parseFloat(shipping.replace("$",""));
+                let total=document.getElementById('total');
+                let total1=subtotal+shipping;
+                let stringtotal=total1.toString();
+                total.textContent="$"+stringtotal;
+                let totalhidden=document.getElementById('totalhidden');
+                totalhidden.value=total1;
             }
         });
     });

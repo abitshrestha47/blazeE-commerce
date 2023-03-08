@@ -18,7 +18,6 @@ class DelivertrackingController extends Controller
         return view('admin.deliverytracking',compact('order','delivertrack'));
     }
     public function tracking(Request $req){
-        $userid=Auth::id();
         $orderid=$req->orderid;
         $order=Order::find($orderid);
         $products=$order->products;
@@ -30,7 +29,7 @@ class DelivertrackingController extends Controller
         $delivertrack->status="processing";
         $delivertrack->orderid=$order->id;
         $delivertrack->products=$products;
-        $delivertrack->userid=$userid;
+        $delivertrack->userid=$order->userid;
         $delivertrack->save();
     }
 

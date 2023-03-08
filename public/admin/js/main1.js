@@ -23,4 +23,16 @@ $(document).ready(function(){
             }
         });
     });
+    $('.m').click(function(){
+        var token = $('meta[name="csrf-token"]').attr('content');
+        $.ajaxSetup({
+            headers: {
+               'X-CSRF-TOKEN': token
+            }
+         });
+        $.ajax({
+            type:'post',
+            url:'/makeone',
+        });
+    });
 });
