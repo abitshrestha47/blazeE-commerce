@@ -19,6 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('orderid');
             $table->foreign('orderid')->references('id')->on('orders')->onDelete('cascade');
             $table->foreign('userid')->references('id')->on('users')->onDelete('cascade');
+            $table->enum('viewed', ['0','1'])->default('0');            
             $table->timestamps();
         });
     }

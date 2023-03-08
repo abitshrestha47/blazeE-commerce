@@ -163,11 +163,9 @@
                             @endif
                             @endforeach
                             @endforeach
-                            @foreach($cart as $totaling)
-                            <li><span>Subtotal</span> <span>${{$totaling->subtotal}}</span></li>
-                            <li><span>Shipping</span> <span>${{$totaling->shipping}}</span></li>
-                            <li><span>Total</span> <span>${{$totaling->total}}</span></li>
-                            @endforeach
+                            <li><span>Subtotal</span> <span>${{$cart->subtotal}}</span></li>
+                            <li><span>Shipping</span> <span>${{$cart->shipping}}</span></li>
+                            <li><span>Total</span> <span>${{$cart->total}}</span></li>
                         </ul>
 
 

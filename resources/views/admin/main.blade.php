@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta charset="utf-8">
     <title>Admin Dash</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -200,7 +201,15 @@
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                             <i class="fa fa-bell me-lg-2 m"></i>
+                            @if(isset($notification))
+                            @foreach($notifications as $np)
+                            @if($np->viewed==='0')
                             <span class="n">{{$notification}}</span>
+                            @else
+                            <span></span>
+                            @endif
+                            @endforeach
+                            @endif
                             <span class="d-none d-lg-inline-flex">Notificatin</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
@@ -210,7 +219,9 @@
                             </a>
                             <hr class="dropdown-divider">
                             <a href="#" class="dropdown-item">
+                                @if(isset($notification))
                                 <h6 class="fw-normal mb-0">{{$notification}}</h6>
+                                @endif
                                 <small>15 minutes ago</small>
                             </a>
                             <hr class="dropdown-divider">

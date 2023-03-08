@@ -223,6 +223,8 @@ Route::get('/searchthis/products',[SearchController::class,'searchProducts'])->n
 
 Route::get('/mainview',[AdminController::class,'mainview'])->name('mainview');
 
+Route::post('/makeone',[AdminController::class,'makeOne'])->name('makeone');
+
 
 
 
