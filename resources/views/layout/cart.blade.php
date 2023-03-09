@@ -275,20 +275,22 @@ $(document).ready(function() {
             success: function(data) {
                 $(self).closest('tr').find('.pricing').text('$' + data);
                 $(self).closest('tr').find('.pricetoalter').val(data);
-                let shipping=document.getElementById('show');
-                let subtotal=parseFloat(data);
-                shipping=document.getElementById('show').textContent;
-                shipping=parseFloat(shipping.replace("$",""));
-                let total=document.getElementById('total');
-                let total1=subtotal+shipping;
-                let stringtotal=total1.toString();
-                total.textContent="$"+stringtotal;
-                let totalhidden=document.getElementById('totalhidden');
-                totalhidden.value=total1;
+
+                // let shipping=document.getElementById('show');
+                // let subtotal=parseFloat(data);
+                // shipping=document.getElementById('show').textContent;
+                // shipping=parseFloat(shipping.replace("$",""));
+                // let total=document.getElementById('total');
+                // let total1=subtotal+shipping;
+                // let stringtotal=total1.toString();
+                // total.textContent="$"+stringtotal;
+                // let totalhidden=document.getElementById('totalhidden');
+                // totalhidden.value=total.textContent;
             }
         });
     });
 });
+
 // $(document).ready(function() {
 //     $('.minus').click(function() {
 //         var productprice = $('.productprice').data('price');
@@ -319,6 +321,27 @@ $(document).ready(function() {
 //         });
 //     });
 // });
+</script>
+<script>
+    var subtotalobserver=new MutationObserver(function(mutations){
+        var tot=document.getElementById("total");
+        var shipp=document.getElementById("show").textContent;
+        var shippp=parseFloat(shipp.replace("$",""));
+        var sub=document.getElementById("subtotal").textContent;
+        var subb=parseFloat(sub.replace("$",""));
+        var totaling=subb+shippp;
+        var totalhidden=document.getElementById("totalhidden");
+        totalhidden.value=totaling;
+        totaling=""+totaling;
+        tot.textContent="$"+totaling;
+        // subtotal1=parseFloat(subtotal1.replace("$",""));
+        // shipp=parseFloat(shipp.replace("$",""));
+        // alert(subtotal1);
+        // alert(shipp);
+    });
+
+    var subtotal1=document.getElementById('subtotal');
+    subtotalobserver.observe(subtotal1,{childList:true,subtree:true,characterData:true});
 </script>
 <script src="home/js/jquery/jquery-2.2.4.min.js"></script>
 <!-- Popper js -->
