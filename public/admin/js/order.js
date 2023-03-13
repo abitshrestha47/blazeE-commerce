@@ -7,11 +7,13 @@ $(document).ready(function(){
      });
     $('.addnow').click(function(){
         var orderid=$('.oid').text();
+        var deliverboyid=$('.deliverman').val();
         $.ajax({
             type:'POST',
             url:'/delivertrack',
             data:{
                 orderid:orderid,
+                deliverboyId:deliverboyid,
             },
             success:function(){
                 console.log('fsdf');
@@ -44,6 +46,7 @@ $(document).ready(function(){
                 value:value
             },
             success:function(){
+                location.reload();
             }
         })
     });

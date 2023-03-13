@@ -5,13 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class DeliveryTracking extends Model
+class Sale extends Model
 {
     use HasFactory;
     protected $fillable=[
-        'total',
-    ];
-    public function order(){
-        return $this->belongsTo(Order::class,'orderId');
-    }
+        'userid','orderid','deliverytrackid','total','subtotal',
+    ];  
 }

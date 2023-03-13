@@ -116,7 +116,7 @@
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
                                     class="fa fa-box"></i>Products</a>
-                            <div class="dropdown-menu bg-transparent border-0">
+                            <div class="dropdown-menu bg-transparent border-0 dropping">
                                 <a href="{{route('products')}}" class="dropdown-item" style="color:white">Show Products</a>
                                 <a href="{{route('add-products')}}" class="dropdown-item" style="color:white">Add Products</a>
                                 <!-- <a href="element.html" class="dropdown-item">Other Elements</a> -->

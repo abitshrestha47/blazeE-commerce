@@ -27,7 +27,9 @@ return new class extends Migration
             $table->string('email');
             $table->json('products');
             $table->string('userid');
-            $table->enum('acceptreject', [0,1])->nullable();            
+            $table->enum('acceptreject', [0,1])->nullable();
+            $table->decimal('subtotal');
+            $table->decimal('total');            
             $table->timestamps();
         });
     }

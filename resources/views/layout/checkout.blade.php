@@ -166,6 +166,10 @@
                             <li><span>Subtotal</span> <span>${{$cart->subtotal}}</span></li>
                             <li><span>Shipping</span> <span>${{$cart->shipping}}</span></li>
                             <li><span>Total</span> <span>${{$cart->total}}</span></li>
+                            @if(isset($cart))
+                            <input type="text" value="{{$cart->subtotal}}" name="subtotal">
+                            <input type="text" value="{{$cart->total}}" name="total">
+                            @endif
                         </ul>
 
 

@@ -131,7 +131,7 @@ th {
                                 </table>
                        
                                 <label>DeliverBoy</label>
-                                <select name="deliverman" id="deliverman">
+                                <select name="deliverman" id="deliverman" class="deliverman">
                                     @foreach($deliverman as $del)
                                     <option value="{{$del->id}}">{{$del->name}}</option>
                                     @endforeach
@@ -288,7 +288,6 @@ $(document).ready(function() {
                     img.width = 100;
                     cell5.appendChild(img);
                 }
-                console.log(pr[2].name);
             }
         });
     });

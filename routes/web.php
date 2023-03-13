@@ -26,6 +26,8 @@ use App\Mail\Mail12;
 use App\Http\Controllers\blogController;
 use App\Http\Controllers\wishListsController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\SalesController;
+use App\Http\Controllers\BarController;
 
 use PSpell\Config;
 
@@ -209,6 +211,7 @@ Route::post('/sendstatus',[DelivertrackingController::class,'sendstatus'])->name
 Route::get('/giveorderid',[DelivertrackingController::class,'getOrderID'])->name('giveorderid');
 
 Route::get('/addingorder',[DelivertrackingController::class,'addingOrder'])->name('addingorder');
+
 Route::get('/blog',[blogController::class,'blog'])->name('blog');
 
 Route::post('/acceptreject',[DelivertrackingController::class,'acceptReject'])->name('acceptreject');
@@ -224,6 +227,8 @@ Route::get('/searchthis/products',[SearchController::class,'searchProducts'])->n
 Route::get('/mainview',[AdminController::class,'mainview'])->name('mainview');
 
 Route::post('/makeone',[AdminController::class,'makeOne'])->name('makeone');
+
+Route::post('/addsales',[SalesController::class,'addSales'])->name('addsales');
 
 
 

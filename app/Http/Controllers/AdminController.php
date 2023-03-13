@@ -23,17 +23,21 @@ class AdminController extends Controller
         return view('admin.products',compact('products','notification','notifications'));
     }
     public function category(){
+        $notification=Notification::count();
+        $notifications=Notification::all();
         $category=Category::all();
         $departments=Department::all();
-        return view('admin.category',compact('category','departments'));
+        return view('admin.category',compact('category','departments','notifications','notification'));
     }
     public function contacts(){
         $contacts=Contact::all();
         return view('admin.contacts',compact('contacts'));
     }
     public function dashboard(){
+        $notification=Notification::count();
+        $notifications=Notification::all();
         $use=User::all();
-        return view('admin.dashboard',compact('use'));
+        return view('admin.dashboard',compact('use','notifications','notification'));
     }
     public function delete($id){
         $category=Category::find($id);
