@@ -54,8 +54,8 @@
                                     @else
                                     @if($cartincart->specialproduct->discountprice)
                                     <td class="price"><span class='productprice'
-                                            data-price='{{$cartincart->price}}'>{{'$'.$cartincart->specialproduct->discountprice}}</span>
-                                        @else
+                                            data-price='{{$cartincart->specialproduct->discountprice}}'>{{'$'.$cartincart->specialproduct->discountprice}}</span>
+                                    @else
                                     <td class="price"><span class='productprice'
                                             data-price='{{$cartincart->price}}'>{{'$'.$cartincart->price}}</span>
                                         @endif
