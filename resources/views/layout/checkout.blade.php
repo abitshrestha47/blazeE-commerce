@@ -163,11 +163,9 @@
                             @endif
                             @endforeach
                             @endforeach
-                            @foreach($cart as $totaling)
-                            <li><span>Subtotal</span> <span>${{$totaling->subtotal}}</span></li>
-                            <li><span>Shipping</span> <span>${{$totaling->shipping}}</span></li>
-                            <li><span>Total</span> <span>${{$totaling->total}}</span></li>
-                            @endforeach
+                            <li><span>Subtotal</span> <span>${{$cart->subtotal}}</span></li>
+                            <li><span>Shipping</span> <span>${{$cart->shipping}}</span></li>
+                            <li><span>Total</span> <span>${{$cart->total}}</span></li>
                         </ul>
 
 
@@ -239,7 +237,7 @@
                             </div> -->
                         </div>
 
-                        <button type="submit" class="btn karl-checkout-btn">Place Order</button>
+                        <button type="submit" class="btn karl-checkout-btn notify">Place Order</button>
                     </div>
                 </div>
 
@@ -349,4 +347,5 @@
     <script src="home/js/jquery.slicknav.js"></script>
     <script src="home/js/owl.carousel.min.js"></script>
     <script src="home/js/main.js"></script>
+    <script src="{{asset('admin/js/order.js')}}"></script>
     @endsection

@@ -107,11 +107,11 @@
                     <li class="step0 text-right" id="step4">Delivered</li> -->
                     @if(isset($order))
                     @foreach($order as $acceptreject)
-                        @if($acceptreject->acceptreject===0)
+                        @if($acceptreject->acceptreject==='0')
                         {!! "Sorry! Your order has been rejected." !!}
-                        @elseif($acceptreject->acceptreject===1)
+                        @elseif($acceptreject->acceptreject=='1')
                             {!!"Your order has been accepted. When Processed you can track your order"!!}
-                        @else
+                        @elseif($acceptreject->acceptreject===null)
                             {!!"Your order is being looked after."!!}
                         @endif
                     @endforeach

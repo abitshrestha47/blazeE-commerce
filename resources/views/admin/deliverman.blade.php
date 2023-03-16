@@ -45,6 +45,9 @@
                     <label for="address" class="form-label">Address</label>
                     <input class="form-control" type="text" id="address" name="address">
 
+                    <label for="image" class="form-label">Image</label>
+                    <input type="file" name="image" class="form-control">
+
                 </div>
                 <button type="submit" class="btn btn-primary">Add</button>
             </form>

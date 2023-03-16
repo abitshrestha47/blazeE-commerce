@@ -10,14 +10,17 @@ use App\Models\Products;
 use App\Models\Contact;
 use App\Models\Department;
 use App\Models\User;
+use App\Models\Notification;
 
 
 class AdminController extends Controller
 {
     //
     public function products(){
+        $notification=Notification::count();
+        $notifications=Notification::all();
         $products=Products::all();
-        return view('admin.products',compact('products'));
+        return view('admin.products',compact('products','notification','notifications'));
     }
     public function category(){
         $category=Category::all();
@@ -53,5 +56,17 @@ class AdminController extends Controller
         $category->categories=$req->category;
         $category->save();
         return redirect()->route('category')->with('mssg','Category Edited successfully!');
+    }
+    public function mainview(){
+        $notifications=Notification::all();
+        $notification=Notification::count();
+        return view('admin.main',compact('notification','notifications'));
+    }
+    public function makeOne(){
+        $notification=Notification::all();
+        foreach($notification as $n){
+            $n->viewed='1';
+            $n->save();
+        }
     }
 }

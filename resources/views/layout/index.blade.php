@@ -143,7 +143,7 @@
                             <!-- Product Description -->
                             <div class="product-description align">
                                 @if($singlegallery->discountprice)
-                                <h3>{{$singlegallery->product->name}}</h3>
+                                <h5 style="color:black;">{{$singlegallery->product->name}}</h5>
                                 <h4 class="product-price"><strike>{{'$'.$singlegallery->product->price}}</strike>
                                 </h4>
                                 <h4 class="product-price">{{'$'.$singlegallery->discountprice}}</h4>
@@ -167,7 +167,7 @@
                                         {{ session()->get('message')}}
                                     </div>
                                     @endif
-                                    <button type='submit' class="add-to-cart-btn cart_add"
+                                    <button type='submit' .class="add-to-cart-btn cart_add"
                                         data-id="{{$singlegallery->product->id}}"
                                         value='{{$singlegallery->product->id}}' name='productId'
                                         data-user-id="{{Auth::id()}}">ADD TO CART</button>
@@ -334,7 +334,7 @@
                                 </div>
                                 <!-- Product Description -->
                                 <div class="product-description">
-                                    <h4 class="product-price">{{'$'.$normalproducts->price}}</h4>
+                                    <h4 class="product-price"><strike>{{'$'.$normalproducts->price}}</strike></h4>
                                     <h4>{{'$'.$normalproducts->specialproduct->discountprice}}</h4>
                                     <p>{{$normalproducts->name}}</p>
                                     <!-- Add to Cart -->
