@@ -12,7 +12,6 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
         
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
     <!-- Favicon  -->
     <link rel="icon" href="{{asset('img/core-img/favicon.ico')}}">
@@ -51,7 +50,7 @@
                     @auth
                     <a href="{{route('logout')}}" class="login-panel"><i
                             class="fa-sharp fa-solid fa-right-to-bracket"></i>Logout</a>
-                    <a href="{{route('user-info')}}" class='login-panel'><i class="fa fa-user"></i>{{Auth::user()->username}}
+                    <a href="{{route('aboutuser')}}" class='login-panel '><i class="fa fa-user"></i>{{Auth::user()->username}}
                     </a>
                     @endauth
                     <div class="top-social">
@@ -225,8 +224,7 @@
 
     <!-- Js Plugins -->
     <script></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    
 
     <script src="{{asset('home/js/jquery/jquery-2.2.4.min.js')}}"></script>
     <!-- Popper js -->

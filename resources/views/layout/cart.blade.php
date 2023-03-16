@@ -2,6 +2,9 @@
 
 @section('contents')
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <!-- Breadcrumb Section Begin -->
 <div class="breacrumb-section">
@@ -310,6 +313,10 @@ $(document).ready(function() {
 //     });
 // });
 </script>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 <script src="home/js/jquery/jquery-2.2.4.min.js"></script>
 <!-- Popper js -->
 <script src="home/js/popper.min.js"></script>
@@ -330,4 +337,9 @@ $(document).ready(function() {
 <script src="home/js/owl.carousel.min.js"></script>
 <script src="home/js/main.js"></script>
 <script src="{{asset('home/js/cart.js')}}"></script>
+@if(Session::has('msg'))
+    <script>
+            toastr.success("Cart has been Cleared Successfully!");
+    </script>
+@endif
 @endsection

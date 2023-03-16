@@ -190,6 +190,8 @@ Route::post('/changepass',[UserController::class,'changePass'])->name('changepas
 // Route::post('/token',[ResetController::class,'generateToken'])->name('token');
 
 // Route::get('/token',[ResetController::class,'Token'])->name('token');
+Route::get('/userpage',[HomeController::class,'aboutuser'])->name('aboutuser');
+
 
 Route::post('/deliverman',[DelivermanController::class,'addDeliverman'])->name('deliver-man');
 

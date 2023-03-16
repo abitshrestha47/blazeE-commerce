@@ -56,6 +56,7 @@ class TestController extends Controller
         $userid=$req->od;
         $get=Cart::where('userid',$userid)->first();
         $get->delete();
+        return back()->with('msg','Cart Has Been Cleared!');
     }
     public function cart(){
         $cart=Cart::all();

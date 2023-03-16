@@ -28,7 +28,7 @@ class CartController extends Controller
             );
             $checkcart->userid=Auth::id();
             $checkcart->save();
-            return redirect()->back();
+            return redirect()->back()->with('added','Added to cart Successfully!');
             }
             else{
                 $productId=(int)$req->input('productId');
@@ -52,7 +52,7 @@ class CartController extends Controller
                     array_push($productIds, $newproductIds);
                     $checkcart->product_ids = json_encode($productIds);
                     $checkcart->save();
-                    return redirect()->back();
+                    return redirect()->back()->with('added','Added to cart Successfully!');
                 }
                 else{
                     return back();

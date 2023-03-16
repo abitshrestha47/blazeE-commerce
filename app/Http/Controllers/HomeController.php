@@ -198,5 +198,8 @@ class HomeController extends Controller
     public function about(){
         return view('layout.aboutUs');
     }
+    public function aboutuser(){
+        return view('layout.userpage');
+    }
 
 }

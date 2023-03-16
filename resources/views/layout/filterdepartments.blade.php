@@ -2,7 +2,9 @@
 
 
 @section('contents')
-<div class="col-12 col-md-8 col-lg-9">
+
+<div class="container">
+<div class="col-12">
     <div class="shop_grid_product_area p-5">
         <div id="productData">
             <div class="row">
@@ -33,5 +35,7 @@
         </div>
     </div>
 </div>
+</div>
+
 <script src="{{asset('home/js/department.js')}}"></script>
 @endsection

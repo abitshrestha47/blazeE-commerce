@@ -20,6 +20,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
         integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        
     <!-- Css Styles -->
     <link rel="stylesheet" href="home/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="home/css/quickview.css" type="text/css">
@@ -175,6 +178,9 @@
                         @endif
                     </div>
                 </div>
+                <div class="product-description">
+                    <a href="{{route('shop')}}"><button class="karl-checkout-btn">See More</button></a>
+                </div>
             </div>
         </div>
     </section>
@@ -308,7 +314,7 @@
                     </div>
                     <div id='test'>
                         <div class="product-slider owl-carousel">
-                            @foreach($latestproducts as $normalproducts)
+                            @foreach($latestproducts->take(3) as $normalproducts)
                             @if($normalproducts->specialproduct)
                             <div class="single_gallery_item wow fadeInUpBig" data-wow-delay="0.4s">
                                 <div class="ribbon ribbon-top-left">
@@ -389,6 +395,9 @@
                             @endforeach
                         </div>
                     </div>
+                </div>
+                <div class="product-description">
+                    <a href="{{route('shop')}}"><button class="karl-checkout-btn">See More</button></a>
                 </div>
                 <!-- <div class="col-lg-3 offset-lg-1">
                     <div class="product-large set-bg m-large" data-setbg="img/products/man-large.jpg">
@@ -608,7 +617,7 @@
                         <ul>
                             <li>Address: Kamalpokhari, Kathmandu, Nepal</li>
                             <li>Phone: +977 9823884432</li>
-                            <li>Email: askblaze12@gmail.com</li>
+                            <li>Email: askblaze7860@gmail.com</li>
                         </ul>
                         <div class="footer-social">
                             <a href="#"><i class="fa fa-facebook"></i></a>
@@ -704,7 +713,17 @@
             }
         });
     });
+
     </script>
+    
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    @if(Session::has('added'))
+    <script>    
+            toastr.success("Added to Cart Successfully!");
+    </script>
+    @endif
     <!-- Js Plugins -->
     <script src="home/js/jquery/jquery-2.2.4.min.js"></script>
     <!-- Popper js -->
@@ -734,4 +753,7 @@
     <script src="{{asset('home/js/department.js')}}"></script>
     <script src="{{asset('home/js/index.js')}}"></script>
     <!-- Latest Blog Section End -->
+    
+    
+   
     @endsection

@@ -52,6 +52,6 @@ class AdminController extends Controller
         $category=Category::find($req->id);
         $category->categories=$req->category;
         $category->save();
-        return redirect()->route('category')->with('msg','Category Edited successfully!');
+        return redirect()->route('category')->with('mssg','Category Edited successfully!');
     }
 }
