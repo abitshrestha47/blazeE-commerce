@@ -101,18 +101,11 @@
                             <a href="element.html" class="dropdown-item">Other Elements</a>
                         </div>
                     </div> -->
-                    <a href="{{route('category')}}" class="nav-item nav-link"><i
-                            class="fa fa-shopping-cart"></i>Category</a>
-                    <a href="{{route('bigposter')}}" class="nav-item nav-link"><i class="fa fa-image"></i>Bigposter</a>
                     <a href="{{route('departments')}}" class="nav-item nav-link"><i
                             class="fa fa-cogs"></i>Departments</a>
-                    <a href="{{route('deliver-man')}}" class="nav-item nav-link"><i class="fas fa-running"></i>DeliverMan</a>
-                    <a href="{{route('brander')}}" class="nav-item nav-link"><i class="fas fa-bookmark"></i>        Brands</a>
-                    <a href="{{route('order')}}" class="nav-item nav-link"><i class="fas fa-shopping-bag"></i>Orders
-                        <a href="{{route('deliver-trackings')}}" class="nav-item nav-link"><i
-                                class="fas fa-map-marker-alt"></i>DeliverTrack</a>
-                        <a href="{{route('deals')}}" class="nav-item nav-link"><i class="fa fa-tag"></i>
-                            Deals</a>
+                    <a href="{{route('category')}}" class="nav-item nav-link"><i
+                            class="fa fa-shopping-cart"></i>Category</a>
+                            <a href="{{route('brander')}}" class="nav-item nav-link"><i class="fas fa-bookmark"></i>        Brands</a>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
                                     class="fa fa-box"></i>Products</a>
@@ -123,6 +116,13 @@
                                 <a href="{{route('special-products')}}" class="dropdown-item" style="color:white">Add Special Products</a>
                             </div>
                         </div>
+                    <a href="{{route('deliver-man')}}" class="nav-item nav-link"><i class="fas fa-running"></i>DeliverMan</a>
+                    <a href="{{route('order')}}" class="nav-item nav-link"><i class="fas fa-shopping-bag"></i>Orders</a>
+                    <a href="{{route('deliver-trackings')}}" class="nav-item nav-link"><i
+                                class="fas fa-map-marker-alt"></i>DeliverTrack</a>
+                    <a href="{{route('bigposter')}}" class="nav-item nav-link"><i class="fa fa-image"></i>Bigposter</a>
+                    <a href="{{route('deals')}}" class="nav-item nav-link"><i class="fa fa-tag"></i>
+                            Deals</a>
                         <a href="{{route('contacts')}}" class="nav-item nav-link" display="hidden"><i
                                 class="fa fa-table me-2"></i>Contact</a>
                         <!-- <div class="nav-item dropdown">

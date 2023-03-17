@@ -22,7 +22,7 @@ class DealController extends Controller
         $dateString=$req->endDate;
         $deal->endDate=$dateString;
         $deal->save();
-        return redirect()->back();
+        return redirect()->back()->with('msg','Deal Added!');
     }
     public function getDeal(){
         $deal=Deal::all();
