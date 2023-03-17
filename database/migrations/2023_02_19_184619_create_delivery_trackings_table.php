@@ -24,6 +24,11 @@ return new class extends Migration
             $table->foreign('orderId')->references('id')->on('orders')->onDelete('cascade');
             $table->json('products');
             $table->string('userid');
+            $table->decimal('subtotal');
+            $table->string('total');
+            $table->enum('paid/unpaid', ['0', '1'])->default('0');
+            $table->unsignedBigInteger('deliverboyId');
+            $table->foreign('deliverboyId')->references('id')->on('deliver_men')->onDelete('cascade');
             $table->timestamps();
         });
     }

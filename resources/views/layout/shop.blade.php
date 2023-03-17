@@ -135,12 +135,26 @@
                                     </div>
                                     <!-- Product Description -->
                                     <div class="product-description">
-                                        <h4 class="product-price">{{'$'.$products->price}}</h4>
+                                        <h4 class="product-price">{{'$'.$products->specialproduct->discountprice}}</h4>
+                                        <h4><strike>{{'$'.$products->price}}</strike></h4>
                                         <p>{{$products->name}}</p>
                                         <p>{{$products->brand->brandName}}</p>
                                         <p>{{$products->category->categories}}</p>
                                         <!-- Add to Cart -->
-                                        <a href="#" class="add-to-cart-btn">ADD TO CART</a>
+                                        <form action="{{route('add-cart')}}" method='POST' class='nomargin'>
+                                            @csrf
+                                            <input type="hidden" value='{{$products->specialproduct->discountprice}}' name='price'>
+                                            <input type="hidden" value="{{Auth::id()}}" name='id'>
+                                            @if (session()->has('message') &&
+                                            session()->get('productId')===$product->id)
+                                            <div class="floating-message">
+                                                {{ session()->get('message')}}
+                                            </div>
+                                            @endif
+                                            <button type='submit' class="add-to-cart-btn cart_add"
+                                                data-id="{{$products->id}}" value='{{$products->id}}' name='productId'
+                                                data-user-id="{{Auth::id()}}">ADD TO CART</button>
+                                        </form>
                                         <!-- <form method="post" action="{{ route('wishLists') }}">
                                           @csrf
                                              <input type="hidden" name="product_id" value="{{ $products->id }}">
@@ -171,7 +185,22 @@
                                         <p>{{$products->brand->brandName}}</p>
                                         <p>{{$products->category->categories}}</p>
                                         <!-- Add to Cart -->
-                                        <a href="#" class="add-to-cart-btn">ADD TO CART</a>
+                                        <!-- <a href="#" class="add-to-cart-btn">ADD TO CART</a> -->
+                                        <!-- Add to Cart -->
+                                        <form action="{{route('add-cart')}}" method='POST' class='nomargin'>
+                                            @csrf
+                                            <input type="hidden" value='{{$products->price}}' name='price'>
+                                            <input type="hidden" value="{{Auth::id()}}" name='id'>
+                                            @if (session()->has('message') &&
+                                            session()->get('productId')===$product->id)
+                                            <div class="floating-message">
+                                                {{ session()->get('message')}}
+                                            </div>
+                                            @endif
+                                            <button type='submit' class="add-to-cart-btn cart_add"
+                                                data-id="{{$products->id}}" value='{{$products->id}}' name='productId'
+                                                data-user-id="{{Auth::id()}}">ADD TO CART</button>
+                                        </form>
                                         <!-- <form method="post" action="{{ route('wishLists') }}">
                                           @csrf
                                              <input type="hidden" name="product_id" value="{{ $products->id }}">

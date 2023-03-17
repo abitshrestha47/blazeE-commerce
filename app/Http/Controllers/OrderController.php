@@ -33,13 +33,14 @@ class OrderController extends Controller
                     'companyName'=>$req->company,
                     'country'=>$req->country,
                     'street1'=>$req->streetaddress1,
-                    // 'street2'=>$req->streetaddress2,
                     'town'=>$req->town,
                     'province'=>$req->province,
                     'email'=>$req->email,
                     'phone'=>$req->phone,
                     'products'=>$products_encode,
                     'userid'=>$userid,
+                    'subtotal'=>$req->subtotal,
+                    'total'=>$req->total,   
                 ]);
                 $notify=new Notification();
                 $notify->userid=Auth::id();

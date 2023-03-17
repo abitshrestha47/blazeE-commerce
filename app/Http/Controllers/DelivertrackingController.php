@@ -30,6 +30,9 @@ class DelivertrackingController extends Controller
         $delivertrack->orderid=$order->id;
         $delivertrack->products=$products;
         $delivertrack->userid=$order->userid;
+        $delivertrack->total=$order->total;
+        $delivertrack->deliverboyId=$req-> deliverboyId;
+        $delivertrack->subtotal=$order->subtotal;
         $delivertrack->save();
     }
 
@@ -64,8 +67,9 @@ class DelivertrackingController extends Controller
 
     public function sendstatus(Request $req){
         $id=$req->input('trackid');
-        $delivertrack=DeliveryTracking::where('orderId',$id)->first();
-        $delivertrack->status=$req->status;
+        $status=$req->input('status');
+        $delivertrack=DeliveryTracking::where('id',$id)->first();
+        $delivertrack->status=$status;
         $delivertrack->save();
     }
     public function acceptReject(Request $req){

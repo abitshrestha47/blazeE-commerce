@@ -2,6 +2,11 @@
 
 @section('contents')
 <!-- table starts -->
+<style>
+.sales {
+    cursor: pointer;
+}
+</style>
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -29,6 +34,7 @@
                             <th scope="col">View Products</th>
                             <th scope="col">Status</th>
                             <th scope="col" colspan='2'>Action</th>
+                            <th scope="col">Sales</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -39,6 +45,8 @@
                             <td>{{$delivertrack->street}}</td>
                             <td>{{$delivertrack->phone}}</td>
                             <td>{{$delivertrack->email}}</td>
+                            <td><input type="hidden" value="{{$delivertrack->total}}" name="total" class="delivertotal"></td>
+                            <td><input type="hidden" value="{{$delivertrack->subtotal}}" name="subtotal" class="subtotal"></td>
                             <td>{{$delivertrack->created_at}}</td>
                             <td>
                                 <!-- Button trigger modal -->
@@ -48,12 +56,19 @@
                                 </button>
                             </td>
                             <td>
-                            <select name="status" id="status" class="status">
-                                <option value="processing">Processing</option>
-                                <option value="shipping">Shipping</option>
-                                <option value="Picked from warehouse">Picked form warehouse</option>
-                                <option value="Delivered">Delivered</option>
-                            </select>
+                                <select name="status" id="status" class="status">
+                                    <option value="processing">Processing</option>
+                                    <option value="shipping">Shipping</option>
+                                    <option value="Picked from warehouse">Picked form warehouse</option>
+                                    <option value="Delivered">Delivered</option>
+                                </select>
+                            </td>
+                            <td>
+                                @if($delivertrack->getAttribute('paid/unpaid')==='1')
+                                <p class="sales">Paid</p>
+                                @elseif($delivertrack->getAttribute('paid/unpaid')==='0')
+                                <p class="sales">Unpaid</p>
+                                @endif
                             </td>
                         </tr>
                     </tbody>
@@ -91,6 +106,4 @@
 window.assetUrl = "{{ asset('/storage/') }}";
 </script>
 <script src="{{asset('/admin/js/deliverytracking.js')}}">
-
-
 @endsection

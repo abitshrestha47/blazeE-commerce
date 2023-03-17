@@ -9,8 +9,9 @@ $(document).ready(function(){
         var status=$(this).val();
         var trackid=$(this).closest('tr').find('.id').text();
         alert(trackid);
+        alert(status);
         $.ajax({
-            type:'post',
+            type:'POST',
             url:'/sendstatus',
             data:{
                 status:status,
@@ -72,4 +73,36 @@ $(document).ready(function(){
             }
         });
     });
+    
+    $('.sales').click(function() {
+        if ($(this).text() === 'Paid') {
+          $(this).text('Unpaid');
+        } else if ($(this).text() === 'Unpaid') {
+          $(this).text('Paid');
+          $id=$(this).closest('tr').find('.id').text();
+          $delivertotal=$(this).closest('tr').find('.delivertotal').val();
+          $subtotal=$(this).closest('tr').find('.subtotal').val();
+          alert($subtotal);
+          $.ajax({
+              url:'/addsales',
+              type:'POST',
+              data:{
+                  deliverid:$id,
+                  delivertotal:$delivertotal,
+                  subtotal:$subtotal,
+              },
+              success:function(){
+              }
+          });
+        }
+      });
 });
+// $('.sales').click(function(){
+//     if($(this).text('Paid')){
+//         $(this).text('Unpaid');
+//     }
+//     else if($(this).text('Unpaid')){
+//         $(this).text('Paid');
+//     }
+// });
+  
