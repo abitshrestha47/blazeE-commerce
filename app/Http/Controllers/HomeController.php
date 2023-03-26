@@ -45,9 +45,9 @@ class HomeController extends Controller
         }
         $departments=Department::all();
         $bigposter=Bigposter::all();
-        $latestproducts=Products::orderBy('created_at','DESC')->get()->take(4);
+        $latestproducts=Products::orderBy('created_at','DESC')->get()->take(8);
         $category=Category::all();
-        $cart = Cart::all();
+        $ca = Cart::all();
         $userId = Auth::id(); 
         $exist = Cart::where('userid', $userId)->first();
         if ($exist) {
@@ -62,8 +62,7 @@ class HomeController extends Controller
             $productData = [];
             $count=0;
         }
-
-        return view('layout.index',compact('category','products','latestproducts','bigposter','count','productData','departments','deal','endDate','dealsort','specialproduct','dateValue'));
+        return view('layout.index',compact('category','products','latestproducts','bigposter','count','productData','departments','deal','endDate','dealsort','specialproduct','dateValue','ca'));
     }
 
     public function shop(Request $request){

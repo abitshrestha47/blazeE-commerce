@@ -1,7 +1,3 @@
-<div class="container-fluid pt-4 px-4 tabulous1">
-    <div class="col-12">
-        <div class="bg-secondary rounded h-100 p-4">
-            <h3 class="mb-4" style="text-align:center">Products Table</h3>
             <div class="table-responsive">
                 <table class="table">
                     <thead class="tabulous">
@@ -33,6 +29,3 @@
                     @endforeach
                 </table>
             </div>
-        </div>
-    </div>
-</div>

@@ -24,7 +24,6 @@
             </div>      
             <div class="pricing">
                 @if(isset($products))
-                @foreach($products as $p)
                 <div class="row">
                     <div class="col-6">
                         <span>Name</span><span style="margin-left:22vw;">Quantity</span>
@@ -36,6 +35,7 @@
                         <span>Price</span>
                     </div>
                 </div>
+                @foreach($products as $p)
                 <div class="row">
                     <div class="col-6">
                         <span>{{$p['name']}}<span style="margin:0 12vw;">X</span><span>{{$p['qty']}}</span></span>

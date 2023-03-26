@@ -16,8 +16,11 @@ $(document).ready(function(){
                 deliverboyId:deliverboyid,
             },
             success:function(){
-                console.log('fsdf');
-            }
+                window.location.reload();
+            },
+            complete:function(){
+                toastr.success("It has been added to trackings");
+            } 
         });
     });
     $('.viewing').click(function(){

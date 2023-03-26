@@ -1,10 +1,18 @@
 @extends('admin.main')
 
 @section('contents')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
+    integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-<script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"
+    integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+    integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
+<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
 
 <!-- table starts -->
 <style>
@@ -39,7 +47,7 @@ th {
                             <th scope="col">Email</th>
                             <th scope="col">Phone</th>
                             <th scope="col">Workflow</th>
-                            <th scope="col" colspan='2'>Action</th>
+                            <th scope="col" colspan='3'>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -54,9 +62,10 @@ th {
                             <td>{{$orders->email}}</td>
                             <td>{{$orders->phone}}</td>
                             @if($orders->acceptreject==null)
-                            <td class="approve" data-id="{{$orders->id}}"><i class="fas fa-check tick" data-value="1"></i>{{" "}}<i class="fas fa-times tick" data-value="0"></i>
-                            </td> 
-                            @elseif($orders->acceptreject==0)  
+                            <td class="approve" data-id="{{$orders->id}}"><i class="fas fa-check tick"
+                                    data-value="1"></i>{{" "}}<i class="fas fa-times tick" data-value="0"></i>
+                            </td>
+                            @elseif($orders->acceptreject==0)
                             <td>Rejected</td>
                             @elseif($orders->acceptreject==1)
                             <td>Accepted</td>
@@ -66,7 +75,15 @@ th {
                                 </a></td>
                             <td><a href="#" data-toggle="modal" class="modal-tracker addingorder"
                                     data-target="#trackModal"><i class="fas fa-plus-circle"></i>
-                                </a></td>
+                                </a>
+                            </td>
+                            <td>
+                                <form action="{{route('delorders')}}" method="POST">
+                                    @csrf
+                                    <button type="submit" value="{{$orders->id}}" name="getid"><i class="fa fa-trash"
+                                            aria-hidden="true"></i></button>
+                                </form>
+                            </td>
                         </tr>
                         @endforeach
                         @endif
@@ -134,11 +151,15 @@ th {
                                 </table>
                                 <table class="orderproducts table" style="border-style:none !important;">
                                 </table>
-                       
+
                                 <label>DeliverBoy</label>
                                 <select name="deliverman" id="deliverman" class="deliverman">
                                     @foreach($deliverman as $del)
+                                    @if($del->status==1)
                                     <option value="{{$del->id}}">{{$del->name}}</option>
+                                    @else
+                                    <option value="">Not available</option>
+                                    @endif
                                     @endforeach
                                 </select>
                                 <br><button class="btn btn-primary addnow">Add Now</button>
@@ -299,4 +320,6 @@ $(document).ready(function() {
 });
 </script>
 <script src="{{asset('/admin/js/order.js')}}"></script>
+
+
 @endsection

@@ -38,8 +38,8 @@
                             <th scope="col">Date/Time</th>
                             <th scope="col">View Products</th>
                             <th scope="col">Status</th>
+                            <th scope="col">Sale</th>
                             <th scope="col" colspan='2'>Action</th>
-                            <th scope="col">Sales</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -50,8 +50,6 @@
                             <td>{{$delivertrack->street}}</td>
                             <td>{{$delivertrack->phone}}</td>
                             <td>{{$delivertrack->email}}</td>
-                            <td><input type="hidden" value="{{$delivertrack->total}}" name="total" class="delivertotal"></td>
-                            <td><input type="hidden" value="{{$delivertrack->subtotal}}" name="subtotal" class="subtotal"></td>
                             <td>{{$delivertrack->created_at}}</td>
                             <td>
                                 <!-- Button trigger modal -->
@@ -75,6 +73,17 @@
                                 <p class="sales">Unpaid</p>
                                 @endif
                             </td>
+                            <td>
+                                <form action="{{route('deldelivertrack')}}" method="post">
+                                    @csrf
+                                    <button type="submit" name="getid" value="{{$delivertrack->id}}"><i
+                                            class="fas fa-trash-alt"></i></button>
+                                </form>
+                            </td>
+                            <td><input type="hidden" value="{{$delivertrack->total}}" name="total" class="delivertotal"></td>
+                            <td><input type="hidden" value="{{$delivertrack->subtotal}}" name="subtotal" class="subtotal"></td>
+                            <td><input type="hidden" name="userid" class="userid" value="{{$delivertrack->userid}}"></td>
+                            <td><input type="hidden" name="orderid" class="orderid" value="{{$delivertrack->orderId}}"></td>
                         </tr>
                     </tbody>
                     @endforeach

@@ -6,9 +6,32 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
 <script src="https://cdnjs.com/libraries/Chart.js"></script>
 
-<div class="map_canvas">
-    <canvas id="myChart" width="50vw" height="274.4px"></canvas>
+
+<div class="container-fluid pt-4 px-4" style="height:400px;">
+    <div class="row g-4">
+        <div class="col-sm-12 col-xl-6">
+            <div class="bg-secondary text-center rounded p-4">
+                <div class="d-flex align-items-center justify-content-between mb-4">
+                    <h6 class="mb-0">Sales Past 7weeks</h6>
+                    <a href="">Show All</a>
+                </div>
+                <canvas id="myChart" ></canvas>
+            </div>
+        </div>
+        <div class="col-sm-12 col-xl-6">
+            <div class="bg-secondary text-center rounded p-4">
+                <div class="d-flex align-items-center justify-content-between mb-4">
+                    <h6 class="mb-0">Salse & Revenue</h6>
+                    <a href="">Show All</a>
+                </div>
+                <canvas id="Graph" width="50vw" height="274.4px"></canvas>
+            </div>
+        </div>
+    </div>
 </div>
+<!-- <div class="map_canvas">
+    <canvas id="Graph" width="50vw" height="274.4px"></canvas>
+</div> -->
 <script>
 var ctx = document.getElementById("myChart").getContext('2d');
 var myChart = new Chart(ctx, {
@@ -19,7 +42,7 @@ var myChart = new Chart(ctx, {
             label: 'Sales Totay',
             data: <?php echo json_encode($datas); ?>,
             backgroundColor: 'red',
-            borderColor:'red',
+            borderColor: 'red',
             borderWidth: 1,
             barThickness: 20,
             maxBarThickness: 30
@@ -283,10 +306,13 @@ var myChart = new Chart(ctx, {
                     <a href="">Show All</a>
                 </div>
                 <div class="d-flex mb-2">
-                    <input class="form-control bg-dark border-0" type="text" placeholder="Enter task">
-                    <button type="button" class="btn btn-primary ms-2">Add</button>
+                    <form action="{{route('todo')}}" method='post'>
+                        @csrf
+                        <input class="form-control bg-dark border-0" type="text" name="todo" placeholder="Enter task">
+                        <button type="submit" class="btn btn-primary ms-2">Add</button>
+                    </form>
                 </div>
-                <div class="d-flex align-items-center border-bottom py-2">
+                <!-- <div class="d-flex align-items-center border-bottom py-2">
                     <input class="form-check-input m-0" type="checkbox">
                     <div class="w-100 ms-3">
                         <div class="d-flex w-100 align-items-center justify-content-between">
@@ -294,17 +320,22 @@ var myChart = new Chart(ctx, {
                             <button class="btn btn-sm"><i class="fa fa-times"></i></button>
                         </div>
                     </div>
-                </div>
+                </div> -->
+                @foreach($todo as $to)
                 <div class="d-flex align-items-center border-bottom py-2">
                     <input class="form-check-input m-0" type="checkbox">
                     <div class="w-100 ms-3">
                         <div class="d-flex w-100 align-items-center justify-content-between">
-                            <span>Short task goes here...</span>
-                            <button class="btn btn-sm"><i class="fa fa-times"></i></button>
+                            <span>{{$to->title}}</span>
+                            <form action="{{route('deltodo')}}" method="post">
+                                @csrf
+                                <button class="btn btn-sm" type="submit" value="{{$to->id}}" name='getid'><i class="fa fa-times"></i></button>
+                            </form>
                         </div>
                     </div>
                 </div>
-                <div class="d-flex align-items-center border-bottom py-2">
+                @endforeach
+                <!-- <div class="d-flex align-items-center border-bottom py-2">
                     <input class="form-check-input m-0" type="checkbox" checked>
                     <div class="w-100 ms-3">
                         <div class="d-flex w-100 align-items-center justify-content-between">
@@ -330,11 +361,66 @@ var myChart = new Chart(ctx, {
                             <button class="btn btn-sm"><i class="fa fa-times"></i></button>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
 </div>
 <!-- Widgets End -->
+<script>
+let monthlyTotals = {!! json_encode($totalAmount) !!};
+
+let totalData = [];
+let subtotalData = [];
+
+monthlyTotals.forEach(function(total) {
+    totalData.push(total.total);
+    subtotalData.push(total.subtotal); 
+});
+var ctx = document.getElementById('Graph').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        datasets: [
+            {
+                label: 'Total Amount',
+                data: totalData,
+                borderColor: 'black',
+                backgroundColor: "rgba(235, 22, 22, .7)",
+                fill: true,
+                lineTension:0,
+            },
+            {
+                label: 'Subtotal Amount',
+                data: subtotalData,
+                borderColor: 'black',
+                backgroundColor: "rgba(235, 22, 22, .5)",
+                fill: true,
+                lineTension:0,
+            }
+        ]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                },
+                gridLines: {
+                    color: 'black' // Set the color of the horizontal gridlines to black
+                }
+            }],
+            xAxes:[{
+                gridLines:{
+                    color:'black'
+                }
+            }],
+        },
+    }
+});
+</script>
 
 @endsection

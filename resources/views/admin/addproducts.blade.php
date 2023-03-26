@@ -90,14 +90,16 @@
                     <label for="exampleInputEmail1" class="form-label">Size</label>
                     <input type="text" class="form-control" id="categoryid" aria-describedby="emailHelp"
                         name="size"><br>
-                    <label for="specialproducts" class="form-label">SpecialProduct</label>
+                    <!-- <label for="specialproducts" class="form-label">SpecialProduct</label>
                     <select class="form-select" aria-label="Default select example" name='choices'>
                         <option selected>Special Product</option>
                         <option value="1">Yes</option>
                         <option value="2">No</option>
-                    </select> 
+                    </select>  -->
                     <label for="formFile" class="form-label">Photo</label>
                     <input class="form-control bg-dark" type="file" id="formFile" name="image">
+                    <label for="description" class="form-label">Description</label>
+                    <input class="form-control" type="text" name="description">
 
                 </div>
                 <button type="submit" class="btn btn-primary">Add</button>

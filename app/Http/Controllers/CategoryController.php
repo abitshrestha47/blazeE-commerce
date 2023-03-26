@@ -14,4 +14,10 @@ class CategoryController extends Controller
         ]);
         return back()->with('msg','New Category Added Successfully!');
     }
+    public function editCategory(Request $req){
+        $category=Category::find($req->categoryid);
+        $category->categories=$req->categoryname;
+        $category->save();
+        return back();
+    }
 }

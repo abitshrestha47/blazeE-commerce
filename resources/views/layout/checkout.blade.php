@@ -114,7 +114,7 @@
                                     <input type="email" class="form-control" id="email_address" value="" name='email'>
                                 </div>
 
-                                <div class="col-12">
+                                <!-- <div class="col-12">
                                     <div class="custom-control custom-checkbox d-block mb-2">
                                         <input type="checkbox" class="custom-control-input" id="customCheck1">
                                         <label class="custom-control-label" for="customCheck1">Terms and
@@ -129,7 +129,7 @@
                                         <label class="custom-control-label" for="customCheck3">Subscribe to our
                                             newsletter</label>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                     </div>
                 </div>

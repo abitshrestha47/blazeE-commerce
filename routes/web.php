@@ -28,6 +28,7 @@ use App\Http\Controllers\wishListsController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SalesController;
 use App\Http\Controllers\BarController;
+use App\Http\Controllers\TodoController;
 
 use PSpell\Config;
 
@@ -110,6 +111,9 @@ Route::post('/wishLists',[wishListsController::class,'addWishlist'])->name('wish
 Route::get('/wishLists',[wishListsController::class,'UserWishlist'])->name('wishLists');
 Route::get('/remove/wishLists/{id}',[wishListsController::class,'RemoveWishlist'])->name('wishLists.remove');
 
+Route::post('/deldeliverboy',[DelivermanController::class,"Deldeliverboy"])->name('deldeliverboy');
+
+Route::post('/delorders',[OrderController::class,"delorders"])->name('delorders');
 
 Route::post('/delete-cart/{id}',[CartController::class,'deleteCart'])->name('deletecart');
 
@@ -123,7 +127,17 @@ Route::get('/productdelete/{id}',[AdminController::class,'productdelete'])->name
 
 Route::get('/editcategory/{id}',[AdminController::class,'editcategory'])->name('editcategory');
 
+Route::post('/editcategory2',[CategoryController::class,'editCategory'])->name('editcategory2');
+
+Route::post('/editbrand',[BrandController::class,'editBrand'])->name('editbrand');
+
 Route::get('/get-product/{id}',[HomeController::class,'getProduct'])->name('get-product');
+
+Route::post('/editdeliverman',[DelivermanController::class,'editdeliverman'])->name('editdeliverman');
+
+Route::post('/statuss',[DelivermanController::class,'statuss'])->name('statuss');
+
+Route::post('/editprods',[ProductsController::class,'editprods'])->name('editprods');
 
 Route::get('/categoryedit',[AdminController::class,'categoryedit'])->name('categoryedit');
 
@@ -136,6 +150,10 @@ Route::post('/bigposter',[BigposterController::class,'send'])->name('bigposter')
 Route::get('/departments',[DepartmentController::class,'getDepartment'])->name('departments');
 
 Route::post('/departments',[DepartmentController::class,'addDepartment'])->name('departments');
+
+Route::post('/editdepartments',[DepartmentController::class,'editDepartment'])->name('editdepartment');
+
+Route::post('/deletedepartment',[DepartmentController::class,'delDeparment'])->name('deldepartments');
 
 Route::get('/departmentView/{id}',[DepartmentController::class,'getDepartmentView'])->name('departmentthis');
 
@@ -222,15 +240,25 @@ Route::get('/getsearch',[SearchController::class,'getSearch'])->name('getsearch'
 
 Route::get('/searchresults',[SearchController::class,'searchResults'])->name('searchresults');
 
-Route::get('/searchthis/category',[SearchController::class,'searchThis'])->name('searchthis.category');
+Route::get('/p/category',[SearchController::class,'searchThis'])->name('searchthis.category');
 
 Route::get('/searchthis/products',[SearchController::class,'searchProducts'])->name('searchthis.products');
+
+Route::get('/searchthis/departments',[SearchController::class,'searchDepartments'])->name('searchthis.departments');
+
+Route::get('/searchthis/brands',[SearchController::class,'searchBrands'])->name('searchthis.brands');
 
 Route::get('/mainview',[AdminController::class,'mainview'])->name('mainview');
 
 Route::post('/makeone',[AdminController::class,'makeOne'])->name('makeone');
 
 Route::post('/addsales',[SalesController::class,'addSales'])->name('addsales');
+
+Route::post('/deldelivertrack',[DelivertrackingController::class,'deldelivertrack'])->name('deldelivertrack');
+
+Route::post('/todo',[TodoController::class,'todo'])->name('todo');
+
+Route::post('/deltodo',[TodoController::class,'deltodo'])->name('deltodo');
 
 
 
