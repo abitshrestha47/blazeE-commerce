@@ -108,4 +108,9 @@ class DelivertrackingController extends Controller
         $add=Order::where('id',$order->id)->get();
         return $add;
     }
+    public function deldelivertrack(Request $req){
+        $delivertrack=DeliveryTracking::find($req->getid);
+        $delivertrack->delete();
+        return back();
+    }
 }

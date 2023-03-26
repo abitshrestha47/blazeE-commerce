@@ -20,6 +20,25 @@ class DelivermanController extends Controller
         return back()->with('msg','DeliveryMan Data Added Successfully');
     }
     public function getDeliverman(){
-        return view('admin.deliverman');
+        $deliverman=Deliverman::all();
+        return view('admin.deliverman',compact('deliverman'));
+    }
+    public function editdeliverman(Request $req){
+        $deliverman=Deliverman::find($req->delivermanid);
+        $deliverman->name=$req->delivermanname;
+        $deliverman->phone=$req->phone;
+        $deliverman->address=$req->address;
+        $deliverman->save();
+        return back();
+    }
+    public function statuss(Request $req){
+        $deliverman=Deliverman::find($req->id);
+        $deliverman->status=$req->status;
+        $deliverman->save();
+    }
+    public function Deldeliverboy(Request $req){
+        $deliverman=Deliverman::find($req->getid);
+        $deliverman->delete();
+        return back();
     }
 }

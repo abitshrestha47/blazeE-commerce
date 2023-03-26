@@ -82,6 +82,8 @@ $(document).ready(function(){
           $id=$(this).closest('tr').find('.id').text();
           $delivertotal=$(this).closest('tr').find('.delivertotal').val();
           $subtotal=$(this).closest('tr').find('.subtotal').val();
+          $userid=$(this).closest('tr').find('.userid').val();
+          $orderid=$(this).closest('tr').find('.orderid').val();
           alert($subtotal);
           $.ajax({
               url:'/addsales',
@@ -90,6 +92,8 @@ $(document).ready(function(){
                   deliverid:$id,
                   delivertotal:$delivertotal,
                   subtotal:$subtotal,
+                  userid:$userid,
+                  orderid:$orderid,
               },
               success:function(){
               }

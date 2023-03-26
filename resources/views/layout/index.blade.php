@@ -21,8 +21,10 @@
         integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-        
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
+        integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <!-- Css Styles -->
     <link rel="stylesheet" href="home/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="home/css/quickview.css" type="text/css">
@@ -35,6 +37,12 @@
     <link rel="stylesheet" href="home/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="{{asset('home/css/ribbon.css')}}">
     <link rel="stylesheet" href="home/css/style.css" type="text/css">
+    <style>
+    .product-cards-container {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    </style>
     <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js"></script>
 
 
@@ -105,43 +113,208 @@
     </div>
     <!-- Banner Section End -->
 
+
+    <div class="filter-control">
+        <h2>Products</h2>
+    </div>
+    <div class="product-cards-container">
+        @foreach($products as $pf)
+        <div class="product-card">
+            @if($pf->specialproduct)
+            <div class="badge">{{$pf->specialproduct->discountoffer."% OFF"}}</div>
+            <div class="product-tumb">
+                <img src="{{asset('/storage/'.$pf->photo)}}" alt="" style="width:100%; height:100%;">
+            </div>
+            <div class="product-details">
+                <span class="product-catagory">{{$pf->brand->brandName}}</span>
+                <h4><a href="">{{$pf->name}}</a></h4>
+                @if($pf->description==null)
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero, possimus nostrum!</p>
+                @else
+                <p>{{$pf->description}}</p>
+                @endif
+                <div class="product-bottom-details">
+                    <div class="product-price">
+                        <small>{{"$".$pf->price}}</small>{{"$".$pf->specialproduct->discountprice}}</div>
+                    <div class="product-links">
+                        <a href=""><i class="fa fa-heart"></i></a>
+                        <!-- <a href=""><i class="fa fa-shopping-cart"></i></a> -->
+                        <form action="{{route('add-cart')}}" method='POST' class='nomargin'>
+                            @csrf
+                            <input type="hidden" value='{{$pf->specialproduct->discountprice}}' name='price'>
+                            <input type="hidden" value="{{Auth::id()}}" name='id'>
+                            @if (session()->has('message') &&
+                            session()->get('productId')===$singlegallery->id)
+                            <div class="floating-message">
+                                {{ session()->get('message')}}
+                            </div>
+                            @endif
+                            <a href=""><button type='submit' data-id="{{$pf->id}}" value='{{$pf->id}}' name='productId'
+                                    data-user-id="{{Auth::id()}}"><i class="fa fa-shopping-cart"></i></button></a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            @elseif($l = $latestproducts->firstWhere('id', $pf->id))
+            <div class="badge">{{"Latest"}}</div>
+            <div class="product-tumb">
+                <img src="{{asset('/storage/'.$pf->photo)}}" alt="" style="width:100%; height:100%;">
+            </div>
+            <div class="product-details">
+                <span class="product-catagory">{{$pf->brand->brandName}}</span>
+                <h4><a href="">{{$pf->name}}</a></h4>
+                @if($pf->description==null)
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero, possimus nostrum!</p>
+                @else
+                <p>{{$pf->description}}</p>
+                @endif
+                <div class="product-bottom-details">
+                    <div class="product-price">{{"$".$pf->price}}</div>
+                    <div class="product-links">
+                        <a href=""><i class="fa fa-heart"></i></a>
+                        <!-- <a href=""><i class="fa fa-shopping-cart"></i></a> -->
+                        <form action="{{route('add-cart')}}" method='POST' class='nomargin'>
+                            @csrf
+                            <input type="hidden" value='{{$pf->price}}' name='price'>
+                            <input type="hidden" value="{{Auth::id()}}" name='id'>
+                            @if (session()->has('message') &&
+                            session()->get('productId')===$singlegallery->id)
+                            <div class="floating-message">
+                                {{ session()->get('message')}}
+                            </div>
+                            @endif
+                            <a href=""><button type='submit' data-id="{{$pf->id}}" value='{{$pf->id}}' name='productId'
+                                    data-user-id="{{Auth::id()}}"><i class="fa fa-shopping-cart"></i></button></a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            @else
+            <div class="product-tumb">
+                <img src="{{asset('/storage/'.$pf->photo)}}" alt="" style="width:100%; height:100%;">
+            </div>
+            <div class="product-details">
+                <span class="product-catagory">{{$pf->brand->brandName}}</span>
+                <h4><a href="">{{$pf->name}}</a></h4>
+                @if($pf->description==null)
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero, possimus nostrum!</p>
+                @else
+                <p>{{$pf->description}}</p>
+                @endif
+                <div class="product-bottom-details">
+                    <div class="product-price">{{"$".$pf->price}}</div>
+                    <div class="product-links">
+                        <a href=""><i class="fa fa-heart"></i></a>
+                        <!-- <a href=""><i class="fa fa-shopping-cart"></i></a> -->
+                        <form action="{{route('add-cart')}}" method='POST' class='nomargin'>
+                            @csrf
+                            <input type="hidden" value='{{$pf->price}}' name='price'>
+                            <input type="hidden" value="{{Auth::id()}}" name='id'>
+                            @if (session()->has('message') &&
+                            session()->get('productId')===$singlegallery->id)
+                            <div class="floating-message">
+                                {{ session()->get('message')}}
+                            </div>
+                            @endif
+                            <a href=""><button type='submit' data-id="{{$pf->id}}" value='{{$pf->id}}' name='productId'
+                                    data-user-id="{{Auth::id()}}"><i class="fa fa-shopping-cart"></i></button></a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            @endif
+        </div>
+        @endforeach
+    </div>
+
+
+
+    <div class="filter-control">
+        <h2>Special Products</h2>
+    </div>
+    <div class="product-cards-container">
+        @foreach($products as $pf)
+        @if($pf->specialproduct)
+        <div class="product-card">
+            <div class="badge">{{$pf->specialproduct->discountoffer."% OFF"}}</div>
+            <div class="product-tumb">
+                <img src="{{asset('/storage/'.$pf->photo)}}" alt="" style="width:100%; height:100%;">
+            </div>
+            <div class="product-details">
+                <span class="product-catagory">{{$pf->brand->brandName}}</span>
+                <h4><a href="">{{$pf->name}}</a></h4>
+                @if($pf->description==null)
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero, possimus nostrum!</p>
+                @else
+                <p>{{$pf->description}}</p>
+                @endif
+                <div class="product-bottom-details">
+                    <div class="product-price">
+                        <small>{{"$".$pf->price}}</small>{{"$".$pf->specialproduct->discountprice}}</div>
+                    <div class="product-links">
+                        <a href=""><i class="fa fa-heart"></i></a>
+                        <!-- <a href=""><i class="fa fa-shopping-cart"></i></a> -->
+                        <form action="{{route('add-cart')}}" method='POST' class='nomargin'>
+                            @csrf
+                            <input type="hidden" value='{{$pf->specialproduct->discountprice}}' name='price'>
+                            <input type="hidden" value="{{Auth::id()}}" name='id'>
+                            @if (session()->has('message') &&
+                            session()->get('productId')===$singlegallery->id)
+                            <div class="floating-message">
+                                {{ session()->get('message')}}
+                            </div>
+                            @endif
+                            <a href=""><button type='submit' data-id="{{$pf->id}}" value='{{$pf->id}}' name='productId'
+                                    data-user-id="{{Auth::id()}}"><i class="fa fa-shopping-cart"></i></button></a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endif
+        @endforeach
+    </div>
+
+
+
+
     <!-- Women Banner Section Begin -->
-    <section class="women-banner spad">
+    <!-- <section class="women-banner spad">
         <div class="container-fluid">
-            <div class="row">
-                <!-- <div class="col-lg-3">
+            <div class="row"> -->
+    <!-- <div class="col-lg-3">
                     <div class="product-large set-bg" data-setbg="img/products/sale.jpg"> -->
-                <!-- <h2>Sale! Sale!</h2> -->
-                <!-- <a href="#">Discover More</a>
+    <!-- <h2>Sale! Sale!</h2> -->
+    <!-- <a href="#">Discover More</a>
                     </div>
                 </div> -->
-                <div class="col-lg-12">
+    <!-- <div class="col-lg-12">
                     <div class="filter-control">
 
                         <h2>Special Offers</h2>
                     </div>
-                    <div class="product-slider owl-carousel">
+                    <div class="product-slider owl-carousel"> -->
 
-                        <!-- Single gallery Item -->
-                        @if(isset($specialproduct))
+    <!-- Single gallery Item -->
+    <!-- @if(isset($specialproduct))
                         @foreach($specialproduct as $singlegallery)
                         <div class="single_gallery_item wow fadeInUpBig" data-wow-delay="0.5s">
                             <div class="ribbon ribbon-top-left">
                                 <span>{{$singlegallery->discountoffer."% off"}}</span>
-                            </div>
-                            <!-- Product Image -->
-                            <div class="product-img">
+                            </div> -->
+    <!-- Product Image -->
+    <!-- <div class="product-img">
                                 <img src="{{asset('/storage/'.$singlegallery->product->photo)}}" alt=""
                                     style="min-width:100%">
                                 <div class="product-quicview">
                                     <a href="#" data-toggle="modal" data-target="#quickview"
                                         data-id="{{ $singlegallery->product->id}}" id="productModalLink"
-                                        class='productModalLink'><i class="ti-plus"></i></a>
-                                    <!-- <a href="#" data-toggle="modal" data-target="#quickview"><i class="ti-plus"></i></a> -->
-                                </div>
-                            </div>
-                            <!-- Product Description -->
-                            <div class="product-description align">
+                                        class='productModalLink'><i class="ti-plus"></i></a> -->
+    <!-- <a href="#" data-toggle="modal" data-target="#quickview"><i class="ti-plus"></i></a> -->
+    <!-- </div>
+                            </div> -->
+    <!-- Product Description -->
+    <!-- <div class="product-description align">
                                 @if($singlegallery->discountprice)
                                 <h5 style="color:black;">{{$singlegallery->product->name}}</h5>
                                 <h4 class="product-price"><strike>{{'$'.$singlegallery->product->price}}</strike>
@@ -151,9 +324,9 @@
                                 <h4 class="product-price">{{'$'.$singlegallery->product->price}}</>
                                 </h4>
                                 <h2 style='color:red'>{{$singlegallery->description}}</h2>
-                                @endif
-                                <!-- Add to Cart -->
-                                <form action="{{route('add-cart')}}" method='POST' class='nomargin'>
+                                @endif -->
+    <!-- Add to Cart -->
+    <!-- <form action="{{route('add-cart')}}" method='POST' class='nomargin'>
                                     @csrf
                                     @if($singlegallery->discountprice)
                                     <input type="hidden" value='{{$singlegallery->discountprice}}' name='price'>
@@ -182,8 +355,8 @@
                     <a href="{{route('shop')}}"><button class="karl-checkout-btn">See More</button></a>
                 </div>
             </div>
-        </div>
-    </section>
+        </div> -->
+    <!-- </section> -->
     <!-- Women Banner Section End -->
     <!-- quick view model start -->
     <!-- Modal content -->
@@ -304,8 +477,89 @@
     <!-- Deal Of The Week Section End -->
 
 
+    <div class="filter-control">
+        <h2>Latest Products</h2>
+    </div>
+    <div class="product-cards-container">
+        @foreach($latestproducts as $pf)
+        <div class="product-card">
+            @if($pf->specialproduct)
+            <div class="badge">{{$pf->specialproduct->discountoffer."% OFF"}}</div>
+            <div class="product-tumb">
+                <img src="{{asset('/storage/'.$pf->photo)}}" alt="" style="width:100%; height:100%;">
+            </div>
+            <div class="product-details">
+                <span class="product-catagory">{{$pf->brand->brandName}}</span>
+                <h4><a href="">{{$pf->name}}</a></h4>
+                @if($pf->description==null)
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero, possimus nostrum!</p>
+                @else
+                <p>{{$pf->description}}</p>
+                @endif
+                <div class="product-bottom-details">
+                    <div class="product-price">
+                        <small>{{"$".$pf->price}}</small>{{"$".$pf->specialproduct->discountprice}}</div>
+                    <div class="product-links">
+                        <a href=""><i class="fa fa-heart"></i></a>
+                        <!-- <a href=""><i class="fa fa-shopping-cart"></i></a> -->
+                        <form action="{{route('add-cart')}}" method='POST' class='nomargin'>
+                            @csrf
+                            <input type="hidden" value='{{$pf->specialproduct->discountprice}}' name='price'>
+                            <input type="hidden" value="{{Auth::id()}}" name='id'>
+                            @if (session()->has('message') &&
+                            session()->get('productId')===$singlegallery->id)
+                            <div class="floating-message">
+                                {{ session()->get('message')}}
+                            </div>
+                            @endif
+                            <a href=""><button type='submit' data-id="{{$pf->id}}" value='{{$pf->id}}' name='productId'
+                                    data-user-id="{{Auth::id()}}"><i class="fa fa-shopping-cart"></i></button></a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            @else
+            <div class="badge">{{"Latest"}}</div>
+            <div class="product-tumb">
+                <img src="{{asset('/storage/'.$pf->photo)}}" alt="" style="width:100%; height:100%;">
+            </div>
+            <div class="product-details">
+                <span class="product-catagory">{{$pf->brand->brandName}}</span>
+                <h4><a href="">{{$pf->name}}</a></h4>
+                @if($pf->description==null)
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero, possimus nostrum!</p>
+                @else
+                <p>{{$pf->description}}</p>
+                @endif
+                <div class="product-bottom-details">
+                    <div class="product-price">{{"$".$pf->price}}</div>
+                    <div class="product-links">
+                        <a href=""><i class="fa fa-heart"></i></a>
+                        <!-- <a href=""><i class="fa fa-shopping-cart"></i></a> -->
+                        <form action="{{route('add-cart')}}" method='POST' class='nomargin'>
+                            @csrf
+                            <input type="hidden" value='{{$pf->price}}' name='price'>
+                            <input type="hidden" value="{{Auth::id()}}" name='id'>
+                            @if (session()->has('message') &&
+                            session()->get('productId')===$singlegallery->id)
+                            <div class="floating-message">
+                                {{ session()->get('message')}}
+                            </div>
+                            @endif
+                            <a href=""><button type='submit' data-id="{{$pf->id}}" value='{{$pf->id}}' name='productId'
+                                    data-user-id="{{Auth::id()}}"><i class="fa fa-shopping-cart"></i></button></a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            @endif
+        </div>
+        @endforeach
+    </div>
+
+
     <!-- Man Banner Section Begin -->
-    <section class="man-banner spad">
+    <!-- <section class="man-banner spad">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
@@ -319,28 +573,29 @@
                             <div class="single_gallery_item wow fadeInUpBig" data-wow-delay="0.4s">
                                 <div class="ribbon ribbon-top-left">
                                     <span>{{$normalproducts->specialproduct->discountoffer."% Offer"}}</span>
-                                </div>
-                                <!-- Product Image -->
-                                <div class="product-img">
+                                </div> -->
+    <!-- Product Image -->
+    <!-- <div class="product-img">
                                     <img src="{{asset('/storage/'.$normalproducts->photo)}}" alt=""
                                         style="min-width:100%">
-                                    <div class="product-quicview">
-                                        <!-- <a href="#" data-toggle="modal" data-target="#quickview"><i
+                                    <div class="product-quicview"> -->
+    <!-- <a href="#" data-toggle="modal" data-target="#quickview"><i
                                                 class="ti-plus"></i></a> -->
-                                        <a href="#" data-toggle="modal" data-target="#quickview"
+    <!-- <a href="#" data-toggle="modal" data-target="#quickview"
                                             data-id="{{$normalproducts->id}}" id="productModalLink"
                                             class='productModalLink'><i class="ti-plus"></i></a>
                                     </div>
-                                </div>
-                                <!-- Product Description -->
-                                <div class="product-description">
+                                </div> -->
+    <!-- Product Description -->
+    <!-- <div class="product-description">
                                     <h4 class="product-price"><strike>{{'$'.$normalproducts->price}}</strike></h4>
                                     <h4>{{'$'.$normalproducts->specialproduct->discountprice}}</h4>
-                                    <p>{{$normalproducts->name}}</p>
-                                    <!-- Add to Cart -->
-                                    <form action="{{route('add-cart')}}" method='POST' class='nomargin'>
+                                    <p>{{$normalproducts->name}}</p> -->
+    <!-- Add to Cart -->
+    <!-- <form action="{{route('add-cart')}}" method='POST' class='nomargin'>
                                         @csrf
-                                        <input type="hidden" value='{{$normalproducts->specialproduct->discountprice}}' name='price'>
+                                        <input type="hidden" value='{{$normalproducts->specialproduct->discountprice}}'
+                                            name='price'>
                                         <input type="hidden" value="{{Auth::id()}}" name='id'>
                                         @if (session()->has('message') &&
                                         session()->get('productId')===$singlegallery->id)
@@ -351,30 +606,30 @@
                                         <button type='submit' class="add-to-cart-btn cart_add"
                                             data-id="{{$normalproducts->id}}" value='{{$normalproducts->id}}'
                                             name='productId' data-user-id="{{Auth::id()}}">ADD TO CART</button>
-                                    </form>
-                                    <!-- <a href="#" class="add-to-cart-btn">ADD TO CART</a> -->
-                                </div>
+                                    </form> -->
+    <!-- <a href="#" class="add-to-cart-btn">ADD TO CART</a> -->
+    <!-- </div>
                             </div>
                             @else
-                            <div class="single_gallery_item wow fadeInUpBig" data-wow-delay="0.4s">
-                                <!-- Product Image -->
-                                <div class="product-img">
+                            <div class="single_gallery_item wow fadeInUpBig" data-wow-delay="0.4s"> -->
+    <!-- Product Image -->
+    <!-- <div class="product-img">
                                     <img src="{{asset('/storage/'.$normalproducts->photo)}}" alt=""
-                                        style="min-width:100%">
-                                    <div class="product-quicview">
-                                        <!-- <a href="#" data-toggle="modal" data-target="#quickview"><i
+                                        style="min-width:100%;">
+                                    <div class="product-quicview"> -->
+    <!-- <a href="#" data-toggle="modal" data-target="#quickview"><i
                                                 class="ti-plus"></i></a> -->
-                                        <a href="#" data-toggle="modal" data-target="#quickview"
+    <!-- <a href="#" data-toggle="modal" data-target="#quickview"
                                             data-id="{{$normalproducts->id}}" id="productModalLink"
                                             class='productModalLink'><i class="ti-plus"></i></a>
                                     </div>
-                                </div>
-                                <!-- Product Description -->
-                                <div class="product-description">
+                                </div> -->
+    <!-- Product Description -->
+    <!-- <div class="product-description">
                                     <h4 class="product-price">{{'$'.$normalproducts->price}}</h4>
-                                    <p>{{$normalproducts->name}}</p>
-                                    <!-- Add to Cart -->
-                                    <form action="{{route('add-cart')}}" method='POST' class='nomargin'>
+                                    <p>{{$normalproducts->name}}</p> -->
+    <!-- Add to Cart -->
+    <!-- <form action="{{route('add-cart')}}" method='POST' class='nomargin'>
                                         @csrf
                                         <input type="hidden" value='{{$normalproducts->price}}' name='price'>
                                         <input type="hidden" value="{{Auth::id()}}" name='id'>
@@ -387,9 +642,9 @@
                                         <button type='submit' class="add-to-cart-btn cart_add"
                                             data-id="{{$normalproducts->id}}" value='{{$normalproducts->id}}'
                                             name='productId' data-user-id="{{Auth::id()}}">ADD TO CART</button>
-                                    </form>
-                                    <!-- <a href="#" class="add-to-cart-btn">ADD TO CART</a> -->
-                                </div>
+                                    </form> -->
+    <!-- <a href="#" class="add-to-cart-btn">ADD TO CART</a> -->
+    <!-- </div>
                             </div>
                             @endif
                             @endforeach
@@ -398,15 +653,15 @@
                 </div>
                 <div class="product-description">
                     <a href="{{route('shop')}}"><button class="karl-checkout-btn">See More</button></a>
-                </div>
-                <!-- <div class="col-lg-3 offset-lg-1">
+                </div> -->
+    <!-- <div class="col-lg-3 offset-lg-1">
                     <div class="product-large set-bg m-large" data-setbg="img/products/man-large.jpg">
                         <a href="#">Discover More</a>
                     </div>
                 </div> -->
-            </div>
+    <!-- </div>
         </div>
-    </section>
+    </section> -->
     <!-- Man Banner Section End -->
     <!-- Latest Blog Section Begin -->
     <section class="latest-blog spad">
@@ -713,15 +968,17 @@
             }
         });
     });
-
     </script>
-    
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"
+        integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+        integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     @if(Session::has('added'))
-    <script>    
-            toastr.success("Added to Cart Successfully!");
+    <script>
+    toastr.success("Added to Cart Successfully!");
     </script>
     @endif
     <!-- Js Plugins -->
@@ -753,7 +1010,7 @@
     <script src="{{asset('home/js/department.js')}}"></script>
     <script src="{{asset('home/js/index.js')}}"></script>
     <!-- Latest Blog Section End -->
-    
-    
-   
+
+
+
     @endsection

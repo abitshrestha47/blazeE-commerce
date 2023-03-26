@@ -15,6 +15,11 @@ class OrderController extends Controller
 {
     //
     public function postOrder(Request $req){
+        $validateorder=([
+            'firstname'=>'required',
+            'lastname'=>'required',
+            'company'=>'required',
+        ]);
         if(Auth::check()){
             $userid=Auth::id();
             $products=$req->products;
@@ -26,11 +31,11 @@ class OrderController extends Controller
                     $maketrue=true;
                 }
             }
-            if(!$maketrue){
+            // if(!$maketrue){
                 $order=Order::create([
                     'firstName'=>$req->firstname,
                     'lastName'=>$req->lastname,
-                    'companyName'=>$req->company,
+                    // 'companyName'=>$req->company,
                     'country'=>$req->country,
                     'street1'=>$req->streetaddress1,
                     'town'=>$req->town,
@@ -46,11 +51,12 @@ class OrderController extends Controller
                 $notify->userid=Auth::id();
                 $notify->orderid=$order->id;
                 $notify->save();
+                return back();
 
-            }
-            else{
-                dd('fjlsd');
-            }
+            // }
+            // else{
+            //     dd('fjlsd');
+            // }
         }
     }
     public function orders(Request $req){
@@ -81,5 +87,11 @@ class OrderController extends Controller
         return response()->json([
             'products' => $products_decode
         ]);
+    }
+
+    public function delorders(Request $req){
+        $order=Order::find($req->getid);
+        $order->delete();
+        return back();
     }
 }

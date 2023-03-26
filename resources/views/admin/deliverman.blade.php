@@ -1,10 +1,17 @@
 @extends('admin.main')
 
 @section('contents')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
+    integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-<script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-7X9tKGcEylxqDhB1iKiQlL24phPPTFZv/0nQWjk1r6rMCac9LjY6xbxDW6dDOKGw1N6IGnGd5H+6qpzsFTgfw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"
+    integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+    integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <!-- form start -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -67,31 +74,121 @@
                         <th>Name</th>
                         <th>Phone</th>
                         <th>Address</th>
+                        <th>Status</th>
                         <th colspan='2'>Action</th>
                     </thead>
-                    
-                    
+
+                    @foreach($deliverman as $delivers)
                     <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td><a href=""><i class="fas fa-edit"></i></a></td>
-                        <td><a href=""><i class="fa fa-trash" aria-hidden="true"></i></a></td>                
+                        <td class="delivermanid">{{$delivers->id}}</td>
+                        <td class="delivermanname">{{$delivers->name}}</td>
+                        <td class="delivermanphone">{{$delivers->phone}}</td>
+                        <td class="delivermanaddress">{{$delivers->address}}</td>
+                        @if($delivers->status=='0')
+                        <td class="status" data-id="1">Inactive</td>
+                        @else
+                        <td class="status" data-id="0">Active</td>
+                        @endif
+                        <td><button type="button" class="btn btn-primary editdeliverman" data-toggle="modal"
+                                data-target="#exampleModal" data-whatever="@mdo">Edit</button></button></td>
+                        <td>
+                            <form action="{{route('deldeliverboy')}}" method="POST">
+                                @csrf
+                                <button type="submit" value="{{$delivers->id}}" name="getid"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                            </form>
+                        </td>
                     </tr>
+                    @endforeach
                 </table>
             </div>
         </div>
     </div>
 </div>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit Departments</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{route('editdeliverman')}}" method="POST"  enctype='multipart/form-data'>
+                    @csrf
+                    <div class="form-group">
+                        <label for="delivermanid" class="col-form-label">Deliverman ID</label>
+                        <input type="readonly" class="form-control brandid" id="delid" name="delivermanid" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="delivermanname" class="col-form-label">Name:</label>
+                        <input type="text" class="form-control" id="delname" name="delivermanname">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone" class="col-form-label">Phone:</label>
+                        <input type="text" class="form-control" id="delphone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="address" class="col-form-label">Address:</label>
+                        <input type="text" class="form-control" id="deladdress" name="address">
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Save changes</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function(){
+        var token = $('meta[name="csrf-token"]').attr('content');
+        $.ajaxSetup({
+            headers: {
+               'X-CSRF-TOKEN': token
+            }
+         });
+        $('.editdeliverman').click(function(){
+            var delivermanid=$(this).closest('tr').find('.delivermanid').text();
+            var name=$(this).closest('tr').find('.delivermanname').text();
+            var phone=$(this).closest('tr').find('.delivermanphone').text();
+            var address=$(this).closest('tr').find('.delivermanaddress').text();
+            var id=document.getElementById('delid');
+            var delname=document.getElementById('delname');
+            var deladdress=document.getElementById('deladdress');
+            var delphone=document.getElementById('delphone');
+            id.value=delivermanid;
+            delname.value=name;
+            delphone.value=phone;
+            deladdress.value=address;
+        });
+        $('.status').click(function(){
+            var status=$(this).data('id');
+            var id=$(this).closest('tr').find('.delivermanid').text();
+            $.ajax({
+                type:"post",
+                url:'statuss',
+                data:{
+                    id:id,
+                    status:status,
+                },
+                success:function(){
+                    location.reload();
+                }
+            });
+        });
+    });
+</script>
 @if(Session::has('msg'))
-    <script>    
-            toastr.success("DeliveryMan Data Added Successfully!");
-    </script>
-    @endif
-    @if(Session::has('delmg'))
-    <script>    
-            toastr.error("DeliveryMan Deleted Successfully!");
-    </script>
-    @endif
+<script>
+toastr.success("DeliveryMan Data Added Successfully!");
+</script>
+@endif
+@if(Session::has('delmg'))
+<script>
+toastr.error("DeliveryMan Deleted Successfully!");
+</script>
+@endif
 @endsection

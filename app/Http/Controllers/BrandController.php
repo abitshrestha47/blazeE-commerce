@@ -23,4 +23,10 @@ class BrandController extends Controller
         $brands->delete();
         return back()->with('delmsg','Brand Deleted Successfully!');
     }
+    public function editBrand(Request $req){
+        $brand=Brand::find($req->brandid);
+        $brand->brandName=$req->brandname;
+        $brand->save();
+        return back();
+    }
 }

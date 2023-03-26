@@ -44,12 +44,19 @@ class TestController extends Controller
                 }
             }
         }
-
+        $validatedData=$request->validate([
+            'shippinghidden'=>'nullable',
+            'totalhidden'=>'not_in:NaN',
+        ],[
+            'totalhidden.not_in'=>'Pls enter the shipping process',
+            'shippinghidden.nullable' => 'Pls enter the shipping process',
+        ]);
         $checkcart->product_ids = json_encode($productIds);
         $checkcart->subtotal=$request->updatetotalhidden;
         $checkcart->total=$request->totalhidden;
         $checkcart->shipping=$request->shippinghidden;
         $checkcart->save();
+        return back();
     }
     public function clear(Request $req){
         $cart=Cart::all();

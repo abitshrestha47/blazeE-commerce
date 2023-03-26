@@ -27,6 +27,7 @@ class CartController extends Controller
                 $productIds
             );
             $checkcart->userid=Auth::id();
+            $checkcart->subtotal=$price;
             $checkcart->save();
             return redirect()->back()->with('added','Added to cart Successfully!');
             }
@@ -36,6 +37,10 @@ class CartController extends Controller
                 $productId=(int)$productId;
                 $quantity=1;
                 $productIds=json_decode($checkcart->product_ids,true);
+                $prices=array_map(function($item){
+                    return $item['price'];
+                },$productIds);
+                array_push($prices,$price);
                 $product_exists = false;
                 foreach($productIds as $key=>$value){
                     if($value['productid']==$productId){
@@ -51,10 +56,22 @@ class CartController extends Controller
                     ];
                     array_push($productIds, $newproductIds);
                     $checkcart->product_ids = json_encode($productIds);
+                    $checkcart->subtotal=array_sum($prices);
                     $checkcart->save();
                     return redirect()->back()->with('added','Added to cart Successfully!');
                 }
                 else{
+                    $newproductIds=json_decode($checkcart->product_ids,true);
+                    foreach($newproductIds as &$newproductId){
+                        if($newproductId['productid']==$productId){
+                            $newproductId['qty']++;
+                            $newproductId['price']+=$price;
+                        }
+                    }
+                    $newproductIdJson=json_encode($newproductIds);
+                    $checkcart->product_ids=$newproductIdJson;
+                    $checkcart->subtotal+=$price;
+                    $checkcart->save();
                     return back();
                 }
              }                             
