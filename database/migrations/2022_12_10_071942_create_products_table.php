@@ -19,10 +19,12 @@ return new class extends Migration
             $table->float('price');
             $table->string('photo');
             // $table->string('brand');
+            $table->string('description');
             $table->string('color');
             $table->string('size')->nullable();
             $table->integer('quantity');
-            $table->enum('choices', ['1', '2'])->default('1');
+            // $table->enum('choices', ['1', '2'])->default('1');
+            // $table->integer('sold')->default(0);
             $table->unsignedBigInteger('categoryid');
             $table->unsignedBigInteger('brandId');
             $table->foreign('categoryid')->references('id')->on('categories')->onDelete('cascade');

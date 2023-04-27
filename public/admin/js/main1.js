@@ -10,6 +10,21 @@ $(document).ready(function(){
         else if(view=='products'){
             url='/searchthis/products';
         }
+        else if(view=='departments'){
+            url='/searchthis/departments';
+        }
+        else if(view=='brands'){
+            url='/searchthis/brands';
+        }
+        else if(view=='deliverman'){
+            url='/searchthis/deliverman';
+        }
+        else if(view=='order'){
+            url='/searchthis/orderresults';
+        }
+        else if(view=='deliverytracking'){
+            url='/searchthis/deliverytracking';
+        }
         $.ajax({
             type:'GET',
             url:url,

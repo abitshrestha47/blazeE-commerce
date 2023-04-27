@@ -43,9 +43,18 @@
         border: 1px solid black;
         padding: 100px;
     } */
-    .searches{
-        cursor:pointer;
+    .searches {
+        cursor: pointer;
     }
+
+    .select-items th {
+        font-size: 14px !important;
+    }
+    <style>
+    table table th {
+        height: 50px;
+    }
+</style>
     </style>
     @vite(['resources/js/app.js'])
 </head>
@@ -65,7 +74,8 @@
                     <a href="{{route('logout')}}" class="login-panel"><i
                             class="fa-sharp fa-solid fa-right-to-bracket"></i>Logout</a>
 
-                    <a href="{{route('aboutuser')}}" class='login-panel '><i class="fa fa-user"></i>{{Auth::user()->username}}
+                    <a href="{{route('aboutuser')}}" class='login-panel '><i
+                            class="fa fa-user"></i>{{Auth::user()->username}}
 
                     </a>
                     @endauth
@@ -102,12 +112,12 @@
                     </div>
                     <div class="col-lg-3 text-right col-md-3">
                         <ul class="nav-right">
-                            <li class="heart-icon">
+                            <!-- <li class="heart-icon">
                                 <a href="#">
                                     <i class="icon_heart_alt"></i>
                                     <span>1</span>
                                 </a>
-                            </li>
+                            </li> -->
                             <li class="cart-icon">
                                 <a href="{{route('cart')}}">
                                     <i class="icon_bag_alt"></i>
@@ -116,69 +126,52 @@
                                 <div class="cart-hover">
                                     <div class="select-items">
                                         <table>
-                                            <tbody>
-                                                @if(isset($productData))
-                                                @foreach($productData as $cart)
-                                                <tr>
-                                                    <td class="si-pic"><img src="{{asset('/storage/'.$cart->photo)}}"
-                                                            alt="" width='80vw' height='40vh'></td>
-                                                    <td class="si-text">
-                                                        <div class="product-selected">
-                                                            @if(!$cart->specialproduct)
-                                                            <p>{{'$'.$cart->price}}</p>
-                                                            @else
-                                                            @if($cart->specialproduct->discountprice)
-                                                            <p>{{'$'.$cart->specialproduct->discountprice}}</p>
-                                                            @else
-                                                            <p>{{'$'.$cart->price}}</p>
-                                                            @endif
-                                                            @endif
-                                                            <h6>{{$cart->name}}</h6>
-                                                        </div>
-                                                    </td>
-                                                    <!-- <td class="si-close">
-                                                        <div class="custom-class">
-                                                        <form method="post"
-                                                            action="{{route('deletecart', ['id' => $cart->id])}}">
-                                                            @csrf
-                                                            <button type="submit" class="btn btn-danger"><i
-                                                                class="ti-close"></i></button>
-                                                        </form>
-                                                        </div>
-                                                    </td> -->
-                                                </tr>
-                                                @endforeach
-                                                @endif
-                                                <!-- <tr>
-                                                    <td class="si-pic"><img src="img/select-product-1.jpg" alt=""></td>
-                                                    <td class="si-text">
-                                                        <div class="product-selected">
-                                                            <p>$60.00 x 1</p>
-                                                            <h6>Kabino Bedside Table</h6>
-                                                        </div>
-                                                    </td>
-                                                    <td class="si-close">
-                                                        <i class="ti-close"></i>
-                                                    </td>
-                                                </tr> -->
-                                                <!-- <tr>
-                                                    <td class="si-pic"><img src="img/select-product-2.jpg" alt=""></td>
-                                                    <td class="si-text">
-                                                        <div class="product-selected">
-                                                            <p>$60.00 x 1</p>
-                                                            <h6>Kabino Bedside Table</h6>
-                                                        </div>
-                                                    </td>
-                                                    <td class="si-close">
-                                                        <i class="ti-close"></i>
-                                                    </td>
-                                                </tr> -->
-                                            </tbody>
+                                            <thead>
+                                                    <th>Image</th>
+                                                    <th>Quantity</th>
+                                                    <th>Total Price</th>
+                                            </thead>
+                                            @if(isset($ca))
+                                            @foreach($ca as $cart)
+                                            <tr>
+                                                <td class="si-text">
+                                                    <div class="product-selected">
+                                                        @if($cart->userid == Auth::id())
+                                                        @php
+                                                        $cartItems = json_decode($cart->product_ids, true);
+                                                        foreach($cartItems as $c){
+                                                        foreach($productData as $pc){
+                                                        if($c['productid']==$pc->id){
+                                                        echo '<div class="product-item" style="display:flex;">';
+                                                            echo '<img src="'.asset('/storage/'.$pc->photo).'" alt=""
+                                                                width="80vw" height="40vh"
+                                                                style="margin-right: 40px;">';
+                                                            }
+                                                            }
+                                                            echo "<p style='margin-right:40px;'>X" . $c['qty']
+                                                                ."&nbsp;&nbsp;". $c['price'] . "</p>";
+                                                            echo '</div>';
+                                                        } @endphp
+                                                        @endif
+
+                                                    </div>
+                                                </td>
+
+                                            </tr>
+                                            @endforeach
+                                            @endif
+
                                         </table>
                                     </div>
                                     <div class="select-total">
                                         <span>total:</span>
-                                        <h5>$120.00</h5>
+                                        @if(isset($ca))
+                                        @foreach($ca as $ca)
+                                        @if(Auth::id()==$ca->userid)
+                                        <h5>{{"$".$ca->subtotal}}</h5>
+                                        @endif
+                                        @endforeach
+                                        @endif
                                     </div>
                                     <div class="select-button">
                                         <a href="{{route('cart')}}" class="primary-btn view-card">VIEW CART</a>
@@ -186,7 +179,6 @@
                                     </div>
                                 </div>
                             </li>
-                            <li class="cart-price">$150.00</li>
                         </ul>
                     </div>
                 </div>
@@ -201,7 +193,8 @@
                         <ul class="depart-hover">
                             @if(isset($departments))
                             @foreach($departments as $departmentschoose)
-                            <li style="color:black;" class='deptgo' value='{{$departmentschoose->id}}'>
+                            <li style="color:black; padding:0.1em; margin-left:0.5em;" class='deptgo'
+                                value='{{$departmentschoose->id}}'>
                                 {{$departmentschoose->departmentName}}</li>
                             @endforeach
                             @endif
@@ -211,8 +204,8 @@
                 </div>
                 <nav class="nav-menu mobile-menu">
                     <ul>
-                        <li class="active"><a href="{{route('main')}}">Home</a></li>
-                        <li><a href="{{route('shop')}}">Shop</a></li>
+                        <li class="{{Request::is('/')?'active':''}}"><a href="{{route('main')}}">Home</a></li>
+                        <li class="{{Request::is('shop*')?'active':''}}"><a href="{{route('shop')}}">Shop</a></li>
                         <li><a href="#">Collection</a>
                             <ul class="dropdown">
                                 <li><a href="#">Men's</a></li>
@@ -220,9 +213,10 @@
                                 <li><a href="#">Kid's</a></li>
                             </ul>
                         </li>
-                        <li><a href="{{route('blog')}}">Blog</a></li>
-                        <li><a href="{{route('contact')}}">Contact</a></li>
-                        <li><a href="#">Pages</a>
+                        <li class="{{Request::is('blog*')?'active':''}}"><a href="{{route('blog')}}">Blog</a></li>
+                        <li class="{{Request::is('contact*')?'active':''}}"><a href="{{route('contact')}}">Contact</a>
+                        </li>
+                        <li class="{{Request::is('pages*')?'active':''}}"><a href="#">Pages</a>
                             <ul class="dropdown">
                                 <li><a href="./blog-details.html">Blog Details</a></li>
                                 <li><a href="{{route('cart')}}">Shopping Cart</a></li>
@@ -242,7 +236,7 @@
 
     <!-- Js Plugins -->
     <script></script>
-    
+
 
     <script src="{{asset('home/js/jquery/jquery-2.2.4.min.js')}}"></script>
     <!-- Popper js -->

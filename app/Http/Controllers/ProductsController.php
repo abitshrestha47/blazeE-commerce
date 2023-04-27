@@ -11,6 +11,15 @@ class ProductsController extends Controller
 {
     //
     public function products(Request $req){
+        $validateData=$req->validate([
+            'price' => ['required', 'numeric'],
+            'name'=>'required',
+            'image'=>'required',
+            'color' => 'required|alpha',
+            'quantity' => ['required', 'numeric'],
+            'description'=>'required',
+        ],
+    );
         $image=$req->file('image');
         $response=$image->store('dbimages','public');
         $product=Products::create([
@@ -20,8 +29,8 @@ class ProductsController extends Controller
             'categoryid' => $req->categoryid,
             'brandId' => $req->brand,
             'color'=>$req->color,
-            'choices'=>$req->choices,
             'quantity'=>$req->quantity,
+            'description'=>$req->description,
             'size'=>$req->size,
         ]);
         return back()->with('msg','Products added Successfully!');
@@ -31,5 +40,19 @@ class ProductsController extends Controller
         $brand=Brand::all();
         $category=Category::all();
         return view('admin.addproducts',compact('products','category','brand'));
+    }
+    public function editprods(Request $req){
+        $product=Products::find($req->pid);
+        $image=$req->file('image');
+        $response=$image->store('dbimages','public');
+        $product->name=$req->pname;
+        $product->price=$req->pprice;
+        $product->color=$req->pcolor;
+        $product->categoryid=$req->cateid;
+    $product->brandId=$req->brandedit;
+        $product->description=$req->pdescription;
+        $product->photo=$response;
+        $product->save();
+        return back()->with('edited','f');
     }
 }

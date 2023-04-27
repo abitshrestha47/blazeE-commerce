@@ -11,19 +11,23 @@ use App\Models\Contact;
 use App\Models\Department;
 use App\Models\User;
 use App\Models\Notification;
+use App\Models\Todo;
+use App\Models\Sale;
 
 
 class AdminController extends Controller
 {
     //
     public function products(){
-        $notification=Notification::count();
+        $notification=Notification::where('viewed',0)->count();
         $notifications=Notification::all();
         $products=Products::all();
-        return view('admin.products',compact('products','notification','notifications'));
+        $category=Category::all();
+        $brand=Brand::all();
+        return view('admin.products',compact('products','notification','notifications','category','brand'));
     }
     public function category(){
-        $notification=Notification::count();
+        $notification=Notification::where('viewed','0')->count();
         $notifications=Notification::all();
         $category=Category::all();
         $departments=Department::all();
@@ -34,10 +38,13 @@ class AdminController extends Controller
         return view('admin.contacts',compact('contacts'));
     }
     public function dashboard(){
+        dd('fdl');
         $notification=Notification::count();
         $notifications=Notification::all();
+        $sale=Sale::all();
         $use=User::all();
-        return view('admin.dashboard',compact('use','notifications','notification'));
+        $todo=Todo::all();
+        return view('admin.dashboard',compact('use','notifications','notification','todo'));
     }
     public function delete($id){
         $category=Category::find($id);

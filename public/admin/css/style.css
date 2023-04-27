@@ -102,11 +102,34 @@
 }
 
 .tabulous{
-    background: #6e7bd9;
+    background: #6d7ae0;
     color:white;
     border-radius:10px !important;
 }
 
+.table tr:last-child td {
+    border-bottom: none;
+  }
+  
+.table-responsive{
+    border-radius: 10px;
+    border: 1px solid lightgray;
+}
+.margins{
+    margin:0 0 0 -130px;
+}
+.changebtn{
+    margin-top:1vh;
+	width:5vw !important;
+	height:4vh !important;
+    border-radius:5px;
+}
+.color{
+    color:#6d7ae0;
+}
+.tbody{
+    background: white;
+}
 .tabulous1{
     margin-top:5vh;
     width:80vw;

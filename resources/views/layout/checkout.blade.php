@@ -27,6 +27,9 @@
     <link rel="stylesheet" href="home/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="home/css/style.css" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
 </head>
 
 <body>
@@ -114,7 +117,7 @@
                                     <input type="email" class="form-control" id="email_address" value="" name='email'>
                                 </div>
 
-                                <div class="col-12">
+                                <!-- <div class="col-12">
                                     <div class="custom-control custom-checkbox d-block mb-2">
                                         <input type="checkbox" class="custom-control-input" id="customCheck1">
                                         <label class="custom-control-label" for="customCheck1">Terms and
@@ -129,7 +132,7 @@
                                         <label class="custom-control-label" for="customCheck3">Subscribe to our
                                             newsletter</label>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                     </div>
                 </div>
@@ -145,8 +148,8 @@
                         <ul class="order-details-form mb-4">
                             <li><span>Product</span> <span>Total</span></li>
                             @foreach($productsgive as $ch)
-                            <input type="text" name="products[{{$ch->id}}][id]" value="{{$ch->id}}">
-                            <input type="text" name="products[{{$ch->id}}][img]" value="{{$ch->photo}}">
+                            <input type="hidden" name="products[{{$ch->id}}][id]" value="{{$ch->id}}">
+                            <input type="hidden" name="products[{{$ch->id}}][img]" value="{{$ch->photo}}">
                             <input type="hidden" name="products[{{$ch->id}}][name]" value='{{$ch->name}}'>
                             <li><span>{{$ch->name}}</span>X
                                 @foreach($qty as $key=>$value)
@@ -352,4 +355,10 @@
     <script src="home/js/owl.carousel.min.js"></script>
     <script src="home/js/main.js"></script>
     <script src="{{asset('admin/js/order.js')}}"></script>
+
+    @if(Session::has('orderpost'))
+    <script>
+    toastr.success("Order has been posted Successfully!");
+    </script>
+    @endif
     @endsection

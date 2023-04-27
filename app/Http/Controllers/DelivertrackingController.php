@@ -56,7 +56,8 @@ class DelivertrackingController extends Controller
                 foreach($gettrackdetails as $see){
                     $getData=$see->status;
                 }
-                return view('layout.tracker',compact('gettrackdetails','products','getData'));
+                $ord=Order::where('userid',$userid)->get();
+                return view('layout.tracker',compact('gettrackdetails','products','getData','ord'));
             }
             else{
                 $order=Order::where('userid',$userid)->get();
@@ -107,5 +108,10 @@ class DelivertrackingController extends Controller
         $add=[];
         $add=Order::where('id',$order->id)->get();
         return $add;
+    }
+    public function deldelivertrack(Request $req){
+        $delivertrack=DeliveryTracking::find($req->getid);
+        $delivertrack->delete();
+        return back();
     }
 }
