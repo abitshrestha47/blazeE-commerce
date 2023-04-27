@@ -2,19 +2,19 @@ $(document).ready(function(){
     $('.search').on('input',function(){
         var searchItem=$(this).val();
         // alert(searchItem);  
-        if(searchItem===' '){
+        if(searchItem==''){
             $('#search-results').html('');
         }
         else{
             $.ajax({
-                url:'/getsearch',
+            url:'/getsearch',
                 type:'GET',
                 dataType: 'json',
                 data:{
                     searchItem:searchItem
                 },
                 success:function(data){
-                    // console.log(data);
+                    console.log(data);
                     var result='';
                     for(let i=0;i<data.length;i++){
                         result+='<span class="searches" data-id="'+data[i].id+'">'+data[i].name+'</span>'+'<br>';

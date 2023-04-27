@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Department;
 use App\Models\Products;
 use Illuminate\Support\Str;
+use App\Models\Notification;
 
 class DepartmentController extends Controller
 {
@@ -27,10 +28,14 @@ class DepartmentController extends Controller
         return back()->with('success','Department created successfully');
     }
     public function getDepartment(){
-        return view('admin.departments');
+        $notification=Notification::count();
+        $notifications=Notification::all();
+        $departments=Department::all();
+        return view('admin.departments',compact('departments','notification','notifications'));
     }
     public function getDepartmentView($id){
         $department = Department::findOrFail($id);
+        $latestproducts=Products::orderBy('created_at','DESC')->get()->take(8);
         $departmentsort = $department->category;
         $productsArray = [];
         foreach($departmentsort as $check){
@@ -40,6 +45,20 @@ class DepartmentController extends Controller
             }
         }
         $departments=Department::all();
-        return view('layout.filterdepartments',compact('productsArray','departments'));
+        return view('layout.filterdepartments',compact('productsArray','departments','latestproducts'));
+    }
+    public function editDepartment(Request $req){
+        $deparment=Department::find($req->departmentid);
+        $image=$req->file('editdepartmentImage');
+        $response=$image->store('dbimages','public');
+        $deparment->departmentName=$req->departmentname;
+        $deparment->departmentImage=$response;
+        $deparment->save();
+        return back()->with('edited','f');
+    }
+    public function delDeparment(Request $req){
+        $deparment=Department::find($req->idpass);
+        $deparment->delete();
+        return back()->with('deldept','Deleted successfully');
     }
 }

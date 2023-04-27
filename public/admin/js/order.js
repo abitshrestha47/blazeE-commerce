@@ -16,8 +16,9 @@ $(document).ready(function(){
                 deliverboyId:deliverboyid,
             },
             success:function(){
-                console.log('fsdf');
-            }
+                window.location.reload();
+                sessionStorage.setItem('toastrMessage', 'It has been added to trackings');
+            },
         });
     });
     $('.viewing').click(function(){
@@ -50,4 +51,9 @@ $(document).ready(function(){
             }
         })
     });
+    var toastrMessage = sessionStorage.getItem('toastrMessage');
+    if (toastrMessage !== null) {
+        toastr.success(toastrMessage);
+        sessionStorage.removeItem('toastrMessage');
+    }
 }); 

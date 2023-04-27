@@ -32,21 +32,25 @@
     <!-- Template Stylesheet -->
     <link href="admin/css/style.css" rel="stylesheet">
     <style>
-        .m{
-            position:relative;
-        }
-        .n{
-            position: absolute;
-            height: 15px;
-            left: 50px;
-            width: 15px;
-            color: black;
-            border-radius: 50%;
-            font-size: 11px;
-            font-weight: 700;
-            text-align: center;
-            line-height: 15px;
-        }
+    .m {
+        position: relative;
+    }
+
+    .n {
+        position: absolute;
+        height: 15px;
+        left: 50px;
+        width: 15px;
+        color: black;
+        border-radius: 50%;
+        font-size: 11px;
+        font-weight: 700;
+        text-align: center;
+        line-height: 15px;
+    }
+    .dropdown-item:hover{
+        background:white !important;
+    }
     </style>
 </head>
 
@@ -90,7 +94,8 @@
                     <span>Admin</span>
                 </div> -->
                 <div class="navbar-nav w-100">
-                    <a href="{{route('dashboard')}}" class="nav-item nav-link active"><i
+                    <a href="{{route('dashboard')}}"
+                        class="nav-item nav-link {{Request::is('dashboard*')?'active': ''}}"><i
                             class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
                     <!-- <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
@@ -101,31 +106,36 @@
                             <a href="element.html" class="dropdown-item">Other Elements</a>
                         </div>
                     </div> -->
-                    <a href="{{route('departments')}}" class="nav-item nav-link"><i
+                    <a href="{{route('departments')}}"
+                        class="nav-item nav-link {{Request::is('departments*')?'active': ''}}"><i
                             class="fa fa-cogs"></i>Departments</a>
-                    <a href="{{route('category')}}" class="nav-item nav-link"><i
+                    <a href="{{route('category')}}"
+                        class="nav-item nav-link {{Request::is('category*')?'active': ''}}"><i
                             class="fa fa-shopping-cart"></i>Category</a>
-                            <a href="{{route('brander')}}" class="nav-item nav-link"><i class="fas fa-bookmark"></i>        Brands</a>
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
-                                    class="fa fa-box"></i>Products</a>
-                            <div class="dropdown-menu bg-transparent border-0 dropping">
-                                <a href="{{route('products')}}" class="dropdown-item" style="color:white">Show Products</a>
-                                <a href="{{route('add-products')}}" class="dropdown-item" style="color:white">Add Products</a>
-                                <!-- <a href="element.html" class="dropdown-item">Other Elements</a> -->
-                                <a href="{{route('special-products')}}" class="dropdown-item" style="color:white">Add Special Products</a>
-                            </div>
+                    <a href="{{route('brander')}}" class="nav-item nav-link {{Request::is('brander*')?'active': ''}}"><i class="fas fa-bookmark"></i>Brands</a>
+                    <div class="nav-item dropdown">
+                     <a href="#" class="nav-item nav-link {{Request::is('products*','addproducts*','specialproducts*')?'active': ''}} dropdown-toggle" data-bs-toggle="dropdown"><i
+                                class="fa fa-box"></i>Products</a>
+                        <div class="dropdown-menu bg-transparent border-0 dropping">
+                            <a href="{{route('products')}}" class="dropdown-item" style="color:white">Show Products</a>
+                            <a href="{{route('add-products')}}" class="dropdown-item" style="color:white">Add
+                                Products</a>
+                            <!-- <a href="element.html" class="dropdown-item">Other Elements</a> -->
+                            <a href="{{route('special-products')}}" class="dropdown-item" style="color:white">Add
+                                Special Products</a>
                         </div>
-                    <a href="{{route('deliver-man')}}" class="nav-item nav-link"><i class="fas fa-running"></i>DeliverMan</a>
-                    <a href="{{route('order')}}" class="nav-item nav-link"><i class="fas fa-shopping-bag"></i>Orders</a>
-                    <a href="{{route('deliver-trackings')}}" class="nav-item nav-link"><i
-                                class="fas fa-map-marker-alt"></i>DeliverTrack</a>
-                    <a href="{{route('bigposter')}}" class="nav-item nav-link"><i class="fa fa-image"></i>Bigposter</a>
-                    <a href="{{route('deals')}}" class="nav-item nav-link"><i class="fa fa-tag"></i>
-                            Deals</a>
-                        <a href="{{route('contacts')}}" class="nav-item nav-link" display="hidden"><i
-                                class="fa fa-table me-2"></i>Contact</a>
-                        <!-- <div class="nav-item dropdown">
+                    </div>
+                    <a href="{{route('deliver-man')}}" class="nav-item nav-link {{Request::is('deliverman*')?'active': ''}}"><i
+                            class="fas fa-running"></i>DeliverMan</a>
+                    <a href="{{route('order')}}" class="nav-item nav-link {{Request::is('order*')?'active': ''}}"><i class="fas fa-shopping-bag"></i>Orders</a>
+                    <a href="{{route('deliver-trackings')}}" class="nav-item nav-link {{Request::is('delivertrackings*')?'active': ''}}"><i
+                            class="fas fa-map-marker-alt"></i>DeliverTrack</a>
+                    <a href="{{route('bigposter')}}" class="nav-item nav-link {{Request::is('bigposter*')?'active': ''}}"><i class="fa fa-image"></i>Bigposter</a>
+                    <a href="{{route('deals')}}" class="nav-item nav-link {{Request::is('deals*')?'active': ''}}"><i class="fa fa-tag"></i>
+                        Deals</a>
+                    <a href="{{route('contacts')}}" class="nav-item nav-link {{Request::is('contacts*')?'active': ''}}" display="hidden"><i
+                            class="fa fa-table me-2"></i>Contact</a>
+                    <!-- <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
                                 class="far fa-file-alt me-2"></i>Pages</a>
                         <div class="dropdown-menu bg-transparent border-0">
@@ -156,7 +166,7 @@
                     <input class="form-control bg-dark border-0 search1" type="search" placeholder="Search">
                 </form>
                 <div class="navbar-nav align-items-center ms-auto">
-                    <div class="nav-item dropdown">
+                    <!-- <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                             <i class="fa fa-envelope me-lg-2"></i>
                             <span class="d-none d-lg-inline-flex">Message</span>
@@ -197,7 +207,7 @@
                             <hr class="dropdown-divider">
                             <a href="#" class="dropdown-item text-center">See all message</a>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                             <i class="fa fa-bell me-lg-2 m"></i>
@@ -210,31 +220,60 @@
                             @endif
                             @endforeach
                             @endif
-                            <span class="d-none d-lg-inline-flex">Notificatin</span>
+                            <span class="d-none d-lg-inline-flex">Notifications</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
-                            <a href="#" class="dropdown-item">
+                            <!-- <a href="#" class="dropdown-item">
                                 <h6 class="fw-normal mb-0">Profile updated</h6>
                                 <small>15 minutes ago</small>
                             </a>
-                            <hr class="dropdown-divider">
+                            <hr class="dropdown-divider"> -->
                             <a href="#" class="dropdown-item">
-                                @if(isset($notification))
-                                <h6 class="fw-normal mb-0">{{$notification}}</h6>
+                                @if(isset($notifications))
+                                @foreach($notifications as $notify)
+                                <h6 class="fw-normal mb-0">{{$notify->user->username." has ordered."}}</h6> 
+                                @php
+                                    $now=new DateTime();
+                                    $createdDateTime = new DateTime($notify->created_at);
+                                    $time=$now->diff($createdDateTime);
+                                    $seconds = $time->format('%s');
+                                    $minutes=$time->format('%i');
+                                    $hours=$time->format('%h');
+                                    $months=$time->format('%m');
+                                    $days=$time->format('%a');
+                                    $years=$time->format('%y');
+
+                                    if($years>0){
+                                        $timeElapsed=$years.' years ago';
+                                    }elseif($months>0){
+                                        $timeElapsed=$months.' months ago';
+                                    }elseif($days>0){
+                                        $timeElapsed=$days.' days ago';
+                                    }elseif($hours>0){
+                                        $timeElapsed=$hours.' hours ago';
+                                    }elseif($minutes>0){
+                                        $timeElapsed=$minutes.' minutes ago';
+                                    }elseif($seconds>0){
+                                        $timeElapsed=$seconds.' seconds ago';
+                                    }
+
+                                @endphp
+                                <small>{{$timeElapsed}}</small>
+                                <hr class="dropdown-divider">
+                                @endforeach
                                 @endif
-                                <small>15 minutes ago</small>
                             </a>
                             <hr class="dropdown-divider">
-                            <a href="#" class="dropdown-item">
+                            <!-- <a href="#" class="dropdown-item">
                                 <h6 class="fw-normal mb-0">New user added</h6>
                                 <small>15 minutes ago</small>
-                            </a>
-                            <hr class="dropdown-divider">
+                            </a> -->
+                            <!-- <hr class="dropdown-divider">
                             <a href="#" class="dropdown-item">
                                 <h6 class="fw-normal mb-0">Password changed</h6>
                                 <small>15 minutes ago</small>
                             </a>
-                            <hr class="dropdown-divider">
+                            <hr class="dropdown-divider"> -->
                             <a href="#" class="dropdown-item text-center">See all notifications</a>
                         </div>
                     </div>
@@ -540,7 +579,7 @@
     </div>
 
     <!-- JavaScript Libraries -->
-     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="admin/lib/chart/chart.min.js"></script>
     <script src="admin/lib/easing/easing.min.js"></script>

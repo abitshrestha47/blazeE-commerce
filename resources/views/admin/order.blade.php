@@ -1,36 +1,30 @@
 @extends('admin.main')
 
 @section('contents')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
+    integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-<script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"
+    integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+    integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
+<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
-<!-- table starts -->
-<style>
-thead,
-tbody,
-tfoot,
-tr,
-td,
-th {
-    border-color: inherit;
-    border-style: none !important;
-    border-width: 0;
-}
-</style>
+
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 
-<div class="container-fluid pt-4 px-4">
+<div class="container-fluid pt-4 px-4" style="width:80vw;">
     <div class="col-12">
         <div class="bg-secondary rounded h-100 p-4">
             <h3 class="mb-4" style="text-align:center">Orders Table</h3>
             <div class="table-responsive">
                 <table class="table">
                     <thead class="tabulous">
-                        <tr>
                             <th scope="col">SNo.</th>
                             <th scope="col">Name</th>
                             <th scope="col">Town/City/Country</th>
@@ -39,14 +33,12 @@ th {
                             <th scope="col">Email</th>
                             <th scope="col">Phone</th>
                             <th scope="col">Workflow</th>
-                            <th scope="col" colspan='2'>Action</th>
-                        </tr>
+                            <th scope="col" colspan='3'>Action</th>
                     </thead>
-                    <tbody>
                         @if(isset($order))
                         @foreach($order as $orders)
                         <tr>
-                            <th scope="row" class='orderid'>{{$orders->id}}</th>
+                            <td scope="row" class='orderid'>{{$orders->id}}</td>
                             <td>{{$orders->firstName}}{{" ".$orders->lastName}}</td>
                             <td>{{$orders->street1}}{{"/".$orders->town}}{{"/".$orders->country}}</td>
                             <td>{{" ".$orders->province}}</td>
@@ -54,23 +46,30 @@ th {
                             <td>{{$orders->email}}</td>
                             <td>{{$orders->phone}}</td>
                             @if($orders->acceptreject==null)
-                            <td class="approve" data-id="{{$orders->id}}"><i class="fas fa-check tick" data-value="1"></i>{{" "}}<i class="fas fa-times tick" data-value="0"></i>
-                            </td> 
-                            @elseif($orders->acceptreject==0)  
+                            <td class="approve" data-id="{{$orders->id}}"><i class="fas fa-check tick"
+                                    data-value="1"></i>{{" "}}<i class="fas fa-times tick" data-value="0"></i>
+                            </td>
+                            @elseif($orders->acceptreject==0)
                             <td>Rejected</td>
                             @elseif($orders->acceptreject==1)
                             <td>Accepted</td>
                             @endif
                             <td><a href="#" data-toggle="modal" class="modal-trigger viewing"
-                                    data-target="#productModal" id="viewing"><i class="fas fa-eye idgive"></i>
+                                    data-target="#productModal" id="viewing"><i class="fas fa-eye idgive color"></i>
                                 </a></td>
                             <td><a href="#" data-toggle="modal" class="modal-tracker addingorder"
-                                    data-target="#trackModal"><i class="fas fa-plus-circle"></i>
-                                </a></td>
+                                    data-target="#trackModal"><i class="fas fa-plus-circle color"></i>
+                                </a>
+                            </td>
+                            <td>
+                                <form action="{{route('delorders')}}" method="POST">
+                                    @csrf
+                                    <button type="submit" value="{{$orders->id}}" name="getid" class="changebtn btn-primary" style="background-color:#d9534f;">Delete</button>
+                                </form>
+                            </td>
                         </tr>
                         @endforeach
                         @endif
-                    </tbody>
                 </table>
                 <div class="modal fade" id="productModal" tabindex="-1" role="dialog"
                     aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -134,11 +133,15 @@ th {
                                 </table>
                                 <table class="orderproducts table" style="border-style:none !important;">
                                 </table>
-                       
+
                                 <label>DeliverBoy</label>
                                 <select name="deliverman" id="deliverman" class="deliverman">
                                     @foreach($deliverman as $del)
+                                    @if($del->status==1)
                                     <option value="{{$del->id}}">{{$del->name}}</option>
+                                    @else
+                                    <option value="">Not available</option>
+                                    @endif
                                     @endforeach
                                 </select>
                                 <br><button class="btn btn-primary addnow">Add Now</button>
@@ -299,4 +302,6 @@ $(document).ready(function() {
 });
 </script>
 <script src="{{asset('/admin/js/order.js')}}"></script>
+
+
 @endsection

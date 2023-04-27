@@ -14,6 +14,11 @@ class SpecialController extends Controller
         return view("admin.addspecialproducts",compact('products'));
     }
     public function addSpecialProducts(Request $req){
+        $validateData=$req->validate([
+            'description'=>'required',
+            'discountprice' => 'required',
+        ],
+    );
         $product=SpecialProduct::create([
             'description'=>$req->description,
             'discountoffer'=>$req->discountoffer,

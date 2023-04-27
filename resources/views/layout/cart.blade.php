@@ -2,10 +2,28 @@
 
 @section('contents')
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
+    integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
 <meta name="csrf-token" content="{{ csrf_token() }}">
+
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
+@if (session('ms'))
+    <div class="alert alert-danger alert-dismissible ">
+        {{session('ms')}}
+    </div>
+@endif
 <!-- Breadcrumb Section Begin -->
 <div class="breacrumb-section">
     <div class="container">
@@ -46,7 +64,8 @@
                                 @foreach($productData as $cartincart)
                                 <tr>
                                     <td class="cart_product_img d-flex align-items-center">
-                                        <a href="#"><img src="{{asset('/storage/'.$cartincart->photo)}}" alt="Product"></a>
+                                        <a href="#"><img src="{{asset('/storage/'.$cartincart->photo)}}"
+                                                alt="Product"></a>
                                         <h6>{{$cartincart->name}}</h6>
                                         <input type="hidden" value="{{$cartincart->id}}" name='productid[]'>
                                     </td>
@@ -58,7 +77,7 @@
                                     @if($cartincart->specialproduct->discountprice)
                                     <td class="price"><span class='productprice'
                                             data-price='{{$cartincart->specialproduct->discountprice}}'>{{'$'.$cartincart->specialproduct->discountprice}}</span>
-                                    @else
+                                        @else
                                     <td class="price"><span class='productprice'
                                             data-price='{{$cartincart->price}}'>{{'$'.$cartincart->price}}</span>
                                         @endif
@@ -98,71 +117,76 @@
 
                     <div class="cart-footer d-flex mt-30">
                         <div class="back-to-shop w-50">
-                            <a href="shop-grid-left-sidebar.html">Continue shooping</a>
+                            <a href="{{route('shop')}}">Continue shooping</a>
                         </div>
                         <div class="update-checkout w-50 text-right">
 
 
-</div>
-</div>
+                        </div>
+                    </div>
 
-</div>
-</div>
-
-<div class="row">
-
-    <div class="col-12 col-md-6 col-lg-4">
-        <div class="shipping-method-area mt-70">
-            <div class="cart-page-heading">
-                <h5>Shipping method</h5>
-                <p>Select the one you want</p>
+                </div>
             </div>
 
-            <div class="custom-control custom-radio mb-30">
-                <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input click"
-                    value="4.99">
-                <label class="custom-control-label d-flex align-items-center justify-content-between"
-                    for="customRadio1"><span class="nextday">Next day delivery</span><span>$4.99</span></label>
-            </div>
+            <div class="row">
 
-            <div class="custom-control custom-radio mb-30">
-                <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input click"
-                    value="1.99">
-                <label class="custom-control-label d-flex align-items-center justify-content-between"
-                    for="customRadio2"><span class="standard">Standard delivery</span><span>$1.99</span></label>
-            </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="shipping-method-area mt-70">
+                        <div class="cart-page-heading">
+                            <h5>Shipping method</h5>
+                            <p>Select the one you want</p>
+                        </div>
 
-            <div class="custom-control custom-radio">
-                <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input click" value="0">
-                <label class="custom-control-label d-flex align-items-center justify-content-between"
-                    for="customRadio3"><span>Personal Pickup</span><span>Free</span></label>
-            </div>
-        </div>
-    </div>
- 
+                        <div class="custom-control custom-radio mb-30">
+                            <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input click"
+                                value="4.99">
+                            <label class="custom-control-label d-flex align-items-center justify-content-between"
+                                for="customRadio1"><span class="nextday">Next day
+                                    delivery</span><span>$4.99</span></label>
+                        </div>
 
-    <div class="col-12 col-lg-4">
-        <div class="cart-total-area mt-70">
-            <div class="cart-page-heading">
-                <h5>Cart total</h5>
-                <p>Final info</p>
-            </div>
+                        <div class="custom-control custom-radio mb-30">
+                            <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input click"
+                                value="1.99">
+                            <label class="custom-control-label d-flex align-items-center justify-content-between"
+                                for="customRadio2"><span class="standard">Standard
+                                    delivery</span><span>$1.99</span></label>
+                        </div>
 
-            <ul class="cart-total-chart">
-                <li><span>Subtotal</span> <span class='subtotal' id='subtotal'></span></li>
-                <li><span>Shipping</span> <span id='show'></span></li>
-                <li><span><strong>Total</strong></span> <span id="total"><strong></strong></span></li>
-            </ul>
-            <button type='submit' class='btn' style="background:#dc1e3a;">Update cart</button>
+                        <div class="custom-control custom-radio">
+                            <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input click"
+                                value="0">
+                            <label class="custom-control-label d-flex align-items-center justify-content-between"
+                                for="customRadio3"><span>Personal Pickup</span><span>Free</span></label>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-12 col-lg-4">
+                    <div class="cart-total-area mt-70">
+                        <div class="cart-page-heading">
+                            <h5>Cart total</h5>
+                            <p>Final info</p>
+                        </div>
+
+                        <ul class="cart-total-chart">
+                            <li><span>Subtotal</span> <span class='subtotal' id='subtotal'></span></li>
+                            <li><span>Shipping</span> <span id='show'></span></li>
+                            <li><span><strong>Total</strong></span> <span id="total"><strong></strong></span></li>
+                        </ul>
+                        <div class="but" style="display:flex;">
+                            <button type='submit' class='btn' style="background:#dc1e3a;margin:2em!important;">Update cart</button>
 </form>
 <form action="{{route('clearevery')}}" method='post'>
     @csrf
-    <button type='submit' value='{{Auth::user()->id}}' name='od' class='btn' style="background:#dc1e3a;">clear
+    <button type='submit' value='{{Auth::user()->id}}' name='od' class='btn' style="background:#dc1e3a; margin:2em 0!important;">clear
         cart</button>
-</form>
-            <a href="{{route('checkout')}}" class="btn karl-checkout-btn" id="gotoorder">Proceed to checkout</a>
-        </div>
     </div>
+</form>
+<a href="{{route('checkout')}}" class="btn karl-checkout-btn" id="gotoorder">Proceed to checkout</a>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -327,30 +351,37 @@ $(document).ready(function() {
 </script>
 
 
-<script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"
+    integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+    integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 
 <script>
-    var subtotalobserver=new MutationObserver(function(mutations){
-        var tot=document.getElementById("total");
-        var shipp=document.getElementById("show").textContent;
-        var shippp=parseFloat(shipp.replace("$",""));
-        var sub=document.getElementById("subtotal").textContent;
-        var subb=parseFloat(sub.replace("$",""));
-        var totaling=subb+shippp;
-        var totalhidden=document.getElementById("totalhidden");
-        totalhidden.value=totaling;
-        totaling=""+totaling;
-        tot.textContent="$"+totaling;
-        // subtotal1=parseFloat(subtotal1.replace("$",""));
-        // shipp=parseFloat(shipp.replace("$",""));
-        // alert(subtotal1);
-        // alert(shipp);
-    });
+var subtotalobserver = new MutationObserver(function(mutations) {
+    var tot = document.getElementById("total");
+    var shipp = document.getElementById("show").textContent;
+    var shippp = parseFloat(shipp.replace("$", ""));
+    var sub = document.getElementById("subtotal").textContent;
+    var subb = parseFloat(sub.replace("$", ""));
+    var totaling = subb + shippp;
+    var totalhidden = document.getElementById("totalhidden");
+    totalhidden.value = totaling;
+    totaling = "" + totaling;
+    tot.textContent = "$" + totaling;
+    // subtotal1=parseFloat(subtotal1.replace("$",""));
+    // shipp=parseFloat(shipp.replace("$",""));
+    // alert(subtotal1);
+    // alert(shipp);
+});
 
-    var subtotal1=document.getElementById('subtotal');
-    subtotalobserver.observe(subtotal1,{childList:true,subtree:true,characterData:true});
+var subtotal1 = document.getElementById('subtotal');
+subtotalobserver.observe(subtotal1, {
+    childList: true,
+    subtree: true,
+    characterData: true
+});
 </script>
 
 <script src="home/js/jquery/jquery-2.2.4.min.js"></script>
@@ -374,8 +405,13 @@ $(document).ready(function() {
 <script src="home/js/main.js"></script>
 <script src="{{asset('home/js/cart.js')}}"></script>
 @if(Session::has('msg'))
-    <script>
-            toastr.success("Cart has been Cleared Successfully!");
-    </script>
+<script>
+toastr.success("Cart has been Cleared Successfully!");
+</script>
+@endif
+@if(Session::has('update'))
+<script>
+    toastr.success("Cart has been Updated Successfully!");
+</script>
 @endif
 @endsection
