@@ -4,6 +4,9 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
     integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="{{asset('/admin/css/format.css')}}">
+
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"
     integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
@@ -16,10 +19,10 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <input type="hidden" value="brands" class="view">
 
-<div class="container-fluid pt-4 px-4">
+<div class="container-fluid pt-4 px-4" style="width:30vw; margin-left:1vw;">
     <div class="card bg-secondary w-100">
         <div class="card-body">
-            @if(Session::has('msg'))
+            <!-- @if(Session::has('msg'))
             <div class="alert alert-success" role="alert">
                 {{Session::get('msg')}}
                 <button type="button" class="close btnclose" data-dismiss="alert" aria-label="Close">
@@ -34,13 +37,22 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            @endif
+            @endif -->
             <h1 class='text-white'>Add Brand</h1>
             <form action="{{route('brander')}}" method='post'>
                 @csrf
                 <div class="mb-3">
                     <label for="brand" class="form-label text-white">Brand Name</label>
                     <input type="text" name='brand' class="form-control" id="brand">
+                    @error('brandName')
+                    <br>
+                    <div class="alert alert-danger alerting">
+                        {{$message}}
+                        <button type="button" class="close btnclose" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    @enderror
                 </div>
                 <button type='submit' class='btn btn-danger'>Submit </button>
             </form>
@@ -48,14 +60,14 @@
     </div>
 </div>
 
-<div class="container-fluid pt-4 px-4">
+<div class="container-fluid pt-4 px-4" style="margin-left:1vw; width:70vw;">
     <div class="col-12">
         <div class="bg-secondary rounded h-100 p-4">
-            <h6 class="mb-4" style="text-align: center;">Brand Table</h6>
+            <h3 class="mb-4" style="text-align: center;">Brand Table</h3>
             <div id="filter">
                 <div class="table-responsive">
-                    <table class="table table-success table-striped table-hover">
-                        <thead>
+                    <table class="table">
+                        <thead class="tabulous">
                             <th>Sno.</th>
                             <th>Brand</th>
                             <th colspan='2'>Action</th>
@@ -65,10 +77,9 @@
                         <tr>
                             <td class="brandid">{{$brands->id}}</td>
                             <td class="brandname">{{$brands->brandName}}</td>
-                            <td><button type="button" class="btn btn-primary editbrands" data-toggle="modal"
-                                    data-target="#exampleModal" data-whatever="@mdo">Edit</button></button></td>
-                            <td><a href="{{route('deletebrand',$brands->id)}}"><i class="fa fa-trash"
-                                        aria-hidden="true"></i></a></td>
+                            <td><button type="button" class="btn-primary editbrands changebtn" data-toggle="modal"
+                                    data-target="#exampleModal" data-whatever="@mdo" style="background-color:#5bc0de;">Edit</button></button></td>
+                            <td><a href="{{route('deletebrand',$brands->id)}}" class="margins"><button class="btn-primary changebtn" style="background-color:#d9534f;">Delete</button></a></td>
                         </tr>
                         @endforeach
                         @endif
@@ -128,6 +139,11 @@ toastr.success("Brand Name Added Successfully!");
 @if(Session::has('delmsg'))
 <script>
 toastr.error("Brand Deleted Successfully!");
+</script>
+@endif
+@if(Session::has('editmsg'))
+<script>
+toastr.success("Brand edited successfully!");
 </script>
 @endif
 @endsection

@@ -14,31 +14,17 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
 
-<!-- table starts -->
-<style>
-thead,
-tbody,
-tfoot,
-tr,
-td,
-th {
-    border-color: inherit;
-    border-style: none !important;
-    border-width: 0;
-}
-</style>
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 
-<div class="container-fluid pt-4 px-4">
+<div class="container-fluid pt-4 px-4" style="width:80vw;">
     <div class="col-12">
         <div class="bg-secondary rounded h-100 p-4">
             <h3 class="mb-4" style="text-align:center">Orders Table</h3>
             <div class="table-responsive">
                 <table class="table">
                     <thead class="tabulous">
-                        <tr>
                             <th scope="col">SNo.</th>
                             <th scope="col">Name</th>
                             <th scope="col">Town/City/Country</th>
@@ -48,13 +34,11 @@ th {
                             <th scope="col">Phone</th>
                             <th scope="col">Workflow</th>
                             <th scope="col" colspan='3'>Action</th>
-                        </tr>
                     </thead>
-                    <tbody>
                         @if(isset($order))
                         @foreach($order as $orders)
                         <tr>
-                            <th scope="row" class='orderid'>{{$orders->id}}</th>
+                            <td scope="row" class='orderid'>{{$orders->id}}</td>
                             <td>{{$orders->firstName}}{{" ".$orders->lastName}}</td>
                             <td>{{$orders->street1}}{{"/".$orders->town}}{{"/".$orders->country}}</td>
                             <td>{{" ".$orders->province}}</td>
@@ -71,23 +55,21 @@ th {
                             <td>Accepted</td>
                             @endif
                             <td><a href="#" data-toggle="modal" class="modal-trigger viewing"
-                                    data-target="#productModal" id="viewing"><i class="fas fa-eye idgive"></i>
+                                    data-target="#productModal" id="viewing"><i class="fas fa-eye idgive color"></i>
                                 </a></td>
                             <td><a href="#" data-toggle="modal" class="modal-tracker addingorder"
-                                    data-target="#trackModal"><i class="fas fa-plus-circle"></i>
+                                    data-target="#trackModal"><i class="fas fa-plus-circle color"></i>
                                 </a>
                             </td>
                             <td>
                                 <form action="{{route('delorders')}}" method="POST">
                                     @csrf
-                                    <button type="submit" value="{{$orders->id}}" name="getid"><i class="fa fa-trash"
-                                            aria-hidden="true"></i></button>
+                                    <button type="submit" value="{{$orders->id}}" name="getid" class="changebtn btn-primary" style="background-color:#d9534f;">Delete</button>
                                 </form>
                             </td>
                         </tr>
                         @endforeach
                         @endif
-                    </tbody>
                 </table>
                 <div class="modal fade" id="productModal" tabindex="-1" role="dialog"
                     aria-labelledby="exampleModalLabel" aria-hidden="true">

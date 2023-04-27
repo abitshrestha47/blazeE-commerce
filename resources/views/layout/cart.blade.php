@@ -409,4 +409,9 @@ subtotalobserver.observe(subtotal1, {
 toastr.success("Cart has been Cleared Successfully!");
 </script>
 @endif
+@if(Session::has('update'))
+<script>
+    toastr.success("Cart has been Updated Successfully!");
+</script>
+@endif
 @endsection

@@ -54,11 +54,11 @@ class DepartmentController extends Controller
         $deparment->departmentName=$req->departmentname;
         $deparment->departmentImage=$response;
         $deparment->save();
-        return back();
+        return back()->with('edited','f');
     }
     public function delDeparment(Request $req){
         $deparment=Department::find($req->idpass);
         $deparment->delete();
-        return back();
+        return back()->with('deldept','Deleted successfully');
     }
 }

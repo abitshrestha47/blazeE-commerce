@@ -11,6 +11,16 @@ class ProductsController extends Controller
 {
     //
     public function products(Request $req){
+        $validateData=$req->validate([
+            'price' => ['required', 'numeric'],
+            'name'=>'required',
+            'image'=>'required',
+            'color' => 'required|alpha',
+            'quantity' => ['required', 'numeric'],
+            'description'=>'required',
+            'size'=>'required',
+        ],
+    );
         $image=$req->file('image');
         $response=$image->store('dbimages','public');
         $product=Products::create([

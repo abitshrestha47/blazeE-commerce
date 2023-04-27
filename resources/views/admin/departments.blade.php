@@ -20,11 +20,11 @@
 <input type="hidden" name="department12" value="departments" class="view">
 
 <!-- form start -->
-<div class="container-fluid pt-4 px-4">
+<div class="container-fluid pt-4 px-4" style="width:50vw; margin-left:1vw;">
     <div class="card bg-secondary w-100">
         <div class="card-body">
             <h1 class="mb-4" style="text-align:center">Add Departments</h1>
-            @if(Session::has('success'))
+            <!-- @if(Session::has('success'))
             <div class="alert alert-success alert-dismissible">
                 {{Session::get('success')}}
                 <button type="button" class="close btnclose" data-dismiss="alert" aria-label="Close">
@@ -40,13 +40,22 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            @enderror
+            @enderror -->
             <form action="{{route('departments')}}" method='post' enctype='multipart/form-data'>
                 @csrf
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">DepartmentName</label>
                     <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
                         name="deptname">
+                    @error('deptname')
+                    <br>
+                    <div class="alert alert-danger alerting">
+                        {{$message}}
+                        <button type="button" class="close btnclose" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    @enderror
 
                     <label for="formFile" class="form-label">DepartmentImage</label>
                     <input class="form-control bg-dark" type="file" id="formFile" name="departmentImage">
@@ -67,18 +76,18 @@
 </div>
 <!-- form end -->
 
-<div class="container-fluid pt-4 px-4">
+<div class="container-fluid pt-4 px-4 marginning" style="margin-left:1vw;">
     <div class="col-12">
         <div class="bg-secondary rounded h-100 p-4">
             <h6 class="mb-4" style="text-align: center;">Departments Table</h6>
             <div id="filter">
                 <div class="table-responsive">
-                    <table class="table table-success table-striped table-hover">
-                        <thead>
+                    <table class="table" style="height:100%;">
+                        <thead class="tabulous">
                             <th>Sno.</th>
                             <th>Department Name</th>
                             <th>Department Image</th>
-                            <th colspan='2'>Action</th>
+                            <th colspan="2">Action</th>
                         </thead>
 
                         @if(isset($departments))
@@ -88,19 +97,21 @@
                             <td class="dname">{{$departt->departmentName}}</td>
                             <td class="dimage"><img src="{{asset('/storage/'.$departt->departmentImage)}}" alt=""
                                     height="50vh" width="50vw"></td>
-                            <td><button type="button" class="btn btn-primary editdepart" data-toggle="modal"
-                                    data-target="#exampleModal" data-whatever="@mdo">Edit</button></button></td>
-                            <form action="{{route('deldepartments')}}" method="POST">
-                                @csrf
-                                <td><button type="submit" value="{{$departt->id}}" class="del" name="idpass"><i
-                                            class="fa fa-trash" aria-hidden="true"></i></button></td>
-                            </form>
-
+                            <td><button type="button" class="btn-primary editdepart changebtn" data-toggle="modal"
+                                    data-target="#exampleModal" data-whatever="@mdo"
+                                    style="background-color:#5bc0de;">Edit</button></button></td>
+                            <td>
+                                <form action="{{route('deldepartments')}}" method="POST" class="margins">
+                                    @csrf
+                                    <button type="submit" value="{{$departt->id}}" class="del btn-primary changebtn"
+                                        name="idpass" style="background-color:#d9534f;">Delete</button>
+                                </form>
+                            </td>
                         </tr>
                         @endforeach
                         @endif
+                    </table>
                 </div>
-                </table>
             </div>
         </div>
     </div>
@@ -129,12 +140,12 @@
                     </div>
                     <div class="form-group">
                         <label for="departmentimage" class="col-form-label">Department Image:</label>
-                        <input class="form-control bg-dark" type="file" id="formFile" name="editdepartmentImage">
+                        <input class="form-control bg-dark deptimage" type="file" id="formFile"  name="editdepartmentImage">
                     </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Save changes</button>
+                <button type="submit" class="btn btn-primary" id="savebtn">Save changes</button>
                 </form>
             </div>
         </div>
@@ -143,18 +154,42 @@
 <script>
 $(document).ready(function() {
     $('.editdepart').click(function() {
+        var button=document.getElementById("savebtn");
         var departid = $(this).closest('tr').find('.departid').text();
         var dname = $(this).closest('tr').find('.dname').text();
         var departmentid = document.getElementById('departmentid');
         var departmentname = document.getElementById('departmentname');
+        var departmentimage = document.getElementById('formFile');
         departmentid.value = departid;
         departmentname.value = dname;
+        // departmentname.addEventListener("input",validateFields);
+        // departmentimage.addEventListener("change", validateFields);
+        // function validateFields(){
+        //     if(departmentname.value.trim()==="" || departmentimage.value.trim()===""){
+        //         button.disabled=true;
+        //     }
+        //     else{
+        //         button.disabled=false;
+        //     }
+        // }
     });
 });
+
+
 </script>
 @if(Session::has('success'))
 <script>
 toastr.success("Department created successfully!");
+</script>
+@endif
+@if(Session::has('deldept'))
+<script>
+toastr.error("Department deleted successfully!");
+</script>
+@endif
+@if(Session::has('edited'))
+<script>
+toastr.success("Department edited successfully!");
 </script>
 @endif
 @endsection

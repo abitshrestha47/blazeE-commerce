@@ -46,6 +46,15 @@
     .searches {
         cursor: pointer;
     }
+
+    .select-items th {
+        font-size: 14px !important;
+    }
+    <style>
+    table table th {
+        height: 50px;
+    }
+</style>
     </style>
     @vite(['resources/js/app.js'])
 </head>
@@ -103,12 +112,12 @@
                     </div>
                     <div class="col-lg-3 text-right col-md-3">
                         <ul class="nav-right">
-                            <li class="heart-icon">
+                            <!-- <li class="heart-icon">
                                 <a href="#">
                                     <i class="icon_heart_alt"></i>
                                     <span>1</span>
                                 </a>
-                            </li>
+                            </li> -->
                             <li class="cart-icon">
                                 <a href="{{route('cart')}}">
                                     <i class="icon_bag_alt"></i>
@@ -117,83 +126,43 @@
                                 <div class="cart-hover">
                                     <div class="select-items">
                                         <table>
-                                            <tbody>
+                                            <thead>
                                                 <tr>
-                                                    <td>Image</td>
-                                                    <td>Quantity</td>
-                                                    <td>Total Price</td>
+                                                    <th>Image</th>
+                                                    <th>Quantity</th>
+                                                    <th>Total Price</th>
                                                 </tr>
-                                                @if(isset($ca))
-                                                @foreach($ca as $cart)
-                                                <tr>
-                                                    <!-- <td class="si-pic"><img src="{{asset('/storage/'.$cart->photo)}}"
-                                                            alt="" width='80vw' height='40vh'></td> -->
-                                                    <td class="si-text">
-                                                        <div class="product-selected">
-                                                            @if($cart->userid == Auth::id())
-                                                            @php
-                                                            $cartItems = json_decode($cart->product_ids, true);
-                                                            foreach($cartItems as $c){
-                                                            foreach($productData as $pc){
-                                                            if($c['productid']==$pc->id){
-                                                            echo '<div class="product-item" style="display:flex;">';
-                                                            echo '<img src="'.asset('/storage/'.$pc->photo).'" alt="" width="80vw" height="40vh">';
+                                            </thead>
+                                            @if(isset($ca))
+                                            @foreach($ca as $cart)
+                                            <tr>
+                                                <td class="si-text">
+                                                    <div class="product-selected">
+                                                        @if($cart->userid == Auth::id())
+                                                        @php
+                                                        $cartItems = json_decode($cart->product_ids, true);
+                                                        foreach($cartItems as $c){
+                                                        foreach($productData as $pc){
+                                                        if($c['productid']==$pc->id){
+                                                        echo '<div class="product-item" style="display:flex;">';
+                                                            echo '<img src="'.asset('/storage/'.$pc->photo).'" alt=""
+                                                                width="80vw" height="40vh"
+                                                                style="margin-right: 40px;">';
                                                             }
                                                             }
-                                                            echo "<p>X" . $c['qty'] ."&nbsp;&nbsp;". $c['price'] . "</p>";
+                                                            echo "<p style='margin-right:40px;'>X" . $c['qty']
+                                                                ."&nbsp;&nbsp;". $c['price'] . "</p>";
                                                             echo '</div>';
-                                                            } @endphp
-                                                            @endif
-                                                            <!-- @if(!$cart->specialproduct)
-                                                            <p>{{'X '.' $'.$cart->price}}</p>
-                                                            @else
-                                                            @if($cart->specialproduct->discountprice)
-                                                            <p>{{'$'.$cart->specialproduct->discountprice}}</p>
-                                                            @else
-                                                            <p>{{'$'.$cart->price}}</p>
-                                                            @endif
-                                                            @endif
-                                                            <h6>{{$cart->name}}</h6> -->
-                                                        </div>
-                                                    </td>
-                                                    <!-- <td class="si-close">
-                                                        <div class="custom-class">
-                                                        <form method="post"
-                                                            action="{{route('deletecart', ['id' => $cart->id])}}">
-                                                            @csrf
-                                                            <button type="submit" class="btn btn-danger"><i
-                                                                class="ti-close"></i></button>
-                                                        </form>
-                                                        </div>
-                                                    </td> -->
-                                                </tr>
-                                                @endforeach
-                                                @endif
-                                                <!-- <tr>
-                                                    <td class="si-pic"><img src="img/select-product-1.jpg" alt=""></td>
-                                                    <td class="si-text">
-                                                        <div class="product-selected">
-                                                            <p>$60.00 x 1</p>
-                                                            <h6>Kabino Bedside Table</h6>
-                                                        </div>
-                                                    </td>
-                                                    <td class="si-close">
-                                                        <i class="ti-close"></i>
-                                                    </td>
-                                                </tr> -->
-                                                <!-- <tr>
-                                                    <td class="si-pic"><img src="img/select-product-2.jpg" alt=""></td>
-                                                    <td class="si-text">
-                                                        <div class="product-selected">
-                                                            <p>$60.00 x 1</p>
-                                                            <h6>Kabino Bedside Table</h6>
-                                                        </div>
-                                                    </td>
-                                                    <td class="si-close">
-                                                        <i class="ti-close"></i>
-                                                    </td>
-                                                </tr> -->
-                                            </tbody>
+                                                        } @endphp
+                                                        @endif
+
+                                                    </div>
+                                                </td>
+
+                                            </tr>
+                                            @endforeach
+                                            @endif
+
                                         </table>
                                     </div>
                                     <div class="select-total">
@@ -212,7 +181,9 @@
                                     </div>
                                 </div>
                             </li>
-                            <li class="cart-price">$150.00</li>
+                            @if(isset($ca))
+                            <li class="cart-price">${{$ca->subtotal}}</li>
+                            @endif
                         </ul>
                     </div>
                 </div>

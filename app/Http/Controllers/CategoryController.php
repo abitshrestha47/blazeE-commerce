@@ -8,6 +8,11 @@ class CategoryController extends Controller
 {
     
     public function category(Request $req){
+        $validateData=$req->validate([
+            'categories'=>'required',
+            'department_id'=>'required',
+        ],
+    );
         $category=Category::create([
             'categories' => $req->category,
             'department_id'=>$req->department_id,
@@ -18,6 +23,6 @@ class CategoryController extends Controller
         $category=Category::find($req->categoryid);
         $category->categories=$req->categoryname;
         $category->save();
-        return back();
+        return back()->with('edited','f');
     }
 }

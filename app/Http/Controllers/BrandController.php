@@ -9,6 +9,11 @@ class BrandController extends Controller
 {
     //
     public function brander(Request $req){
+        $validateData=$req->validate([
+            'brandName'=>'required',
+        ],
+    );
+
         $brand=Brand::create([
             'brandName' => $req->brand,
         ]);
@@ -27,6 +32,6 @@ class BrandController extends Controller
         $brand=Brand::find($req->brandid);
         $brand->brandName=$req->brandname;
         $brand->save();
-        return back();
+        return back()->with('editmsg','e');
     }
 }

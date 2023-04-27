@@ -4,6 +4,8 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
     integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{{asset('/admin/css/format.css')}}">
+
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-7X9tKGcEylxqDhB1iKiQlL24phPPTFZv/0nQWjk1r6rMCac9LjY6xbxDW6dDOKGw1N6IGnGd5H+6qpzsFTgfw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
@@ -19,10 +21,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-<div class="container-fluid pt-4 px-4">
+<div class="container-fluid pt-4 px-4" style="width:30vw; margin-left:2vw;">
     <div class="card bg-secondary w-100">
         <div class="card-body">
-            @if(Session::has('msg'))
+            <!-- @if(Session::has('msg'))
             <div class="alert alert-success " role="alert">
                 {{Session::get('msg')}}
                 <button type="button" class="close btnclose" data-dismiss="alert" aria-label="Close">
@@ -37,7 +39,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            @endif
+            @endif -->
             <h1 class="mb-4" style="text-align:center">Add DeliverMan</h1>
             <form action="{{route('deliver-man')}}" method='post' enctype='multipart/form-data'>
                 @csrf
@@ -45,15 +47,51 @@
 
                     <label for="name" class="form-label">Name</label>
                     <input class="form-control" type="text" id="name" name="name">
+                    @error('name')
+                    <br>
+                    <div class="alert alert-danger alerting">
+                        {{$message}}
+                        <button type="button" class="close btnclose" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    @enderror
 
                     <label for="phone" class="form-label">Phone</label>
                     <input class="form-control" type="text" id="phone" name="phone">
+                    @error('phone')
+                    <br>
+                    <div class="alert alert-danger alerting">
+                        {{$message}}
+                        <button type="button" class="close btnclose" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    @enderror
 
                     <label for="address" class="form-label">Address</label>
                     <input class="form-control" type="text" id="address" name="address">
+                    @error('address')
+                    <br>
+                    <div class="alert alert-danger alerting">
+                        {{$message}}
+                        <button type="button" class="close btnclose" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    @enderror
 
                     <label for="image" class="form-label">Image</label>
                     <input type="file" name="image" class="form-control">
+                    @error('image')
+                    <br>
+                    <div class="alert alert-danger alerting">
+                        {{$message}}
+                        <button type="button" class="close btnclose" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    @enderror
 
                 </div>
                 <button type="submit" class="btn btn-primary">Add</button>
@@ -63,13 +101,13 @@
 </div>
 <!-- form end -->
 
-<div class="container-fluid pt-4 px-4">
+<div class="container-fluid pt-4 px-4" style="width:80vw;">
     <div class="col-12">
         <div class="bg-secondary rounded h-100 p-4">
             <h6 class="mb-4" style="text-align: center;">Delivery Man Table</h6>
             <div class="table-responsive">
-                <table class="table table-success table-striped table-hover">
-                    <thead>
+                <table class="table">
+                    <thead class="tabulous">
                         <th>Sno.</th>
                         <th>Name</th>
                         <th>Phone</th>
@@ -89,12 +127,12 @@
                         @else
                         <td class="status" data-id="0">Active</td>
                         @endif
-                        <td><button type="button" class="btn btn-primary editdeliverman" data-toggle="modal"
-                                data-target="#exampleModal" data-whatever="@mdo">Edit</button></button></td>
+                        <td><button type="button" class="changebtn btn-primary editdeliverman" data-toggle="modal"
+                                data-target="#exampleModal" data-whatever="@mdo" style="background-color:#5bc0de;">Edit</button></button></td>
                         <td>
-                            <form action="{{route('deldeliverboy')}}" method="POST">
+                            <form action="{{route('deldeliverboy')}}" method="POST" style="margin-left:-7vw;">
                                 @csrf
-                                <button type="submit" value="{{$delivers->id}}" name="getid"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                <button type="submit" value="{{$delivers->id}}" class="changebtn btn-primary" name="getid" style="background-color:#d9534f;">Delete</button>
                             </form>
                         </td>
                     </tr>
@@ -189,6 +227,11 @@ toastr.success("DeliveryMan Data Added Successfully!");
 @if(Session::has('delmg'))
 <script>
 toastr.error("DeliveryMan Deleted Successfully!");
+</script>
+@endif
+@if(Session::has('edited'))
+<script>
+toastr.success("DeliveryMan edited successfully!");
 </script>
 @endif
 @endsection

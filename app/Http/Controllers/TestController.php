@@ -56,7 +56,7 @@ class TestController extends Controller
         $checkcart->total=$request->totalhidden;
         $checkcart->shipping=$request->shippinghidden;
         $checkcart->save();
-        return back();
+        return back()->with('update','Cart has been updated successfully');
     }
     public function clear(Request $req){
         $cart=Cart::all();

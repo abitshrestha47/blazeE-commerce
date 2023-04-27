@@ -22,7 +22,7 @@
     integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous">
 </script>
 
-<div class="container-fluid pt-4 px-4">
+<div class="container-fluid pt-4 px-4" style="width:80vw;">
     <div class="col-12">
         <div class="bg-secondary rounded h-100 p-4">
             <h3 class="mb-4" style="text-align:center">Delivery Tracks</h3>
@@ -39,21 +39,20 @@
                             <th scope="col">View Products</th>
                             <th scope="col">Status</th>
                             <th scope="col">Sale</th>
-                            <th scope="col" colspan='2'>Action</th>
+                            <th scope="col" colspan='5'>Action</th>
                         </tr>
                     </thead>
-                    <tbody>
                         @foreach($delivertrack as $delivertrack)
                         <tr>
-                            <th scope="row" class='id'>{{$delivertrack->id}}</th>
+                            <td scope="row" class='id'>{{$delivertrack->id}}</td>
                             <td>{{$delivertrack->nameRecipient}}</td>
                             <td>{{$delivertrack->street}}</td>
                             <td>{{$delivertrack->phone}}</td>
                             <td>{{$delivertrack->email}}</td>
                             <td>{{$delivertrack->created_at}}</td>
                             <td>
-                                <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-primary viewing" data-toggle="modal"
+                                <!-- Button trigger modal --> 
+                                <button type="button" class="btn btn-primary viewing changebtn" data-toggle="modal"
                                     data-target="#exampleModalCenter">
                                     <i class="fas fa-eye idgive"></i>
                                 </button>
@@ -76,8 +75,7 @@
                             <td>
                                 <form action="{{route('deldelivertrack')}}" method="post">
                                     @csrf
-                                    <button type="submit" name="getid" value="{{$delivertrack->id}}"><i
-                                            class="fas fa-trash-alt"></i></button>
+                                    <button type="submit" name="getid" value="{{$delivertrack->id}}" class="changebtn btn-primary" style="background-color:#d9534f; margin-top:-0.5px;;">Delete</button>
                                 </form>
                             </td>
                             <td><input type="hidden" value="{{$delivertrack->total}}" name="total" class="delivertotal"></td>
@@ -85,7 +83,6 @@
                             <td><input type="hidden" name="userid" class="userid" value="{{$delivertrack->userid}}"></td>
                             <td><input type="hidden" name="orderid" class="orderid" value="{{$delivertrack->orderId}}"></td>
                         </tr>
-                    </tbody>
                     @endforeach
                 </table>
             </div>

@@ -72,7 +72,7 @@ class CartController extends Controller
                     $checkcart->product_ids=$newproductIdJson;
                     $checkcart->subtotal+=$price;
                     $checkcart->save();
-                    return back();
+                    return redirect()->back()->with('added','Added to cart Successfully!');
                 }
              }                             
         }

@@ -13,12 +13,12 @@ class TodoController extends Controller
         $todo->create([
             'title'=>$req->input('todo'),
         ]);
-        return back();
+        return back()->with('todoadd','Todo added successfully.');
     }
     public function deltodo(Request $req){
         $todo=Todo::find($req->getid);
         $todo->delete();
-        return back();
+        return back()->with('tododel','Todo deleted successfully.');
     }
 }
 

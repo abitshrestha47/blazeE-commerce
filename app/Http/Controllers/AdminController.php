@@ -12,6 +12,7 @@ use App\Models\Department;
 use App\Models\User;
 use App\Models\Notification;
 use App\Models\Todo;
+use App\Models\Sale;
 
 
 class AdminController extends Controller
@@ -40,6 +41,7 @@ class AdminController extends Controller
         dd('fdl');
         $notification=Notification::count();
         $notifications=Notification::all();
+        $sale=Sale::all();
         $use=User::all();
         $todo=Todo::all();
         return view('admin.dashboard',compact('use','notifications','notification','todo'));

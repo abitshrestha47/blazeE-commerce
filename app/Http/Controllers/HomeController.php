@@ -66,6 +66,7 @@ class HomeController extends Controller
     }
 
     public function shop(Request $request){
+        $ca = Cart::all();
         $query=Products::query();
         $category=Category::all();
         $products=Products::all();
@@ -75,6 +76,7 @@ class HomeController extends Controller
         $cart=Cart::all();
         $userId=Auth::id();
         $exist = Cart::where('userid', $userId)->first();
+        $latestproducts=Products::orderBy('created_at','DESC')->get()->take(8);
         if ($exist) {
             $productIds = json_decode($exist->product_ids, true);
             foreach($productIds as $getids){
@@ -87,9 +89,10 @@ class HomeController extends Controller
             $productData = [];
             $count=0;
         }
-        return view('layout.shop',compact('products','category','uniqueCategory','brands','departments','count','productData'));
+        return view('layout.shop',compact('products','category','uniqueCategory','brands','departments','count','productData','latestproducts','ca'));
     }
     public function PriceFilter(Request $req){
+        $latestproducts=Products::orderBy('created_at','DESC')->get()->take(8);
         if($req->ajax()){
             $minamount = filter_var($req->minamount, FILTER_SANITIZE_NUMBER_INT);
             $maxamount = filter_var($req->maxamount, FILTER_SANITIZE_NUMBER_INT); 
@@ -105,7 +108,7 @@ class HomeController extends Controller
                 $goods = $unfilteredgoods->filter(function($item) use ($minamount, $maxamount) {
                     return $item->price >= $minamount && $item->price <= $maxamount;
                 });
-                return view('layout.categoryfilter', compact('goods'));
+                return view('layout.categoryfilter', compact('goods','latestproducts'));
             }
             else if(empty($req->category) && !empty($req->globalBrands)){
                 $goods=Products::whereIn('brandId',$req->globalBrands)->get();
@@ -116,7 +119,7 @@ class HomeController extends Controller
                 $goods=$goods->filter(function($item) use ($minamount,$maxamount){
                     return $item->price >= $minamount && $item->price <= $maxamount;
                 });
-                return view('layout.categoryfilter', compact('goods'));
+                return view('layout.categoryfilter', compact('goods','latestproducts'));
             }
             else if(!empty($req->category) && empty($req->globalBrands)){
                 $unfiltercategorygoods = Products::where('categoryid', $req->category)->get();
@@ -127,7 +130,7 @@ class HomeController extends Controller
                 $goods = $unfilteredgoods->filter(function($item) use ($minamount, $maxamount) {
                     return $item->price >= $minamount && $item->price <= $maxamount;
                 });
-                return view('layout.categoryfilter', compact('goods'));
+                return view('layout.categoryfilter', compact('goods','latestproducts'));
             }
             else if(!empty($req->category) && !empty($req->globalBrands)){
                 $goods=Products::where('categoryid',$req->category)->whereIn('brandId',$req->globalBrands)->get();
@@ -138,45 +141,47 @@ class HomeController extends Controller
                 $goods = $goods->filter(function($item) use ($minamount, $maxamount) {
                     return $item->price >= $minamount && $item->price <= $maxamount;
                 });
-                return view('layout.categoryfilter', compact('goods'));           
+                return view('layout.categoryfilter', compact('goods','latestproducts'));           
             }
         }
     }
     public function data(Request $request){
+        $latestproducts=Products::orderBy('created_at','DESC')->get()->take(8);
         $category=Category::all();
         $products=Products::all();
         if($request->ajax()){
             if(empty($request->category)){
                 $goods=Products::all();
-                return view('layout.categoryfilter',compact('goods','category'));
+                return view('layout.categoryfilter',compact('goods','category','latestproducts'));
             }
             else{
                 $goods=Products::where(['categoryid'=>$request->category])->get();
-                return view('layout.categoryfilter',compact('goods','category'));
+                return view('layout.categoryfilter',compact('goods','category','latestproducts'));
             }
             // return response()->json(['goods'=>$goods]);
         }
     }
     public function boxFilter(Request $req){
+        $latestproducts=Products::orderBy('created_at','DESC')->get()->take(8);
         if($req->ajax()){
             if(empty($req->category)){
                 if(empty($req->brands)){
                     $goods=Products::all();
-                    return view('layout.categoryfilter',compact('goods'));
+                    return view('layout.categoryfilter',compact('goods','latestproducts'));
                 }
                 else{
                     $goods=Products::whereIn('brandId',$req->brands)->get();
-                    return view('layout.categoryfilter',compact('goods'));
+                    return view('layout.categoryfilter',compact('goods','latestproducts'));
                 }
             }
             else if(!empty($req->category)){
                 if(empty($req->brands)){
                     $goods=Products::where('categoryid',$req->category)->get();
-                    return view('layout.categoryfilter',compact('goods'));
+                    return view('layout.categoryfilter',compact('goods','latestproducts'));
                 }
                 else{
                     $goods=Products::where('categoryid',$req->category)->whereIn('brandId',$req->brands)->get();
-                    return view('layout.categoryfilter',compact('goods')); 
+                    return view('layout.categoryfilter',compact('goods','latestproducts')); 
                 }
             }
         }    

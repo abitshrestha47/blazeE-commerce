@@ -36,14 +36,12 @@
                                 <th scope="col">Quantity</th>
                                 <th scope="col">Brand</th>
                                 <th scope="col">Photo.</th>
-                                <th scope="col">Status</th>
-                                <th scope="col" colspan='2'>Action</th>
+                                <th colspan='2'>Action</th>
                             </tr>
                         </thead>
-                        <tbody>
                             @foreach($products as $products)
-                            <tr class="table-success">
-                                <th scope="row" class="productsid">{{$products->id}}</th>
+                            <tr>
+                                <td scope="row" class="productsid">{{$products->id}}</td>
                                 <td class="productsname">{{$products->name}}</td>
                                 <td class="productsprice">{{$products->price}}</td>
                                 <td>{{$products->category->categories}}</td>
@@ -51,15 +49,13 @@
                                 <td class="productssize">{{$products->size}}</td>
                                 <td class="productsqty">{{$products->quantity}}</td>
                                 <td>{{$products->brand->brandName}}</td>
-                                <td><img height='70vh' width='70vh' src="{{asset('/storage/'.$products->photo)}}"
+                                <td class="productimage"><img height='70vh' width='70vh' src="{{asset('/storage/'.$products->photo)}}"
                                         alt=""></td>
-                                <td></td>
-                                <td><button type="button" class="btn btn-primary editproducts" data-toggle="modal"
-                                        data-target="#exampleModal" data-whatever="@mdo">Edit</button></button></td>
-                                <td><a href="{{route('productdelete',$products->id)}}"><i
-                                            class="fas fa-trash-alt"></i></a></td>
+                                <td><button type="button" class="btn-primary editproducts changebtn" data-toggle="modal"
+                                        data-target="#exampleModal" data-whatever="@mdo" style="background-color:#5bc0de;">Edit</button></td>
+                                <td class="description d-none">{{$products->description}}</td>
+                                <td><a href="{{route('productdelete',$products->id)}}"><button class="btn-primary changebtn" style="background-color:#d9534f;">Delete</button></a></td>
                             </tr>
-                        </tbody>
                         @endforeach
                     </table>
                 </div>
@@ -112,7 +108,7 @@
                     </div>
                     <div class="form-group">
                         <label for="description" class="col-form-label">Description</label>
-                        <input type="text" class="form-control" id="pdescription" name="pdescription">
+                        <input type="text" class="form-control" id="pdescription" name="pdescription" class="pdescription">
                     </div>
             </div>
             <div class="modal-footer">
@@ -132,16 +128,31 @@ $(document).ready(function() {
         var name = $(this).closest('tr').find('.productsname').text();
         var price = $(this).closest('tr').find('.productsprice').text();
         var color = $(this).closest('tr').find('.productscolor').text();
+        var description=$(this).closest('tr').find('.description').text();
+        var image = $(this).closest('tr').find('.productimage img').attr('src');
         var pid = document.getElementById('pid');
         var pname = document.getElementById('pname');
         var pprice = document.getElementById('pprice');
         var pcolor = document.getElementById('pcolor');
+        var pdescription=document.getElementById('pdescription');
+        
         pid.value = prid;
         pname.value = name;
         pprice.value = price;
         pcolor.value = color;
+        pdescription.value=description;
     });
 });
 </script>
+@if(Session::has('edited'))
+<script>
+toastr.success("Products edited successfully!");
+</script>
+@endif
+@if(Session::has('delmg'))
+<script>
+toastr.success("Products deleted successfully!");
+</script>
+@endif
 
 @endsection

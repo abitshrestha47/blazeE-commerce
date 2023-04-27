@@ -20,7 +20,8 @@ class SearchController extends Controller
         $id=request()->input('id');
         $product=Products::where('id',$id)->get();
         $productrelate=Products::where('categoryid',$product[0]->categoryid)->get();
-        return view('layout.searchView',compact('product','productrelate'));
+        $latestproducts=Products::orderBy('created_at','DESC')->get()->take(8);
+        return view('layout.searchView',compact('product','productrelate','latestproducts'));
     }
     public function searchThis(Request $req){
         $searchItem=$req->searchItem;

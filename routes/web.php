@@ -240,7 +240,7 @@ Route::get('/getsearch',[SearchController::class,'getSearch'])->name('getsearch'
 
 Route::get('/searchresults',[SearchController::class,'searchResults'])->name('searchresults');
 
-Route::get('/p/category',[SearchController::class,'searchThis'])->name('searchthis.category');
+Route::get('/searchthis/category',[SearchController::class,'searchThis'])->name('searchthis.category');
 
 Route::get('/searchthis/products',[SearchController::class,'searchProducts'])->name('searchthis.products');
 

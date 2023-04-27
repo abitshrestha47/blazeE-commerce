@@ -51,7 +51,7 @@ class OrderController extends Controller
                 $notify->userid=Auth::id();
                 $notify->orderid=$order->id;
                 $notify->save();
-                return back();
+                return back()->with('orderpost','order has been posted successfully');
 
             // }
             // else{

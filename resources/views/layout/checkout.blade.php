@@ -27,6 +27,9 @@
     <link rel="stylesheet" href="home/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="home/css/style.css" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
 </head>
 
 <body>
@@ -352,4 +355,10 @@
     <script src="home/js/owl.carousel.min.js"></script>
     <script src="home/js/main.js"></script>
     <script src="{{asset('admin/js/order.js')}}"></script>
+
+    @if(Session::has('orderpost'))
+    <script>
+    toastr.success("Order has been posted Successfully!");
+    </script>
+    @endif
     @endsection

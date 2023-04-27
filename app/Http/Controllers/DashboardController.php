@@ -34,6 +34,6 @@ class DashboardController extends Controller
         $sale=Sale::all();
         $totalsale=$sale->sum('subtotal');
         $totalRevenue=$sale->sum('total');
-        return view('admin/dashboard',compact('adminname','totalsale','todaySales','today','datas','day','todayRevenue','totalRevenue','notification','notifications','todo','totalAmount'));
+        return view('admin/dashboard',compact('adminname','totalsale','todaySales','today','datas','day','todayRevenue','totalRevenue','notification','notifications','todo','totalAmount','sale'));
     }
 }

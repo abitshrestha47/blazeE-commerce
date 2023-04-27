@@ -9,6 +9,14 @@ class DelivermanController extends Controller
 {
     //
     public function addDeliverman(Request $req){
+        $validateData=$req->validate([
+            'name'=>'required',
+            'phone' => ['required', 'numeric', 'digits:10'],
+            'address'=>'required',
+            'image'=>'required',
+        ],
+    );
+
         $image=$req->file('image');
         $response=$image->store('dbimages','public');
         $deliverman=new Deliverman();
@@ -29,7 +37,7 @@ class DelivermanController extends Controller
         $deliverman->phone=$req->phone;
         $deliverman->address=$req->address;
         $deliverman->save();
-        return back();
+        return back()->with('edited','f');
     }
     public function statuss(Request $req){
         $deliverman=Deliverman::find($req->id);
@@ -39,6 +47,6 @@ class DelivermanController extends Controller
     public function Deldeliverboy(Request $req){
         $deliverman=Deliverman::find($req->getid);
         $deliverman->delete();
-        return back();
+        return back()->with('delmg','d');
     }
 }

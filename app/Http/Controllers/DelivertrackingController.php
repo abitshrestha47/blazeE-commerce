@@ -56,7 +56,8 @@ class DelivertrackingController extends Controller
                 foreach($gettrackdetails as $see){
                     $getData=$see->status;
                 }
-                return view('layout.tracker',compact('gettrackdetails','products','getData'));
+                $ord=Order::where('userid',$userid)->get();
+                return view('layout.tracker',compact('gettrackdetails','products','getData','ord'));
             }
             else{
                 $order=Order::where('userid',$userid)->get();

@@ -70,7 +70,11 @@
             <div class="total">
                 <div class="row">
                     <div class="col-9"></div>
-                    <div class="col-3"><big>&pound;262.99</big></div>
+                    @isset($ord)
+                    @foreach($ord->take(1) as $or)
+                    <div class="col-3"><big>{{"Total: $".$or->total}}</big></div>
+                    @endforeach
+                    @endif
                 </div>
             </div>
             <div class="tracking">

@@ -42,6 +42,9 @@
         display: flex;
         flex-wrap: wrap;
     }
+    #toast-container > .toast-success {
+    background-color: #28a745 !important;
+    }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js"></script>
 
@@ -981,6 +984,7 @@
     toastr.success("Added to Cart Successfully!");
     </script>
     @endif
+
     <!-- Js Plugins -->
     <script src="home/js/jquery/jquery-2.2.4.min.js"></script>
     <!-- Popper js -->
