@@ -1,31 +1,4 @@
-@extends('admin.main')
-
-@section('contents')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
-    integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"
-    integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
-    integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
-<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-
-
-<meta name="csrf-token" content="{{ csrf_token() }}">
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-<input type="hidden" value="order" class="view">
-
-
-<div class="container-fluid pt-4 px-4" style="width:80vw;">
-    <div class="col-12">
-        <div class="bg-secondary rounded h-100 p-4">
-            <h3 class="mb-4" style="text-align:center">Orders Table</h3>
-            <div class="filter">
-                <div class="table-responsive">
+<div class="table-responsive">
                     <table class="table">
                         <thead class="tabulous">
                             <th scope="col">SNo.</th>
@@ -36,7 +9,6 @@
                             <th scope="col">Email</th>
                             <th scope="col">Phone</th>
                             <th scope="col">Workflow</th>
-                            <th scope="col">Total</th>
                             <th scope="col" colspan='3'>Action</th>
                         </thead>
                         @if(isset($order))
@@ -59,8 +31,7 @@
                             @elseif($orders->acceptreject==1)
                             <td>Accepted</td>
                             @endif
-                            <td>{{$orders->total}}</td>
-                        <td><a href="#" data-toggle="modal" class="modal-trigger viewing"
+                            <td><a href="#" data-toggle="modal" class="modal-trigger viewing"
                                     data-target="#productModal" id="viewing"><button class="changebtn"
                                         style="width:3vw !important;height:4.5vh !important; background:#2D8FEB!important;"><i
                                             class="fas fa-eye idgive" style="color:white !important;"></i></button>
@@ -82,96 +53,7 @@
                         @endforeach
                         @endif
                     </table>
-                    <div class="modal fade" id="productModal" tabindex="-1" role="dialog"
-                        aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    @if(isset($orders))
-                                    <h5 class="modal-title" id="exampleModalLabel">
-                                        {{$orders->firstName}}{{" ".$orders->lastName." "}}Products List</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                    @endif
-                                </div>
-                                <div class="modal-body">
-                                    <table class='table inserting'>
-                                        <thead>
-                                            <tr>
-                                                <th>ProductId</th>
-                                                <th>Name</th>
-                                                <th>Quantity</th>
-                                                <th>Total Price</th>
-                                            </tr>
-                                        </thead>
-                                    </table>
-                                </div>
-                                <div class="modal-footer">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal" id="trackModal">
-                        <div class="modal-dialog modal-lg">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title">Track List</h5>
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                </div>
-                                <div class="modal-body">
-                                    <table class='table addingorder'>
-                                        <thead>
-                                            <tr>
-                                                <th>OrderID</th>
-                                                <th>UserID</th>
-                                                <th>Name</th>
-                                                <th>Address</th>
-                                                <th>Phone</th>
-                                                <th>Email</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td class="oid"></td>
-                                                <td class='userid'></td>
-                                                <td class="fullNamee"></td>
-                                                <td class="address"></td>
-                                                <td class="phone"></td>
-                                                <td class="email"></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                    <table class="orderproducts table" style="border-style:none !important;">
-                                    </table>
-
-                                    <label>DeliverBoy</label>
-                                    <select name="deliverman" id="deliverman" class="deliverman">
-                                        @foreach($deliverman as $del)
-                                        @if($del->status==1)
-                                        <option value="{{$del->id}}">{{$del->name}}</option>
-                                        @else
-                                        <option value="">Not available</option>
-                                        @endif
-                                        @endforeach
-                                    </select>
-                                    <br><button class="btn btn-primary addnow">Add Now</button>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
 </div>
-</div>
-<!-- table end -->
-
 <script>
 $(document).ready(function() {
     $('.modal-trigger').click(function() {
@@ -314,7 +196,3 @@ $(document).ready(function() {
 });
 </script>
 <script src="{{asset('/admin/js/order.js')}}"></script>
-<script src="{{asset('/admin/js/main.js')}}"></script>
-
-
-@endsection

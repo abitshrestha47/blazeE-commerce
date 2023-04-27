@@ -32,10 +32,13 @@ class DelivermanController extends Controller
         return view('admin.deliverman',compact('deliverman'));
     }
     public function editdeliverman(Request $req){
+        $image=$req->file('image');
+        $response=$image->store('dbimages','public');
         $deliverman=Deliverman::find($req->delivermanid);
         $deliverman->name=$req->delivermanname;
         $deliverman->phone=$req->phone;
         $deliverman->address=$req->address;
+        $deliverman->image=$response;
         $deliverman->save();
         return back()->with('edited','f');
     }

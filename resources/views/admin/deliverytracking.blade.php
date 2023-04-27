@@ -5,6 +5,8 @@
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<input type="hidden" value="deliverytracking" class="view">
+
 
 <!-- table starts -->
 <style>
@@ -26,6 +28,7 @@
     <div class="col-12">
         <div class="bg-secondary rounded h-100 p-4">
             <h3 class="mb-4" style="text-align:center">Delivery Tracks</h3>
+            <div id="filter">
             <div class="table-responsive">
                 <table class="table">
                     <thead class="tabulous">
@@ -36,9 +39,10 @@
                             <th scope="col">Phone</th>
                             <th scope="col">Email</th>
                             <th scope="col">Date/Time</th>
-                            <th scope="col">View Products</th>
                             <th scope="col">Status</th>
                             <th scope="col">Sale</th>
+                            <th scope="col">Total</th>
+                            <th scope="col">View Products</th>
                             <th scope="col" colspan='5'>Action</th>
                         </tr>
                     </thead>
@@ -50,13 +54,6 @@
                             <td>{{$delivertrack->phone}}</td>
                             <td>{{$delivertrack->email}}</td>
                             <td>{{$delivertrack->created_at}}</td>
-                            <td>
-                                <!-- Button trigger modal --> 
-                                <button type="button" class="btn btn-primary viewing changebtn" data-toggle="modal"
-                                    data-target="#exampleModalCenter">
-                                    <i class="fas fa-eye idgive"></i>
-                                </button>
-                            </td>
                             <td>
                                 <select name="status" id="status" class="status">
                                     <option value="processing">Processing</option>
@@ -72,6 +69,13 @@
                                 <p class="sales">Unpaid</p>
                                 @endif
                             </td>
+                            <td>{{$delivertrack->total}}</td>
+                            <td>
+                                <!-- Button trigger modal --> 
+                                <button type="button" class="btn btn-primary viewing changebtn" data-toggle="modal"
+                                    data-target="#exampleModalCenter" style="background-color:#7D8C9B; border:none; margin-top:-0.5px;"> View
+                                </button>
+                            </td>
                             <td>
                                 <form action="{{route('deldelivertrack')}}" method="post">
                                     @csrf
@@ -86,6 +90,7 @@
                     @endforeach
                 </table>
             </div>
+</div>
         </div>
     </div>
 </div>

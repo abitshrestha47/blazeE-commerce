@@ -99,7 +99,7 @@
                                     height="50vh" width="50vw"></td>
                             <td><button type="button" class="btn-primary editdepart changebtn" data-toggle="modal"
                                     data-target="#exampleModal" data-whatever="@mdo"
-                                    style="background-color:#5bc0de;">Edit</button></button></td>
+                                    style="background-color:#5bc0de;">Edit</button></td>
                             <td>
                                 <form action="{{route('deldepartments')}}" method="POST" class="margins">
                                     @csrf
@@ -140,7 +140,7 @@
                     </div>
                     <div class="form-group">
                         <label for="departmentimage" class="col-form-label">Department Image:</label>
-                        <input class="form-control bg-dark deptimage" type="file" id="formFile"  name="editdepartmentImage">
+                        <input class="form-control bg-dark deptimage" type="file" id="imag"  name="editdepartmentImage">
                     </div>
             </div>
             <div class="modal-footer">
@@ -151,7 +151,7 @@
         </div>
     </div>
 </div>
-<script>
+<!-- <script>
 $(document).ready(function() {
     $('.editdepart').click(function() {
         var button=document.getElementById("savebtn");
@@ -173,7 +173,41 @@ $(document).ready(function() {
         //     }
         // }
     });
+}); -->
+
+<script>
+    $(document).ready(function() {
+    var departmentname = document.getElementById('departmentname');
+    var departmentimage = document.getElementById('imag');
+    var button = document.getElementById("savebtn");
+    
+    departmentname.addEventListener("input", validateFields);
+    departmentimage.addEventListener("change", validateFields);
+    
+    function validateFields() {
+        console.log('validating data');
+        console.log(departmentimage.files[0]);
+        if (!departmentname.value.trim() || typeof departmentimage.files[0] === 'undefined') {
+            console.log("Button disabled");
+            button.disabled = true;
+        } else {
+            console.log("button enabled");
+            button.disabled = false;
+        }
+    }
+
+    $('.editdepart').click(function() {
+        var departid = $(this).closest('tr').find('.departid').text();
+        var dname = $(this).closest('tr').find('.dname').text();
+        var departmentid = document.getElementById('departmentid');
+        
+        departmentid.value = departid;
+        departmentname.value = dname;
+        validateFields();
+    });
 });
+
+</script>
 
 
 </script>

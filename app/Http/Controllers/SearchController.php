@@ -7,6 +7,9 @@ use App\Models\Products;
 use App\Models\Category;
 use App\Models\Department;
 use App\Models\Brand;
+use App\Models\DeliverMan;
+use App\Models\Order;
+use App\Models\DeliveryTracking;
 
 class SearchController extends Controller
 {
@@ -42,5 +45,20 @@ class SearchController extends Controller
         $searchItem=$req->searchItem;
         $brandsearched=Brand::where('brandName','LIKE','%'.$searchItem.'%')->get();
         return view('admin.brandfilter',compact('brandsearched'));
+    }
+    public function searchDeliverman(Request $req){
+        $searchItem=$req->searchItem;
+        $delivermansearched=DeliverMan::where('name','LIKE','%'.$searchItem.'%')->get();
+        return view('admin.delivermanfilter',compact('delivermansearched'));
+    }
+    public function searchOrders(Request $req){
+        $searchItem=$req->searchItem;
+        $order=Order::where('phone','LIKE','%'.$searchItem.'%')->get();
+        return view('admin.orderfilter',compact('order'));
+    }
+    public function deliverytrackingResults(Request $req){
+        $searchItem=$req->searchItem;
+        $delivertrack=DeliveryTracking::where('nameRecipient','LIKE','%'.$searchItem.'%')->get();
+        return view('admin.deliverytrackingfilter',compact('delivertrack'));
     }
 }

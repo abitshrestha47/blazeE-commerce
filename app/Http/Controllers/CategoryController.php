@@ -9,7 +9,7 @@ class CategoryController extends Controller
     
     public function category(Request $req){
         $validateData=$req->validate([
-            'categories'=>'required',
+            'category'=>'required',
             'department_id'=>'required',
         ],
     );

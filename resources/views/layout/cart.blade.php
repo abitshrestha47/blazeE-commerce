@@ -42,9 +42,9 @@
 <!-- ****** Cart Area Start ****** -->
 <form action="{{route('test')}}" method='POST'>
     @csrf
-    <input type="text" id="updatetotalhidden" name='updatetotalhidden'>
-    <input type="text" id="totalhidden" name='totalhidden'>
-    <input type="text" id="shippinghidden" name="shippinghidden">
+    <input type="hidden" id="updatetotalhidden" name='updatetotalhidden'>
+    <input type="hidden" id="totalhidden" name='totalhidden'>
+    <input type="hidden" id="shippinghidden" name="shippinghidden">
     <div class="cart_area section_padding_100 clearfix">
         <div class="container">
             <div class="row">

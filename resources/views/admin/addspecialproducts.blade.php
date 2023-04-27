@@ -66,7 +66,7 @@
                     @enderror
 
                     <label for="products" class="form-label">ProductName</label>
-                    <select name="productId" id="productId" class="form-control">
+                    <select name="productId" id="productId">
                         @foreach($products as $producting)
                         <option value="{{$producting->id}}" data-price="{{$producting->price}}">{{$producting->name}}
                         </option>

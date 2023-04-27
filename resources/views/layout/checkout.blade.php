@@ -148,8 +148,8 @@
                         <ul class="order-details-form mb-4">
                             <li><span>Product</span> <span>Total</span></li>
                             @foreach($productsgive as $ch)
-                            <input type="text" name="products[{{$ch->id}}][id]" value="{{$ch->id}}">
-                            <input type="text" name="products[{{$ch->id}}][img]" value="{{$ch->photo}}">
+                            <input type="hidden" name="products[{{$ch->id}}][id]" value="{{$ch->id}}">
+                            <input type="hidden" name="products[{{$ch->id}}][img]" value="{{$ch->photo}}">
                             <input type="hidden" name="products[{{$ch->id}}][name]" value='{{$ch->name}}'>
                             <li><span>{{$ch->name}}</span>X
                                 @foreach($qty as $key=>$value)

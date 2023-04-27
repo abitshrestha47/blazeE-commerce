@@ -18,7 +18,6 @@ class ProductsController extends Controller
             'color' => 'required|alpha',
             'quantity' => ['required', 'numeric'],
             'description'=>'required',
-            'size'=>'required',
         ],
     );
         $image=$req->file('image');
@@ -44,13 +43,16 @@ class ProductsController extends Controller
     }
     public function editprods(Request $req){
         $product=Products::find($req->pid);
+        $image=$req->file('image');
+        $response=$image->store('dbimages','public');
         $product->name=$req->pname;
         $product->price=$req->pprice;
         $product->color=$req->pcolor;
         $product->categoryid=$req->cateid;
-        $product->brandId=$req->brandedit;
+    $product->brandId=$req->brandedit;
         $product->description=$req->pdescription;
+        $product->photo=$response;
         $product->save();
-        return back();
+        return back()->with('edited','f');
     }
 }

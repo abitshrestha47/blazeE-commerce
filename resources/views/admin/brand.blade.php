@@ -44,7 +44,7 @@
                 <div class="mb-3">
                     <label for="brand" class="form-label text-white">Brand Name</label>
                     <input type="text" name='brand' class="form-control" id="brand">
-                    @error('brandName')
+                    @error('brand')
                     <br>
                     <div class="alert alert-danger alerting">
                         {{$message}}
@@ -113,7 +113,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Save changes</button>
+                <button type="submit" class="btn btn-primary" id="savebtn">Save changes</button>
                 </form>
             </div>
         </div>
@@ -121,13 +121,28 @@
 </div>
 <script>
 $(document).ready(function() {
+    var brname = document.getElementById('brandname');
+    var button = document.getElementById("savebtn");
+
+    brname.addEventListener("input", validateFields);
+
+    function validateFields() {
+        console.log('validating data');
+        if (!brname.value.trim()) {
+            console.log("Button disabled");
+            button.disabled = true;
+        } else {
+            console.log("button enabled");
+            button.disabled = false;
+        }
+    }
     $('.editbrands').click(function() {
         var brandid = $(this).closest('tr').find('.brandid').text();
         var brandname = $(this).closest('tr').find('.brandname').text();
         var brid = document.getElementById('brandid');
-        var brname = document.getElementById('brandname');
         brid.value = brandid;
         brname.value = brandname;
+        validateFields();
     });
 });
 </script>

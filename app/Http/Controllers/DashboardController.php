@@ -32,8 +32,9 @@ class DashboardController extends Controller
         $todayRevenue=$todayValues->sum('total');
         $adminname=User::all();
         $sale=Sale::all();
+        $deliverytracking = DeliveryTracking::where('paid/unpaid', '=', '1')->get();
         $totalsale=$sale->sum('subtotal');
         $totalRevenue=$sale->sum('total');
-        return view('admin/dashboard',compact('adminname','totalsale','todaySales','today','datas','day','todayRevenue','totalRevenue','notification','notifications','todo','totalAmount','sale'));
+        return view('admin/dashboard',compact('adminname','totalsale','todaySales','today','datas','day','todayRevenue','totalRevenue','notification','notifications','todo','totalAmount','sale','deliverytracking'));
     }
 }

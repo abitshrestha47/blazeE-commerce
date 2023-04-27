@@ -10,7 +10,7 @@ class BrandController extends Controller
     //
     public function brander(Request $req){
         $validateData=$req->validate([
-            'brandName'=>'required',
+            'brand'=>'required',
         ],
     );
 

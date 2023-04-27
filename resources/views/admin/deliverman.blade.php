@@ -4,10 +4,12 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
     integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="{{asset('/admin/css/format.css')}}">
+<link rel="stylesheet" href="{{asset('/admin/css/format.css')}}">
 
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-7X9tKGcEylxqDhB1iKiQlL24phPPTFZv/0nQWjk1r6rMCac9LjY6xbxDW6dDOKGw1N6IGnGd5H+6qpzsFTgfw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    integrity="sha512-7X9tKGcEylxqDhB1iKiQlL24phPPTFZv/0nQWjk1r6rMCac9LjY6xbxDW6dDOKGw1N6IGnGd5H+6qpzsFTgfw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"
     integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
@@ -20,6 +22,7 @@
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<input type="hidden" name="deliverman12" value="deliverman" class="view">
 
 <div class="container-fluid pt-4 px-4" style="width:30vw; margin-left:2vw;">
     <div class="card bg-secondary w-100">
@@ -105,39 +108,43 @@
     <div class="col-12">
         <div class="bg-secondary rounded h-100 p-4">
             <h6 class="mb-4" style="text-align: center;">Delivery Man Table</h6>
-            <div class="table-responsive">
-                <table class="table">
-                    <thead class="tabulous">
-                        <th>Sno.</th>
-                        <th>Name</th>
-                        <th>Phone</th>
-                        <th>Address</th>
-                        <th>Status</th>
-                        <th colspan='2'>Action</th>
-                    </thead>
+            <div id="filter">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead class="tabulous">
+                            <th>Sno.</th>
+                            <th>Name</th>
+                            <th>Phone</th>
+                            <th>Address</th>
+                            <th>Status</th>
+                            <th colspan='2'>Action</th>
+                        </thead>
 
-                    @foreach($deliverman as $delivers)
-                    <tr>
-                        <td class="delivermanid">{{$delivers->id}}</td>
-                        <td class="delivermanname">{{$delivers->name}}</td>
-                        <td class="delivermanphone">{{$delivers->phone}}</td>
-                        <td class="delivermanaddress">{{$delivers->address}}</td>
-                        @if($delivers->status=='0')
-                        <td class="status" data-id="1">Inactive</td>
-                        @else
-                        <td class="status" data-id="0">Active</td>
-                        @endif
-                        <td><button type="button" class="changebtn btn-primary editdeliverman" data-toggle="modal"
-                                data-target="#exampleModal" data-whatever="@mdo" style="background-color:#5bc0de;">Edit</button></button></td>
-                        <td>
-                            <form action="{{route('deldeliverboy')}}" method="POST" style="margin-left:-7vw;">
-                                @csrf
-                                <button type="submit" value="{{$delivers->id}}" class="changebtn btn-primary" name="getid" style="background-color:#d9534f;">Delete</button>
-                            </form>
-                        </td>
-                    </tr>
-                    @endforeach
-                </table>
+                        @foreach($deliverman as $delivers)
+                        <tr>
+                            <td class="delivermanid">{{$delivers->id}}</td>
+                            <td class="delivermanname">{{$delivers->name}}</td>
+                            <td class="delivermanphone">{{$delivers->phone}}</td>
+                            <td class="delivermanaddress">{{$delivers->address}}</td>
+                            @if($delivers->status=='0')
+                            <td class="status" data-id="1">Inactive</td>
+                            @else
+                            <td class="status" data-id="0">Active</td>
+                            @endif
+                            <td><button type="button" class="changebtn btn-primary editdeliverman" data-toggle="modal"
+                                    data-target="#exampleModal" data-whatever="@mdo"
+                                    style="background-color:#5bc0de;">Edit</button></button></td>
+                            <td>
+                                <form action="{{route('deldeliverboy')}}" method="POST" style="margin-left:-3vw;">
+                                    @csrf
+                                    <button type="submit" value="{{$delivers->id}}" class="changebtn btn-primary"
+                                        name="getid" style="background-color:#d9534f;">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </table>
+                </div>
             </div>
         </div>
     </div>
@@ -153,7 +160,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{route('editdeliverman')}}" method="POST"  enctype='multipart/form-data'>
+                <form action="{{route('editdeliverman')}}" method="POST" enctype='multipart/form-data'>
                     @csrf
                     <div class="form-group">
                         <label for="delivermanid" class="col-form-label">Deliverman ID</label>
@@ -171,53 +178,80 @@
                         <label for="address" class="col-form-label">Address:</label>
                         <input type="text" class="form-control" id="deladdress" name="address">
                     </div>
+                    <div class="form-group">
+                        <label for="image" class="form-label">Image</label>
+                        <input type="file" name="image" id="imgs" class="form-control">
+                    </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Save changes</button>
+                <button type="submit" class="btn btn-primary" id="savebtn">Save changes</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
 <script>
-    $(document).ready(function(){
-        var token = $('meta[name="csrf-token"]').attr('content');
-        $.ajaxSetup({
-            headers: {
-               'X-CSRF-TOKEN': token
+$(document).ready(function() {
+    var token = $('meta[name="csrf-token"]').attr('content');
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': token
+        }
+    });
+    var delname = document.getElementById('delname');
+    var deladdress = document.getElementById('deladdress');
+    var delphone = document.getElementById('delphone');
+    var imgs=document.getElementById('imgs');
+    var button = document.getElementById("savebtn");
+
+
+    delname.addEventListener("input", validateFields);
+    deladdress.addEventListener('input', validateFields);
+    delphone.addEventListener("input", validateFields);
+    imgs.addEventListener("change", validateFields);
+
+
+    function validateFields() {
+        console.log('validating data');
+        if (!delname.value.trim() || typeof imgs.files[0] === 'undefined' || !deladdress.value.trim() || !delphone.value.trim()) {
+            console.log("Button disabled");
+            button.disabled = true;
+        } else {
+            console.log("button enabled");
+            button.disabled = false;
+        }
+    }
+
+    $('.editdeliverman').click(function() {
+        var delivermanid = $(this).closest('tr').find('.delivermanid').text();
+        var name = $(this).closest('tr').find('.delivermanname').text();
+        var phone = $(this).closest('tr').find('.delivermanphone').text();
+        var address = $(this).closest('tr').find('.delivermanaddress').text();
+        var id = document.getElementById('delid');
+        id.value = delivermanid;
+        delname.value = name;
+        delphone.value = phone;
+        deladdress.value = address;
+
+        validateFields();
+    });
+    $('.status').click(function() {
+        var status = $(this).data('id');
+        var id = $(this).closest('tr').find('.delivermanid').text();
+        $.ajax({
+            type: "post",
+            url: 'statuss',
+            data: {
+                id: id,
+                status: status,
+            },
+            success: function() {
+                location.reload();
             }
-         });
-        $('.editdeliverman').click(function(){
-            var delivermanid=$(this).closest('tr').find('.delivermanid').text();
-            var name=$(this).closest('tr').find('.delivermanname').text();
-            var phone=$(this).closest('tr').find('.delivermanphone').text();
-            var address=$(this).closest('tr').find('.delivermanaddress').text();
-            var id=document.getElementById('delid');
-            var delname=document.getElementById('delname');
-            var deladdress=document.getElementById('deladdress');
-            var delphone=document.getElementById('delphone');
-            id.value=delivermanid;
-            delname.value=name;
-            delphone.value=phone;
-            deladdress.value=address;
-        });
-        $('.status').click(function(){
-            var status=$(this).data('id');
-            var id=$(this).closest('tr').find('.delivermanid').text();
-            $.ajax({
-                type:"post",
-                url:'statuss',
-                data:{
-                    id:id,
-                    status:status,
-                },
-                success:function(){
-                    location.reload();
-                }
-            });
         });
     });
+});
 </script>
 @if(Session::has('msg'))
 <script>

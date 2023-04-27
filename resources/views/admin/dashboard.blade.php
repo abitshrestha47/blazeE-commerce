@@ -199,12 +199,12 @@ var myChart = new Chart(ctx, {
                         <td>Paid</td>
                         <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
                     </tr> -->
-                    @if(isset($sale))
-                    @foreach($sale->sortByDesc('created_at')->take(5) as $sale)
+                    @if(isset($deliverytracking))
+                    @foreach($deliverytracking as $sale)
                             <tr>
                                 <td>{{$sale->created_at}}</td>
                                 <td>{{$sale->id}}</td>
-                                <td>fsd</td>
+                                <td>{{$sale->nameRecipient}}</td>
                                 <td>{{$sale->total}}</td>
                                 <td>Paid</td>
                             </tr>

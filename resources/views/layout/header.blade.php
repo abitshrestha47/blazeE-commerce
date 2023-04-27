@@ -127,11 +127,9 @@
                                     <div class="select-items">
                                         <table>
                                             <thead>
-                                                <tr>
                                                     <th>Image</th>
                                                     <th>Quantity</th>
                                                     <th>Total Price</th>
-                                                </tr>
                                             </thead>
                                             @if(isset($ca))
                                             @foreach($ca as $cart)
@@ -181,9 +179,6 @@
                                     </div>
                                 </div>
                             </li>
-                            @if(isset($ca))
-                            <li class="cart-price">${{$ca->subtotal}}</li>
-                            @endif
                         </ul>
                     </div>
                 </div>
